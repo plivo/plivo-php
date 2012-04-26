@@ -22,7 +22,7 @@ class RestAPI {
 
     private $auth_token;
 
-    function __construct($auth_id, $auth_token, $url="https://api.plivo.com", $version="v1") {
+    function __construct($auth_id, $auth_token, $url="http://api.plivo.com", $version="v1") {
         if ((!isset($auth_id)) || (!$auth_token)) {
             throw new PlivoError("no auth_id");
         }
@@ -50,7 +50,6 @@ class RestAPI {
             $url = $req->getUrl();
             $url->setQueryVariables($params);
         }
-        $req->setAdapter('curl');
         $req->setConfig(array('timeout' => 30));
         $req->setAuth($this->auth_id, $this->auth_token, HTTP_Request2::AUTH_BASIC);
         $req->setHeader(array(
@@ -67,7 +66,7 @@ class RestAPI {
     private function pop($params, $key) {
         $val = $params[$key];
         if (!$val) {
-            throw PlivoError($key." parameter not found");
+            throw new PlivoError($key." parameter not found");
         }
         unset($params[$key]);
         return $val;
@@ -129,6 +128,34 @@ class RestAPI {
         return $this->request('DELETE', '/Application/'.$app_id.'/');
     }
 
+    public function get_subaccount_applications($params=array()) {
+        $subauth_id = $this->pop(&$params, "subauth_id");
+        return $this->request('GET', '/Subaccount/'.$subauth_id.'/Application/');
+    }
+
+    public function get_subaccount_application($params=array()) {
+        $subauth_id = $this->pop(&$params, "subauth_id");
+        $app_id = $this->pop(&$params, "app_id");
+        return $this->request('GET', '/Subaccount/'.$subauth_id.'/Application/'.$app_id.'/');
+    }
+
+    public function create_subaccount_application($params=array()) {
+        $subauth_id = $this->pop(&$params, "subauth_id");
+        return $this->request('POST', '/Subaccount/'.$subauth_id.'/Application/', $params);
+    }
+
+    public function modify_subaccount_application($params=array()) {
+        $subauth_id = $this->pop(&$params, "subauth_id");
+        $app_id = $this->pop(&$params, "app_id");
+        return $this->request('POST', '/Subaccount/'.$subauth_id.'/Application/'.$app_id.'/', $params);
+    }
+
+    public function delete_subaccount_application($params=array()) {
+        $subauth_id = $this->pop(&$params, "subauth_id");
+        $app_id = $this->pop(&$params, "app_id");
+        return $this->request('DELETE', '/Subaccount/'.$subauth_id.'/Application/'.$app_id.'/');
+    }
+
     ## Numbers ##
     public function get_numbers($params=array()) {
         return $this->request('GET', '/Number/', $params);
@@ -162,6 +189,17 @@ class RestAPI {
         $number = $this->pop(&$params, "number");
         $params = array("app_id" => "");
         return $this->request('POST', '/Number/'.$number.'/', $params);
+    }
+
+    public function get_subaccount_numbers($params=array()) {
+        $subauth_id = $this->pop(&$params, "subauth_id");
+        return $this->request('GET', '/Subaccount/'.$subauth_id.'/Number/', $params);
+    }
+
+    public function get_subaccount_number($params=array()) {
+        $subauth_id = $this->pop(&$params, "subauth_id");
+        $number = $this->pop(&$params, "number");
+        return $this->request('GET', '/Subaccount/'.$subauth_id.'/Number/'.$number.'/');
     }
 
     ## Schedule ##
@@ -241,6 +279,17 @@ class RestAPI {
         return $this->request('POST', '/Call/'.$call_uuid.'/DTMF/', $params);
     }
 
+    public function get_subaccount_cdrs($params=array()) {
+        $subauth_id = $this->pop(&$params, 'subauth_id');
+        return $this->request('GET', '/Subaccount/'.$subauth_id.'/Call/', $params);
+    }
+
+    public function get_subaccount_cdr($params=array()) {
+        $subauth_id = $this->pop(&$params, 'subauth_id');
+        $record_id = $this->pop(&$params, 'record_id');
+        return $this->request('GET', '/Subaccount/'.$subauth_id.'/Call/'.$record_id.'/');
+    }
+
     ## Calls requests ##
     public function hangup_request($params=array()) {
         $request_uuid = $this->pop(&$params, 'request_uuid');
@@ -257,90 +306,90 @@ class RestAPI {
     }
 
     public function get_live_conference($params=array()) {
-        $conference_name = $this->pop(&$params, 'conference_name');
-        $conference_name = rawurlencode($conference_name);
-        return $this->request('GET', '/Conference/'.$conference_name.'/', $params);
+        $conference_id = $this->pop(&$params, 'conference_id');
+        $conference_id = rawurlencode($conference_id);
+        return $this->request('GET', '/Conference/'.$conference_id.'/', $params);
     }
 
     public function hangup_conference($params=array()) {
-        $conference_name = $this->pop(&$params, 'conference_name');
-        $conference_name = rawurlencode($conference_name);
-        return $this->request('DELETE', '/Conference/'.$conference_name.'/');
+        $conference_id = $this->pop(&$params, 'conference_id');
+        $conference_id = rawurlencode($conference_id);
+        return $this->request('DELETE', '/Conference/'.$conference_id.'/');
     }
 
     public function hangup_member($params=array()) {
-        $conference_name = $this->pop(&$params, 'conference_name');
-        $conference_name = rawurlencode($conference_name);
+        $conference_id = $this->pop(&$params, 'conference_id');
+        $conference_id = rawurlencode($conference_id);
         $member_id = $this->pop(&$params, 'member_id');
-        return $this->request('DELETE', '/Conference/'.$conference_name.'/Member/'.$member_id.'/');
+        return $this->request('DELETE', '/Conference/'.$conference_id.'/Member/'.$member_id.'/');
     }
 
     public function play_member($params=array()) {
-        $conference_name = $this->pop(&$params, 'conference_name');
-        $conference_name = rawurlencode($conference_name);
+        $conference_id = $this->pop(&$params, 'conference_id');
+        $conference_id = rawurlencode($conference_id);
         $member_id = $this->pop(&$params, 'member_id');
-        return $this->request('POST', '/Conference/'.$conference_name.'/Member/'.$member_id.'/Play/', $params);
+        return $this->request('POST', '/Conference/'.$conference_id.'/Member/'.$member_id.'/Play/', $params);
     }
         
     public function stop_play_member($params=array()) {
-        $conference_name = $this->pop(&$params, 'conference_name');
-        $conference_name = rawurlencode($conference_name);
+        $conference_id = $this->pop(&$params, 'conference_id');
+        $conference_id = rawurlencode($conference_id);
         $member_id = $this->pop(&$params, 'member_id');
-        return $this->request('DELETE', '/Conference/'.$conference_name.'/Member/'.$member_id.'/Play/');
+        return $this->request('DELETE', '/Conference/'.$conference_id.'/Member/'.$member_id.'/Play/');
     }
 
     public function speak_member($params=array()) {
-        $conference_name = $this->pop(&$params, 'conference_name');
-        $conference_name = rawurlencode($conference_name);
+        $conference_id = $this->pop(&$params, 'conference_id');
+        $conference_id = rawurlencode($conference_id);
         $member_id = $this->pop(&$params, 'member_id');
-        return $this->request('POST', '/Conference/'.$conference_name.'/Member/'.$member_id.'/Speak/', $params);
+        return $this->request('POST', '/Conference/'.$conference_id.'/Member/'.$member_id.'/Speak/', $params);
     }
 
     public function deaf_member($params=array()) {
-        $conference_name = $this->pop(&$params, 'conference_name');
-        $conference_name = rawurlencode($conference_name);
+        $conference_id = $this->pop(&$params, 'conference_id');
+        $conference_id = rawurlencode($conference_id);
         $member_id = $this->pop(&$params, 'member_id');
-        return $this->request('POST', '/Conference/'.$conference_name.'/Member/'.$member_id.'/Deaf/', $params);
+        return $this->request('POST', '/Conference/'.$conference_id.'/Member/'.$member_id.'/Deaf/', $params);
     }
 
     public function undeaf_member($params=array()) {
-        $conference_name = $this->pop(&$params, 'conference_name');
-        $conference_name = rawurlencode($conference_name);
+        $conference_id = $this->pop(&$params, 'conference_id');
+        $conference_id = rawurlencode($conference_id);
         $member_id = $this->pop(&$params, 'member_id');
-        return $this->request('DELETE', '/Conference/'.$conference_name.'/Member/'.$member_id.'/Deaf/');
+        return $this->request('DELETE', '/Conference/'.$conference_id.'/Member/'.$member_id.'/Deaf/');
     }
 
     public function mute_member($params=array()) {
-        $conference_name = $this->pop(&$params, 'conference_name');
-        $conference_name = rawurlencode($conference_name);
+        $conference_id = $this->pop(&$params, 'conference_id');
+        $conference_id = rawurlencode($conference_id);
         $member_id = $this->pop(&$params, 'member_id');
-        return $this->request('POST', '/Conference/'.$conference_name.'/Member/'.$member_id.'/Mute/', $params);
+        return $this->request('POST', '/Conference/'.$conference_id.'/Member/'.$member_id.'/Mute/', $params);
     }
 
     public function unmute_member($params=array()) {
-        $conference_name = $this->pop(&$params, 'conference_name');
-        $conference_name = rawurlencode($conference_name);
+        $conference_id = $this->pop(&$params, 'conference_id');
+        $conference_id = rawurlencode($conference_id);
         $member_id = $this->pop(&$params, 'member_id');
-        return $this->request('DELETE', '/Conference/'.$conference_name.'/Member/'.$member_id.'/Mute/');
+        return $this->request('DELETE', '/Conference/'.$conference_id.'/Member/'.$member_id.'/Mute/');
     }
 
     public function kick_member($params=array()) {
-        $conference_name = $this->pop(&$params, 'conference_name');
-        $conference_name = rawurlencode($conference_name);
+        $conference_id = $this->pop(&$params, 'conference_id');
+        $conference_id = rawurlencode($conference_id);
         $member_id = $this->pop(&$params, 'member_id');
-        return $this->request('POST', '/Conference/'.$conference_name.'/Member/'.$member_id.'/Kick/', $params);
+        return $this->request('POST', '/Conference/'.$conference_id.'/Member/'.$member_id.'/Kick/', $params);
     }
 
     public function record_conference($params=array()) { 
-        $conference_name = $this->pop(&$params, 'conference_name');
-        $conference_name = rawurlencode($conference_name);
-        return $this->request('POST', '/Conference/'.$conference_name.'/Record/', $params);
+        $conference_id = $this->pop(&$params, 'conference_id');
+        $conference_id = rawurlencode($conference_id);
+        return $this->request('POST', '/Conference/'.$conference_id.'/Record/', $params);
     }
 
     public function stop_record_conference($params=array()) { 
-        $conference_name = $this->pop(&$params, 'conference_name');
-        $conference_name = rawurlencode($conference_name);
-        return $this->request('DELETE', '/Conference/'.$conference_name.'/Record/');
+        $conference_id = $this->pop(&$params, 'conference_id');
+        $conference_id = rawurlencode($conference_id);
+        return $this->request('DELETE', '/Conference/'.$conference_id.'/Record/');
     }
 
     ## Recordings ##
@@ -351,6 +400,17 @@ class RestAPI {
     public function get_recording($params=array()) {
         $recording_id = $this->pop(&$params, 'recording_id');
         return $this->request('GET', '/Recording/'.$recording_id.'/');
+    }
+
+    public function get_subaccount_recordings($params=array()) {
+        $subauth_id = $this->pop(&$params, 'subauth_id');
+        return $this->request('GET', '/Subaccount/'.$subauth_id.'/Recording/');
+    }
+
+    public function get_subaccount_recording($params=array()) {
+        $subauth_id = $this->pop(&$params, 'subauth_id');
+        $recording_id = $this->pop(&$params, 'recording_id');
+        return $this->request('GET', '/Subaccount/'.$subauth_id.'/Recording/'.$recording_id.'/');
     }
 
     ## Endpoints ##
@@ -375,6 +435,34 @@ class RestAPI {
     public function delete_endpoint($params=array()) {
         $endpoint_id = $this->pop(&$params, 'endpoint_id');
         return $this->request('DELETE', '/Endpoint/'.$endpoint_id.'/');
+    }
+
+    public function get_subaccount_endpoints($params=array()) {
+        $subauth_id = $this->pop(&$params, 'subauth_id');
+        return $this->request('GET', '/Subaccount/'.$subauth_id.'/Endpoint/');
+    }
+
+    public function create_subaccount_endpoint($params=array()) {
+        $subauth_id = $this->pop(&$params, 'subauth_id');
+        return $this->request('POST', '/Subaccount/'.$subauth_id.'/Endpoint/', $params);
+    }
+
+    public function get_subaccount_endpoint($params=array()) {
+        $subauth_id = $this->pop(&$params, 'subauth_id');
+        $endpoint_id = $this->pop(&$params, 'endpoint_id');
+        return $this->request('GET', '/Subaccount/'.$subauth_id.'/Endpoint/'.$endpoint_id.'/');
+    }
+
+    public function modify_subaccount_endpoint($params=array()) {
+        $subauth_id = $this->pop(&$params, 'subauth_id');
+        $endpoint_id = $this->pop(&$params, 'endpoint_id');
+        return $this->request('POST', '/Subaccount/'.$subauth_id.'/Endpoint/'.$endpoint_id.'/', $params);
+    }
+
+    public function delete_subaccount_endpoint($params=array()) {
+        $subauth_id = $this->pop(&$params, 'subauth_id');
+        $endpoint_id = $this->pop(&$params, 'endpoint_id');
+        return $this->request('DELETE', '/Subaccount/'.$subauth_id.'/Endpoint/'.$endpoint_id.'/');
     }
 
     ## Carriers ##
@@ -449,14 +537,11 @@ class Element {
 
     function __construct($body='', $attributes=array()) {
         $this->attributes = $attributes;
-        if ((!$attributes) || ($attributes === null)) {
-            $this->attributes = array();
-        }
         $this->name = get_class($this);
         $this->body = $body;
         foreach ($this->attributes as $key => $value) {
             if (!in_array($key, $this->valid_attributes)) {
-                throw PlivoError("invalid attribute ".$key." for ".$this->name);
+                throw new PlivoError("invalid attribute ".$key." for ".$this->name);
             }
             $this->attributes[$key] = $this->convert_value($value);
         }
@@ -539,7 +624,7 @@ class Element {
 
     protected function add($element) {
         if (!in_array($element->getName(), $this->nestables)) {
-            throw PlivoError($element->getName()." not nestable in ".$this->getName());
+            throw new PlivoError($element->getName()." not nestable in ".$this->getName());
         }
         $this->childs[] = $element;
         return $element;
@@ -564,10 +649,6 @@ class Element {
     }
 
     public function toXML($header=FALSE) {
-        if (!(isset($xmlstr))) {
-            $xmlstr = '';
-        }
-
         if ($this->body) {
             $xmlstr .= "<".$this->getName().">".htmlspecialchars($this->body)."</".$this->getName().">";
         } else {
@@ -582,10 +663,6 @@ class Element {
             $child->asChild(&$xml);
         }
         return $xml->asXML();
-    }
-
-    public function __toString() {
-        return $this->toXML();
     }
 
 }
@@ -614,7 +691,7 @@ class Speak extends Element {
     function __construct($body, $attributes=array()) {
         parent::__construct($body, $attributes);
         if (!$body) {
-            throw PlivoError("No text set for ".$this->getName());
+            throw new PlivoError("No text set for ".$this->getName());
         }
     }
 }
@@ -627,7 +704,7 @@ class Play extends Element {
     function __construct($body, $attributes=array()) {
         parent::__construct($body, $attributes);
         if (!$body) {
-            throw PlivoError("No url set for ".$this->getName());
+            throw new PlivoError("No url set for ".$this->getName());
         }
     }
 }
@@ -650,7 +727,7 @@ class Redirect extends Element {
     function __construct($body, $attributes=array()) {
         parent::__construct($body, $attributes);
         if (!$body) {
-            throw PlivoError("No url set for ".$this->getName());
+            throw new PlivoError("No url set for ".$this->getName());
         }
     }
 }
@@ -685,7 +762,7 @@ class Number extends Element {
     function __construct($body, $attributes=array()) {
         parent::__construct($body, $attributes);
         if (!$body) {
-            throw PlivoError("No number set for ".$this->getName());
+            throw new PlivoError("No number set for ".$this->getName());
         }
     }
 }
@@ -698,7 +775,7 @@ class User extends Element {
     function __construct($body, $attributes=array()) {
         parent::__construct($body, $attributes);
         if (!$body) {
-            throw PlivoError("No user set for ".$this->getName());
+            throw new PlivoError("No user set for ".$this->getName());
         }
     }
 }
@@ -729,7 +806,7 @@ class Conference extends Element {
     function __construct($body, $attributes=array()) {
         parent::__construct($body, $attributes);
         if (!$body) {
-            throw PlivoError("No conference name set for ".$this->getName());
+            throw new PlivoError("No conference name set for ".$this->getName());
         }
     }
 }
@@ -738,8 +815,8 @@ class Record extends Element {
     protected $nestables = array();
 
     protected $valid_attributes = array('action', 'method', 'timeout','finishOnKey',
-                                        'maxLength', 'playBeep', 'recordSession',
-                                        'startOnDialAnswer', 'redirect', 'fileFormat');
+                                        'maxLength', 'bothLegs', 'playBeep',
+                                        'redirect', 'fileFormat');
 
     function __construct($attributes=array()) {
         parent::__construct(NULL, $attributes);
@@ -747,7 +824,7 @@ class Record extends Element {
 }
 
 class PreAnswer extends Element {
-    protected $nestables = array('Play', 'Speak', 'GetDigits', 'Wait', 'Redirect', 'Message');
+    protected $nestables = array('Play', 'Speak', 'GetDigits', 'Wait', 'Redirect');
 
     protected $valid_attributes = array();
 
@@ -759,12 +836,12 @@ class PreAnswer extends Element {
 class Message extends Element {
     protected $nestables = array();
 
-    protected $valid_attributes = array('src', 'dst', 'type', 'callbackMethod', 'callbackUrl');
+    protected $valid_attributes = array('src', 'dst', 'type');
 
     function __construct($body, $attributes=array()) {
         parent::__construct($body, $attributes);
         if (!$body) {
-            throw PlivoError("No text set for ".$this->getName());
+            throw new PlivoError("No text set for ".$this->getName());
         }
     }
 }
