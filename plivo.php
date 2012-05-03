@@ -69,7 +69,7 @@ class RestAPI {
     private function pop($params, $key) {
         $val = $params[$key];
         if (!$val) {
-            throw PlivoError($key." parameter not found");
+            throw new PlivoError($key." parameter not found");
         }
         unset($params[$key]);
         return $val;
@@ -458,7 +458,7 @@ class Element {
         $this->body = $body;
         foreach ($this->attributes as $key => $value) {
             if (!in_array($key, $this->valid_attributes)) {
-                throw PlivoError("invalid attribute ".$key." for ".$this->name);
+                throw new PlivoError("invalid attribute ".$key." for ".$this->name);
             }
             $this->attributes[$key] = $this->convert_value($value);
         }
@@ -541,7 +541,7 @@ class Element {
 
     protected function add($element) {
         if (!in_array($element->getName(), $this->nestables)) {
-            throw PlivoError($element->getName()." not nestable in ".$this->getName());
+            throw new PlivoError($element->getName()." not nestable in ".$this->getName());
         }
         $this->childs[] = $element;
         return $element;
@@ -616,7 +616,7 @@ class Speak extends Element {
     function __construct($body, $attributes=array()) {
         parent::__construct($body, $attributes);
         if (!$body) {
-            throw PlivoError("No text set for ".$this->getName());
+            throw new PlivoError("No text set for ".$this->getName());
         }
     }
 }
@@ -629,7 +629,7 @@ class Play extends Element {
     function __construct($body, $attributes=array()) {
         parent::__construct($body, $attributes);
         if (!$body) {
-            throw PlivoError("No url set for ".$this->getName());
+            throw new PlivoError("No url set for ".$this->getName());
         }
     }
 }
@@ -652,7 +652,7 @@ class Redirect extends Element {
     function __construct($body, $attributes=array()) {
         parent::__construct($body, $attributes);
         if (!$body) {
-            throw PlivoError("No url set for ".$this->getName());
+            throw new PlivoError("No url set for ".$this->getName());
         }
     }
 }
@@ -687,7 +687,7 @@ class Number extends Element {
     function __construct($body, $attributes=array()) {
         parent::__construct($body, $attributes);
         if (!$body) {
-            throw PlivoError("No number set for ".$this->getName());
+            throw new PlivoError("No number set for ".$this->getName());
         }
     }
 }
@@ -700,7 +700,7 @@ class User extends Element {
     function __construct($body, $attributes=array()) {
         parent::__construct($body, $attributes);
         if (!$body) {
-            throw PlivoError("No user set for ".$this->getName());
+            throw new PlivoError("No user set for ".$this->getName());
         }
     }
 }
@@ -731,7 +731,7 @@ class Conference extends Element {
     function __construct($body, $attributes=array()) {
         parent::__construct($body, $attributes);
         if (!$body) {
-            throw PlivoError("No conference name set for ".$this->getName());
+            throw new PlivoError("No conference name set for ".$this->getName());
         }
     }
 }
@@ -766,7 +766,7 @@ class Message extends Element {
     function __construct($body, $attributes=array()) {
         parent::__construct($body, $attributes);
         if (!$body) {
-            throw PlivoError("No text set for ".$this->getName());
+            throw new PlivoError("No text set for ".$this->getName());
         }
     }
 }
