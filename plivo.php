@@ -40,7 +40,9 @@ class RestAPI {
         if (!strcmp($method, "POST")) {
             $req = new HTTP_Request2($url, HTTP_Request2::METHOD_POST);
             $req->setHeader('Content-type: application/json');
-            $req->setBody(json_encode($params));
+            if ($params) {
+                $req->setBody(json_encode($params));
+            }
         } else if (!strcmp($method, "GET")) {
             $req = new HTTP_Request2($url, HTTP_Request2::METHOD_GET);
             $url = $req->getUrl();
