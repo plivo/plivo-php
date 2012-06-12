@@ -537,7 +537,7 @@ class Element {
         return $element;
     }
 
-    public function setAttributes(&$xml) {
+    public function setAttributes($xml) {
         foreach ($this->attributes as $key => $value) {
             $xml->addAttribute($key, $value);
         }
@@ -551,7 +551,7 @@ class Element {
         }
         $this->setAttributes($child_xml);
         foreach ($this->childs as $child) {
-            $child->asChild(&$child_xml);
+            $child->asChild($child_xml);
         }
     }
 
@@ -571,7 +571,7 @@ class Element {
         $xml = new SimpleXMLElement($xmlstr);
         $this->setAttributes($xml);
         foreach ($this->childs as $child) {
-            $child->asChild(&$xml);
+            $child->asChild($xml);
         }
         return $xml->asXML();
     }
