@@ -525,6 +525,10 @@ class Element {
         return $this->add(new Message($body, $attributes));
     }
 
+    function addDTMF($body=NULL, $attributes=array()) {
+        return $this->add(new DTMF($body, $attributes));
+    }
+
     public function getName() {
         return $this->name;
     }
@@ -662,7 +666,7 @@ class GetDigits extends Element {
 
     protected $valid_attributes = array('action', 'method', 'timeout', 'finishOnKey',
                                         'numDigits', 'retries', 'invalidDigitsSound',
-                                        'validDigits', 'playBeep');
+                                        'validDigits', 'playBeep', 'redirect');
 
     function __construct($attributes=array()) {
         parent::__construct(NULL, $attributes);
@@ -739,7 +743,7 @@ class Record extends Element {
 }
 
 class PreAnswer extends Element {
-    protected $nestables = array('Play', 'Speak', 'GetDigits', 'Wait', 'Redirect', 'Message');
+    protected $nestables = array('Play', 'Speak', 'GetDigits', 'Wait', 'Redirect', 'Message', 'DTMF');
 
     protected $valid_attributes = array();
 
@@ -757,6 +761,19 @@ class Message extends Element {
         parent::__construct($body, $attributes);
         if (!$body) {
             throw new PlivoError("No text set for ".$this->getName());
+        }
+    }
+}
+
+class DTMF extends Element {
+    protected $nestables = array();
+
+    protected $valid_attributes = array();
+
+    function __construct($body, $attributes=array()) {
+        parent::__construct($body, $attributes);
+        if (!$body) {
+            throw new PlivoError("No digits set for ".$this->getName());
         }
     }
 }
