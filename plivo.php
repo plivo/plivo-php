@@ -689,7 +689,7 @@ class Number extends Element {
 class User extends Element {
     protected $nestables = array();
 
-    protected $valid_attributes = array('sendDigits', 'sendOnPreanswer');
+    protected $valid_attributes = array('sendDigits', 'sendOnPreanswer', 'sipHeaders');
 
     function __construct($body, $attributes=array()) {
         parent::__construct($body, $attributes);
@@ -705,7 +705,8 @@ class Dial extends Element {
     protected $valid_attributes = array('action','method','timeout','hangupOnStar',
                                         'timeLimit','callerId', 'callerName', 'confirmSound',
                                         'dialMusic', 'confirmKey', 'redirect',
-                                        'callbackUrl', 'callbackMethod', 'digitsMatch');
+                                        'callbackUrl', 'callbackMethod', 'digitsMatch',
+                                        'sipHeaders');
 
     function __construct($attributes=array()) {
         parent::__construct(NULL, $attributes);
