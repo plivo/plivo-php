@@ -631,7 +631,7 @@ class Play extends Element {
 class Wait extends Element {
     protected $nestables = array();
 
-    protected $valid_attributes = array('length');
+    protected $valid_attributes = array('length', 'silence');
 
     function __construct($attributes=array()) {
         parent::__construct(NULL, $attributes);
@@ -666,7 +666,8 @@ class GetDigits extends Element {
 
     protected $valid_attributes = array('action', 'method', 'timeout', 'finishOnKey',
                                         'numDigits', 'retries', 'invalidDigitsSound',
-                                        'validDigits', 'playBeep', 'redirect');
+                                        'validDigits', 'playBeep', 'redirect',
+                                        'digitTimeout');
 
     function __construct($attributes=array()) {
         parent::__construct(NULL, $attributes);
@@ -736,7 +737,8 @@ class Record extends Element {
 
     protected $valid_attributes = array('action', 'method', 'timeout','finishOnKey',
                                         'maxLength', 'playBeep', 'recordSession',
-                                        'startOnDialAnswer', 'redirect', 'fileFormat');
+                                        'startOnDialAnswer', 'redirect', 'fileFormat',
+                                        'callbackUrl', 'callbackMethod');
 
     function __construct($attributes=array()) {
         parent::__construct(NULL, $attributes);
