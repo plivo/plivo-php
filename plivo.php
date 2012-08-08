@@ -104,7 +104,7 @@ class RestAPI {
 
     public function delete_subaccount($params=array()) {
         $subauth_id = $this->pop($params, "subauth_id");
-        return $this->request('DELETE', '/Subaccount/'.$subauth_id.'/');
+        return $this->request('DELETE', '/Subaccount/'.$subauth_id.'/', $params);
     }
 
     ## Applications ##
@@ -128,7 +128,7 @@ class RestAPI {
 
     public function delete_application($params=array()) {
         $app_id = $this->pop($params, "app_id");
-        return $this->request('DELETE', '/Application/'.$app_id.'/');
+        return $this->request('DELETE', '/Application/'.$app_id.'/', $params);
     }
 
     ## Numbers ##
@@ -152,7 +152,7 @@ class RestAPI {
 
     public function unrent_number($params=array()) {
         $number = $this->pop($params, "number");
-        return $this->request('DELETE', '/Number/'.$number.'/');
+        return $this->request('DELETE', '/Number/'.$number.'/', $params);
     }
 
     public function link_application_number($params=array()) {
@@ -206,7 +206,7 @@ class RestAPI {
     }
 
     public function hangup_all_calls($params=array()) {
-        return $this->request('DELETE', '/Call/');
+        return $this->request('DELETE', '/Call/', $params);
     }
 
     public function transfer_call($params=array()) {
@@ -216,7 +216,7 @@ class RestAPI {
 
     public function hangup_call($params=array()) {
         $call_uuid = $this->pop($params, 'call_uuid');
-        return $this->request('DELETE', '/Call/'.$call_uuid.'/');
+        return $this->request('DELETE', '/Call/'.$call_uuid.'/', $params);
     }
 
     public function record($params=array()) {
@@ -252,7 +252,7 @@ class RestAPI {
     ## Calls requests ##
     public function hangup_request($params=array()) {
         $request_uuid = $this->pop($params, 'request_uuid');
-        return $this->request('DELETE', '/Request/'.$request_uuid.'/');
+        return $this->request('DELETE', '/Request/'.$request_uuid.'/', $params);
     }
 
     ## Conferences ##
@@ -261,7 +261,7 @@ class RestAPI {
     }
 
     public function hangup_all_conferences($params=array()) {
-        return $this->request('DELETE', '/Conference/');
+        return $this->request('DELETE', '/Conference/', $params);
     }
 
     public function get_live_conference($params=array()) {
@@ -273,14 +273,14 @@ class RestAPI {
     public function hangup_conference($params=array()) {
         $conference_name = $this->pop($params, 'conference_name');
         $conference_name = rawurlencode($conference_name);
-        return $this->request('DELETE', '/Conference/'.$conference_name.'/');
+        return $this->request('DELETE', '/Conference/'.$conference_name.'/', $params);
     }
 
     public function hangup_member($params=array()) {
         $conference_name = $this->pop($params, 'conference_name');
         $conference_name = rawurlencode($conference_name);
         $member_id = $this->pop($params, 'member_id');
-        return $this->request('DELETE', '/Conference/'.$conference_name.'/Member/'.$member_id.'/');
+        return $this->request('DELETE', '/Conference/'.$conference_name.'/Member/'.$member_id.'/', $params);
     }
 
     public function play_member($params=array()) {
@@ -294,7 +294,7 @@ class RestAPI {
         $conference_name = $this->pop($params, 'conference_name');
         $conference_name = rawurlencode($conference_name);
         $member_id = $this->pop($params, 'member_id');
-        return $this->request('DELETE', '/Conference/'.$conference_name.'/Member/'.$member_id.'/Play/');
+        return $this->request('DELETE', '/Conference/'.$conference_name.'/Member/'.$member_id.'/Play/', $params);
     }
 
     public function speak_member($params=array()) {
@@ -315,7 +315,7 @@ class RestAPI {
         $conference_name = $this->pop($params, 'conference_name');
         $conference_name = rawurlencode($conference_name);
         $member_id = $this->pop($params, 'member_id');
-        return $this->request('DELETE', '/Conference/'.$conference_name.'/Member/'.$member_id.'/Deaf/');
+        return $this->request('DELETE', '/Conference/'.$conference_name.'/Member/'.$member_id.'/Deaf/', $params);
     }
 
     public function mute_member($params=array()) {
@@ -329,7 +329,7 @@ class RestAPI {
         $conference_name = $this->pop($params, 'conference_name');
         $conference_name = rawurlencode($conference_name);
         $member_id = $this->pop($params, 'member_id');
-        return $this->request('DELETE', '/Conference/'.$conference_name.'/Member/'.$member_id.'/Mute/');
+        return $this->request('DELETE', '/Conference/'.$conference_name.'/Member/'.$member_id.'/Mute/', $params);
     }
 
     public function kick_member($params=array()) {
@@ -348,7 +348,7 @@ class RestAPI {
     public function stop_record_conference($params=array()) { 
         $conference_name = $this->pop($params, 'conference_name');
         $conference_name = rawurlencode($conference_name);
-        return $this->request('DELETE', '/Conference/'.$conference_name.'/Record/');
+        return $this->request('DELETE', '/Conference/'.$conference_name.'/Record/', $params);
     }
 
     ## Recordings ##
@@ -382,7 +382,7 @@ class RestAPI {
 
     public function delete_endpoint($params=array()) {
         $endpoint_id = $this->pop($params, 'endpoint_id');
-        return $this->request('DELETE', '/Endpoint/'.$endpoint_id.'/');
+        return $this->request('DELETE', '/Endpoint/'.$endpoint_id.'/', $params);
     }
 
     ## Carriers ##
@@ -406,7 +406,7 @@ class RestAPI {
 
     public function delete_carrier($params=array()) {
         $carrier_id = $this->pop($params, 'carrier_id');
-        return $this->request('DELETE', '/Carrier/'.$carrier_id.'/');
+        return $this->request('DELETE', '/Carrier/'.$carrier_id.'/', $params);
     }
 
     ## Carrier Routings ##
@@ -430,7 +430,7 @@ class RestAPI {
 
     public function delete_carrier_routing($params=array()) {
         $routing_id = $this->pop($params, 'routing_id');
-        return $this->request('DELETE', '/CarrierRouting/'.$routing_id.'/');
+        return $this->request('DELETE', '/CarrierRouting/'.$routing_id.'/', $params);
     }
 
     ## Message ##
