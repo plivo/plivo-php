@@ -437,6 +437,15 @@ class RestAPI {
     public function send_message($params=array()) {
         return $this->request('POST', '/Message/', $params);
     }
+
+    public function get_messages($params=array()) {
+        return $this->request('GET', '/Message/', $params);
+    }
+
+    public function get_message($params=array()) {
+        $record_id = $this->pop($params, 'record_id');
+        return $this->request('GET', '/Message/'.$record_id.'/', $params);
+    }
 }
 
 
