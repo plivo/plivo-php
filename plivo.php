@@ -94,7 +94,7 @@ class RestAPI {
 
     public function get_subaccount($params=array()) {
         $subauth_id = $this->pop($params, "subauth_id");
-        return $this->request('GET', '/Subaccount/'.$subauth_id.'/');
+        return $this->request('GET', '/Subaccount/'.$subauth_id.'/', $params);
     }
 
     public function modify_subaccount($params=array()) {
@@ -118,7 +118,7 @@ class RestAPI {
 
     public function get_application($params=array()) {
         $app_id = $this->pop($params, "app_id");
-        return $this->request('GET', '/Application/'.$app_id.'/');
+        return $this->request('GET', '/Application/'.$app_id.'/', $params);
     }
 
     public function modify_application($params=array()) {
@@ -142,7 +142,7 @@ class RestAPI {
 
     public function get_number($params=array()) {
         $number = $this->pop($params, "number");
-        return $this->request('GET', '/Number/'.$number.'/');
+        return $this->request('GET', '/Number/'.$number.'/', $params);
     }
 
     public function rent_number($params=array()) {
@@ -173,16 +173,18 @@ class RestAPI {
 
     public function get_cdr($params=array()) {
         $record_id = $this->pop($params, 'record_id');
-        return $this->request('GET', '/Call/'.$record_id.'/');
+        return $this->request('GET', '/Call/'.$record_id.'/', $params);
     }
 
     public function get_live_calls($params=array()) {
-        return $this->request('GET', '/Call/', array('status' => 'live'));
+        $params["status"] = "live";
+        return $this->request('GET', '/Call/', $params);
     }
 
     public function get_live_call($params=array()) {
         $call_uuid = $this->pop($params, 'call_uuid');
-        return $this->request('GET', '/Call/'.$call_uuid.'/', array('status' => 'live'));
+        $params["status"] = "live";
+        return $this->request('GET', '/Call/'.$call_uuid.'/', $params);
     }
 
     public function make_call($params=array()) {
@@ -342,7 +344,7 @@ class RestAPI {
 
     public function get_recording($params=array()) {
         $recording_id = $this->pop($params, 'recording_id');
-        return $this->request('GET', '/Recording/'.$recording_id.'/');
+        return $this->request('GET', '/Recording/'.$recording_id.'/', $params);
     }
 
     ## Endpoints ##
@@ -356,7 +358,7 @@ class RestAPI {
 
     public function get_endpoint($params=array()) {
         $endpoint_id = $this->pop($params, 'endpoint_id');
-        return $this->request('GET', '/Endpoint/'.$endpoint_id.'/');
+        return $this->request('GET', '/Endpoint/'.$endpoint_id.'/', $params);
     }
 
     public function modify_endpoint($params=array()) {
@@ -380,7 +382,7 @@ class RestAPI {
 
     public function get_carrier($params=array()) {
         $carrier_id = $this->pop($params, 'carrier_id');
-        return $this->request('GET', '/Carrier/'.$carrier_id.'/');
+        return $this->request('GET', '/Carrier/'.$carrier_id.'/', $params);
     }
 
     public function modify_carrier($params=array()) {
@@ -404,7 +406,7 @@ class RestAPI {
 
     public function get_carrier_routing($params=array()) {
         $routing_id = $this->pop($params, 'routing_id');
-        return $this->request('GET', '/CarrierRouting/'.$routing_id.'/');
+        return $this->request('GET', '/CarrierRouting/'.$routing_id.'/', $params);
     }
 
     public function modify_carrier_routing($params=array()) {
