@@ -166,6 +166,20 @@ class RestAPI {
         return $this->request('POST', '/Number/'.$number.'/', $params);
     }
 
+    public function get_number_group($params=array()) {
+        return $this->request('GET', '/AvailableNumberGroup/', $params);
+    }
+
+    public function get_number_group_details($params=array()) {
+        $group_id = $this->pop($params, "group_id");
+        return $this->request('GET', '/AvailableNumberGroup/'.$group_id.'/', $params);
+    }
+
+    public function rent_from_number_group($params=array()) {
+        $group_id = $this->pop($params, "group_id");
+        return $this->request('POST', '/AvailableNumberGroup/'.$group_id.'/', $params);
+    }
+
     ## Calls ##
     public function get_cdrs($params=array()) {
         return $this->request('GET', '/Call/', $params);
