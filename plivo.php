@@ -23,7 +23,7 @@ class RestAPI {
     private $auth_token;
 
     function __construct($auth_id, $auth_token, $url="https://api.plivo.com", $version="v1") {
-        if ((!isset($auth_id)) || (!$auth_token)) {
+        if ((!isset($auth_id)) || (!$auth_id)) {
             throw new PlivoError("no auth_id");
         }
         if ((!isset($auth_token)) || (!$auth_token)) {
