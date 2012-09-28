@@ -614,7 +614,7 @@ class Element {
 class Response extends Element {
     protected $nestables = array('Speak', 'Play', 'GetDigits', 'Record',
                                  'Dial', 'Redirect', 'Wait', 'Hangup', 
-                                 'PreAnswer', 'Conference');
+                                 'PreAnswer', 'Conference', 'DTMF', 'Message');
 
     function __construct() {
         parent::__construct(NULL);
