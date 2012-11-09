@@ -689,9 +689,9 @@ class Hangup extends Element {
 class GetDigits extends Element {
     protected $nestables = array('Speak', 'Play', 'Wait');
 
-    protected $valid_attributes = array('action', 'method', 'timeout', 'finishOnKey',
+    protected $valid_attributes = array('action', 'method', 'timeout', 'digitTimeout',
                                         'numDigits', 'retries', 'invalidDigitsSound',
-                                        'validDigits', 'playBeep', 'redirect',
+                                        'validDigits', 'playBeep', 'redirect', "finishOnKey",
                                         'digitTimeout');
 
     function __construct($attributes=array()) {
