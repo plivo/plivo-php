@@ -747,7 +747,9 @@ class Conference extends Element {
                                         'timeLimit', 'hangupOnStar', 'maxMembers',
                                         'record', 'recordFileFormat', 'action', 'method', 'redirect',
                                         'digitsMatch', 'callbackUrl', 'callbackMethod',
-                                        'stayAlone', 'floorEvent');
+                                        'stayAlone', 'floorEvent',
+                                        'transcriptionType', 'transcriptionUrl',
+                                        'transcriptionMethod');
 
     function __construct($body, $attributes=array()) {
         parent::__construct($body, $attributes);
@@ -763,7 +765,9 @@ class Record extends Element {
     protected $valid_attributes = array('action', 'method', 'timeout','finishOnKey',
                                         'maxLength', 'playBeep', 'recordSession',
                                         'startOnDialAnswer', 'redirect', 'fileFormat',
-                                        'callbackUrl', 'callbackMethod');
+                                        'callbackUrl', 'callbackMethod',
+                                        'transcriptionType', 'transcriptionUrl',
+                                        'transcriptionMethod');
 
     function __construct($attributes=array()) {
         parent::__construct(NULL, $attributes);
