@@ -53,7 +53,10 @@ class RestAPI {
             $url->setQueryVariables($params);
         }
         $req->setAdapter('curl');
-        $req->setConfig(array('timeout' => 30));
+        $req->setConfig(array(
+            'timeout' => 30,
+            'ssl_verify_peer' => FALSE,
+        ));
         $req->setAuth($this->auth_id, $this->auth_token, HTTP_Request2::AUTH_BASIC);
         $req->setHeader(array(
             'Connection' => 'close',
@@ -65,7 +68,7 @@ class RestAPI {
         $response = json_decode($body, true);
         return array("status" => $status, "response" => $response);
     }
-
+    
     private function pop($params, $key) {
         $val = $params[$key];
         if (!$val) {
