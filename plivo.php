@@ -1,11 +1,15 @@
 <?php
-require_once 'HTTP/Request2.php';
 
+/**
+ * Customization: Added Plivo_* prefix to avoid class / function name class
+ */
+
+require_once 'HTTP/Request2.php';
 
 class PlivoError extends Exception { }
 
 
-function validate_signature($uri, $post_params=array(), $signature, $auth_token) {
+function plivo_validate_signature($uri, $post_params=array(), $signature, $auth_token) {
     ksort($post_params);
     foreach($post_params as $key => $value) {
         $uri .= "$key$value";
@@ -15,7 +19,7 @@ function validate_signature($uri, $post_params=array(), $signature, $auth_token)
 }
 
 
-class RestAPI {
+class Plivo_RestAPI {
     private $api;
 
     private $auth_id;
@@ -454,7 +458,7 @@ class RestAPI {
 
 /* XML */
 
-class Element {
+class Plivo_Element {
     protected $nestables = array();
 
     protected $valid_attributes = array();
@@ -473,6 +477,7 @@ class Element {
             $this->attributes = array();
         }
         $this->name = get_class($this);
+    	if (strpos($this->name, "Plivo_") === 0) $this->name = substr ($this->name, 6);
         $this->body = $body;
         foreach ($this->attributes as $key => $value) {
             if (!in_array($key, $this->valid_attributes)) {
@@ -502,59 +507,59 @@ class Element {
     }
 
     function addSpeak($body=NULL, $attributes=array()) {
-        return $this->add(new Speak($body, $attributes));
+        return $this->add(new Plivo_Speak($body, $attributes));
     }
 
     function addPlay($body=NULL, $attributes=array()) {
-        return $this->add(new Play($body, $attributes));
+        return $this->add(new Plivo_Play($body, $attributes));
     }
 
     function addDial($body=NULL, $attributes=array()) {
-        return $this->add(new Dial($body, $attributes));
+        return $this->add(new Plivo_Dial($body, $attributes));
     }
 
     function addNumber($body=NULL, $attributes=array()) {
-        return $this->add(new Number($body, $attributes));
+        return $this->add(new Plivo_Number($body, $attributes));
     }
 
     function addUser($body=NULL, $attributes=array()) {
-        return $this->add(new User($body, $attributes));
+        return $this->add(new Plivo_User($body, $attributes));
     }
 
     function addGetDigits($attributes=array()) {
-        return $this->add(new GetDigits($attributes));
+        return $this->add(new Plivo_GetDigits($attributes));
     }
 
     function addRecord($attributes=array()) {
-        return $this->add(new Record($attributes));
+        return $this->add(new Plivo_Record($attributes));
     }
 
     function addHangup($attributes=array()) {
-        return $this->add(new Hangup($attributes));
+        return $this->add(new Plivo_Hangup($attributes));
     }
 
     function addRedirect($body=NULL, $attributes=array()) {
-        return $this->add(new Redirect($body, $attributes));
+        return $this->add(new Plivo_Redirect($body, $attributes));
     }
 
     function addWait($attributes=array()) {
-        return $this->add(new Wait($attributes));
+        return $this->add(new Plivo_Wait($attributes));
     }
 
     function addConference($body=NULL, $attributes=array()) {
-        return $this->add(new Conference($body, $attributes));
+        return $this->add(new Plivo_Conference($body, $attributes));
     }
 
     function addPreAnswer($attributes=array()) {
-        return $this->add(new PreAnswer($attributes));
+        return $this->add(new Plivo_PreAnswer($attributes));
     }
 
     function addMessage($body=NULL, $attributes=array()) {
-        return $this->add(new Message($body, $attributes));
+        return $this->add(new Plivo_Message($body, $attributes));
     }
 
     function addDTMF($body=NULL, $attributes=array()) {
-        return $this->add(new DTMF($body, $attributes));
+        return $this->add(new Plivo_DTMF($body, $attributes));
     }
 
     public function getName() {
@@ -614,7 +619,7 @@ class Element {
 
 }
 
-class Response extends Element {
+class Plivo_Response extends Plivo_Element {
     protected $nestables = array('Speak', 'Play', 'GetDigits', 'Record',
                                  'Dial', 'Redirect', 'Wait', 'Hangup', 
                                  'PreAnswer', 'Conference', 'DTMF', 'Message');
@@ -630,7 +635,7 @@ class Response extends Element {
 }
 
 
-class Speak extends Element {
+class Plivo_Speak extends Plivo_Element {
     protected $nestables = array();
 
     protected $valid_attributes = array('voice', 'language', 'loop');
@@ -643,7 +648,7 @@ class Speak extends Element {
     }
 }
 
-class Play extends Element {
+class Plivo_Play extends Plivo_Element {
     protected $nestables = array();
 
     protected $valid_attributes = array('loop');
@@ -656,7 +661,7 @@ class Play extends Element {
     }
 }
 
-class Wait extends Element {
+class Plivo_Wait extends Plivo_Element {
     protected $nestables = array();
 
     protected $valid_attributes = array('length', 'silence');
@@ -666,7 +671,7 @@ class Wait extends Element {
     }
 }
 
-class Redirect extends Element {
+class Plivo_Redirect extends Plivo_Element {
     protected $nestables = array();
 
     protected $valid_attributes = array('method');
@@ -679,7 +684,7 @@ class Redirect extends Element {
     }
 }
 
-class Hangup extends Element {
+class Plivo_Hangup extends Plivo_Element {
     protected $nestables = array();
 
     protected $valid_attributes = array('schedule', 'reason');
@@ -689,7 +694,7 @@ class Hangup extends Element {
     }
 }
 
-class GetDigits extends Element {
+class Plivo_GetDigits extends Plivo_Element {
     protected $nestables = array('Speak', 'Play', 'Wait');
 
     protected $valid_attributes = array('action', 'method', 'timeout', 'digitTimeout',
@@ -702,7 +707,7 @@ class GetDigits extends Element {
     }
 }
 
-class Number extends Element {
+class Plivo_Number extends Plivo_Element {
     protected $nestables = array();
 
     protected $valid_attributes = array('sendDigits', 'sendOnPreanswer');
@@ -715,7 +720,7 @@ class Number extends Element {
     }
 }
 
-class User extends Element {
+class Plivo_User extends Plivo_Element {
     protected $nestables = array();
 
     protected $valid_attributes = array('sendDigits', 'sendOnPreanswer', 'sipHeaders');
@@ -728,7 +733,7 @@ class User extends Element {
     }
 }
 
-class Dial extends Element {
+class Plivo_Dial extends Plivo_Element {
     protected $nestables = array('Number', 'User');
 
     protected $valid_attributes = array('action','method','timeout','hangupOnStar',
@@ -742,7 +747,7 @@ class Dial extends Element {
     }
 }
 
-class Conference extends Element {
+class Plivo_Conference extends Plivo_Element {
     protected $nestables = array();
 
     protected $valid_attributes = array('muted','beep','startConferenceOnEnter',
@@ -762,7 +767,7 @@ class Conference extends Element {
     }
 }
 
-class Record extends Element {
+class Plivo_Record extends Plivo_Element {
     protected $nestables = array();
 
     protected $valid_attributes = array('action', 'method', 'timeout','finishOnKey',
@@ -777,7 +782,7 @@ class Record extends Element {
     }
 }
 
-class PreAnswer extends Element {
+class Plivo_PreAnswer extends Plivo_Element {
     protected $nestables = array('Play', 'Speak', 'GetDigits', 'Wait', 'Redirect', 'Message', 'DTMF');
 
     protected $valid_attributes = array();
@@ -787,7 +792,7 @@ class PreAnswer extends Element {
     }
 }
 
-class Message extends Element {
+class Plivo_Message extends Plivo_Element {
     protected $nestables = array();
 
     protected $valid_attributes = array('src', 'dst', 'type', 'callbackMethod', 'callbackUrl');
@@ -800,7 +805,7 @@ class Message extends Element {
     }
 }
 
-class DTMF extends Element {
+class Plivo_DTMF extends Plivo_Element {
     protected $nestables = array();
 
     protected $valid_attributes = array();
@@ -812,7 +817,3 @@ class DTMF extends Element {
         }
     }
 }
-
-
-
-?>
