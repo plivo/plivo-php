@@ -389,27 +389,27 @@ class RestAPI {
     }
 
     ## Carriers ##
-    public function get_carriers($params=array()) {
-        return $this->request('GET', '/Carrier/', $params);
+    public function get_incoming_carriers($params=array()) {
+        return $this->request('GET', '/IncomingCarrier/', $params);
     }
 
-    public function create_carrier($params=array()) {
-        return $this->request('POST', '/Carrier/', $params);
+    public function create_incoming_carrier($params=array()) {
+        return $this->request('POST', '/IncomingCarrier/', $params);
     }
 
-    public function get_carrier($params=array()) {
+    public function get_incoming_carrier($params=array()) {
         $carrier_id = $this->pop($params, 'carrier_id');
-        return $this->request('GET', '/Carrier/'.$carrier_id.'/', $params);
+        return $this->request('GET', '/IncomingCarrier/'.$carrier_id.'/', $params);
     }
 
-    public function modify_carrier($params=array()) {
+    public function modify_incoming_carrier($params=array()) {
         $carrier_id = $this->pop($params, 'carrier_id');
-        return $this->request('POST', '/Carrier/'.$carrier_id.'/', $params);
+        return $this->request('POST', '/IncomingCarrier/'.$carrier_id.'/', $params);
     }
 
-    public function delete_carrier($params=array()) {
+    public function delete_incoming_carrier($params=array()) {
         $carrier_id = $this->pop($params, 'carrier_id');
-        return $this->request('DELETE', '/Carrier/'.$carrier_id.'/', $params);
+        return $this->request('DELETE', '/IncomingCarrier/'.$carrier_id.'/', $params);
     }
 
     ## Carrier Routings ##
@@ -435,7 +435,11 @@ class RestAPI {
         $routing_id = $this->pop($params, 'routing_id');
         return $this->request('DELETE', '/CarrierRouting/'.$routing_id.'/', $params);
     }
-
+    
+    ## Outgoing Carriers ##
+        
+    ## To be added here ##
+    
     ## Message ##
     public function send_message($params=array()) {
         return $this->request('POST', '/Message/', $params);
