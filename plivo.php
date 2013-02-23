@@ -435,6 +435,11 @@ class RestAPI {
         $routing_id = $this->pop($params, 'routing_id');
         return $this->request('DELETE', '/CarrierRouting/'.$routing_id.'/', $params);
     }
+
+    ## Pricing ##
+    public function pricing($params=array()) {
+        return $this->request('GET', '/Pricing/', $params);
+    }
     
     ## Outgoing Carriers ##
         
