@@ -668,7 +668,7 @@ class Play extends Element {
 class Wait extends Element {
     protected $nestables = array();
 
-    protected $valid_attributes = array('length', 'silence');
+    protected $valid_attributes = array('length', 'silence', 'min_silence');
 
     function __construct($attributes=array()) {
         parent::__construct(NULL, $attributes);
