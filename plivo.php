@@ -392,7 +392,7 @@ class RestAPI {
         return $this->request('DELETE', '/Endpoint/'.$endpoint_id.'/', $params);
     }
 
-    ## Carriers ##
+    ## Incoming Carriers ##
     public function get_incoming_carriers($params=array()) {
         return $this->request('GET', '/IncomingCarrier/', $params);
     }
@@ -416,28 +416,52 @@ class RestAPI {
         return $this->request('DELETE', '/IncomingCarrier/'.$carrier_id.'/', $params);
     }
 
-    ## Carrier Routings ##
-    public function get_carrier_routings($params=array()) {
-        return $this->request('GET', '/CarrierRouting/', $params);
+    ## Outgoing Carriers ##
+    public function get_outgoing_carriers($params=array()) {
+        return $this->request('GET', '/OutgoingCarrier/', $params);
     }
 
-    public function create_carrier_routing($params=array()) {
-        return $this->request('POST', '/CarrierRouting/', $params);
+    public function create_outgoing_carrier($params=array()) {
+        return $this->request('POST', '/OutgoingCarrier/', $params);
     }
 
-    public function get_carrier_routing($params=array()) {
+    public function get_outgoing_carrier($params=array()) {
+        $carrier_id = $this->pop($params, 'carrier_id');
+        return $this->request('GET', '/OutgoingCarrier/'.$carrier_id.'/', $params);
+    }
+
+    public function modify_outgoing_carrier($params=array()) {
+        $carrier_id = $this->pop($params, 'carrier_id');
+        return $this->request('POST', '/OutgoingCarrier/'.$carrier_id.'/', $params);
+    }
+
+    public function delete_outgoing_carrier($params=array()) {
+        $carrier_id = $this->pop($params, 'carrier_id');
+        return $this->request('DELETE', '/OutgoingCarrier/'.$carrier_id.'/', $params);
+    }
+
+    ## Outgoing Carrier Routings ##
+    public function get_outgoing_carrier_routings($params=array()) {
+        return $this->request('GET', '/OutgoingCarrierRouting/', $params);
+    }
+
+    public function create_outgoing_carrier_routing($params=array()) {
+        return $this->request('POST', '/OutgoingCarrierRouting/', $params);
+    }
+
+    public function get_outgoing_carrier_routing($params=array()) {
         $routing_id = $this->pop($params, 'routing_id');
-        return $this->request('GET', '/CarrierRouting/'.$routing_id.'/', $params);
+        return $this->request('GET', '/OutgoingCarrierRouting/'.$routing_id.'/', $params);
     }
 
-    public function modify_carrier_routing($params=array()) {
+    public function modify_outgoing_carrier_routing($params=array()) {
         $routing_id = $this->pop($params, 'routing_id');
-        return $this->request('POST', '/CarrierRouting/'.$routing_id.'/', $params);
+        return $this->request('POST', '/OutgoingCarrierRouting/'.$routing_id.'/', $params);
     }
 
-    public function delete_carrier_routing($params=array()) {
+    public function delete_outgoing_carrier_routing($params=array()) {
         $routing_id = $this->pop($params, 'routing_id');
-        return $this->request('DELETE', '/CarrierRouting/'.$routing_id.'/', $params);
+        return $this->request('DELETE', '/OutgoingCarrierRouting/'.$routing_id.'/', $params);
     }
 
     ## Pricing ##
