@@ -785,7 +785,7 @@ class Conference extends Element {
     protected $valid_attributes = array('muted','beep','startConferenceOnEnter',
                                         'endConferenceOnExit','waitSound','enterSound', 'exitSound',
                                         'timeLimit', 'hangupOnStar', 'maxMembers',
-                                        'record', 'recordFileFormat', 'action', 'method', 'redirect',
+                                        'record', 'recordFileFormat','recordWhenAlone', 'action', 'method', 'redirect',
                                         'digitsMatch', 'callbackUrl', 'callbackMethod',
                                         'stayAlone', 'floorEvent',
                                         'transcriptionType', 'transcriptionUrl',
