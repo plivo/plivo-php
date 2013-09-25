@@ -789,7 +789,7 @@ class Conference extends Element {
                                         'digitsMatch', 'callbackUrl', 'callbackMethod',
                                         'stayAlone', 'floorEvent',
                                         'transcriptionType', 'transcriptionUrl',
-                                        'transcriptionMethod');
+                                        'transcriptionMethod', 'relayDTMF');
 
     function __construct($body, $attributes=array()) {
         parent::__construct($body, $attributes);
@@ -840,7 +840,7 @@ class Message extends Element {
 class DTMF extends Element {
     protected $nestables = array();
 
-    protected $valid_attributes = array();
+    protected $valid_attributes = array('async');
 
     function __construct($body, $attributes=array()) {
         parent::__construct($body, $attributes);
