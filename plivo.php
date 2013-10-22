@@ -250,6 +250,11 @@ class RestAPI {
         $call_uuid = $this->pop($params, 'call_uuid');
         return $this->request('POST', '/Call/'.$call_uuid.'/Speak/', $params);
     }
+
+    public function stop_speak($params=array()) {
+        $call_uuid = $this->pop($params, 'call_uuid');
+        return $this->request('DELETE', '/Call/'.$call_uuid.'/Speak/', $params);
+    }
         
     public function send_digits($params=array()) {
         $call_uuid = $this->pop($params, 'call_uuid');
