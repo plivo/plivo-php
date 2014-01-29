@@ -68,7 +68,7 @@ class RestAPI {
         $response = json_decode($body, true);
         return array("status" => $status, "response" => $response);
     }
-    
+
     private function pop($params, $key) {
         $val = $params[$key];
         if (!$val) {
@@ -149,7 +149,7 @@ class RestAPI {
         $number = $this->pop($params, "number");
         return $this->request('GET', '/Number/'.$number.'/', $params);
     }
-    
+
     ## This API is available only for US numbers with some limitations ##
    ## Please use get_number_group and rent_from_number_group instead ##
     public function rent_number($params=array()) {
@@ -230,7 +230,7 @@ class RestAPI {
         $call_uuid = $this->pop($params, 'call_uuid');
         return $this->request('POST', '/Call/'.$call_uuid.'/Record/', $params);
     }
-        
+
     public function stop_record($params=array()) {
         $call_uuid = $this->pop($params, 'call_uuid');
         return $this->request('DELETE', '/Call/'.$call_uuid.'/Record/', $params);
@@ -240,7 +240,7 @@ class RestAPI {
         $call_uuid = $this->pop($params, 'call_uuid');
         return $this->request('POST', '/Call/'.$call_uuid.'/Play/', $params);
     }
-        
+
     public function stop_play($params=array()) {
         $call_uuid = $this->pop($params, 'call_uuid');
         return $this->request('DELETE', '/Call/'.$call_uuid.'/Play/', $params);
@@ -255,7 +255,7 @@ class RestAPI {
         $call_uuid = $this->pop($params, 'call_uuid');
         return $this->request('DELETE', '/Call/'.$call_uuid.'/Speak/', $params);
     }
-        
+
     public function send_digits($params=array()) {
         $call_uuid = $this->pop($params, 'call_uuid');
         return $this->request('POST', '/Call/'.$call_uuid.'/DTMF/', $params);
@@ -301,7 +301,7 @@ class RestAPI {
         $member_id = $this->pop($params, 'member_id');
         return $this->request('POST', '/Conference/'.$conference_name.'/Member/'.$member_id.'/Play/', $params);
     }
-        
+
     public function stop_play_member($params=array()) {
         $conference_name = $this->pop($params, 'conference_name');
         $conference_name = rawurlencode($conference_name);
@@ -351,13 +351,13 @@ class RestAPI {
         return $this->request('POST', '/Conference/'.$conference_name.'/Member/'.$member_id.'/Kick/', $params);
     }
 
-    public function record_conference($params=array()) { 
+    public function record_conference($params=array()) {
         $conference_name = $this->pop($params, 'conference_name');
         $conference_name = rawurlencode($conference_name);
         return $this->request('POST', '/Conference/'.$conference_name.'/Record/', $params);
     }
 
-    public function stop_record_conference($params=array()) { 
+    public function stop_record_conference($params=array()) {
         $conference_name = $this->pop($params, 'conference_name');
         $conference_name = rawurlencode($conference_name);
         return $this->request('DELETE', '/Conference/'.$conference_name.'/Record/', $params);
@@ -473,11 +473,11 @@ class RestAPI {
     public function pricing($params=array()) {
         return $this->request('GET', '/Pricing/', $params);
     }
-    
+
     ## Outgoing Carriers ##
-        
+
     ## To be added here ##
-    
+
     ## Message ##
     public function send_message($params=array()) {
         return $this->request('POST', '/Message/', $params);
@@ -527,19 +527,19 @@ class Element {
     protected function convert_value($v) {
         if ($v === TRUE) {
             return "true";
-        } 
+        }
         if ($v === FALSE) {
             return "false";
-        } 
+        }
         if ($v === NULL) {
             return "none";
-        } 
+        }
         if ($v === "get") {
             return "GET";
-        } 
+        }
         if ($v === "post") {
             return "POST";
-        } 
+        }
         return $v;
     }
 
@@ -658,7 +658,7 @@ class Element {
 
 class Response extends Element {
     protected $nestables = array('Speak', 'Play', 'GetDigits', 'Record',
-                                 'Dial', 'Redirect', 'Wait', 'Hangup', 
+                                 'Dial', 'Redirect', 'Wait', 'Hangup',
                                  'PreAnswer', 'Conference', 'DTMF', 'Message');
 
     function __construct() {
@@ -737,7 +737,7 @@ class GetDigits extends Element {
     protected $valid_attributes = array('action', 'method', 'timeout', 'digitTimeout',
                                         'numDigits', 'retries', 'invalidDigitsSound',
                                         'validDigits', 'playBeep', 'redirect', "finishOnKey",
-                                        'digitTimeout');
+                                        'digitTimeout', 'log');
 
     function __construct($attributes=array()) {
         parent::__construct(NULL, $attributes);
