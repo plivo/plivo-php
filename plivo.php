@@ -1,8 +1,10 @@
 <?php
+
+namespace Plivo;
+
 require_once 'HTTP/Request2.php';
 
-
-class PlivoError extends Exception { }
+class PlivoError extends \Exception { }
 
 
 function validate_signature($uri, $post_params=array(), $signature, $auth_token) {
@@ -38,17 +40,17 @@ class RestAPI {
     private function request($method, $path, $params=array()) {
         $url = $this->api.rtrim($path, '/').'/';
         if (!strcmp($method, "POST")) {
-            $req = new HTTP_Request2($url, HTTP_Request2::METHOD_POST);
+            $req = new \HTTP_Request2($url, \HTTP_Request2::METHOD_POST);
             $req->setHeader('Content-type: application/json');
             if ($params) {
                 $req->setBody(json_encode($params));
             }
         } else if (!strcmp($method, "GET")) {
-            $req = new HTTP_Request2($url, HTTP_Request2::METHOD_GET);
+            $req = new \HTTP_Request2($url, \HTTP_Request2::METHOD_GET);
             $url = $req->getUrl();
             $url->setQueryVariables($params);
         } else if (!strcmp($method, "DELETE")) {
-            $req = new HTTP_Request2($url, HTTP_Request2::METHOD_DELETE);
+            $req = new \HTTP_Request2($url, \HTTP_Request2::METHOD_DELETE);
             $url = $req->getUrl();
             $url->setQueryVariables($params);
         }
@@ -57,7 +59,7 @@ class RestAPI {
             'timeout' => 30,
             'ssl_verify_peer' => FALSE,
         ));
-        $req->setAuth($this->auth_id, $this->auth_token, HTTP_Request2::AUTH_BASIC);
+        $req->setAuth($this->auth_id, $this->auth_token, \HTTP_Request2::AUTH_BASIC);
         $req->setHeader(array(
             'Connection' => 'close',
             'User-Agent' => 'PHPPlivo',
