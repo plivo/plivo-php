@@ -372,6 +372,11 @@ class RestAPI {
         $recording_id = $this->pop($params, 'recording_id');
         return $this->request('GET', '/Recording/'.$recording_id.'/', $params);
     }
+    
+    public function delete_recording($params=array()){
+        $recording_id = $this->pop($params, 'recording_id');
+        return $this->request('DELETE', '/Recording/'.$recording_id.'/', $params);
+    }
 
     ## Endpoints ##
     public function get_endpoints($params=array()) {
