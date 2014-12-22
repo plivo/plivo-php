@@ -1,5 +1,12 @@
 <?php
-require_once 'HTTP/Request2.php';
+
+// try to use HTTP/Request2 else use curl
+if ((@include 'HTTP/Request2.php') == 'OK') {
+    define("PLIVO_USE_CURL", FALSE);
+} else {
+    define("PLIVO_USE_CURL", TRUE);
+}
+
 
 
 class PlivoError extends Exception { }
@@ -22,6 +29,8 @@ class RestAPI {
 
     private $auth_token;
 
+    private $ch;
+
     function __construct($auth_id, $auth_token, $url="https://api.plivo.com", $version="v1") {
         if ((!isset($auth_id)) || (!$auth_id)) {
             throw new PlivoError("no auth_id");
@@ -33,9 +42,71 @@ class RestAPI {
         $this->api = $url."/".$this->version."/Account/".$auth_id;
         $this->auth_id = $auth_id;
         $this->auth_token = $auth_token;
+        $this->ch = NULL;
     }
 
-    private function request($method, $path, $params=array()) {
+    private function curl_request($method, $path, $params) {
+        $url = $this->api.rtrim($path, '/').'/';
+
+        // init curl if needed
+        if ($this->ch === NULL) {
+            $this->ch = @curl_init();
+            if (curl_errno($this->ch)) {
+                return array("status" => 0, "response" => array("error" => curl_error($this->ch)));
+            }
+        }
+
+        if ($method == "GET") {
+            $query = http_build_query($params, '', "&");
+            if (($query != NULL) && ($query != "")) {
+                    $url."?".$query;
+            }
+        }
+
+        $options = array(
+            CURLOPT_URL => $url,
+            CURLOPT_USERAGENT => "PHPPlivo/Curl",
+            CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1,
+            CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
+            CURLOPT_CUSTOMREQUEST => $method,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_CONNECTTIMEOUT => 30,
+            CURLOPT_HEADER => FALSE,
+            CURLOPT_RETURNTRANSFER => TRUE,
+            CURLOPT_VERBOSE => FALSE,
+            CURLOPT_SSL_VERIFYPEER => FALSE
+        );
+
+        $headers = array(
+            'Authorization: Basic '. base64_encode($this->auth_id.":".$this->auth_token),
+            'Connection' => 'close'
+        );
+
+        if ($method == "POST") {
+                $json_params = json_encode($params);
+                $options[CURLOPT_POSTFIELDS] = $json_params;
+                $options[CURLOPT_POST] = TRUE;
+                array_push($headers, "Content-Type:application/json");
+                array_push($headers, 'Content-Length: '.strlen($json_params));
+        }
+
+        $options[CURLOPT_HTTPHEADER] = $headers;
+
+        curl_setopt_array($this->ch, $options);
+
+        $res = @curl_exec($this->ch);
+        $status = curl_getinfo($this->ch, CURLINFO_HTTP_CODE);
+        if (($res === FALSE) || ($status >= 400)) {
+                $err = curl_error($this->ch);
+                @curl_close($this->ch);
+                return array("status" => $status, "response" => array("error" => $err));
+        }
+        @curl_close($this->ch);
+        $result = json_decode($res, TRUE);
+        return array("status" => $status, "response" => $result);
+    }
+
+    private function http2_request($method, $path, $params) {
         $url = $this->api.rtrim($path, '/').'/';
         if (!strcmp($method, "POST")) {
             $req = new HTTP_Request2($url, HTTP_Request2::METHOD_POST);
@@ -67,6 +138,13 @@ class RestAPI {
         $body = $r->getbody();
         $response = json_decode($body, true);
         return array("status" => $status, "response" => $response);
+    }
+
+    private function request($method, $path, $params=array()) {
+        if (PLIVO_USE_CURL === TRUE) {
+            return $this->curl_request($method, $path, $params);
+        }
+        return $this->http2_request($method, $path, $params);
     }
 
     private function pop($params, $key) {
