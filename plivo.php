@@ -56,10 +56,11 @@ class RestAPI {
             }
         }
 
-        if ($method == "GET") {
+        if (($method == "GET") || ($method == "DELETE")) {
             $query = http_build_query($params, '', "&");
+            echo $query . "\n";
             if (($query != NULL) && ($query != "")) {
-                    $url."?".$query;
+                    $url = $url."?".$query;
             }
         }
 
