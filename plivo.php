@@ -162,6 +162,16 @@ class RestAPI {
         return $this->request('DELETE', '/Number/'.$number.'/', $params);
     }
 
+    ## Phone Numbers ##
+    public function search_phone_numbers($params=array()) {
+        return $this->request('GET', '/PhoneNumber/', $params);
+    }
+
+    public function buy_phone_number($params=array()) {
+        $number = $this->pop($params, "number");
+        return $this->request('POST', '/PhoneNumber/'.$number.'/');
+    }
+
     public function link_application_number($params=array()) {
         $number = $this->pop($params, "number");
         return $this->request('POST', '/Number/'.$number.'/', $params);
