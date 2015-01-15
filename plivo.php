@@ -96,7 +96,7 @@ class RestAPI {
 
         $res = @curl_exec($this->ch);
         $status = curl_getinfo($this->ch, CURLINFO_HTTP_CODE);
-        if (($res === FALSE) || ($status >= 400)) {
+        if ($res === FALSE) {
                 $err = curl_error($this->ch);
                 @curl_close($this->ch);
                 return array("status" => $status, "response" => array("error" => $err));
