@@ -58,7 +58,6 @@ class RestAPI {
 
         if (($method == "GET") || ($method == "DELETE")) {
             $query = http_build_query($params, '', "&");
-            echo $query . "\n";
             if (($query != NULL) && ($query != "")) {
                     $url = $url."?".$query;
             }
