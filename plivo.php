@@ -48,12 +48,10 @@ class RestAPI {
     private function curl_request($method, $path, $params) {
         $url = $this->api.rtrim($path, '/').'/';
 
-        // init curl if needed
-        if ($this->ch === NULL) {
-            $this->ch = @curl_init();
-            if (curl_errno($this->ch)) {
-                return array("status" => 0, "response" => array("error" => curl_error($this->ch)));
-            }
+        // init curl
+        $this->ch = @curl_init();
+        if (curl_errno($this->ch)) {
+            return array("status" => 0, "response" => array("error" => curl_error($this->ch)));
         }
 
         if (($method == "GET") || ($method == "DELETE")) {
