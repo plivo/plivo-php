@@ -228,6 +228,11 @@ class RestAPI {
         return $this->request('GET', '/Number/'.$number.'/', $params);
     }
 
+    public function modify_number($params=array()) {
+        $number = $this->pop($params, "number");
+        return $this->request('POST', '/Number/'.$number.'/', $params);
+    }
+
     ## This API is available only for US numbers with some limitations ##
    ## Please use get_number_group and rent_from_number_group instead ##
     public function rent_number($params=array()) {
