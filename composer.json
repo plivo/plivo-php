@@ -1,7 +1,15 @@
 {
-    "name": "radutopala/plivo-php",
-    "description": "Plivo PHP Helper Library with Composer Support",
+    "name": "plivo/plivo-php",
+    "description": "Plivo PHP Helper Library to access PlivoCloud API and Generate Plivo XML",
     "authors": [
+        {
+            "name": "Plivo Team",
+            "email": "hello@plivo.com"
+        },
+	{
+	    "name": "Ben McInturff",
+	    "email": "benmcinturff@gmail.com"
+	},
         {
             "name": "Adam Homsi",
             "email": "adam.homsi@gmail.com"
@@ -17,5 +25,5 @@
     },
     "autoload": {
          "classmap": ["plivo.php"]
-    }    
+    }
 }
