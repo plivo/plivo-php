@@ -1,0 +1,21 @@
+{
+    "name": "radutopala/plivo-php",
+    "description": "Plivo PHP Helper Library with Composer Support",
+    "authors": [
+        {
+            "name": "Adam Homsi",
+            "email": "adam.homsi@gmail.com"
+        },
+        {
+            "name": "Radu Topala",
+            "email": "radu.topala@trisoft.ro"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "guzzlehttp/guzzle": "v3.8.1"
+    },
+    "autoload": {
+         "classmap": ["plivo.php"]
+    }    
+}
