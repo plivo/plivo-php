@@ -29,7 +29,7 @@ class RestAPI {
     private function request($method, $path, $params = array()) {
         $url = $this->api.rtrim($path, '/').'/';
 
-        // Using Guzzle library ---------------------------------
+        // Using Guzzle library
         $client = new Client($url, array(
             'ssl.certificate_authority' => false,
             'curl.options' => array(
