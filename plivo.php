@@ -588,7 +588,8 @@ class Element {
         if ((!$attributes) || ($attributes === null)) {
             $this->attributes = array();
         }
-        $this->name = get_class($this);
+        $this->name = preg_replace('/^'.__NAMESPACE__.'\\\\/', '', get_class($this));
+
         $this->body = $body;
         foreach ($this->attributes as $key => $value) {
             if (!in_array($key, $this->valid_attributes)) {
