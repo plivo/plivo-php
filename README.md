@@ -13,9 +13,9 @@ Installation
 
 Run the following command:
 
-    $ composer require plivo/php-library:1.0.X-dev
+    $ composer require narno/plivo-php-library:1.0.X-dev
 
 Demo
 ----
 
-Try the [demo.php](https://github.com/Narno-forks/blob/master/plivo-php)
+Try the [demo.php](demo.php).

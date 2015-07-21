@@ -1,9 +1,9 @@
 {
-  "name": "plivo/php-library",
+  "name": "narno/plivo-php-library",
   "type": "library",
   "description": "Plivo PHP library.",
   "keywords": ["sms", "voice"],
-  "homepage": "https://github.com/plivo/plivo-php",
+  "homepage": "https://github.com/Narno-forks/plivo-php",
   "license": "MIT",
   "require": {
     "php": ">=5.4",
