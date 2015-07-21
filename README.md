@@ -1,9 +1,21 @@
+Plivo PHP library
+=================
+
 Requirements
 ------------
-php-curl
 
-php-openssl
+Please see the [composer.json](composer.json) file.
 
-Optional
+Installation
 ------------
-pear package HTTP_Request2
+
+### Composer
+
+Run the following command:
+
+    $ composer require plivo/php-library:1.0.X-dev
+
+Demo
+----
+
+Try the [demo.php](https://github.com/Narno-forks/blob/master/plivo-php)
