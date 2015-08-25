@@ -761,8 +761,8 @@ class Response extends Element {
         parent::__construct(NULL);
     }
 
-    public function toXML() {
-        $xml = parent::toXML($header=TRUE);
+    public function toXML($header=FALSE) {
+        $xml = parent::toXML(TRUE);
         return $xml;
     }
 }
