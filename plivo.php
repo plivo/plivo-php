@@ -590,7 +590,8 @@ class Element {
         if ((!$attributes) || ($attributes === null)) {
             $this->attributes = array();
         }
-        // $this->name = preg_replace('/^'.__NAMESPACE__.'\\\\/', '', get_class($this));
+
+        $this->name = preg_replace('/^'.__NAMESPACE__.'\\\\/', '', get_class($this));
         $this->name = get_class($this);
 
         $this->body = $body;
