@@ -1,0 +1,17 @@
+{
+    "name": "plivo/plivo-php",
+    "description": "Plivo PHP Helper Library with Composer Support",
+    "authors": [
+        {
+            "name": "Adam Homsi",
+            "email": "adam.homsi@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "guzzle/guzzle": ">=3.7"        
+    },
+    "autoload": {
+         "classmap": ["plivo.php"]
+    }    
+}
