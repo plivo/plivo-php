@@ -592,7 +592,7 @@ class Element {
         }
 
         $this->name = preg_replace('/^'.__NAMESPACE__.'\\\\/', '', get_class($this));
-        $this->name = get_class($this);
+        //$this->name = get_class($this);
 
         $this->body = $body;
         foreach ($this->attributes as $key => $value) {
