@@ -228,6 +228,11 @@ class RestAPI {
         return $this->request('GET', '/Call/'.$record_id.'/', $params);
     }
 
+    public function get_call($params=array()) {
+        $call_uuid = $this->pop($params, 'call_uuid');
+        return $this->request('GET', '/Call/'.$call_uuid.'/', $params);
+    }
+
     public function get_live_calls($params = array()) {
         $params["status"] = "live";
 
