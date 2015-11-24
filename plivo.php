@@ -2,8 +2,6 @@
 
 namespace Plivo;
 
-require 'vendor/autoload.php';
-
 use Guzzle\Http\Client;
 
 class PlivoError extends \Exception {}
