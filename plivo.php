@@ -2,9 +2,7 @@
 
 namespace Plivo;
 
-require 'vendor/autoload.php';
-
-use Guzzle\Http\Client;
+use GuzzleHttp\Client;
 
 class PlivoError extends \Exception {}
 
@@ -31,41 +29,46 @@ class RestAPI {
     private function request($method, $path, $params = array()) {
         $url = $this->api.rtrim($path, '/').'/';
 
-        // Using Guzzle library
-        $client = new Client($url, array(
-            'ssl.certificate_authority' => false,
-            'curl.options' => array(
-                'CURLOPT_CONNECTTIMEOUT' => 30,
-           )
-        ));
-
-        // headers
-        $headers = array(
-            'Connection' => 'close',
-            'User-Agent' => 'PHPPlivo',
-        );
+        $client = new Client([
+            'base_uri' => $url,
+            'auth' => [$this->auth_id, $this->auth_token],
+            'http_errors' => false
+        ]);
 
         if (!strcmp($method, "POST")) {
-            $request = $client->post('', $headers, json_encode($params));
-            $request->setHeader('Content-type', 'application/json');
-
+            $body = json_encode($params, JSON_FORCE_OBJECT);
+            try {
+                $response = $client->post('', array(
+                'headers' => [ 'Content-type' => 'application/json'],
+                'body'    => $body,
+            ));
+            } catch (ClientException $e) {
+                echo $e->getRequest();
+                echo $e->getResponse();
+            }
         } else if (!strcmp($method, "GET")) {
-            $request = $client->get('', $headers, $params);
-            $request->getQuery()->merge($params);
-
+            try {
+                $response = $client->get('', array(
+                'query' => $params,
+            ));
+            } catch (ClientException $e) {
+                echo $e->getRequest();
+                echo $e->getResponse();
+            }
         } else if (!strcmp($method, "DELETE")) {
-            $request = $client->delete('', $headers, $params);
-            $request->getQuery()->merge($params);
-
+            try {
+                $response = $client->delete('', array(
+                'query' => $params,
+            ));
+            } catch (ClientException $e) {
+                echo $e->getRequest();
+                echo $e->getResponse();
+            }
         }
-
-        $request->setAuth($this->auth_id, $this->auth_token);
-
-        $response = $request->send();
-        $responseData = $response->json();
+        $responseData = $response->getBody();
         $status = $response->getStatusCode();
 
-        return array("status" => $status, "response" => $responseData);
+        return array("status" => $status, "response" => (string)$responseData);
     }
 
     private function pop($params, $key) {
