@@ -65,10 +65,10 @@ class RestAPI {
                 echo $e->getResponse();
             }
         }
-        $responseData = $response->getBody();
+        $responseData = json_decode($response->getBody(), true);
         $status = $response->getStatusCode();
 
-        return array("status" => $status, "response" => (string)$responseData);
+        return array("status" => $status, "response" => $responseData);
     }
 
     private function pop($params, $key) {
