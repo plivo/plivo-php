@@ -6,15 +6,6 @@ use GuzzleHttp\Client;
 
 class PlivoError extends \Exception {}
 
-function validate_signature($uri, $post_params=array(), $signature, $auth_token) {
-    ksort($post_params);
-    foreach($post_params as $key => $value) {
-        $uri .= "$key$value";
-    }
-    $generated_signature = base64_encode(hash_hmac("sha1",$uri, $auth_token, true));
-    return $generated_signature == $signature;
-}
-
 class RestAPI {
     private $api;
 
@@ -33,6 +24,15 @@ class RestAPI {
         $this->api = $url."/".$this->version."/Account/".$auth_id;
         $this->auth_id = $auth_id;
         $this->auth_token = $auth_token;
+    }
+
+    public static function validate_signature($uri, $post_params=array(), $signature, $auth_token) {
+        ksort($post_params);
+        foreach($post_params as $key => $value) {
+            $uri .= "$key$value";
+        }
+        $generated_signature = base64_encode(hash_hmac("sha1",$uri, $auth_token, true));
+        return $generated_signature == $signature;
     }
 
     private function request($method, $path, $params = array()) {
