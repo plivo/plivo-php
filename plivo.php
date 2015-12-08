@@ -46,33 +46,19 @@ class RestAPI {
 
         if (!strcmp($method, "POST")) {
             $body = json_encode($params, JSON_FORCE_OBJECT);
-            try {
-                $response = $client->post('', array(
+            
+            $response = $client->post('', array(
                 'headers' => [ 'Content-type' => 'application/json'],
                 'body'    => $body,
             ));
-            } catch (ClientException $e) {
-                echo $e->getRequest();
-                echo $e->getResponse();
-            }
         } else if (!strcmp($method, "GET")) {
-            try {
-                $response = $client->get('', array(
+            $response = $client->get('', array(
                 'query' => $params,
             ));
-            } catch (ClientException $e) {
-                echo $e->getRequest();
-                echo $e->getResponse();
-            }
         } else if (!strcmp($method, "DELETE")) {
-            try {
-                $response = $client->delete('', array(
+            $response = $client->delete('', array(
                 'query' => $params,
             ));
-            } catch (ClientException $e) {
-                echo $e->getRequest();
-                echo $e->getResponse();
-            }
         }
         $responseData = json_decode($response->getBody(), true);
         $status = $response->getStatusCode();
