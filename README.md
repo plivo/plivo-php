@@ -9,7 +9,7 @@ Add `plivo/plivo-php` as a dependency in your project's `composer.json` file:
 ```json
 {
 	"require": {
-		"plivo/plivo-php": "v1.1.1"
+		"plivo/plivo-php": "^1.0"
 	}
 }
 ```
