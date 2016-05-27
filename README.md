@@ -3,16 +3,9 @@ Description
 Plivo PHP helper library to access PlivoCloud API and generate Plivo XML
 
 ## Usage
+[Download](https://getcomposer.org/download/) and [install](https://getcomposer.org/doc/00-intro.md#globally) composer, a dependency manager for PHP.
 
-Add `plivo/plivo-php` as a dependency in your project's `composer.json` file:
-
-```json
-{
-	"require": {
-		"plivo/plivo-php": "^1.0"
-	}
-}
-```
+Run the command `composer require plivo/plivo-php` in your project directory to update your `composer.json` file and download the plivo-php library.
 
 ## License
 
