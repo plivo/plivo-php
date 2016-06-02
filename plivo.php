@@ -893,6 +893,7 @@ class Dial extends Element {
         'callbackUrl',
         'callbackMethod',
         'digitsMatch',
+        'digitsMatchBLeg',
         'sipHeaders'
    );
 

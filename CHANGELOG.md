@@ -6,3 +6,7 @@ All notable changes to this project will be documented in this file.
 - Adheres to standard when extending parent class (match signatures)
 - Makes the package installable via Composer
 - Replaces HTTP_Request2 with Guzzle
+
+## [1.1.5] - 2016-06-02
+### Changed
+- Added digitsMatchBLeg parameter to Dial XML
