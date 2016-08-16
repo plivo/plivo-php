@@ -24,6 +24,8 @@
         "guzzlehttp/guzzle": "^6.0"
     },
     "autoload": {
-         "classmap": ["plivo.php"]
+        "psr-4": {
+            "": "src/"
+        }
     }
 }
