@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Jon
- * Date: 16/08/2016
- * Time: 10:15
- */
 
 namespace Plivo;
 
