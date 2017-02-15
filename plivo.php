@@ -67,10 +67,10 @@ class RestAPI {
     }
 
     private function pop($params, $key) {
-        $val = $params[ $key ];
-        if (!$val) {
+        if (!key_exists($key, $params)) {
             throw new PlivoError($key." parameter not found");
         }
+        $val = $params[ $key ];
         unset($params[ $key ]);
 
         return $val;
@@ -561,9 +561,9 @@ class RestAPI {
     }
 
     public function get_message($params = array()) {
-        $record_id = $this->pop($params, 'record_id');
+        $message_uuid = $this->pop($params, 'message_uuid');
 
-        return $this->request('GET', '/Message/'.$record_id.'/', $params);
+        return $this->request('GET', '/Message/'.$message_uuid.'/', $params);
     }
 }
 
