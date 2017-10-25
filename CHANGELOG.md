@@ -1,5 +1,10 @@
 # Change Log
 
+## [v4.0.0-beta1](https://github.com/plivo/plivo-php/releases/tag/v4.0.0-beta1) - 2017-10-25
+- The new SDK works with PHP 5.5, 5.6, 7.0 and 7.1
+- JSON serialization and deserialization is now handled by the SDK
+- The API interfaces are consistent and guessable
+
 ## [1.1.7](https://github.com/plivo/plivo-php/releases/tag/v1.1.7) - 2017-04-25
 - API domain modified from api.plivo.io to api.plivo.com
 
