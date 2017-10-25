@@ -7,7 +7,7 @@ The Plivo PHP SDK makes it simpler to integrate communications into your PHP app
 ## Installation
 You can use the SDK using [composer](https://getcomposer.org/). Run the following command in your project directory to update your `composer.json` file and download the SDK.
 
-    $ composer require plivo/plivo-php
+    $ composer require plivo/php-sdk:4.0.0-beta1
 
 Alternatively, you can download this source and run
 
