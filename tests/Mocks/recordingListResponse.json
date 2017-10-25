@@ -1,0 +1,51 @@
+{
+  "api_id": "ff25223a-1c9f-11e4-80aa-12313f048015",
+  "meta": {
+    "limit": 3,
+    "next": "/v1/Account/MANWVLYTK4ZWU1YTY4ZT/Recording/?limit=3&offset=3",
+    "offset": 0,
+    "previous": null,
+    "total_count": 948
+  },
+  "objects": [
+    {
+      "add_time": "2014-08-05 16:15:15.852059+05:30",
+      "call_uuid": "c2c128e2-1c8c-11e4-9bff-1db8a9db0432",
+      "conference_name": "noname",
+      "recording_duration_ms": "345100.00000",
+      "recording_end_ms": "1407235509007.00000",
+      "recording_format": "mp3",
+      "recording_id": "c2186400-1c8c-1124-a664-0026b945b522",
+      "recording_start_ms": "1407235163907.00000",
+      "recording_type": "conference",
+      "recording_url": "http://s3.amazonaws.com/recordings_2013/c2186400-1c8c-1124-a664-0026b945b522.mp3",
+      "resource_uri": "/v1/Account/MANWVLYTK4ZWU1YTY4ZT/Recording/c2186400-1c8c-1124-a664-0026b945b522/"
+    },
+    {
+      "add_time": "2014-08-05 16:05:21.993853+05:30",
+      "call_uuid": "fc773e88-1c8b-11e4-b25a-0fe7bcc54670",
+      "conference_name": "noname",
+      "recording_duration_ms": "90700.00000",
+      "recording_end_ms": "1407234920253.00000",
+      "recording_format": "mp3",
+      "recording_id": "fc2716b0-1c8b-11e4-bwad-842b2b17453e",
+      "recording_start_ms": "1407234829553.00000",
+      "recording_type": "conference",
+      "recording_url": "http://s3.amazonaws.com/recordings_2013/fc2716b0-1c8b-11e4-bwad-842b2b17453e.mp3",
+      "resource_uri": "/v1/Account/MANWVLYTK4ZWU1YTY4ZT/Recording/fc2716b0-1c8b-11e4-bwad-842b2b17453e/"
+    },
+    {
+      "add_time": "2014-08-05 15:51:56.582492+05:30",
+      "call_uuid": "3eb4c16e-1c8a-11e4-978e-0fe7bcc54670",
+      "conference_name": "noname",
+      "recording_duration_ms": "34100.00000",
+      "recording_end_ms": "1407234115543.00000",
+      "recording_format": "mp3",
+      "recording_id": "3e701c9e-1c8a-11e4-bwad-842b2b17453e",
+      "recording_start_ms": "1407234081443.00000",
+      "recording_type": "conference",
+      "recording_url": "http://s3.amazonaws.com/recordings_2013/3e701c9e-1c8a-11e4-bwad-842b2b17453e.mp3",
+      "resource_uri": "/v1/Account/MANWVLYTK4ZWU1YTY4ZT/Recording/3e701c9e-1c8a-11e4-bwad-842b2b17453e/"
+    }
+  ]
+}

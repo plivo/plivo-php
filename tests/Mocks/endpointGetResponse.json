@@ -1,0 +1,13 @@
+{
+  "alias": "callme",
+  "application": "/v1/Account/MANWVLYTK4ZWU1YTY4ZT/Application/33406267401237901/",
+  "endpoint_id": "32866729519064",
+  "resource_uri": "/v1/Account/MANWVLYTK4ZWU1YTY4ZT/Endpoint/32866729519064/",
+  "sip_contact": "sip:callme140703093224@122.172.71.207:57563;ob",
+  "sip_expires": "2014-07-21 19:26:08",
+  "sip_registered": "true",
+  "sip_uri": "sip:callme140703093944@phone.plivo.com",
+  "sip_user_agent": "Telephone 1.1.4",
+  "sub_account": null,
+  "username": "callme140703093944"
+}

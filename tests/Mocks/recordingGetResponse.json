@@ -1,0 +1,14 @@
+{
+  "add_time": "2014-08-05 16:15:15.852059+05:30",
+  "api_id": "7abf0744-1ca0-11e4-a2d1-22000ac5040c",
+  "call_uuid": "c2c128e2-1c8c-11e4-9bff-1db8a9db0432",
+  "conference_name": "noname",
+  "recording_duration_ms": "345100.00000",
+  "recording_end_ms": "1407235509007.00000",
+  "recording_format": "mp3",
+  "recording_id": "c2186400-1c8c-11e4-a664-0026b945b52x",
+  "recording_start_ms": "1407235163907.00000",
+  "recording_type": "conference",
+  "recording_url": "http://s3.amazonaws.com/recordings_2013/c2186400-1c8c-11e4-a664-0026b945b52x.mp3",
+  "resource_uri": "/v1/Account/MANWVLYTK4ZWU1YTY4ZT/Recording/c2186400-1c8c-11e4-a664-0026b945b52x/"
+}

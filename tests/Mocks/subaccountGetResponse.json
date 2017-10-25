@@ -1,0 +1,12 @@
+{
+  "account": "/v1/Account/MAXXXXXXXXXXXXXXXXXX/",
+  "api_id": "98b2d7ca-3f08-11e7-b886-067c5485c240",
+  "auth_id": "SAODNKNDDMY2EXY2JKMG",
+  "auth_token": "YjE4NWEyNzgzODkyNGI2NjdmZmZhZTdjNzlkYTE1",
+  "created": "2017-05-22",
+  "enabled": false,
+  "modified": null,
+  "name": "0.7542345556290114",
+  "new_auth_token": "YjE4NWEyNzgzODkyNGI2NjdmZmZhZTdjNzlkYTE1",
+  "resource_uri": "/v1/Account/MAXXXXXXXXXXXXXXXXXX/Subaccount/SAODNKNDDMY2EXY2JKMG/"
+}

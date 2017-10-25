@@ -1,0 +1,30 @@
+{
+    "name": "plivo/php-sdk",
+    "description": "A PHP SDK to make voice calls & send SMS using Plivo and to generate Plivo XML",
+    "keywords": ["plivo", "plivo xml", "voice calls", "sms", "api"],
+    "homepage": "http://github.com/plivo/plivo-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Plivo SDKs Team",
+            "email": "sdks@plivo.com",
+            "homepage": "https://developers.plivo.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/plivo/plivo-php/issues",
+        "source": "https://github.com/plivo/plivo-php"
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^6.0"
+    },
+    "autoload": {
+        "classmap": ["src/", "tests/"],
+        "exclude-from-classmap": []
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8",
+        "justinrainbow/json-schema": "^5.2"
+    }
+}

@@ -1,0 +1,17 @@
+{
+  "added_on": "2014-02-14",
+  "alias": null,
+  "api_id": "88625e5e-1c92-11e4-80aa-12313f048015",
+  "application": "/v1/Account/MANWVLYTK4ZWU1YTY4ZT/Application/29986316244302815/",
+  "carrier": "Plivo",
+  "monthly_rental_rate": "0.80000",
+  "number": "17609915566",
+  "number_type": "local",
+  "region": "California, UNITED STATES",
+  "resource_uri": "/v1/Account/MANWVLYTK4ZWU1YTY4ZT/Number/17609915566/",
+  "sms_enabled": true,
+  "sms_rate": "0.00000",
+  "sub_account": null,
+  "voice_enabled": true,
+  "voice_rate": "0.00850"
+}

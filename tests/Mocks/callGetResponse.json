@@ -1,0 +1,17 @@
+{
+  "answer_time": null,
+  "api_id": "95727cf4-3eeb-11e7-8edf-02ed609bd62b",
+  "bill_duration": 0,
+  "billed_duration": 0,
+  "call_direction": "outbound",
+  "call_duration": 0,
+  "call_uuid": "4d04c52e-cea3-4458-bbdb-0bfc314ee7cd",
+  "end_time": "2017-05-22 17:49:40+05:30",
+  "from_number": "+919879879876",
+  "initiation_time": "2017-05-22 17:49:30+05:30",
+  "parent_call_uuid": null,
+  "resource_uri": "/v1/Account/MAJHUDTEYWLSIUYTDBCZ/Call/4d04c52e-cea3-4458-bbdb-0bfc314ee7cd/",
+  "to_number": "919999999999",
+  "total_amount": "0.00000",
+  "total_rate": "0.03570"
+}

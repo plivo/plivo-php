@@ -1,0 +1,88 @@
+{
+  "api_id": "25b3d816-1c9f-11e4-bd8a-12313f016a39",
+  "country": "United States",
+  "country_code": 1,
+  "country_iso": "US",
+  "message": {
+    "inbound": {
+      "rate": "0.00000"
+    },
+    "outbound": {
+      "rate": "0.00650"
+    },
+    "outbound_networks_list": [
+      {
+        "group_name": "US",
+        "rate": "0.00650"
+      },
+      {
+        "group_name": "US",
+        "rate": "0.00650"
+      }
+    ]
+  },
+  "phone_numbers": {
+    "local": {
+      "rate": "0.80000"
+    },
+    "tollfree": {
+      "rate": "1.00000"
+    }
+  },
+  "voice": {
+    "inbound": {
+      "ip": {
+        "rate": "0.00300"
+      },
+      "local": {
+        "rate": "0.00850"
+      },
+      "tollfree": {
+        "rate": "0.02100"
+      }
+    },
+    "outbound": {
+      "ip": {
+        "rate": "0.00300"
+      },
+      "local": {
+        "rate": "0.01200"
+      },
+      "rates": [
+        {
+          "prefix": [
+            "1"
+          ],
+          "rate": "0.01200"
+        },
+        {
+          "prefix": [
+            "1340"
+          ],
+          "rate": "0.02400"
+        },
+        {
+          "prefix": [
+            "1808"
+          ],
+          "rate": "0.03400"
+        },
+        {
+          "prefix": [
+            "1907"
+          ],
+          "rate": "0.17900"
+        },
+        {
+          "prefix": [
+            "1900"
+          ],
+          "rate": "0.60300"
+        }
+      ],
+      "tollfree": {
+        "rate": "0.00300"
+      }
+    }
+  }
+}

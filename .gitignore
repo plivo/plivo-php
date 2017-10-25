@@ -1,0 +1,7 @@
+.idea/
+.DS_STORE
+phpDocumentor.phar
+generateDocs.sh
+composer.phar
+composer.lock
+vendor/

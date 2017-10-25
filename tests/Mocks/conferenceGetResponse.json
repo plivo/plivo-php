@@ -1,0 +1,19 @@
+{
+  "conference_name": "My Conf Room",
+  "conference_run_time": "590",
+  "conference_member_count": "1",
+  "members": [
+    {
+      "muted": false,
+      "member_id": "17",
+      "deaf": false,
+      "from": "1456789903",
+      "to": "1677889900",
+      "caller_name": "John",
+      "direction": "inbound",
+      "call_uuid": "acfbf0b5-12e0-4d74-85f7-fce15f8f07ec",
+      "join_time": "590"
+    }
+  ],
+  "api_id": "816e903e-58c4-11e1-86da-adf28403fe48"
+}

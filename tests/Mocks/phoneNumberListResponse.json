@@ -1,0 +1,48 @@
+{
+  "api_id": "859428b0-1c88-11e4-a2d1-22000ac5040c",
+  "meta": {
+    "limit": 20,
+    "next": null,
+    "offset": 0,
+    "previous": null,
+    "total_count": 9
+  },
+  "objects": [
+    {
+      "country": "UNITED STATES",
+      "lata": 722,
+      "monthly_rental_rate": "0.80000",
+      "number": "14154009186",
+      "type": "fixed",
+      "prefix": "415",
+      "rate_center": "SNFC CNTRL",
+      "region": "United States",
+      "resource_uri": "/v1/Account/MANWVLYTK4ZWU1YTY4ZT/PhoneNumber/14154009186/",
+      "restriction": null,
+      "restriction_text": null,
+      "setup_rate": "0.00000",
+      "sms_enabled": true,
+      "sms_rate": "0.00800",
+      "voice_enabled": true,
+      "voice_rate": "0.00500"
+    },
+    {
+      "country": "UNITED STATES",
+      "lata": 722,
+      "monthly_rental_rate": "0.80000",
+      "number": "14154009187",
+      "type": "fixed",
+      "prefix": "415",
+      "rate_center": "SNFC CNTRL",
+      "region": "United States",
+      "resource_uri": "/v1/Account/MANWVLYTK4ZWU1YTY4ZT/PhoneNumber/14154009187/",
+      "restriction": null,
+      "restriction_text": null,
+      "setup_rate": "0.00000",
+      "sms_enabled": true,
+      "sms_rate": "0.00800",
+      "voice_enabled": true,
+      "voice_rate": "0.00500"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "account_type": "standard",
+  "address": "",
+  "api_id": "95e1df78-3f08-11e7-8bc8-065f6a74a84a",
+  "auth_id": "MAXXXXXXXXXXXXXXXXXX",
+  "auto_recharge": false,
+  "billing_mode": "prepaid",
+  "cash_credits": "4.88860",
+  "city": "",
+  "name": "Aviral Dasgupta",
+  "resource_uri": "/v1/Account/MAXXXXXXXXXXXXXXXXXX/",
+  "state": "",
+  "timezone": "Asia/Kolkata"
+}

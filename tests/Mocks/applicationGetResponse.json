@@ -1,0 +1,20 @@
+{
+  "answer_method": "POST",
+  "answer_url": "http://www.google.com/",
+  "api_id": "9ae358d0-3f08-11e7-b6f4-061564b78b75",
+  "app_id": "20468599130939380",
+  "app_name": "0.8522478089992022",
+  "default_app": false,
+  "default_endpoint_app": false,
+  "enabled": true,
+  "fallback_answer_url": "",
+  "fallback_method": "POST",
+  "hangup_method": "POST",
+  "hangup_url": "http://www.google.com/",
+  "message_method": "POST",
+  "message_url": "",
+  "public_uri": false,
+  "resource_uri": "/v1/Account/MAXXXXXXXXXXXXXXXXXX/Application/20468599130939380/",
+  "sip_uri": "sip:20468599130939380@app.plivo.com",
+  "sub_account": null
+}
