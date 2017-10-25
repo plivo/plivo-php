@@ -2,6 +2,8 @@ Description
 ===========
 Plivo PHP helper library to access PlivoCloud API and generate Plivo XML
 
+**Important:** A new version of the PHP SDK `v4.0.0-beta1` is released as a public Beta and is now available on Packagist. Visit the [4.0 release branch](https://github.com/plivo/plivo-php/tree/4.0) to know more.
+
 ## Usage
 [Download](https://getcomposer.org/download/) and [install](https://getcomposer.org/doc/00-intro.md#globally) composer, a dependency manager for PHP.
 
