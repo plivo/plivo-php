@@ -183,7 +183,7 @@ class RestAPI {
     public function buy_phone_number($params = array()) {
         $number = $this->pop($params, "number");
 
-        return $this->request('POST', '/PhoneNumber/'.$number.'/');
+        return $this->request('POST', '/PhoneNumber/'.$number.'/', $params);
     }
 
     public function link_application_number($params = array()) {
