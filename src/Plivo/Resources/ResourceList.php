@@ -64,4 +64,12 @@ class ResourceList implements \IteratorAggregate
     {
         return $this->resources;
     }
+
+    /**
+     * @return array
+     */
+    public function meta()
+    {
+        return $this->meta;
+    }
 }
