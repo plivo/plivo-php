@@ -24,7 +24,7 @@ class BaseClient
     /**
      * @const Default timeout for request
      */
-    const DEFAULT_REQUEST_TIMEOUT = 60;
+    const DEFAULT_REQUEST_TIMEOUT = 5;
 
     /**
      * @var int|null Request timeout
