@@ -17,14 +17,7 @@ class ArrayOperations
      */
     public static function removeNull(array $array)
     {
-        $result = [];
-        foreach ($array as $key => $value) {
-            if (is_null($value)) {
-                continue;
-            }
-            $result[$key] = $value;
-        }
-        return $result;
+        return array_filter($array);
     }
 
     /**
@@ -35,12 +28,7 @@ class ArrayOperations
      */
     public static function checkNull(array $array)
     {
-        foreach ($array as $value) {
-            if (is_null($value)) {
-                return true;
-            }
-        }
-        return false;
+        return !in_array(null, $array, true);
     }
 
 }
