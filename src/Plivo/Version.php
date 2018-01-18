@@ -17,7 +17,7 @@ class Version
     /**
      * @const int PHP helper library major version number
      */
-    const MAJOR = 2;
+    const MAJOR = 4;
     /**
      * @const int PHP helper library minor version number
      */

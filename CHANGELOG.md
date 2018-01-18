@@ -1,5 +1,9 @@
 # Change Log
 
+## [v4.0.0](https://github.com/plivo/plivo-php/releases/tag/v4.0.0) - 2018-01-18
+- Added a get meta method for list responses
+- Reduced default timeout to 5 seconds
+
 ## [v4.0.0-beta1](https://github.com/plivo/plivo-php/releases/tag/v4.0.0-beta1) - 2017-10-25
 - The new SDK works with PHP 5.5, 5.6, 7.0 and 7.1
 - JSON serialization and deserialization is now handled by the SDK
