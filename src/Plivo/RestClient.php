@@ -23,7 +23,7 @@ use Plivo\Resources\SubAccount\SubAccountInterface;
  * @property SubAccountInterface subAccount Interface to handle all SubAccount related api calls
  * @property ApplicationInterface application Interface to handle all Application related api calls
  * @property AccountInterface account Interface to handle all Account related api calls
- * @property MessageInterface message Interface to handle all Message related api calls
+ * @property MessageInterface messages Interface to handle all Message related api calls
  * @property EndpointInterface endpoint Interface to handle all Endpoint related api calls
  * @property NumberInterface number Interface to handle all Number related api calls
  * @property PhoneNumberInterface phoneNumber Interface to handle all PhoneNumber related api calls
