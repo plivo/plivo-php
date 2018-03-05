@@ -16,5 +16,6 @@
   "public_uri": false,
   "resource_uri": "/v1/Account/MAXXXXXXXXXXXXXXXXXX/Application/20468599130939380/",
   "sip_uri": "sip:20468599130939380@app.plivo.com",
-  "sub_account": null
+  "sub_account": null,
+  "log_incoming_message": true
 }
