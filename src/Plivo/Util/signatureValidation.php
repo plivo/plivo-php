@@ -21,13 +21,11 @@ class signatureValidation
       $signature = utf8_encode($signature);
       $auth_token = utf8_encode($auth_token);
       $uri = utf8_encode($uri);
-
+      $port = '';
       $parsed_uri = parse_url($uri);
-
-      $base_url = $parsed_uri['scheme'].'://'.$parsed_uri['host'];
-      if (isset($parsed_uri['path']))
-        $base_url = $parsed_uri['scheme'].'://'.$parsed_uri['host'].''.$parsed_uri['path'];
-
+      if (isset($parsed_uri['port']))
+        $port = ':'.$parsed_uri['port'];
+      $base_url = $parsed_uri['scheme'].'://'.$parsed_uri['host'].$port.$parsed_uri['path'];
       $hmac = hash_hmac('SHA256', $base_url.$nonce, $auth_token, true);
       $authentication_string = base64_encode($hmac);
       return $authentication_string == $signature;
