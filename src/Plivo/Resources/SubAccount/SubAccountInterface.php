@@ -57,7 +57,7 @@ class SubAccountInterface extends ResourceInterface
 
         $responseContents = $response->getContent();
 
-        return new SubAccountCreateResponse($responseContents['message'], $responseContents['auth_id'], $responseContents['auth_token']);
+        return new SubAccountCreateResponse($responseContents['api_id'], $responseContents['auth_id'], $responseContents['auth_token'], $responseContents['message']);
     }
 
     /**
