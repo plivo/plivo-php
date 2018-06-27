@@ -67,6 +67,7 @@ class Application extends Resource
             'appId' => $response['app_id'],
             'appName' => $response['app_name'],
             'defaultApp' => $response['default_app'],
+            'defaultEndpointApp' => $response['default_endpoint_app'],
             'enabled' => $response['enabled'],
             'fallbackAnswerUrl' => $response['fallback_answer_url'],
             'fallbackMethod' => $response['fallback_method'],
@@ -77,17 +78,15 @@ class Application extends Resource
             'publicUri' => $response['public_uri'],
             'resourceUri' => $response['resource_uri'],
             'sipUri' => $response['sip_uri'],
-            'subAccount' => $response['sub_account']
+            'subAccount' => $response['sub_account'],
+            'logIncomingMessages' => $response['log_incoming_messages']
         ];
-
         $this->pathParams = [
             'authId' => $authId,
             'appId' => $response['app_id']
         ];
-
         $this->id = $response['app_id'];
     }
-
     /**
      * Proxy to the interface to actually execute the request
      * @return null|ApplicationInterface
@@ -99,10 +98,8 @@ class Application extends Resource
                 new ApplicationInterface(
                     $this->client, $this->pathParams['authId']);
         }
-
         return $this->interface;
     }
-
     /**
      * Modify this application
      * @param array $optionalArgs
@@ -126,7 +123,6 @@ class Application extends Resource
         return $this->proxyToInterface()->update(
             $this->pathParams['appId'], $optionalArgs);
     }
-
     /**
      * Delete this application
      * @return \Plivo\Resources\ResponseDelete

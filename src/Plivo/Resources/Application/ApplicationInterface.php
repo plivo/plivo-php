@@ -105,7 +105,9 @@ class ApplicationInterface extends ResourceInterface
         $responseContents = $response->getContent();
 
         return new ResponseUpdate(
-            $responseContents['message']);
+            $responseContents['message'],
+            $responseContents['api_id']
+            );
     }
 
     /**
@@ -181,6 +183,7 @@ class ApplicationInterface extends ResourceInterface
         return new ApplicationList(
             $this->client,
             $response->getContent()['meta'],
-            $applications);
+            $applications,
+            $response->getContent()['api_id']);
     }
 }

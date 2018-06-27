@@ -39,17 +39,18 @@ class Call extends Resource
 
         $this->properties = [
             'answerTime' => $response['answer_time'],
+            'apiId' => $response['api_id'],
             'billDuration' => $response['bill_duration'],
             'billedDuration' => $response['billed_duration'],
             'callDirection' => $response['call_direction'],
             'callDuration' => $response['call_duration'],
             'callUuid' => $response['call_uuid'],
             'endTime' => $response['end_time'],
-            'from' => $response['from_number'],
+            'fromNumber' => $response['from_number'],
             'initiationTime' => $response['initiation_time'],
             'parentCallUuid' => $response['parent_call_uuid'],
             'resourceUri' => $response['resource_uri'],
-            'to' => $response['to_number'],
+            'toNumber' => $response['to_number'],
             'totalAmount' => $response['total_amount'],
             'totalRate' => $response['total_rate']
         ];

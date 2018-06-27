@@ -87,7 +87,7 @@ class MessageInterface extends ResourceInterface
             array_push($messages, $newMessage);
         }
 
-        return new MessageList($this->client, $response->getContent()['meta'], $messages);
+        return new MessageList($this->client, $response->getContent()['meta'], $response->getContent()['api_id'] $messages);
     }
 
 //    protected function getAllList()

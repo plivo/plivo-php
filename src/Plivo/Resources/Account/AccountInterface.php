@@ -59,12 +59,14 @@ class AccountInterface extends ResourceInterface
      * @param string $address Address of the account holder.
      * @return ResponseUpdate
      */
-    public function update($name, $city, $address) {
+    public function update($name, $address, $city, $state, $timezone) {
 
         $data = [
             'name' => $name,
+            'address' => $address,
             'city' => $city,
-            'address' => $address
+            'state' => $state,
+            'timezone' => $timezone
         ];
 
         $response = $this->client->update(
@@ -74,6 +76,9 @@ class AccountInterface extends ResourceInterface
 
         $responseContents = $response->getContent();
 
-        return new ResponseUpdate($responseContents['message']);
+        return new ResponseUpdate(
+            $responseContents['message'],
+            $responseContents['api_id']
+        );
     }
 }

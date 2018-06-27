@@ -18,9 +18,9 @@ class CallCreateResponse extends ResponseUpdate
      * @param $message
      * @param $requestUuid
      */
-    public function __construct($message, $requestUuid)
+    public function __construct($apiID, $requestUuid, $message)
     {
-        parent::__construct($message);
+        parent::__construct($apiID, $message);
         $this->requestUuid = $requestUuid;
     }
 
