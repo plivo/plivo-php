@@ -12,16 +12,28 @@ use Plivo\Resources\ResourceList;
  */
 class CallLiveList extends ResourceList
 {
-
     /**
-     * CallLiveList constructor.
+     * CallList constructor.
      * @param BaseClient $plivoClient
      * @param array $meta
      * @param array $resources
      */
-    function __construct(BaseClient $plivoClient, $meta, array $resources)
+
+    private $apiId;
+
+    function __construct(BaseClient $plivoClient, $meta, array $resources, $apiId)
     {
         parent::__construct($plivoClient, $meta, $resources);
+        $this->apiId = $apiId;
+    }
+
+    /**
+     * Get the API ID
+     * @return mixed
+     */
+    public function getApiId()
+    {
+        return $this->apiId;
     }
 
 }

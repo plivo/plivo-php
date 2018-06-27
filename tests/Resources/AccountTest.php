@@ -43,8 +43,11 @@ class AccountTest extends BaseTestCase
             'Account/MAXXXXXXXXXXXXXXXXXX/',
             [
                 'name' => "name",
+                'address' => "address",
                 'city' => "city",
-                'address' => "address"
+                'state' => "state",
+                'timezone' => "timezone",
+                'atestAccountModifyddress' => "address"
             ]);
         $body = file_get_contents(__DIR__ . '/../Mocks/accountModifyResponse.json');
 
