@@ -46,14 +46,13 @@ class AccountTest extends BaseTestCase
                 'address' => "address",
                 'city' => "city",
                 'state' => "state",
-                'timezone' => "timezone",
-                'atestAccountModifyddress' => "address"
+                'timezone' => "timezone"
             ]);
         $body = file_get_contents(__DIR__ . '/../Mocks/accountModifyResponse.json');
 
         $this->mock(new PlivoResponse($request,200, $body));
 
-        $actual = $this->client->accounts->update("name", "city", "address");
+        $actual = $this->client->accounts->update("name", "address", "city", "state", "timezone");
 
         $this->assertRequest($request);
 
