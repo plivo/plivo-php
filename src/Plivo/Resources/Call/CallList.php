@@ -20,7 +20,7 @@ class CallList extends ResourceList
      * @param array $resources
      */
 
-    private $apiId;
+    public $apiId;
 
     function __construct(BaseClient $plivoClient, $meta, array $resources, $apiId)
     {

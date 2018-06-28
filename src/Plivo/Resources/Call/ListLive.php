@@ -10,16 +10,16 @@ use Plivo\Resources\ResourceList;
  * Class CallLiveList
  * @package Plivo\Resources\Call
  */
-class CallLiveList extends ResourceList
+class ListLive extends ResourceList
 {
     /**
-     * CallList constructor.
+     * listLive constructor.
      * @param BaseClient $plivoClient
      * @param array $meta
      * @param array $resources
      */
 
-    private $apiId;
+    public $apiId;
 
     function __construct(BaseClient $plivoClient, $meta, array $resources, $apiId)
     {

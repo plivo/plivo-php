@@ -213,20 +213,20 @@ class CallInterface extends ResourceInterface
      *
      * @return array
      */
-    public function getListLive()
+    public function getListLive($params = null)
     {
         $params = ['status' => 'live'];
-
         $response = $this->client->fetch(
             $this->uri,
             $params
         );
 
-        $responseContents = $response->getContent()['calls'];
-        return new CallLiveList(
-                $this->client,
-                $responseContents['api_id'],
-                $responseContents['calls']);
+        $liveCallUuids = $response->getContent()['calls'];
+        return $liveCallUuids;
+//        return new ListLive(
+//            $this->client,
+//            $calls,
+//            $response->getContent()['api_id']);
     }
 
     /**
@@ -389,7 +389,8 @@ class CallInterface extends ResourceInterface
         return new CallRecording(
             $responseContents['message'],
             $responseContents['url'],
-            $responseContents['recording_id']);
+            $responseContents['recording_id'],
+            $responseContents['api_id']);
     }
     
     /**
@@ -411,12 +412,13 @@ class CallInterface extends ResourceInterface
         if (!empty($url)) {
             $params = ['URL' => $url];
         }
-        
-        
-        $this->client->delete(
+
+        $response = $this->client->delete(
             $this->uri . $liveCallUuid . '/Record/',
             $params
         );
+
+        return new ResponseDelete($response->getStatusCode());
     }
     
     /**
@@ -469,7 +471,8 @@ class CallInterface extends ResourceInterface
         $responseContents = $response->getContent();
 
         return new ResponseUpdate(
-            $responseContents['message']);
+            $responseContents['message'],
+            $responseContents['api_id']);
     }
 
     /**
@@ -485,10 +488,11 @@ class CallInterface extends ResourceInterface
                 "Which call to stop playing in? No callUuid given");
         }
 
-        $this->client->delete(
+        $response = $this->client->delete(
             $this->uri . $liveCallUuid . '/Play/',
             []
         );
+        return new ResponseDelete($response->getStatusCode());
     }
     
     /**
@@ -545,7 +549,8 @@ class CallInterface extends ResourceInterface
         $responseContents = $response->getContent();
 
         return new ResponseUpdate(
-            $responseContents['message']);
+            $responseContents['message'],
+            $responseContents['api_id']);
     }
 
     /**
@@ -561,10 +566,11 @@ class CallInterface extends ResourceInterface
                 "Which call to stop speaking in? No callUuid given");
         }
 
-        $this->client->delete(
+        $response = $this->client->delete(
             $this->uri . $liveCallUuid . '/Speak/',
             []
         );
+        return new ResponseDelete($response->getStatusCode());
     }
 
     /**
@@ -599,7 +605,8 @@ class CallInterface extends ResourceInterface
         $responseContents = $response->getContent();
 
         return new ResponseUpdate(
-            $responseContents['message']);
+            $responseContents['message'],
+            $responseContents['api_id']);
     }
     
     /**
