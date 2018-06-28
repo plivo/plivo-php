@@ -1,24 +1,25 @@
 <?php
 
-namespace Plivo\Resources\Application;
+namespace Plivo\Resources\Call;
+
 
 use Plivo\BaseClient;
 use Plivo\Resources\ResourceList;
 
 /**
- * Class ApplicationList
- * @package Plivo\Resources\Application
+ * Class CallLiveList
+ * @package Plivo\Resources\Call
  */
-class ApplicationList extends ResourceList
+class ListLive extends ResourceList
 {
     /**
-     * ApplicationList constructor.
+     * listLive constructor.
      * @param BaseClient $plivoClient
-     * @param $meta
+     * @param array $meta
      * @param array $resources
      */
 
-    private $apiId;
+    public $apiId;
 
     function __construct(BaseClient $plivoClient, $meta, array $resources, $apiId)
     {

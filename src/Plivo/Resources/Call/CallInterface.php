@@ -6,7 +6,7 @@ use Plivo\Exceptions\PlivoValidationException;
 use Plivo\BaseClient;
 use Plivo\Resources\ResourceInterface;
 use Plivo\Resources\ResourceList;
-
+use Plivo\Resources\ResponseDelete;
 use Plivo\Resources\ResponseUpdate;
 use Plivo\Util\ArrayOperations;
 
@@ -96,7 +96,8 @@ class CallInterface extends ResourceInterface
 
         return new CallCreateResponse(
             $responseContents['message'],
-            $responseContents['request_uuid']);
+            $responseContents['request_uuid'],
+            $responseContents['api_id']);
     }
 
     /**
@@ -191,16 +192,20 @@ class CallInterface extends ResourceInterface
         $calls = [];
 
         foreach ($response->getContent()['objects'] as $call) {
-            $newCall = new Call($this->client, $call, $this->pathParams['authId'], $call['call_uuid']);
+            $newCall = new Call(
+                $this->client,
+                $call,
+                $this->pathParams['authId'],
+                $call['call_uuid']);
 
             array_push($calls, $newCall);
         }
 
-        return
-            new CallList(
+        return new CallList(
                 $this->client,
                 $response->getContent()['meta'],
-                $calls);
+                $calls,
+                $response->getContent()['api_id']);
     }
 
     /**
@@ -208,18 +213,20 @@ class CallInterface extends ResourceInterface
      *
      * @return array
      */
-    public function getListLive()
+    public function getListLive($params = null)
     {
         $params = ['status' => 'live'];
-
         $response = $this->client->fetch(
             $this->uri,
             $params
         );
 
         $liveCallUuids = $response->getContent()['calls'];
-
         return $liveCallUuids;
+//        return new ListLive(
+//            $this->client,
+//            $calls,
+//            $response->getContent()['api_id']);
     }
 
     /**
@@ -229,10 +236,11 @@ class CallInterface extends ResourceInterface
      */
     public function delete($callUuid = null)
     {
-        $this->client->delete(
+        $response = $this->client->delete(
             $this->uri . $callUuid . '/',
             []
         );
+        return new ResponseDelete($response->getStatusCode());
     }
 
     /**
@@ -301,7 +309,8 @@ class CallInterface extends ResourceInterface
         $responseContents = $response->getContent();
 
         return new ResponseUpdate(
-            $responseContents['message']);
+            $responseContents['message'],
+            $responseContents['api_id']);
     }
     
     /**
@@ -380,7 +389,8 @@ class CallInterface extends ResourceInterface
         return new CallRecording(
             $responseContents['message'],
             $responseContents['url'],
-            $responseContents['recording_id']);
+            $responseContents['recording_id'],
+            $responseContents['api_id']);
     }
     
     /**
@@ -402,12 +412,13 @@ class CallInterface extends ResourceInterface
         if (!empty($url)) {
             $params = ['URL' => $url];
         }
-        
-        
-        $this->client->delete(
+
+        $response = $this->client->delete(
             $this->uri . $liveCallUuid . '/Record/',
             $params
         );
+
+        return new ResponseDelete($response->getStatusCode());
     }
     
     /**
@@ -460,7 +471,8 @@ class CallInterface extends ResourceInterface
         $responseContents = $response->getContent();
 
         return new ResponseUpdate(
-            $responseContents['message']);
+            $responseContents['message'],
+            $responseContents['api_id']);
     }
 
     /**
@@ -476,10 +488,11 @@ class CallInterface extends ResourceInterface
                 "Which call to stop playing in? No callUuid given");
         }
 
-        $this->client->delete(
+        $response = $this->client->delete(
             $this->uri . $liveCallUuid . '/Play/',
             []
         );
+        return new ResponseDelete($response->getStatusCode());
     }
     
     /**
@@ -536,7 +549,8 @@ class CallInterface extends ResourceInterface
         $responseContents = $response->getContent();
 
         return new ResponseUpdate(
-            $responseContents['message']);
+            $responseContents['message'],
+            $responseContents['api_id']);
     }
 
     /**
@@ -552,10 +566,11 @@ class CallInterface extends ResourceInterface
                 "Which call to stop speaking in? No callUuid given");
         }
 
-        $this->client->delete(
+        $response = $this->client->delete(
             $this->uri . $liveCallUuid . '/Speak/',
             []
         );
+        return new ResponseDelete($response->getStatusCode());
     }
 
     /**
@@ -590,7 +605,8 @@ class CallInterface extends ResourceInterface
         $responseContents = $response->getContent();
 
         return new ResponseUpdate(
-            $responseContents['message']);
+            $responseContents['message'],
+            $responseContents['api_id']);
     }
     
     /**
@@ -605,7 +621,7 @@ class CallInterface extends ResourceInterface
             throw new PlivoValidationException(
                 "Which call request to cancel? No requestUuid given");
         }
-        $this->client->delete(
+        $response = $this->client->delete(
             "Account/".
             $this->pathParams['authId'].
             "/Request/".
@@ -613,5 +629,6 @@ class CallInterface extends ResourceInterface
             '/',
             []
         );
+        return new ResponseDelete($response->getStatusCode());
     }
 }

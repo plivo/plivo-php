@@ -42,6 +42,7 @@ class Account extends Resource
         $this->properties = [
             'accountType' => $response['account_type'],
             'address' => $response['address'],
+            'api_id' => $response['api_id'],
             'authId' => $response['auth_id'],
             'autoRecharge' => $response['auto_recharge'],
             'billingMode' => $response['billing_mode'],
