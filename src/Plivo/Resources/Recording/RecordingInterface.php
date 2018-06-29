@@ -6,6 +6,7 @@ namespace Plivo\Resources\Recording;
 use Plivo\Exceptions\PlivoValidationException;
 use Plivo\BaseClient;
 use Plivo\Resources\ResourceInterface;
+use Plivo\Resources\ResponseDelete;
 use Plivo\Resources\ResourceList;
 use Plivo\Util\ArrayOperations;
 
@@ -61,9 +62,11 @@ class RecordingInterface extends ResourceInterface
 
             array_push($recordings, $newRecording);
         }
-
-        return new ResourceList(
-            $this->client, $response->getContent()['meta'], $recordings);
+        return $response->getContent();
+//        return new ResourceList(
+//            $this->client,
+//            $response->getContent()['meta'],
+//            $recordings);
     }
 
     /**
@@ -104,9 +107,11 @@ class RecordingInterface extends ResourceInterface
             new PlivoValidationException(
                 'recording id is mandatory');
         }
-        $this->client->delete(
+        $response = $this->client->delete(
             $this->uri . $recordingId . '/',
             []
         );
+
+        return new ResponseDelete($response->getStatusCode());
     }
 }

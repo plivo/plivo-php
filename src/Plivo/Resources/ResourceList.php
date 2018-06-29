@@ -2,7 +2,6 @@
 
 namespace Plivo\Resources;
 
-
 use Plivo\BaseClient;
 
 /**

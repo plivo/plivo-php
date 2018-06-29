@@ -220,13 +220,7 @@ class CallInterface extends ResourceInterface
             $this->uri,
             $params
         );
-
-        $liveCallUuids = $response->getContent()['calls'];
-        return $liveCallUuids;
-//        return new ListLive(
-//            $this->client,
-//            $calls,
-//            $response->getContent()['api_id']);
+        return $response->getContent();
     }
 
     /**

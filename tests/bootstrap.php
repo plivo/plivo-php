@@ -1,3 +1,3 @@
 <?php
 error_reporting(E_ALL | E_STRICT);
-require dirname(__DIR__) . '/vendor/autoload.php';
+require '/Users/plivo/Desktop/backup/programs_main/phpv2fix/vendor/autoload.php';

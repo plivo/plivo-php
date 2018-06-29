@@ -2,7 +2,6 @@
 
 namespace Plivo\Resources\Recording;
 
-
 use Plivo\BaseClient;
 use Plivo\Resources\Resource;
 
@@ -35,6 +34,7 @@ class Recording extends Resource
 
         $this->properties = [
             'addTime' => $response['add_time'],
+            'apiId' => $response['api_id'],
             'callUuid' => $response['call_uuid'],
             'conferenceName' => $response['conference_name'],
             'recordingStartMs' => $response['recording_start_ms'],

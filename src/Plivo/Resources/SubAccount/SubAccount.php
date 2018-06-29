@@ -34,6 +34,7 @@ class SubAccount extends Resource
 
         $this->properties = [
             'account' => $response['account'],
+            'apiID' => $response['api_id'],
             'authId' => $response['auth_id'],
             'authToken' => $response['auth_token'],
             'created' => $response['created'],
