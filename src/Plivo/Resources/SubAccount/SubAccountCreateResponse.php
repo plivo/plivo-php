@@ -14,11 +14,6 @@ class SubAccountCreateResponse extends ResponseUpdate
     /**
      * @var string
      */
-    protected $apiId;
-
-    /**
-     * @var string
-     */
     protected $authId;
     /**
      * @var string
@@ -33,10 +28,9 @@ class SubAccountCreateResponse extends ResponseUpdate
      */
     public function __construct($apiId, $authId, $authToken, $message)
     {
-        parent::__construct($message);
+        parent::__construct($message, $apiId);
         $this->authId = $authId;
         $this->authToken = $authToken;
-        $this->apiId = $apiId;
     }
 
     /**
@@ -53,13 +47,5 @@ class SubAccountCreateResponse extends ResponseUpdate
     public function getAuthToken()
     {
         return $this->authToken;
-    }
-
-    /**
-     * @return string
-     */
-    public function getapiId()
-    {
-        return $this->apiId;
     }
 }
