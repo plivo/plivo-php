@@ -63,9 +63,9 @@ class CallTest extends BaseTestCase
 
         self::assertNotNull($actual);
 
-        foreach ($actual as $actualCall) {
-            self::assertEquals(substr($actualCall->resourceUri, 0, 33), "/v1/Account/MAXXXXXXXXXXXXXXXXXX/");
-        }
+        self::assertEquals($actual->message, "call fired");
+        self::assertEquals($actual->requestUuid, "9834029e-58b6-11e1-b8b7-a5bd0e4e126f");
+        self::assertEquals($actual->apiId, "97ceeb52-58b6-11e1-86da-77300b68f8bb");
     }
 
     function testCallList()
@@ -390,7 +390,10 @@ class CallTest extends BaseTestCase
 
         self::assertNotNull($actual);
 
+        self::assertEquals($actual->url, "http://s3.amazonaws.com/recordings_2013/48dfaf60-3b2a-11e3.mp3");
         self::assertEquals($actual->message, "call recording started");
+        self::assertEquals($actual->recordingId, "48dfaf60-3b2a-11e3");
+        self::assertEquals($actual->apiId, "c7b69074-58be-11e1-86da-adf28403fe48");
     }
 
     function testLiveCallStartRecord()
@@ -409,7 +412,10 @@ class CallTest extends BaseTestCase
 
         self::assertNotNull($actual);
 
+        self::assertEquals($actual->url, "http://s3.amazonaws.com/recordings_2013/48dfaf60-3b2a-11e3.mp3");
         self::assertEquals($actual->message, "call recording started");
+        self::assertEquals($actual->recordingId, "48dfaf60-3b2a-11e3");
+        self::assertEquals($actual->apiId, "c7b69074-58be-11e1-86da-adf28403fe48");
     }
 
     function testLiveCallStopRecord()

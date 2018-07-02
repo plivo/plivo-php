@@ -22,9 +22,9 @@ class PhoneNumberBuyResponse extends ResponseUpdate
      * @param $numberStatus
      * @param $status
      */
-    public function __construct($message, $number, $numberStatus, $status)
+    public function __construct($message, $apiID, $number, $numberStatus, $status)
     {
-        parent::__construct($message);
+        parent::__construct($message, $apiID);
 
         $this->number = $number;
         $this->numberStatus = $numberStatus;

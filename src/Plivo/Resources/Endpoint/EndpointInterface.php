@@ -68,7 +68,8 @@ class EndpointInterface extends ResourceInterface
             $responseContents['message'],
             $responseContents['username'],
             $responseContents['alias'],
-            $responseContents['endpoint_id']);
+            $responseContents['endpoint_id'],
+            $responseContents['api_id']);
     }
 
     /**
@@ -140,7 +141,9 @@ class EndpointInterface extends ResourceInterface
 
         $responseContents = $response->getContent();
 
-        return new ResponseUpdate($responseContents['message']);
+        return new ResponseUpdate(
+            $responseContents['api_id'],
+            $responseContents['message']);
     }
     
     /**

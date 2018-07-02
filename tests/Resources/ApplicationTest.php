@@ -30,9 +30,9 @@ class ApplicationTest extends BaseTestCase
 
         self::assertNotNull($actual);
 
-        foreach ($actual as $actualApplication) {
-            self::assertEquals(substr($actualApplication->resourceUri, 0, 33), "/v1/Account/MAXXXXXXXXXXXXXXXXXX/");
-        }
+        self::assertEquals($actual->message, "created");
+        self::assertEquals($actual->appId, "20468599130939380");
+        self::assertEquals($actual->apiId, "99f9d6f6-3f08-11e7-9fd1-06660ad2b8e6");
     }
 
     function testApplicationList()
@@ -93,6 +93,8 @@ class ApplicationTest extends BaseTestCase
 
         self::assertNotNull($actual);
 
+        self::assertEquals($actual->apiId, "9b43ea74-3f08-11e7-8bc8-065f6a74a84a");
         self::assertEquals($actual->message, "changed");
+
     }
 }

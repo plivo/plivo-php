@@ -87,6 +87,7 @@ class PhoneNumberInterface extends ResourceInterface
         $responseContents = $response->getContent();
 
         return new PhoneNumberBuyResponse(
+            $responseContents['api_id'],
             $responseContents['message'],
             $responseContents['numbers'][0]['number'],
             $responseContents['numbers'][0]['status'],

@@ -13,14 +13,18 @@ class ResponseUpdate
     /**
      * @var
      */
-    private $_message;
-    private $apiId;
+    public $_message;
+
+    /**
+     * @var
+     */
+    public $apiId;
 
     /**
      * ResponseUpdate constructor.
      * @param $message
      */
-    public function __construct($message, $apiId)
+    public function __construct($apiId, $message)
     {
         $this->_message = $message;
         $this->apiId = $apiId;

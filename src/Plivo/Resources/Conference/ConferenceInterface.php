@@ -142,7 +142,9 @@ class ConferenceInterface extends ResourceInterface
 
         $responseContents = $response->getContent();
 
-        return new ResponseUpdate($responseContents['message']);
+        return new ResponseUpdate(
+            $responseContents['api_id'],
+            $responseContents['message']);
     }
 
     /**
@@ -163,7 +165,9 @@ class ConferenceInterface extends ResourceInterface
 
         $responseContents = $response->getContent();
 
-        return new ResponseUpdate($responseContents['message']);
+        return new ResponseUpdate(
+            $responseContents['api_id'],
+            $responseContents['message']);
     }
 
     /**
@@ -204,7 +208,9 @@ class ConferenceInterface extends ResourceInterface
 
         $responseContents = $response->getContent();
 
-        return new ResponseUpdate($responseContents['message']);
+        return new ResponseUpdate(
+            $responseContents['api_id'],
+            $responseContents['message']);
     }
 
     /**
@@ -249,7 +255,9 @@ class ConferenceInterface extends ResourceInterface
 
         $responseContents = $response->getContent();
 
-        return new ResponseUpdate($responseContents['message']);
+        return new ResponseUpdate(
+            $responseContents['api_id'],
+            $responseContents['message']);
     }
 
     /**
@@ -289,7 +297,9 @@ class ConferenceInterface extends ResourceInterface
 
         $responseContents = $response->getContent();
 
-        return new ResponseUpdate($responseContents['message']);
+        return new ResponseUpdate(
+            $responseContents['api_id'],
+            $responseContents['message']);
     }
 
     /**
@@ -348,7 +358,8 @@ class ConferenceInterface extends ResourceInterface
         return new ConferenceRecording(
             $responseContents['message'],
             $responseContents['url'],
-            $responseContents['recording_id']);
+            $responseContents['recording_id'],
+            $responseContents['api_id']);
     }
 
     /**
