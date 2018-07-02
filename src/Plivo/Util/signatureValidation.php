@@ -27,7 +27,9 @@ class signatureValidation
       if (isset($parsed_uri['port'])) {
         $base_url .= ':'.$parsed_uri['port'];
       }
-      $base_url .= $parsed_uri['path'];
+      if (isset($parsed_uri['path'])) {
+        $base_url .= $parsed_uri['path'];
+      }
       $hmac = hash_hmac('SHA256', $base_url.$nonce, $auth_token, true);
       $authentication_string = base64_encode($hmac);
       return $authentication_string == $signature;
