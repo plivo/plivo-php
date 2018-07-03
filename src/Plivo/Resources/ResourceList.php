@@ -34,7 +34,7 @@ class ResourceList implements \IteratorAggregate
     /**
      * @var array
      */
-    public $resources;
+    protected $resources;
 
     /**
      * ResourceList constructor.

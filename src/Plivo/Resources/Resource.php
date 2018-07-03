@@ -35,7 +35,7 @@ class Resource
     /**
      * @var array
      */
-    public $properties = [];
+    protected $properties = [];
 
     /**
      * Resource constructor.
