@@ -69,9 +69,8 @@ class ApplicationInterface extends ResourceInterface
 
         return new ApplicationCreateResponse(
             $responseContents['api_id'],
-            $responseContents['message'],
-            $responseContents['app_id']
-        );
+            $responseContents['app_id'],
+            $responseContents['message']);
     }
 
     /**
@@ -105,7 +104,9 @@ class ApplicationInterface extends ResourceInterface
         $responseContents = $response->getContent();
 
         return new ResponseUpdate(
-            $responseContents['message']);
+            $responseContents['api_id'],
+            $responseContents['message']
+        );
     }
 
     /**

@@ -95,8 +95,10 @@ class CallInterface extends ResourceInterface
         $responseContents = $response->getContent();
 
         return new CallCreateResponse(
+            $responseContents['api_id'],
             $responseContents['message'],
-            $responseContents['request_uuid']);
+            $responseContents['request_uuid']
+        );
     }
 
     /**
@@ -301,7 +303,9 @@ class CallInterface extends ResourceInterface
         $responseContents = $response->getContent();
 
         return new ResponseUpdate(
-            $responseContents['message']);
+            $responseContents['api_id'],
+            $responseContents['message']
+        );
     }
     
     /**
@@ -378,9 +382,11 @@ class CallInterface extends ResourceInterface
         $responseContents = $response->getContent();
 
         return new CallRecording(
-            $responseContents['message'],
             $responseContents['url'],
-            $responseContents['recording_id']);
+            $responseContents['api_id'],
+            $responseContents['recording_id'],
+            $responseContents['message']
+        );
     }
     
     /**
@@ -460,7 +466,9 @@ class CallInterface extends ResourceInterface
         $responseContents = $response->getContent();
 
         return new ResponseUpdate(
-            $responseContents['message']);
+            $responseContents['api_id'],
+            $responseContents['message']
+        );
     }
 
     /**
@@ -536,7 +544,9 @@ class CallInterface extends ResourceInterface
         $responseContents = $response->getContent();
 
         return new ResponseUpdate(
-            $responseContents['message']);
+            $responseContents['api_id'],
+            $responseContents['message']
+        );
     }
 
     /**
@@ -590,7 +600,9 @@ class CallInterface extends ResourceInterface
         $responseContents = $response->getContent();
 
         return new ResponseUpdate(
-            $responseContents['message']);
+            $responseContents['api_id'],
+            $responseContents['message']
+        );
     }
     
     /**

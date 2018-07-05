@@ -31,10 +31,12 @@ class SubAccountTest extends BaseTestCase
 
         $this->assertRequest($request);
 
-
         self::assertNotNull($actual);
 
-        self::assertEquals($actual->message, "97c8d1de-3f08-11e7-b6f4-061564b78b75");
+        self::assertEquals($actual->apiId, "97c8d1de-3f08-11e7-b6f4-061564b78b75");
+        self::assertEquals($actual->authId, "SANDLHYZBIZMU4ZDEXNM");
+        self::assertEquals($actual->authToken, "MTMzZTZjNzdiNDVmY2VhZDQyNTUwYWVjNzI2OThk");
+        self::assertEquals($actual->message, "created");
     }
 
     function testSubAccountList()

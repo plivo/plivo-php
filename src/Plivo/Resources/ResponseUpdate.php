@@ -2,9 +2,7 @@
 
 namespace Plivo\Resources;
 
-
 use Plivo\Exceptions\PlivoRestException;
-
 
 /**
  * Class ResponseUpdate
@@ -15,15 +13,21 @@ class ResponseUpdate
     /**
      * @var
      */
-    private $_message;
+    public $_message;
+
+    /**
+     * @var
+     */
+    public $apiId;
 
     /**
      * ResponseUpdate constructor.
      * @param $message
      */
-    public function __construct($message)
+    public function __construct($apiId, $message)
     {
         $this->_message = $message;
+        $this->apiId = $apiId;
     }
 
     /**
@@ -40,7 +44,14 @@ class ResponseUpdate
 
         throw new PlivoRestException('Unknown Response property ' . $name);
     }
-
+    /**
+     * Get the API ID
+     * @return mixed
+     */
+    public function getApiId()
+    {
+        return $this->apiId;
+    }
     /**
      * @return mixed
      */
@@ -48,7 +59,4 @@ class ResponseUpdate
     {
         return $this->_message;
     }
-
-
-
 }

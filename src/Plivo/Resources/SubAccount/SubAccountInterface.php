@@ -40,6 +40,11 @@ class SubAccountInterface extends ResourceInterface
      */
     public function create($name, $enabled = null)
     {
+        if (is_null($name)) {
+            throw new PlivoValidationException(
+                "Mandatory parameters cannot be null");
+        }
+
         $data = [
             'name' => $name,
             'enabled' => $enabled
@@ -51,8 +56,7 @@ class SubAccountInterface extends ResourceInterface
         );
 
         $responseContents = $response->getContent();
-
-        return new SubAccountCreateResponse($responseContents['api_id'], $responseContents['message'], $responseContents['auth_id'], $responseContents['auth_token']);
+        return new SubAccountCreateResponse($responseContents['message'], $responseContents['auth_id'], $responseContents['auth_token'], $responseContents['api_id']);
     }
 
     /**
@@ -78,7 +82,10 @@ class SubAccountInterface extends ResourceInterface
 
         $responseContents = $response->getContent();
 
-        return new ResponseUpdate($responseContents['message']);
+        return new ResponseUpdate(
+            $responseContents['api_id'],
+            $responseContents['message']
+        );
     }
 
     /**

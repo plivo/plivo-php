@@ -22,9 +22,9 @@ class ApplicationCreateResponse extends ResponseUpdate
      * @param $message
      * @param $appId
      */
-    public function __construct($message, $appId)
+    public function __construct($apiId, $appId, $message)
     {
-        parent::__construct($message);
+        parent::__construct($apiId, $message);
         $this->appId = $appId;
     }
 

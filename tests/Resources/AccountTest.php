@@ -57,5 +57,6 @@ class AccountTest extends BaseTestCase
         self::assertNotNull($actual);
 
         self::assertEquals($actual->message, "changed");
+        self::assertEquals($actual->apiId, "964edb6e-3f08-11e7-920b-0600a1193e9b");
     }
 }

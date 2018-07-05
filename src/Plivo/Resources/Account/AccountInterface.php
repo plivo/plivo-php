@@ -74,6 +74,9 @@ class AccountInterface extends ResourceInterface
 
         $responseContents = $response->getContent();
 
-        return new ResponseUpdate($responseContents['message']);
+        return new ResponseUpdate(
+            $responseContents['api_id'],
+            $responseContents['message']
+            );
     }
 }
