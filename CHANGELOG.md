@@ -1,5 +1,10 @@
 # Change Log
 
+## [v4.1.0](https://github.com/plivo/plivo-php/releases/tag/v4.1.0) - 2018-07-05
+- Fixed subaccount create response
+- Fixed response mapping with multiple resources
+- FIxed validate signature to handle ports in the URLs
+
 ## [v4.0.0](https://github.com/plivo/plivo-php/releases/tag/v4.0.0) - 2018-01-18
 - Added a get meta method for list responses
 - Reduced default timeout to 5 seconds
