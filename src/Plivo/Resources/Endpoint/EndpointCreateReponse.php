@@ -31,9 +31,9 @@ class EndpointCreateReponse extends ResponseUpdate
      * @param string $alias
      * @param string $endpointId
      */
-    public function __construct($message, $username, $alias, $endpointId, $apiID)
+    public function __construct($username, $alias, $message, $endpointId, $apiID)
     {
-        parent::__construct($message, $apiID);
+        parent::__construct($apiID, $message);
         $this->username = $username;
         $this->alias = $alias;
         $this->endpointId = $endpointId;

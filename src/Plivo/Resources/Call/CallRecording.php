@@ -20,9 +20,9 @@ class CallRecording extends ResponseUpdate
      * @param string $url
      * @param string $recordingId
      */
-    public function __construct($url, $message, $recordingId, $apiID)
+    public function __construct($url, $apiID, $recordingId, $message)
     {
-        parent::__construct($message, $apiID);
+        parent::__construct($apiID, $message);
 
         $this->url = $url;
         $this->recordingId = $recordingId;

@@ -163,9 +163,10 @@ class MessageInterface extends ResourceInterface
         $responseContents = $response->getContent();
 
         return new MessageCreateResponse(
-            $responseContents['api_id'],
             $responseContents['message'],
-            $responseContents['message_uuid']);
+            $responseContents['message_uuid'],
+            $responseContents['api_id']
+        );
     }
 
 }

@@ -356,10 +356,11 @@ class ConferenceInterface extends ResourceInterface
         $responseContents = $response->getContent();
 
         return new ConferenceRecording(
+            $responseContents['api_id'],
             $responseContents['message'],
-            $responseContents['url'],
             $responseContents['recording_id'],
-            $responseContents['api_id']);
+            $responseContents['url']
+            );
     }
 
     /**
