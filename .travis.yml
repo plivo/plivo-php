@@ -7,4 +7,4 @@ php:
   # - hhvm # on Trusty only
   - nightly
 before_install: "composer install"
-script: "phpunit --configuration tests/phpunit.xml"
+script: ./vendor/bin/phpunit

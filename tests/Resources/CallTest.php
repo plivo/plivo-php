@@ -1,6 +1,6 @@
 <?php
 
-namespace Resources;
+namespace Plivo\Tests\Resources;
 
 
 use Plivo\Http\PlivoRequest;

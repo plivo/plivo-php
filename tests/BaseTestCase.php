@@ -56,11 +56,10 @@ class BaseTestCase extends TestCase
      */
     public function expectPlivoException($exception)
     {
-        if (version_compare(phpversion(), '7.0.0', '<')) {
-            self::setExpectedException($exception);
-        } else {
+        if (method_exists(__CLASS__, 'expectException')) {
             self::expectException($exception);
+        } else {
+            self::setExpectedException($exception);
         }
-
     }
 }
