@@ -2,6 +2,9 @@
 
 namespace Plivo\Util;
 
+use GuzzleHttp\Psr7\ServerRequest;
+use Psr\Http\Message\RequestInterface;
+
 
 /**
  * Class signatureValidation
@@ -33,5 +36,26 @@ class signatureValidation
       $hmac = hash_hmac('SHA256', $base_url.$nonce, $auth_token, true);
       $authentication_string = base64_encode($hmac);
       return $authentication_string == $signature;
+    }
+
+    /**
+     * Validate the signature of a request
+     *
+     * @param string $authToken
+     * @param RequestInterface|null $request
+     *
+     * @return bool
+     */
+    public static function validateRequest($authToken, RequestInterface $request = null)
+    {
+        if ($request === null) {
+            $request = ServerRequest::fromGlobals();
+        }
+
+        $uri = (string) $request->getUri();
+        $nonce = $request->getHeaderLine('X-Plivo-Signature-V2-Nonce');
+        $signature = $request->getHeaderLine('X-Plivo-Signature-V2');
+
+        return self::validateSignature($uri, $nonce, $signature, $authToken);
     }
 }
