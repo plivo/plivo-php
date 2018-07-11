@@ -17,6 +17,7 @@
         "source": "https://github.com/plivo/plivo-php"
     },
     "require": {
+        "php": ">=5.6",
         "guzzlehttp/guzzle": "^6.0"
     },
     "autoload": {
