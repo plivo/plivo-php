@@ -44,9 +44,9 @@ class MessageTest extends BaseTestCase {
             'POST',
             'Account/MAXXXXXXXXXXXXXXXXXX/Message/',
             [
-                "src" => "+919999999999",
                 "dst" => "+919012345678",
-                "text" => "Test"
+                "text" => "Test",
+                "src" => "+919999999999"
             ]);
         $body = file_get_contents(__DIR__ . '/../Mocks/messageSendResponse.json');
 
