@@ -142,10 +142,9 @@ class MessageInterface extends ResourceInterface
      */
 
     public function create($src, array $dst, $text,
-                           array $optionalArgs = [])
+                           array $optionalArgs = [], $powerpackUUID = null)
     {
         $mandatoryArgs = [
-            'src' => $src,
             'dst' => implode('<', $dst),
             'text' => $text
         ];
@@ -155,9 +154,21 @@ class MessageInterface extends ResourceInterface
                 "Mandatory parameters cannot be null");
         }
 
+        if (is_null($src) &&  is_null($powerpackUUID)) {
+            throw new PlivoValidationException(
+                "src and powerpack_uuid both can't be null"
+            );
+        }
+
+        if (!is_null($src) && !is_null($powerpackUUID)) {
+            throw new PlivoValidationException(
+                "src and powerpack_uuid both can't be there"
+            );
+        }
+
         $response = $this->client->update(
             $this->uri,
-            array_merge($mandatoryArgs, $optionalArgs)
+            array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID])
         );
 
         $responseContents = $response->getContent();
