@@ -29,7 +29,7 @@ class CallQueued extends Resource
             'to' => $response['to'],
             'callName' => $response['caller_name'],
             'callUuid' => $response['call_uuid'],
-            'requestUuid' => $response['request_uuid']
+            'requestUuid' => $response['request_uuid'],
             'apiID' => $response['api_id']
         ];
 
