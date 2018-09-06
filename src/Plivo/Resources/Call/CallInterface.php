@@ -15,6 +15,7 @@ use Plivo\Util\ArrayOperations;
  * Class CallInterface
  * @package Plivo\Resources\Call
  * @property CallLive $live
+ * @property CallQueued $queued
  * @property CallList $list
  * @property ResourceList $listLive
  * @method CallList list(array $optionalArgs)
