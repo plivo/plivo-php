@@ -142,7 +142,7 @@ class MessageInterface extends ResourceInterface
      */
 
     public function create($src, array $dst, $text,
-                           array $optionalArgs = [], $powerpackUUID = null)
+                           array $optionalArgs = [], $powerpackUUID = null, $trackable = FALSE)
     {
         $mandatoryArgs = [
             'dst' => implode('<', $dst),
@@ -156,19 +156,19 @@ class MessageInterface extends ResourceInterface
 
         if (is_null($src) &&  is_null($powerpackUUID)) {
             throw new PlivoValidationException(
-                "src and powerpack_uuid both can't be null"
+                "Specify either powerpack_uuid or src in request params to send a message."
             );
         }
 
         if (!is_null($src) && !is_null($powerpackUUID)) {
             throw new PlivoValidationException(
-                "src and powerpack_uuid both can't be there"
+                "Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message."
             );
         }
 
         $response = $this->client->update(
             $this->uri,
-            array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID])
+            array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID, 'trackable' => $trackable])
         );
 
         $responseContents = $response->getContent();
