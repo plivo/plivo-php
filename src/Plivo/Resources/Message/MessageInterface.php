@@ -142,7 +142,7 @@ class MessageInterface extends ResourceInterface
      */
 
     public function create($src, array $dst, $text,
-                           array $optionalArgs = [], $powerpackUUID = null, $trackable = FALSE)
+                           array $optionalArgs = [], $powerpackUUID = null)
     {
         $mandatoryArgs = [
             'dst' => implode('<', $dst),
@@ -168,11 +168,10 @@ class MessageInterface extends ResourceInterface
 
         $response = $this->client->update(
             $this->uri,
-            array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID, 'trackable' => $trackable])
+            array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID])
         );
 
         $responseContents = $response->getContent();
-
         return new MessageCreateResponse(
             $responseContents['message'],
             $responseContents['message_uuid'],
