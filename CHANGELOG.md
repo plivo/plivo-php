@@ -1,5 +1,9 @@
 # Change Log
 
+## [v4.1.1](https://github.com/plivo/plivo-php/releases/tag/v4.1.1) - 2018-09-18
+- add powerpack feature
+- add unit tests for powerpack feature
+
 ## [v4.1.0](https://github.com/plivo/plivo-php/releases/tag/v4.1.0) - 2018-07-05
 - Fixed subaccount create response
 - Fixed response mapping with multiple resources
