@@ -25,7 +25,8 @@
       "public_uri": false,
       "resource_uri": "/v1/Account/MAXXXXXXXXXXXXXXXXXX/Application/20468599130939380/",
       "sip_uri": "sip:20468599130939380@app.plivo.com",
-      "sub_account": null
+      "sub_account": null,
+      "log_incoming_message": true
     },
     {
       "answer_method": "POST",
@@ -44,7 +45,8 @@
       "public_uri": false,
       "resource_uri": "/v1/Account/MAXXXXXXXXXXXXXXXXXX/Application/13094892674577059/",
       "sip_uri": "sip:13094892674577059@app.plivo.com",
-      "sub_account": null
+      "sub_account": null,
+      "log_incoming_message": true
     },
     {
       "answer_method": "POST",
@@ -63,7 +65,8 @@
       "public_uri": false,
       "resource_uri": "/v1/Account/MAXXXXXXXXXXXXXXXXXX/Application/64529074997228907/",
       "sip_uri": "sip:64529074997228907@app.plivo.com",
-      "sub_account": null
+      "sub_account": null,
+      "log_incoming_message": false
     },
     {
       "answer_method": "GET",
@@ -82,7 +85,8 @@
       "public_uri": false,
       "resource_uri": "/v1/Account/MAXXXXXXXXXXXXXXXXXX/Application/30042999414609341/",
       "sip_uri": "sip:30042999414609341@app.plivo.com",
-      "sub_account": null
+      "sub_account": null,
+      "log_incoming_message": true
     },
     {
       "answer_method": "GET",
@@ -101,7 +105,8 @@
       "public_uri": false,
       "resource_uri": "/v1/Account/MAXXXXXXXXXXXXXXXXXX/Application/30042349822904887/",
       "sip_uri": "sip:30042349822904887@app.plivo.com",
-      "sub_account": null
+      "sub_account": null,
+      "log_incoming_message": true
     },
     {
       "answer_method": "GET",
@@ -120,7 +125,8 @@
       "public_uri": false,
       "resource_uri": "/v1/Account/MAXXXXXXXXXXXXXXXXXX/Application/30041373335801898/",
       "sip_uri": "sip:30041373335801898@app.plivo.com",
-      "sub_account": null
+      "sub_account": null,
+      "log_incoming_message": true
     },
     {
       "answer_method": "POST",
@@ -139,7 +145,8 @@
       "public_uri": false,
       "resource_uri": "/v1/Account/MAXXXXXXXXXXXXXXXXXX/Application/30040535577211472/",
       "sip_uri": "sip:30040535577211472@app.plivo.com",
-      "sub_account": null
+      "sub_account": null,
+      "log_incoming_message": true
     },
     {
       "answer_method": "GET",
@@ -158,7 +165,8 @@
       "public_uri": false,
       "resource_uri": "/v1/Account/MAXXXXXXXXXXXXXXXXXX/Application/30039778631346811/",
       "sip_uri": "sip:30039778631346811@app.plivo.com",
-      "sub_account": null
+      "sub_account": null,
+      "log_incoming_message": true
     }
   ]
 }
