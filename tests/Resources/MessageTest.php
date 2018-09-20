@@ -16,14 +16,25 @@ use Plivo\Tests\BaseTestCase;
  */
 class MessageTest extends BaseTestCase {
 
-    public function testMessageCreateException()
+    public function testMessageCreateWithoutSrcPowerpackException()
     {
         $this->expectPlivoException('Plivo\Exceptions\PlivoValidationException');
         $body = file_get_contents(__DIR__ . '/../Mocks/messageSendResponse.json');
 
         $this->mock(new PlivoResponse(new PlivoRequest(),200, $body));
 
-        $this->client->messages->create(null, ["+919012345678"], "Test");
+        $this->client->messages->create(null, ["+919012345678"], "Test", [], null);
+
+    }
+
+    public function testMessageCreateWithSrcPowerpackException()
+    {
+        $this->expectPlivoException('Plivo\Exceptions\PlivoValidationException');
+        $body = file_get_contents(__DIR__ . '/../Mocks/messageSendResponse.json');
+
+        $this->mock(new PlivoResponse(new PlivoRequest(),200, $body));
+
+        $this->client->messages->create("+919999999999", ["+919012345678"], "Test", [], "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
     }
 
@@ -33,9 +44,9 @@ class MessageTest extends BaseTestCase {
             'POST',
             'Account/MAXXXXXXXXXXXXXXXXXX/Message/',
             [
-                "src" => "+919999999999",
                 "dst" => "+919012345678",
-                "text" => "Test"
+                "text" => "Test",
+                "src" => "+919999999999"
             ]);
         $body = file_get_contents(__DIR__ . '/../Mocks/messageSendResponse.json');
 
