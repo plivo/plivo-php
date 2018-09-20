@@ -1,5 +1,9 @@
 # Change Log
 
+## [v4.1.2](https://github.com/plivo/plivo-php/releases/tag/v4.1.2) - 2018-09-21
+- Add Queued status for filtering calls in queued status
+- Add log_incoming_messages parameter to application create and modify apis
+
 ## [v4.1.0](https://github.com/plivo/plivo-php/releases/tag/v4.1.0) - 2018-07-05
 - Fixed subaccount create response
 - Fixed response mapping with multiple resources

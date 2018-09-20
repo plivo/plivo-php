@@ -48,7 +48,7 @@ use Plivo\Resources\Resource;
  * @property string|null $subAccount The subaccount associated with the
  * application. If the application belongs to the main account, this field will
  * be null
- * @property boolean|null $logIncomingMessage to control the incoming message logs.
+ * @property boolean|null $logIncomingMessages to control the incoming message logs.
  */
 class Application extends Resource
 {
@@ -79,7 +79,7 @@ class Application extends Resource
             'resourceUri' => $response['resource_uri'],
             'sipUri' => $response['sip_uri'],
             'subAccount' => $response['sub_account'],
-            'logIncomingMessage' => $response['log_incoming_message']
+            'logIncomingMessages' => $response['log_incoming_messages']
         ];
 
         $this->pathParams = [
@@ -120,7 +120,7 @@ class Application extends Resource
      *   + boolean default_number_app - If set to true, this parameter ensures that newly created numbers, which don't have an app_id, point to this application.
      *   + boolean default_endpoint_app - If set to true, this parameter ensures that newly created endpoints, which don't have an app_id, point to this application.
      *   + string subaccount - Id of the subaccount, in case only subaccount applications are needed.
-     *   + boolean log_incoming_message - controls the incoming message logs.
+     *   + boolean log_incoming_messages - controls the incoming message logs.
 
      *
      * @return \Plivo\Resources\ResponseUpdate

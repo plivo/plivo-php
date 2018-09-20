@@ -50,7 +50,7 @@ class ApplicationInterface extends ResourceInterface
      *   + boolean default_number_app - If set to true, this parameter ensures that newly created numbers, which don't have an app_id, point to this application.
      *   + boolean default_endpoint_app - If set to true, this parameter ensures that newly created endpoints, which don't have an app_id, point to this application.
      *   + string subaccount - Id of the subaccount, in case only subaccount applications are needed.
-     *   + boolean log_incoming_message - controls the incoming message logs.
+     *   + boolean log_incoming_messages - controls the incoming message logs.
      *
      * @return ApplicationCreateResponse
      */
@@ -92,7 +92,7 @@ class ApplicationInterface extends ResourceInterface
      *   + boolean default_number_app - If set to true, this parameter ensures that newly created numbers, which don't have an app_id, point to this application.
      *   + boolean default_endpoint_app - If set to true, this parameter ensures that newly created endpoints, which don't have an app_id, point to this application.
      *   + string subaccount - Id of the subaccount, in case only subaccount applications are needed.
-     *   + boolean log_incoming_message - controls the incoming message logs.
+     *   + boolean log_incoming_messages - controls the incoming message logs.
      *
      * @return ResponseUpdate
      */
