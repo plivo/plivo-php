@@ -137,6 +137,7 @@ class MessageInterface extends ResourceInterface
      *                   <br /> ErrorCode - Delivery Response code returned by the carrier attempting the delivery. See Supported error codes {https://www.plivo.com/docs/api/message/#standard-plivo-error-codes}.
      *   + [string] :method - The method used to call the url. Defaults to POST.
      *   + [string] :log - If set to false, the content of this message will not be logged on the Plivo infrastructure and the dst value will be masked (e.g., 141XXXXX528). Default is set to true.
+     *   + [string] :trackable - by default false.
      * @return \Plivo\Resources\Message\MessageCreateResponse
      * @throws PlivoValidationException
      */
