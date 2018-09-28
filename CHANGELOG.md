@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.1.3](https://github.com/plivo/plivo-php/releases/tag/v4.1.3) - 2018-09-28
+- All calls retrieval response fixed
+
 ## [v4.1.2](https://github.com/plivo/plivo-php/releases/tag/v4.1.2) - 2018-09-21
 - Add Queued status for filtering calls in queued status
 - Add log_incoming_messages parameter to application create and modify apis
