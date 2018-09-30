@@ -11,7 +11,7 @@ use Plivo\Http\PlivoResponse;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-
+use GuzzleHttp\Psr7\Request;
 
 /**
  * Class PlivoGuzzleHttpClient
@@ -105,15 +105,24 @@ class PlivoGuzzleHttpClient implements PlivoHttpClientInterface
             'http_errors' => false,
             'headers' => $headers,
             'body' => $body,
-            'timeout' => $timeOut,
             'connect_timeout' => 60
         ];
 
         try {
-            $rawResponse = $this->guzzleClient->request($method, $url, $options);
+            $promise = $this->guzzleClient->requestAsync($method, $url, $options);
+            $promise->then(
+                function (ResponseInterface $res) {
+                    return $res->getBody();
+                },
+                function (RequestException $e) {
+                    throw new PlivoRequestException($e->getMessage());
+                }
+            );
         } catch (RequestException $e) {
             throw new PlivoRequestException($e->getMessage());
         }
+        // wait for request to finish and display its response
+        $rawResponse = $promise->wait();
 
         $rawHeaders = $rawResponse->getHeaders();
         $rawBody = $rawResponse->getBody()->getContents();
