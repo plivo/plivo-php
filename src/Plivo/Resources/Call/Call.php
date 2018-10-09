@@ -51,7 +51,10 @@ class Call extends Resource
             'resourceUri' => $response['resource_uri'],
             'to' => $response['to_number'],
             'totalAmount' => $response['total_amount'],
-            'totalRate' => $response['total_rate']
+            'totalRate' => $response['total_rate'],
+            'hangupCauseCode' => $response['hangup_cause_code'],
+            'hangupCauseName' => $response['hangup_cause_name'],
+            'hangupSource' => $response['hangup_source']
         ];
 
         $this->pathParams = [
