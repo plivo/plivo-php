@@ -52,9 +52,9 @@ class Call extends Resource
             'to' => $response['to_number'],
             'totalAmount' => $response['total_amount'],
             'totalRate' => $response['total_rate'],
-            'plivoHangupCauseCode' => $response['plivo_hangup_cause_code'],
-            'plivoHangupCauseName' => $response['plivo_hangup_cause_name'],
-            'plivoHangupSource' => $response['plivo_hangup_source']
+            'hangupCauseCode' => $response['hangup_cause_code'],
+            'hangupCauseName' => $response['hangup_cause_name'],
+            'hangupSource' => $response['hangup_source']
         ];
 
         $this->pathParams = [
