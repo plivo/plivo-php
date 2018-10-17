@@ -239,13 +239,13 @@ class CallInterface extends ResourceInterface
      *
      * @return array
      */
-    public function getListLive()
+    public function getListLive(array $optionalArgs = [])
     {
-        $params = ['status' => 'live'];
-
+        $optionalArgs['status'] = 'live';
+        
         $response = $this->client->fetch(
             $this->uri,
-            $params
+            $optionalArgs
         );
 
         $liveCallUuids = $response->getContent()['calls'];
