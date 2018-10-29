@@ -15,6 +15,7 @@ use Plivo\Util\ArrayOperations;
  * Class CallInterface
  * @package Plivo\Resources\Call
  * @property CallLive $live
+ * @property CallQueued $queued
  * @property CallList $list
  * @property ResourceList $listLive
  * @method CallList list(array $optionalArgs)
@@ -154,6 +155,34 @@ class CallInterface extends ResourceInterface
     }
 
     /**
+     * Get details of a queued call
+     *
+     * @param string $queuedCallUuid
+     * @return CallQueued
+     * @throws PlivoValidationException
+     */
+    public function getQueued($queuedCallUuid)
+    {
+        if (ArrayOperations::checkNull([$queuedCallUuid])) {
+            throw
+            new PlivoValidationException(
+                'queued call uuid is mandatory');
+        }
+
+        $params = ['status' => 'queued'];
+
+        $response = $this->client->fetch(
+            $this->uri . $queuedCallUuid . '/',
+            $params
+        );
+
+        return new CallQueued(
+            $this->client,
+            $response->getContent(),
+            $this->pathParams['authId']);
+    }
+
+    /**
      * Get a list of calls
      *
      * @param array $optionalArgs
@@ -222,6 +251,25 @@ class CallInterface extends ResourceInterface
         $liveCallUuids = $response->getContent()['calls'];
 
         return $liveCallUuids;
+    }
+
+    /**
+     * Get a list of queued calls
+     *
+     * @return array
+     */
+    public function getListQueued()
+    {
+        $params = ['status' => 'queued'];
+
+        $response = $this->client->fetch(
+            $this->uri,
+            $params
+        );
+
+        $queuedCallUuids = $response->getContent()['calls'];
+
+        return $queuedCallUuids;
     }
 
     /**
