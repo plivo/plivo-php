@@ -141,18 +141,11 @@ class MultiPartyCall
             $uri = $this->baseURL . $this->phloId . "/multi_party_call/" . $this->nodeId;
         } else if(in_array($action, $actionsWithMembersInURI)) {
             $uri = $this->baseURL . $this->phloId . "/multi_party_call/" . $this->nodeId . "/members/" . $phoneNumber;
+        } else {
+            $uri = null;
         }
 
         $methodName = "multi_party_$action";
-
-        return [
-            "uri" => $uri,
-            "method_name" => $methodName,
-            "action" => $action,
-            "trigger_source" => $triggerSource,
-            "to" => $to,
-            "role" => $role
-        ];
 
         return $this->client->$methodName(
             $uri,
