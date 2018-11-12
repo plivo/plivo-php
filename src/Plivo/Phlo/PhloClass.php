@@ -42,7 +42,6 @@ class PhloClass
     public function multiPartyCall($nodeId, $client)
     {
         $this->node = new MultiPartyCall($nodeId, $this->phloId, self::BASE_PHLO_URL, $client);
-        return $this->node;
     }
 
     /**
