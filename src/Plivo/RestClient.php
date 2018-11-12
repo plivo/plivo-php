@@ -3,6 +3,7 @@
 namespace Plivo;
 
 use Plivo\Exceptions\PlivoRestException;
+use Plivo\Phlo\PhloClass;
 use Plivo\Resources\Account\AccountInterface;
 use Plivo\Resources\Application\ApplicationInterface;
 use Plivo\Resources\Call\CallInterface;
@@ -37,6 +38,11 @@ class RestClient
      * @var BaseClient
      */
     public $client;
+
+    /**
+     * @var PhloClass
+     */
+    public $phlo;
 
     /**
      * @var AccountInterface
@@ -243,5 +249,17 @@ class RestClient
             $this->_recording = new RecordingInterface($this->client, $this->client->getAuthId());
         }
         return $this->_recording;
+    }
+
+    /**
+     * @param $phloId
+     * @return PhloClass
+     */
+    public function phlo($phloId)
+    {
+        if(! $this->phlo) {
+            $this->phlo = new PhloClass($phloId);
+        }
+        return $this->phlo;
     }
 }

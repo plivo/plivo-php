@@ -5,6 +5,7 @@ namespace Plivo;
 use Plivo\Authentication\BasicAuth;
 use Plivo\Http\PlivoRequest;
 use Plivo\Http\PlivoResponse;
+use Plivo\Phlo\Traits\MultiPartyBaseClientTrait;
 use Plivo\HttpClients\PlivoGuzzleHttpClient;
 use Plivo\HttpClients\PlivoHttpClientInterface;
 use Plivo\Exceptions\PlivoRestException;
@@ -17,6 +18,7 @@ use Plivo\Util\ArrayOperations;
  */
 class BaseClient
 {
+    use MultiPartyBaseClientTrait;
     /**
      * @const BASE API URL
      */
