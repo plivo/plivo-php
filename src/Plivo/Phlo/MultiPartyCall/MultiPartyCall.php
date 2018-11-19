@@ -32,95 +32,66 @@ class MultiPartyCall
 
     public function call($phoneNumber = null)
     {
-        return $this->update("call", null, "919833277189", "919833362398", "agent");
+        $response = $this->update("call", null, "919833277189", "919833362398", "agent");
 
+        return $response;
     }
 
     public function coldTransfer($phoneNumber)
     {
-        return $this->update("cold_transfer", $phoneNumber, "919833277189", "919833362398", "agent");
+        $response = $this->update("cold_transfer", $phoneNumber, "919833277189", "919833362398", "agent");
 
+        return $response;
     }
 
     public function warmTransfer($phoneNumber)
     {
-        return $this->update("warm_transfer", $phoneNumber, "919833277189", "919833362398", "agent");
+        $response = $this->update("warm_transfer", $phoneNumber, "919833277189", "919833362398", "agent");
 
+        return $response;
     }
 
     public function hold($phoneNumber)
     {
 
-        return $this->update("hold", $phoneNumber);
+        $response = $this->update("hold", $phoneNumber);
 
+        return $response;
     }
 
     public function unhold($phoneNumber)
     {
-        return $this->update("unhold", $phoneNumber);
+        $response = $this->update("unhold", $phoneNumber);
 
+        return $response;
     }
 
     public function hangup($phoneNumber)
     {
-        return $this->update("hangup", $phoneNumber);
+        $response = $this->update("hangup", $phoneNumber);
 
-//        return $this->client->multiPartyHangup(
-//            $this->baseURL . $this->phloId . "/multi_party_call/" . $this->nodeId . "/members/" . $phoneNumber,
-//            [
-//                "action" => "hangup"
-//            ]
-//        );
-//
-//        return $response;
+        return $response;
     }
 
     public function resumeCall($phoneNumber = null)
     {
-        return $this->update("resume_call", $phoneNumber);
+        $response = $this->update("resume_call", $phoneNumber);
 
-
-//        return $this->client->multiPartyResumeCall(
-//            $this->baseURL . $this->phloId . "/multi_party_call/" . $this->nodeId,
-//            [
-//                "trigger_source" => "919833277189",
-//                "to" => "919833362398",
-//                "role" => "agent",
-//                "action" => "resume_call"
-//            ]
-//        );
-//
-//        return $response;
+        return $response;
     }
 
     public function abortTransfer($phoneNumber)
     {
-        return $this->update("abort_transfer", $phoneNumber);
+        $response = $this->update("abort_transfer", $phoneNumber);
 
-
-//        return $this->client->multiPartyAbortTransfer(
-//            $this->baseURL . $this->phloId . "/multi_party_call/" . $this->nodeId . "/members/" . $phoneNumber,
-//            [
-//                "action" => "abort_transfer"
-//            ]
-//        );
-//
-//        return $response;
+        return $response;
     }
 
     public function voicemailDrop($phoneNumber)
     {
-        return $this->update("voicemail_drop", $phoneNumber);
+        $response = $this->update("voicemail_drop", $phoneNumber);
 
-
-//        return $this->client->multiPartyVoicemailDrop(
-//            $this->baseURL . $this->phloId . "/multi_party_call/" . $this->nodeId . "/members/" . $phoneNumber,
-//            [
-//                "action" => "voicemail_drop"
-//            ]
-//        );
-//
-//        return $response;
+        return $response;
     }
 
     public function update($action, $phoneNumber = null, $triggerSource = null, $to = null, $role = null)
@@ -138,7 +109,7 @@ class MultiPartyCall
 
         $methodName = "multi_party_$action";
 
-        return $this->client->$methodName(
+        $response = $this->client->$methodName(
             $uri,
             [
                 "action" => $action,
@@ -147,5 +118,7 @@ class MultiPartyCall
                 "role" => $role
             ]
         );
+
+        return $response;
     }
 }

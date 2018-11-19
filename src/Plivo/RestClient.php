@@ -255,10 +255,10 @@ class RestClient
      * @param $phloId
      * @return PhloClass
      */
-    public function phlo($phloId)
+    public function phlo($phloId = null, $client)
     {
         if(! $this->phlo) {
-            $this->phlo = new PhloClass($phloId);
+            $this->phlo = new PhloClass($phloId, $client);
         }
         return $this->phlo;
     }

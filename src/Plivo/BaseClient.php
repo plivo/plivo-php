@@ -138,9 +138,9 @@ class BaseClient
      *
      * @return array
      */
-    public function prepareRequestMessage(PlivoRequest $request)
+    public function prepareRequestMessage(PlivoRequest $request, $fullUrl = null)
     {
-        $url = self::BASE_API_URL . $request->getUrl();
+        $url = $fullUrl ? $fullUrl : self::BASE_API_URL . $request->getUrl();
 
         $requestBody = json_encode($request->getParams(), JSON_FORCE_OBJECT);
 
@@ -157,10 +157,10 @@ class BaseClient
      * @param PlivoRequest $request
      * @return PlivoResponse
      */
-    public function sendRequest(PlivoRequest $request)
+    public function sendRequest(PlivoRequest $request, $fullUrl = null)
     {
         list($url, $method, $headers, $body) =
-            $this->prepareRequestMessage($request);
+            $this->prepareRequestMessage($request, $fullUrl);
 
         $timeout = $this->timeout?: static::DEFAULT_REQUEST_TIMEOUT;
 

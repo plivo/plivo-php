@@ -2,9 +2,10 @@
 
 namespace Plivo\Phlo;
 
-use Illuminate\Http\Request;
+use Plivo\Http\PlivoRequest;
 use Plivo\Phlo\MultiPartyCall\MultiPartyCall;
 use Plivo\Phlo\ConferenceBridge\ConferenceBridge;
+use Plivo\Util\ArrayOperations;
 
 /**
  * Class Phlo
@@ -29,9 +30,30 @@ class PhloClass
      * Phlo constructor.
      * @param $phloId
      */
-    public function __construct($phloId)
+    public function __construct($phloId = null, $client = null)
     {
+        $this->client = $client;
         $this->phloId = $phloId;
+    }
+
+    public function getPhlo($phloId)
+    {
+        $uri = self::BASE_PHLO_URL . $phloId;
+        $request =
+            new PlivoRequest(
+                'GET', $uri, ArrayOperations::removeNull([]));
+
+        return $this->client->sendRequest($request, $uri);
+    }
+
+    public function getNode($phloId, $nodeType, $nodeId)
+    {
+        $uri = self::BASE_PHLO_URL . $phloId . "/" . $nodeType . "/" . $nodeId;
+        $request =
+            new PlivoRequest(
+                'GET', $uri, ArrayOperations::removeNull([]));
+
+        return $this->client->sendRequest($request, $uri);
     }
 
     /**
@@ -39,9 +61,10 @@ class PhloClass
      * @param $client
      * @return MultiPartyCall
      */
-    public function multiPartyCall($nodeId, $client)
+    public function multiPartyCall($nodeId)
     {
-        $this->node = new MultiPartyCall($nodeId, $this->phloId, self::BASE_PHLO_URL, $client);
+        $this->node = new MultiPartyCall($nodeId, $this->phloId, self::BASE_PHLO_URL, $this->client);
+        return $this->node;
     }
 
     /**
