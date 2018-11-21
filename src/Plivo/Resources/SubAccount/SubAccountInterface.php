@@ -92,13 +92,18 @@ class SubAccountInterface extends ResourceInterface
      * Delete a subaccount
      *
      * @param string $subAuthId The auth ID of the subaccount to delete
+     * @param string|null $cascade Specify if the applications, phone numbers and endpoints 
+     * associated with this subaccount be deleted or not. Takes a value of True or False.
      * @return ResponseDelete
      */
-    public function delete($subAuthId)
+    public function delete($subAuthId, $cascade = null)
     {
+        $data = [
+            'cascade' => $cascade
+        ];
         $response = $this->client->delete(
             $this->uri . $subAuthId . '/',
-            []
+            $data
         );
 
         return new ResponseDelete($response->getStatusCode());
