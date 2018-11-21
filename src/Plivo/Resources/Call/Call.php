@@ -23,6 +23,9 @@ use Plivo\Resources\Resource;
  * @property string $to The callee
  * @property string $totalAmount The total amount
  * @property string $totalRate The total rate
+ * @property string $hangupCauseCode Hangup Cause Code
+ * @property string $hangupCauseName Hangup Cause Name
+ * @property string $hangupSource Hangup Source
  */
 class Call extends Resource
 {
@@ -51,7 +54,10 @@ class Call extends Resource
             'resourceUri' => $response['resource_uri'],
             'to' => $response['to_number'],
             'totalAmount' => $response['total_amount'],
-            'totalRate' => $response['total_rate']
+            'totalRate' => $response['total_rate'],
+            'hangupCauseCode' => $response['hangup_cause_code'],
+            'hangupCauseName' => $response['hangup_cause_name'],
+            'hangupSource' => $response['hangup_source']
         ];
 
         $this->pathParams = [
