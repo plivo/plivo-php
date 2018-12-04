@@ -127,7 +127,7 @@ class RestClient
     /**
      * @return AccountInterface
      */
-    protected function getAccounts()
+    protected function getAccount()
     {
         if (!$this->_account) {
             $this->_account = new AccountInterface($this->client, $this->client->getAuthId());
