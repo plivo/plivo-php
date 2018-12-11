@@ -174,6 +174,20 @@ class BaseClient
             $requestBody,
         ];
     }
+    
+    /**
+     * Fetch method
+     * @param string $uri
+     * @param array $params
+     * @return PlivoResponse
+     */
+    public function fetch($uri, $params)
+    {
+        $request =
+            new PlivoRequest(
+                'GET', $uri, ArrayOperations::removeNull($params));
+        return $this->sendRequest($request);
+    }
 
     /**
      * Update method
