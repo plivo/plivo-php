@@ -129,27 +129,6 @@ class BaseClient
     }
 
     /**
-     * Prepares the request for sending to the client handler.
-     *
-     * @param PlivoRequest $request
-     *
-     * @return array
-     */
-    public function prepareRequestMessage(PlivoRequest $request, $fullUrl = null)
-    {
-        $url = $fullUrl ? $fullUrl : self::BASE_API_URL . $request->getUrl();
-
-        $requestBody = json_encode($request->getParams(), JSON_FORCE_OBJECT);
-
-        return [
-            $url,
-            $request->getMethod(),
-            $request->getHeaders(),
-            $requestBody,
-        ];
-    }
-
-    /**
      * Send the request to http client
      * @param PlivoRequest $request
      * @return PlivoResponse
