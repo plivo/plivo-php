@@ -61,6 +61,8 @@ class RecordingInterface extends ResourceInterface
 
             array_push($recordings, $newRecording);
         }
+        // return new ResourceList(
+        //     $this->client, $response->getContent()['meta'], $recordings);
 
         return json_encode($response->getContent(), JSON_FORCE_OBJECT);
     }

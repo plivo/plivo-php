@@ -65,7 +65,8 @@ class NumberInterface extends ResourceInterface
             array_push($numbers, $newNumber);
         }
         
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        return new ResourceList(
+            $this->client, $response->getContent()['meta'], $numbers);
     }
 
 
