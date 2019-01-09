@@ -51,7 +51,7 @@ class RecordingTest extends BaseTestCase
 
         $actual = json_decode($actual);
 
-        self::assertGreaterThan(0, count($actual));
+        self::assertGreaterThan(0, count($actual->objects));
 
         foreach($actual->objects as $object) {
             self::assertEquals("noname", $object->conference_name);
