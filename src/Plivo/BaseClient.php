@@ -129,9 +129,32 @@ class BaseClient
     }
 
     /**
-     * Send the request to http client
+     * Prepares the request for sending to the client handler.
+     *
      * @param PlivoRequest $request
+     *
+     * @return array
+     */
+    public function prepareRequestMessage(PlivoRequest $request, $fullUrl = null)
+    {
+        $url = $fullUrl ? $fullUrl : self::BASE_API_URL . $request->getUrl();
+
+        $requestBody = json_encode($request->getParams(), JSON_FORCE_OBJECT);
+
+        return [
+            $url,
+            $request->getMethod(),
+            $request->getHeaders(),
+            $requestBody,
+        ];
+    }
+
+    /**
+     * @param PlivoRequest $request
+     * @param null $url
      * @return PlivoResponse
+     * @throws Exceptions\PlivoRequestException
+     * @throws PlivoRestException
      */
     public function sendRequest(PlivoRequest $request, $url = null)
     {
@@ -154,27 +177,6 @@ class BaseClient
         return $plivoResponse;
     }
 
-    /**
-     * Prepares the request for sending to the client handler.
-     *
-     * @param PlivoRequest $request
-     *
-     * @return array
-     */
-    public function prepareRequestMessage(PlivoRequest $request, $fullUrl = null)
-    {
-        $url = $fullUrl ? $fullUrl : self::BASE_API_URL . $request->getUrl();
-
-        $requestBody = json_encode($request->getParams(), JSON_FORCE_OBJECT);
-
-        return [
-            $url,
-            $request->getMethod(),
-            $request->getHeaders(),
-            $requestBody,
-        ];
-    }
-    
     /**
      * Fetch method
      * @param string $uri
@@ -214,7 +216,6 @@ class BaseClient
         $request =
             new PlivoRequest(
                 'POST', $uri, ArrayOperations::removeNull($params));
-
         return $this->sendRequest($request, $uri);
     }
 

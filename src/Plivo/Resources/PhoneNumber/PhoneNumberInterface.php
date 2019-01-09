@@ -48,7 +48,7 @@ class PhoneNumberInterface extends ResourceInterface
      *   + [string] rate_center - Numbers can be searched using Rate Center {http://en.wikipedia.org/wiki/Telephone_exchange}. This filter is application only for country_iso US and CA.
      *   + [int] limit - Used to display the number of results per page. The maximum number of results that can be fetched is 20.
      *   + [int] offset - Denotes the number of value items by which the results should be offset. Eg:- If the result contains a 1000 values and limit is set to 10 and offset is set to 705, then values 706 through 715 are displayed in the results. This parameter is also used for pagination of the results.
-     * @return ResourceList
+     * @return JSON output
      */
     public function getList($countryIso, $optionalArgs = [])
     {
@@ -66,8 +66,7 @@ class PhoneNumberInterface extends ResourceInterface
             array_push($phoneNumbers, $newNumber);
         }
 
-        return new ResourceList(
-            $this->client, $response->getContent()['meta'], $phoneNumbers);
+        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
     }
 
     /**
@@ -75,7 +74,7 @@ class PhoneNumberInterface extends ResourceInterface
      *
      * @param number $phoneNumber
      * @param string|null $appId
-     * @return PhoneNumberBuyResponse
+     * @return JSON output
      */
     public function buy($phoneNumber, $appId = null)
     {
@@ -84,14 +83,6 @@ class PhoneNumberInterface extends ResourceInterface
             ['app_id'=>$appId]
         );
 
-        $responseContents = $response->getContent();
-
-        return new PhoneNumberBuyResponse(
-            $responseContents['api_id'],
-            $responseContents['message'],
-            $responseContents['numbers'][0]['number'],
-            $responseContents['numbers'][0]['status'],
-            $responseContents['status']
-        );
+        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
     }
 }
