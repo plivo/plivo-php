@@ -15,7 +15,8 @@ $multiPartyCall = $phlo->multiPartyCall()->get("YOUR_NODE_ID");
 
 
 try {
-	$multiPartyCall->call($trigger_source, $to, $role);
+	$response = $multiPartyCall->call($trigger_source, $to, $role);
+	print_r($response);
 } catch (PlivoRestException $ex) {
 	print_r($ex);
 } 
@@ -39,7 +40,8 @@ $multiPartyCall = $phlo->multiPartyCall()->get("YOUR_NODE_ID");
 
 
 try {
-	$multiPartyCall->warm_transfer($trigger_source, $to, $role);
+	$response = $multiPartyCall->warm_transfer($trigger_source, $to, $role);
+	print_r($response);
 } catch (PlivoRestException $ex) {
 	print_r($ex);
 } 
@@ -63,7 +65,8 @@ $multiPartyCall = $phlo->multiPartyCall()->get("YOUR_NODE_ID");
 
 
 try {
-	$multiPartyCall->cold_transfer($trigger_source, $to, $role);
+	$response = $multiPartyCall->cold_transfer($trigger_source, $to, $role);
+	print_r($response);
 } catch (PlivoRestException $ex) {
 	print_r($ex);
 } 
@@ -87,7 +90,8 @@ $multiPartyCall = $phlo->multiPartyCall()->get("YOUR_NODE_ID");
 $multiPartyCallMember = $multiPartyCall->member($memberAddress);
 
 try {
-	$multiPartyCallMember->abort_transfer();
+	$response = $multiPartyCallMember->abort_transfer();
+	print_r($response);
 } catch (PlivoRestException $ex) {
 	print_r($ex);
 } 
@@ -111,7 +115,8 @@ $multiPartyCall = $phlo->multiPartyCall()->get("YOUR_NODE_ID");
 $multiPartyCallMember = $multiPartyCall->member($memberAddress);
 
 try {
-	$multiPartyCallMember->voicemail_drop();
+	$response = $multiPartyCallMember->voicemail_drop();
+	print_r($response);
 } catch (PlivoRestException $ex) {
 	print_r($ex);
 } 
@@ -135,7 +140,8 @@ $multiPartyCall = $phlo->multiPartyCall()->get("YOUR_NODE_ID");
 $multiPartyCallMember = $multiPartyCall->member($memberAddress);
 
 try {
-	$multiPartyCallMember->hangup();
+	$response = $multiPartyCallMember->hangup();
+	print_r($response);
 } catch (PlivoRestException $ex) {
 	print_r($ex);
 } 
@@ -159,7 +165,8 @@ $multiPartyCall = $phlo->multiPartyCall()->get("YOUR_NODE_ID");
 $multiPartyCallMember = $multiPartyCall->member($memberAddress);
 
 try {
-	$multiPartyCallMember->hold();
+	$response = $multiPartyCallMember->hold();
+	print_r($response);
 } catch (PlivoRestException $ex) {
 	print_r($ex);
 } 
@@ -183,7 +190,8 @@ $multiPartyCall = $phlo->multiPartyCall()->get("YOUR_NODE_ID");
 $multiPartyCallMember = $multiPartyCall->member($memberAddress);
 
 try {
-	$multiPartyCallMember->unhold();
+	$response = $multiPartyCallMember->unhold();
+	print_r($response);
 } catch (PlivoRestException $ex) {
 	print_r($ex);
 } 
@@ -207,7 +215,8 @@ $multiPartyCall = $phlo->multiPartyCall()->get("YOUR_NODE_ID");
 $multiPartyCallMember = $multiPartyCall->member($memberAddress);
 
 try {
-	$multiPartyCallMember->resume();
+	$response = $multiPartyCallMember->resume_call();
+	print_r($response);
 } catch (PlivoRestException $ex) {
 	print_r($ex);
 } 
@@ -229,7 +238,8 @@ $client = new PhloRestClient("YOUR_AUTH_ID", "YOUR_AUTH_TOKEN");
 $phlo = $client->phlo->get("YOUR_PHLO_ID");
 
 try {
-	$phlo->run(["field1" => "value1", "field2" => "value2"]); // These are the fields entered in the PHLO console
+	$response = $phlo->run(["field1" => "value1", "field2" => "value2"]); // These are the fields entered in the PHLO console
+	print_r($response);
 } catch (PlivoRestException $ex) {
 	print_r($ex);
 } 
