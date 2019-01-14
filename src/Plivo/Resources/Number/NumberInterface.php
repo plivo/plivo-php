@@ -64,7 +64,7 @@ class NumberInterface extends ResourceInterface
 
             array_push($numbers, $newNumber);
         }
-
+        
         return new ResourceList(
             $this->client, $response->getContent()['meta'], $numbers);
     }

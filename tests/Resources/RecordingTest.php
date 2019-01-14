@@ -49,9 +49,14 @@ class RecordingTest extends BaseTestCase
 
         self::assertNotNull($actual);
 
-        self::assertGreaterThan(0, count($actual->get()));
+        $actual = json_decode($actual);
 
-        self::assertEquals("noname", $actual->get()[0]->conferenceName);
+        foreach($actual->objects as $object) {
+            if($object) {
+                self::assertEquals("noname", $object->conference_name);
+            }    
+        }
+        
     }
     
     function testRecordingDelete()
