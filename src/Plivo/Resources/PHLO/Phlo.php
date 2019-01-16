@@ -88,7 +88,7 @@ class Phlo
     {
         $phlo = new self($this->client, $id, $this->baseUrl); 
         $response = $phlo->client->getPhlorunner($phlo->phloUrl, []);
-        return $response->getContent();
+        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
     }
 
     /**
