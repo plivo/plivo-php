@@ -171,7 +171,7 @@ class BaseClient
         static::$requestCount++;
 
         if (!$plivoResponse->ok()) {
-            throw $plivoResponse->getThrownException();
+            return $plivoResponse;
         }
 
         return $plivoResponse;
@@ -231,6 +231,20 @@ class BaseClient
             new PlivoRequest(
                 'POST', $uri, ArrayOperations::removeNull($params));
         $request->setHeaders($headers);
+        return $this->sendRequest($request, $uri);
+    }
+
+    /**
+     * Fetch method
+     * @param string $uri
+     * @param array $params
+     * @return PlivoResponse
+     */
+    public function getPhlorunner($uri, $params)
+    {
+        $request =
+            new PlivoRequest(
+                'GET', $uri, ArrayOperations::removeNull($params));
         return $this->sendRequest($request, $uri);
     }
 

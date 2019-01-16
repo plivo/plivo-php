@@ -207,6 +207,34 @@ require 'vendor/autoload.php';
 use Plivo\Resources\PHLO\PhloRestClient;
 use Plivo\Exceptions\PlivoRestException;
 
+use Plivo\Resources\PHLO\PhloRestClient;
+use Plivo\Exceptions\PlivoRestException;
+
+
+$client = new PhloRestClient("YOUR_AUTH_ID", "YOUR_AUTH_TOKEN");
+$phlo = $client->phlo->get("YOUR_PHLO_ID");
+
+$multiPartyCall = $phlo->multiPartyCall()->get("YOUR_NODE_ID");
+$multiPartyCallMember = $multiPartyCall->member($memberAddress);
+
+try {
+	$response = $multiPartyCallMember->unhold();
+	print_r($response);
+} catch (PlivoRestException $ex) {
+	print_r($ex);
+} 
+
+?>
+
+<?php
+/**
+ * Example for MultiParty Resume
+ */
+require 'vendor/autoload.php';
+
+use Plivo\Resources\PHLO\PhloRestClient;
+use Plivo\Exceptions\PlivoRestException;
+
 
 $client = new PhloRestClient("YOUR_AUTH_ID", "YOUR_AUTH_TOKEN");
 $phlo = $client->phlo->get("YOUR_PHLO_ID");
@@ -243,6 +271,22 @@ try {
 } catch (PlivoRestException $ex) {
 	print_r($ex);
 } 
+
+?>
+
+<?php
+/**
+ * Example for PHLO Getter
+ */
+require 'vendor/autoload.php';
+
+use Plivo\Resources\PHLO\PhloRestClient;
+use Plivo\Exceptions\PlivoRestException;
+
+
+$client = new PhloRestClient("YOUR_AUTH_ID", "YOUR_AUTH_TOKEN");
+$phlo = $client->phlo->getPhlo("YOUR_PHLO_ID");
+print_r($response);
 
 ?>
 
