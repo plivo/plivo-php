@@ -86,9 +86,9 @@ class Phlo
      */
     public function getPhlo($id)
     {
-        $phlo = new self($this->client, $id, $this->baseUrl);
-        $response = $phlo->client->updateNode($phlo->phloUrl, []);
-        return $response;
+        $phlo = new self($this->client, $id, $this->baseUrl); 
+        $response = $phlo->client->getPhlorunner($phlo->phloUrl, []);
+        return $response->getContent();
     }
 
     /**

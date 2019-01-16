@@ -246,4 +246,20 @@ try {
 
 ?>
 
+<?php
+/**
+ * Example for PHLO Getter
+ */
+require 'vendor/autoload.php';
+
+use Plivo\Resources\PHLO\PhloRestClient;
+use Plivo\Exceptions\PlivoRestException;
+
+
+$client = new PhloRestClient("YOUR_AUTH_ID", "YOUR_AUTH_TOKEN");
+$phlo = $client->phlo->getPhlo("YOUR_PHLO_ID");
+print_r($response);
+
+?>
+
 
