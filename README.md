@@ -9,6 +9,10 @@ You can use the SDK using [composer](https://getcomposer.org/). Run the followin
 
     $ composer require plivo/php-sdk
 
+For features in beta, use the beta package
+
+    $ composer require plivo/php-sdk:v4.2-beta1
+
 Alternatively, you can download this source and run
 
     $ composer install
