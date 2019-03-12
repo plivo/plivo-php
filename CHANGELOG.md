@@ -4,6 +4,10 @@
 - Add PHLO support
 - Add Multi-Party Call triggers
 
+## [v4.2-beta1](https://github.com/plivo/plivo-php/releases/tag/v4.2-beta1) - 2019-03-11
+- Add PHLO support
+- Add Multi-Party Call triggers
+
 ## [v4.1.5](https://github.com/plivo/plivo-php/releases/tag/v4.1.5) - 2018-11-21
 - Add hangup party details to CDR. CDR filtering allowed by hangup_source and hangup_cause_code.
 - Add sub-account cascade delete support.
