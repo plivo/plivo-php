@@ -135,9 +135,9 @@ class BaseClient
      *
      * @return array
      */
-    public function prepareRequestMessage(PlivoRequest $request)
+    public function prepareRequestMessage(PlivoRequest $request, $fullUrl = null)
     {
-        $url = self::BASE_API_URL . $request->getUrl();
+        $url = $fullUrl ? $fullUrl : self::BASE_API_URL . $request->getUrl();
 
         $requestBody = json_encode($request->getParams(), JSON_FORCE_OBJECT);
 
@@ -150,16 +150,19 @@ class BaseClient
     }
 
     /**
-     * Send the request to http client
      * @param PlivoRequest $request
+     * @param null $url
      * @return PlivoResponse
+     * @throws Exceptions\PlivoRequestException
+     * @throws PlivoRestException
      */
-    public function sendRequest(PlivoRequest $request)
+    public function sendRequest(PlivoRequest $request, $url = null)
     {
+        $fullUrl = $url ? $url : null;
         list($url, $method, $headers, $body) =
-            $this->prepareRequestMessage($request);
+            $this->prepareRequestMessage($request, $fullUrl);
 
-        $timeout = $this->timeout?: static::DEFAULT_REQUEST_TIMEOUT;
+        $timeout = $this->timeout ?: static::DEFAULT_REQUEST_TIMEOUT;
 
         $plivoResponse =
             $this->httpClientHandler->send_request(
@@ -168,7 +171,7 @@ class BaseClient
         static::$requestCount++;
 
         if (!$plivoResponse->ok()) {
-            throw $plivoResponse->getThrownException();
+            return $plivoResponse;
         }
 
         return $plivoResponse;
@@ -185,7 +188,6 @@ class BaseClient
         $request =
             new PlivoRequest(
                 'GET', $uri, ArrayOperations::removeNull($params));
-
         return $this->sendRequest($request);
     }
 
@@ -202,6 +204,48 @@ class BaseClient
                 'POST', $uri, ArrayOperations::removeNull($params));
 
         return $this->sendRequest($request);
+    }
+
+    /**
+     * @param $uri
+     * @param $params
+     * @return PlivoResponse
+     */
+    public function updateNode($uri, $params)
+    {
+        $request =
+            new PlivoRequest(
+                'POST', $uri, ArrayOperations::removeNull($params));
+        return $this->sendRequest($request, $uri);
+    }
+
+    /**
+     * @param $uri
+     * @param $params
+     * @param null $headers
+     * @return PlivoResponse
+     */
+    public function getPhlorunnerApis($uri, $params, $headers = null)
+    {
+        $request =
+            new PlivoRequest(
+                'POST', $uri, ArrayOperations::removeNull($params));
+        $request->setHeaders($headers);
+        return $this->sendRequest($request, $uri);
+    }
+
+    /**
+     * Fetch method
+     * @param string $uri
+     * @param array $params
+     * @return PlivoResponse
+     */
+    public function getPhlorunner($uri, $params)
+    {
+        $request =
+            new PlivoRequest(
+                'GET', $uri, ArrayOperations::removeNull($params));
+        return $this->sendRequest($request, $uri);
     }
 
     /**
