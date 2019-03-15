@@ -40,21 +40,19 @@ class PhoneNumber extends Resource
 
         $this->properties = [
             'country' => $response['country'],
-            'lata' => $response['lata'],
-            'number' => $response['number'],
-            'type' => $response['type'],
-            'monthlyRentalRate' => $response['monthly_rental_rate'],
-            'prefix' => $response['prefix'],
-            'rateCenter' => $response['rate_center'],
-            'region' => $response['region'],
-            'resourceUri' => $response['resource_uri'],
-            'restriction' => $response['restriction'],
-            'restrictionText' => $response['restriction_text'],
-            'setupRate' => $response['setup_rate'],
-            'smsEnabled' => $response['sms_enabled'],
-            'smsRate' => $response['sms_rate'],
-            'voiceEnabled' => $response['voice_enabled'],
-            'voiceRate' => $response['voice_rate']
+			'lata' => $response['lata'],
+			'number' => $response['number'],
+			'type' => $response['type'],
+			'monthlyRentalRate' => $response['monthly_rental_rate'],
+			'prefix' => $response['prefix'],
+			'rateCenter' => $response['rate_center'],
+			'region' => $response['region'],
+			'resourceUri' => $response['resource_uri'],
+			'setupRate' => $response['setup_rate'],
+			'smsEnabled' => $response['sms_enabled'],
+			'smsRate' => $response['sms_rate'],
+			'voiceEnabled' => $response['voice_enabled'],
+			'voiceRate' => $response['voice_rate']
         ];
 
         $this->pathParams = [
