@@ -52,7 +52,7 @@ class ApplicationInterface extends ResourceInterface
      *   + string subaccount - Id of the subaccount, in case only subaccount applications are needed.
      *   + boolean log_incoming_messages - controls the incoming message logs.
      *
-     * @return JSON output
+     * @return ApplicationCreateResponse
      */
     public function create(
         $appName, array $optionalArgs = [])
@@ -66,7 +66,12 @@ class ApplicationInterface extends ResourceInterface
             array_merge($mandaoryArgs, $optionalArgs)
         );
 
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        $responseContents = $response->getContent();
+
+        return new ApplicationCreateResponse(
+            $responseContents['api_id'],
+            $responseContents['app_id'],
+            $responseContents['message']);
     }
 
     /**

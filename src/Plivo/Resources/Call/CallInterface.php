@@ -65,7 +65,7 @@ class CallInterface extends ResourceInterface
      *   + [string] parent_call_uuid - The call_uuid of the first leg in an ongoing conference call. It is recommended to use this parameter in scenarios where a member who is already present in the conference intends to add new members by initiating outbound API calls. This minimizes the delay in adding a new memeber to the conference.
      *   + [boolean] error_parent_not_found - if set to true and the parent_call_uuid cannot be found, the API request would return an error. If set to false, the outbound call API request will be executed even if the parent_call_uuid is not found. Defaults to false.
 
-     * @return JSON output
+     * @return CallCreateResponse
      * @throws PlivoValidationException
      */
     public function create($from, array $to, $answerUrl, $answerMethod,
@@ -93,7 +93,13 @@ class CallInterface extends ResourceInterface
             array_merge($mandatoryArgs, $optionalArgs)
         );
 
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        $responseContents = $response->getContent();
+
+        return new CallCreateResponse(
+            $responseContents['api_id'],
+            $responseContents['message'],
+            $responseContents['request_uuid']
+        );
     }
 
     /**
@@ -221,7 +227,11 @@ class CallInterface extends ResourceInterface
             array_push($calls, $newCall);
         }
 
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        return
+            new CallList(
+                $this->client,
+                $response->getContent()['meta'],
+                $calls);
     }
 
     /**

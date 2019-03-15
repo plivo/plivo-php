@@ -65,7 +65,9 @@ class PhoneNumberInterface extends ResourceInterface
 
             array_push($phoneNumbers, $newNumber);
         }
-        return new ResourceList($this->client, $response->getContent()['meta'], $phoneNumbers);
+
+        return new ResourceList(
+            $this->client, $response->getContent()['meta'], $phoneNumbers);
     }
 
     /**
@@ -73,7 +75,7 @@ class PhoneNumberInterface extends ResourceInterface
      *
      * @param number $phoneNumber
      * @param string|null $appId
-     * @return JSON output
+     * @return PhoneNumberBuyResponse
      */
     public function buy($phoneNumber, $appId = null)
     {
@@ -82,6 +84,14 @@ class PhoneNumberInterface extends ResourceInterface
             ['app_id'=>$appId]
         );
 
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        $responseContents = $response->getContent();
+
+        return new PhoneNumberBuyResponse(
+            $responseContents['api_id'],
+            $responseContents['message'],
+            $responseContents['numbers'][0]['number'],
+            $responseContents['numbers'][0]['status'],
+            $responseContents['status']
+        );
     }
 }

@@ -36,7 +36,7 @@ class SubAccountInterface extends ResourceInterface
      * @param string $name Name of the subaccount
      * @param boolean|null $enabled Specify if the subaccount should be enabled or
      * not. Takes a value of True or False. Defaults to False
-     * @return JSON Output
+     * @return SubAccountCreateResponse
      */
     public function create($name, $enabled = null)
     {
@@ -55,7 +55,8 @@ class SubAccountInterface extends ResourceInterface
             $data
         );
 
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        $responseContents = $response->getContent();
+        return new SubAccountCreateResponse($responseContents['message'], $responseContents['auth_id'], $responseContents['auth_token'], $responseContents['api_id']);
     }
 
     /**
@@ -173,6 +174,9 @@ class SubAccountInterface extends ResourceInterface
             array_push($subAccounts, $newSubAccount);
         }
 
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        return new SubAccountList(
+            $this->client,
+            $response->getContent()['meta'],
+            $subAccounts);
     }
 }

@@ -30,11 +30,9 @@ class ApplicationTest extends BaseTestCase
 
         self::assertNotNull($actual);
 
-        $actual = json_decode($actual);
-
         self::assertEquals($actual->message, "created");
-        self::assertEquals($actual->app_id, "20468599130939380");
-        self::assertEquals($actual->api_id, "99f9d6f6-3f08-11e7-9fd1-06660ad2b8e6");
+        self::assertEquals($actual->appId, "20468599130939380");
+        self::assertEquals($actual->apiId, "99f9d6f6-3f08-11e7-9fd1-06660ad2b8e6");
     }
 
     function testApplicationList()
