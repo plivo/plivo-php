@@ -54,8 +54,12 @@ class SubAccountInterface extends ResourceInterface
             $this->uri,
             $data
         );
-
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        $responseContents = $response->getContent();
+        return new SubAccountCreateResponse(
+            $responseContents['message'],
+            $responseContents['auth_id'], 
+            $responseContents['auth_token'], 
+            $responseContents['api_id']);
     }
 
     /**
@@ -173,6 +177,9 @@ class SubAccountInterface extends ResourceInterface
             array_push($subAccounts, $newSubAccount);
         }
 
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        return new SubAccountList(
+            $this->client,
+            $response->getContent()['meta'],
+            $subAccounts);
     }
 }

@@ -93,7 +93,12 @@ class CallInterface extends ResourceInterface
             array_merge($mandatoryArgs, $optionalArgs)
         );
 
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        $responseContents = $response->getContent();
+        return new CallCreateResponse(
+            $responseContents['api_id'],
+            $responseContents['message'],
+            $responseContents['request_uuid']
+        );
     }
 
     /**
@@ -220,8 +225,11 @@ class CallInterface extends ResourceInterface
 
             array_push($calls, $newCall);
         }
-
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        return
+            new CallList(
+                $this->client,
+                $response->getContent()['meta'],
+                $calls);
     }
 
     /**
