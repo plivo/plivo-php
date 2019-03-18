@@ -6,7 +6,7 @@ use Plivo\Exceptions\PlivoXMLException;
 
 
 /**
- * Class Speak
+ * Class Cont
  * @package Plivo\XML
  */
 class Cont extends Element {
@@ -27,7 +27,7 @@ class Cont extends Element {
     protected $valid_attributes = [];
 
     /**
-     * Speak constructor.
+     * Cont constructor.
      * @param string $body
      * @param array $attributes
      * @throws PlivoXMLException

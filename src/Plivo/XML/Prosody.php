@@ -6,7 +6,7 @@ namespace Plivo\XML;
 use Plivo\Exceptions\PlivoXMLException;
 
 /**
- * Class Conference
+ * Class Prosody
  * @package Plivo\XML
  */
 class Prosody extends Element {
@@ -31,7 +31,7 @@ class Prosody extends Element {
     ];
 
     /**
-     * BreakTag constructor.
+     * Prosody constructor.
      * @param string $body
      * @param array $attributes
      * @throws PlivoXMLException

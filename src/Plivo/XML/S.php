@@ -6,7 +6,7 @@ namespace Plivo\XML;
 use Plivo\Exceptions\PlivoXMLException;
 
 /**
- * Class Conference
+ * Class S
  * @package Plivo\XML
  */
 class S extends Element {
@@ -27,7 +27,7 @@ class S extends Element {
     protected $valid_attributes = [];
 
     /**
-     * BreakTag constructor.
+     * S constructor.
      * @param string $body
      * @param array $attributes
      * @throws PlivoXMLException
