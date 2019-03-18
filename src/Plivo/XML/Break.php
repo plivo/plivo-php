@@ -26,8 +26,5 @@ class Break_ extends Element {
      */
     function __construct($attributes = []) {
         parent::__construct(null, $attributes);
-        // if (!$body) {
-        //     throw new PlivoXMLException("No break set for ".$this->getName());
-        // }
     }
 }
