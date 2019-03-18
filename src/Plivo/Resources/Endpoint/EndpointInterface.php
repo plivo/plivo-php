@@ -41,7 +41,7 @@ class EndpointInterface extends ResourceInterface
      * @param string $password
      * @param string $alias
      * @param null|string $appId
-     * @return EndpointCreateReponse
+     * @return JSON output
      * @throws PlivoValidationException
      */
     public function create($username, $password, $alias, $appId = null)
@@ -62,14 +62,7 @@ class EndpointInterface extends ResourceInterface
             array_merge($mandatoryArgs, ['app_id' => $appId])
         );
 
-        $responseContents = $response->getContent();
-
-        return new EndpointCreateReponse(
-            $responseContents['username'],
-            $responseContents['alias'],
-            $responseContents['message'],
-            $responseContents['endpoint_id'],
-            $responseContents['api_id']);
+        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
     }
 
     /**
@@ -118,7 +111,7 @@ class EndpointInterface extends ResourceInterface
             array_push($endpoints, $newEndpoint);
         }
 
-        return new ResourceList($this->client, $response->getContent()['meta'], $endpoints);
+        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
     }
 
     /**
