@@ -20,10 +20,11 @@ class Element {
 
     protected $name;
 
+    protected $voice_attribute = 'voice';
+
     protected $body = null;
 
     protected $childs = [];
-
 
     /**
      * Element constructor.
@@ -41,6 +42,7 @@ class Element {
                 get_class($this),
                 strrpos(get_class($this), '\\') + 1
             );
+        $this->name = $this->name === "Break_"?"Break":$this->name;
         $this->body = $body;
         foreach ($this->attributes as $key => $value) {
             if (!in_array($key, $this->valid_attributes)) {
@@ -56,23 +58,69 @@ class Element {
      * @return string
      */
     protected function convertValue($v) {
-        if ($v === true) {
-            return "true";
-        }
-        if ($v === false) {
-            return "false";
-        }
-        if ($v === null) {
-            return "none";
-        }
-        if ($v === "get") {
-            return "GET";
-        }
-        if ($v === "post") {
-            return "POST";
+
+        switch($v){
+            case "true":
+                return "true";
+                break;
+            case "false":
+                return "false";
+                break;
+            case null:
+                return "none";
+                break;
+            case "get":
+                return strtoupper($v);
+                break;
+            case "post":
+                return strtoupper($v);
+                break;
+            case "man":
+                return strtoupper($v);
+                break;
+            case "woman":
+                return strtoupper($v);
+                break;
         }
 
         return $v;
+    }
+    /**
+     * @param null
+     * @throws PlivoXMLException
+     */
+    function checkSSMLSupported(){
+        $attribute = $this->voice_attribute;
+        $position = count($this->childs)-1;
+        $speak_element = simplexml_load_string($this->childs[$position]);
+        if($speak_element->attributes()->$attribute == 'WOMAN' ||
+            $speak_element->attributes()->$attribute == 'MAN'){
+            throw new PlivoXMLException(
+                "SSML supported is available only for Amazon Polly! ".$this->name);
+        }
+    }
+
+    /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addSpeak($body = null, $attributes = []) {
+        $this->add(new Speak($body, $attributes));
+        return $this;
+    }
+
+    /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function continueSpeak($body = null, $attributes = []) {
+        $element = new Cont($body,[]);
+        $position = count($this->childs)-1;
+        $element->setName('cont');
+        $this->childs[$position]->add($element);
+        return $this;
     }
 
     /**
@@ -80,12 +128,143 @@ class Element {
      * @param array $attributes
      * @return mixed
      */
-    function addSpeak($body = null, $attributes = []) {
-        return $this->add(new Speak($body, $attributes));
+    function addBreak($body = null, $attributes = []) {
+        $this->checkSSMLSupported();
+        $position = count($this->childs)-1;
+        $element = new Break_($body,$attributes);
+        $element->setName('break');
+        $this->childs[$position]->add($element);
+        return $this;
     }
 
     /**
-     * @param null $body
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addEmphasis($body = null, $attributes = []) {
+        $this->checkSSMLSupported();
+        $position = count($this->childs)-1;
+        $element = new Emphasis($body,$attributes);
+        $element->setName('emphasis');
+        $this->childs[$position]->add($element);
+        return $this;
+    }
+
+    /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addLang($body = null, $attributes = []) {
+        $this->checkSSMLSupported();
+        $position = count($this->childs)-1;
+        $element = new Lang($body,$attributes);
+        $element->setName('lang');
+        $this->childs[$position]->add($element);
+        return $this;
+    }
+
+    /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addP($body = null, $attributes = []) {
+        $this->checkSSMLSupported();
+        $position = count($this->childs)-1;
+        $element = new P($body,$attributes);
+        $element->setName('p');
+        $this->childs[$position]->add($element);
+        return $this;
+    }
+
+    /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addPhoneme($body = null, $attributes = []) {
+        $this->checkSSMLSupported();
+        $position = count($this->childs)-1;
+        $element = new Phoneme($body,$attributes);
+        $element->setName('phoneme');
+        $this->childs[$position]->add($element);
+        return $this;
+    }
+
+    /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addProsody($body = null, $attributes = []) {
+        $this->checkSSMLSupported();
+        $position = count($this->childs)-1;
+        $element = new Prosody($body,$attributes);
+        $element->setName('prosody');
+        $this->childs[$position]->add($element);
+        return $this;
+    }
+
+    /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addS($body = null, $attributes = []) {
+        $this->checkSSMLSupported();
+        $position = count($this->childs)-1;
+        $element = new S($body,$attributes);
+        $element->setName('s');
+        $this->childs[$position]->add($element);
+        return $this;
+    }
+
+    /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addSayAs($body = null, $attributes = []) {
+        $this->checkSSMLSupported();
+        $position = count($this->childs)-1;
+        $element = new SayAs($body,$attributes);
+        $element->setName('say-as');
+        $this->childs[$position]->add($element);
+        return $this;
+    }
+
+    /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addSub($body = null, $attributes = []) {
+        $this->checkSSMLSupported();
+        $position = count($this->childs)-1;
+        $element = new Sub($body,$attributes);
+        $element->setName('sub');
+        $this->childs[$position]->add($element);
+        return $this;
+    }
+
+    /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addW($body = null, $attributes = []) {
+        $this->checkSSMLSupported();
+        $position = count($this->childs)-1;
+        $element = new W($body,$attributes);
+        $element->setName('w');
+        $this->childs[$position]->add($element);
+        return $this;
+    }
+
+    /**
+     * @param string $body
      * @param array $attributes
      * @return mixed
      */
@@ -203,6 +382,13 @@ class Element {
         return $this->name;
     }
 
+    /**
+     * @param name $name
+     */
+    public function setName($name) {
+        $this->name = $name;
+    }
+
 
     /**
      * @param Element $element
@@ -210,7 +396,7 @@ class Element {
      * @throws PlivoXMLException
      */
     protected function add($element) {
-        if (!in_array($element->getName(), $this->nestables)) {
+        if ( !in_array($element->getName(), $this->nestables)) {
             throw new PlivoXMLException($element->getName()." not nestable in ".$this->getName());
         }
         $this->childs[] = $element;
@@ -223,7 +409,12 @@ class Element {
      */
     public function setAttributes($xml) {
         foreach ($this->attributes as $key => $value) {
-            $xml->addAttribute($key, $value);
+            if($key === 'xmllang'){
+                $xml->addAttribute('xml:lang', $value,"http://schema.omg.org/spec/XMI/2.1");
+            } else {
+                $xml->addAttribute($key, $value);
+            }
+            
         }
     }
 
@@ -231,6 +422,7 @@ class Element {
      * @param \SimpleXMLElement $xml
      */
     public function asChild($xml) {
+        // print($this->getName());
         if ($this->body) {
             $child_xml = $xml->addChild($this->getName(), htmlspecialchars($this->body));
         } else {
@@ -250,7 +442,6 @@ class Element {
         if (!(isset($xmlstr))) {
             $xmlstr = '';
         }
-
         if ($this->body) {
             $xmlstr.= "<".$this->getName().">".htmlspecialchars($this->body)."</".$this->getName().">";
         } else {
@@ -264,8 +455,11 @@ class Element {
         foreach ($this->childs as $child) {
             $child->asChild($xml);
         }
+        $xml_string = $xml->asXML();
+        $xml_string = str_replace("<cont>"," ",$xml_string);
+        $xml_string = str_replace("</cont>"," ",$xml_string);
 
-        return $xml->asXML();
+        return $xml_string;
     }
 
     /**
