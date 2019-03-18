@@ -89,7 +89,7 @@ class Element {
      * @param null
      * @throws PlivoXMLException
      */
-    function checkSSMLSupported(){
+    function checkIsSSMLSupported(){
         $attribute = $this->voice_attribute;
         $position = count($this->childs)-1;
         $speak_element = simplexml_load_string($this->childs[$position]);
@@ -129,7 +129,7 @@ class Element {
      * @return mixed
      */
     function addBreak($body = null, $attributes = []) {
-        $this->checkSSMLSupported();
+        $this->checkIsSSMLSupported();
         $position = count($this->childs)-1;
         $element = new Break_($body,$attributes);
         $element->setName('break');
@@ -143,7 +143,7 @@ class Element {
      * @return mixed
      */
     function addEmphasis($body = null, $attributes = []) {
-        $this->checkSSMLSupported();
+        $this->checkIsSSMLSupported();
         $position = count($this->childs)-1;
         $element = new Emphasis($body,$attributes);
         $element->setName('emphasis');
@@ -157,7 +157,7 @@ class Element {
      * @return mixed
      */
     function addLang($body = null, $attributes = []) {
-        $this->checkSSMLSupported();
+        $this->checkIsSSMLSupported();
         $position = count($this->childs)-1;
         $element = new Lang($body,$attributes);
         $element->setName('lang');
@@ -171,7 +171,7 @@ class Element {
      * @return mixed
      */
     function addP($body = null, $attributes = []) {
-        $this->checkSSMLSupported();
+        $this->checkIsSSMLSupported();
         $position = count($this->childs)-1;
         $element = new P($body,$attributes);
         $element->setName('p');
@@ -185,7 +185,7 @@ class Element {
      * @return mixed
      */
     function addPhoneme($body = null, $attributes = []) {
-        $this->checkSSMLSupported();
+        $this->checkIsSSMLSupported();
         $position = count($this->childs)-1;
         $element = new Phoneme($body,$attributes);
         $element->setName('phoneme');
@@ -199,7 +199,7 @@ class Element {
      * @return mixed
      */
     function addProsody($body = null, $attributes = []) {
-        $this->checkSSMLSupported();
+        $this->checkIsSSMLSupported();
         $position = count($this->childs)-1;
         $element = new Prosody($body,$attributes);
         $element->setName('prosody');
@@ -213,7 +213,7 @@ class Element {
      * @return mixed
      */
     function addS($body = null, $attributes = []) {
-        $this->checkSSMLSupported();
+        $this->checkIsSSMLSupported();
         $position = count($this->childs)-1;
         $element = new S($body,$attributes);
         $element->setName('s');
@@ -227,7 +227,7 @@ class Element {
      * @return mixed
      */
     function addSayAs($body = null, $attributes = []) {
-        $this->checkSSMLSupported();
+        $this->checkIsSSMLSupported();
         $position = count($this->childs)-1;
         $element = new SayAs($body,$attributes);
         $element->setName('say-as');
@@ -241,7 +241,7 @@ class Element {
      * @return mixed
      */
     function addSub($body = null, $attributes = []) {
-        $this->checkSSMLSupported();
+        $this->checkIsSSMLSupported();
         $position = count($this->childs)-1;
         $element = new Sub($body,$attributes);
         $element->setName('sub');
@@ -255,7 +255,7 @@ class Element {
      * @return mixed
      */
     function addW($body = null, $attributes = []) {
-        $this->checkSSMLSupported();
+        $this->checkIsSSMLSupported();
         $position = count($this->childs)-1;
         $element = new W($body,$attributes);
         $element->setName('w');
