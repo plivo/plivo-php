@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.3.1](https://github.com/plivo/plivo-php/releases/tag/v4.3.1) - 2019-03-20
+- Fix Json responses for all resources.
+
 ## [v4.3.0](https://github.com/plivo/plivo-php/releases/tag/v4.3.0) - 2019-03-12
 - Add PHLO support
 - Add Multi-Party Call triggers
