@@ -56,13 +56,11 @@ class BaseTestCase extends TestCase
      */
     public function expectPlivoException($exception)
     {
-        // if (version_compare(phpversion(), '7.0.0', '<')) {
-        //     self::setExpectedException($exception);
-        // } else {
-        //     self::setExpectedException($exception);
-        // }
-
-        self::setExpectedException($exception);
+        if (version_compare(phpversion(), '7.0.0', '<')) {
+            self::setExpectedException($exception);
+        } else {
+            self::expectException($exception);
+        }
 
     }
 }
