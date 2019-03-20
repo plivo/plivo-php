@@ -86,12 +86,8 @@ class CallTest extends BaseTestCase
 
         self::assertNotNull($actual);
 
-        // $actual = json_decode($actual);
-
         foreach($actual->resources as $actualCall) {
-            // print_r($actualCall);
-        // foreach ($actual->objects as $actualCall) {
-
+            
             self::assertEquals(substr($actualCall->resourceUri, 0, 33), "/v1/Account/MAXXXXXXXXXXXXXXXXXX/");
         }
     }
