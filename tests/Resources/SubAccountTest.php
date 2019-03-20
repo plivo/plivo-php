@@ -29,10 +29,6 @@ class SubAccountTest extends BaseTestCase
 
         $actual = $this->client->subAccounts->create('name', true);
 
-        print_r($actual);
-
-        // $actual = json_decode($actual);
-
         $this->assertRequest($request);
 
         self::assertNotNull($actual);
@@ -61,7 +57,7 @@ class SubAccountTest extends BaseTestCase
 
         $resource = false;
         foreach($actual->resources as $object) {
-            // print_r($object);
+            
             if(stripos($object->resourceUri, "/v1/Account/MAXXXXXXXXXXXXXXXXXX/") !== false) {
                 $resource = true;
             }
