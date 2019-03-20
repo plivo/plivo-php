@@ -56,15 +56,13 @@ class RecordingInterface extends ResourceInterface
         $recordings = [];
 
         foreach ($response->getContent()['objects'] as $recording) {
+            
             $newRecording = new Recording(
                 $this->client, $recording, $this->pathParams['authId']);
-
             array_push($recordings, $newRecording);
         }
-        // return new ResourceList(
-        //     $this->client, $response->getContent()['meta'], $recordings);
-
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        return new ResourceList(
+            $this->client, $response->getContent()['meta'], $recordings);
     }
 
     /**

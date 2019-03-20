@@ -52,6 +52,7 @@ class NodeMember
         ];
 
         $response = $this->client->updateNode($this->nodeMemberUrl, $params);
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        return $response->getContent();
+        // return json_encode($response->getContent(), JSON_FORCE_OBJECT);
     }
 }

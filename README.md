@@ -62,15 +62,15 @@ The Plivo PHP SDK makes it simpler to integrate communications into your PHP app
 
 - To install the **stable release**, run the following command in the project directory:
         
-        $ composer require plivo/php-sdk
+        $ composer require plivo/plivo-php
 
 - To install a **specific release**, run the following command in the project directory:
         
-        $ composer require plivo/php-sdk:4.3.0
+        $ composer require plivo/plivo-php:4.3.1
 
 - To test the features in the **beta release**, run the following command in the project directory:
         
-        $ composer require plivo/php-sdk:v4.2-beta1
+        $ composer require plivo/plivo-php:v4.2-beta1
 
 - Alternatively, you can download this source and run
         

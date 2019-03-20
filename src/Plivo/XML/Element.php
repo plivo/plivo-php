@@ -1,9 +1,6 @@
 <?php
-
 namespace Plivo\XML;
-
 use Plivo\Exceptions\PlivoXMLException;
-
 /**
  * Class Element
  * @package Plivo\XML
@@ -13,18 +10,11 @@ class Element {
      * @var array
      */
     protected $nestables = [];
-
     protected $valid_attributes = [];
-
     protected $attributes = [];
-
     protected $name;
-
     protected $body = null;
-
     protected $childs = [];
-
-
     /**
      * Element constructor.
      * @param string $body
@@ -50,7 +40,6 @@ class Element {
             $this->attributes[ $key ] = $this->convertValue($value);
         }
     }
-
     /**
      * @param $v
      * @return string
@@ -71,10 +60,8 @@ class Element {
         if ($v === "post") {
             return "POST";
         }
-
         return $v;
     }
-
     /**
      * @param null $body
      * @param array $attributes
@@ -83,7 +70,6 @@ class Element {
     function addSpeak($body = null, $attributes = []) {
         return $this->add(new Speak($body, $attributes));
     }
-
     /**
      * @param null $body
      * @param array $attributes
@@ -92,7 +78,6 @@ class Element {
     function addPlay($body = null, $attributes = []) {
         return $this->add(new Play($body, $attributes));
     }
-
     /**
      * @param null $body
      * @param array $attributes
@@ -101,7 +86,6 @@ class Element {
     function addDial($body = null, $attributes = []) {
         return $this->add(new Dial($body, $attributes));
     }
-
     /**
      * @param null $body
      * @param array $attributes
@@ -110,7 +94,6 @@ class Element {
     function addNumber($body = null, $attributes = []) {
         return $this->add(new Number($body, $attributes));
     }
-
     /**
      * @param null $body
      * @param array $attributes
@@ -119,7 +102,6 @@ class Element {
     function addUser($body = null, $attributes = []) {
         return $this->add(new User($body, $attributes));
     }
-
     /**
      * @param array $attributes
      * @return mixed
@@ -127,7 +109,6 @@ class Element {
     function addGetDigits($attributes = []) {
         return $this->add(new GetDigits($attributes));
     }
-
     /**
      * @param array $attributes
      * @return mixed
@@ -135,7 +116,6 @@ class Element {
     function addRecord($attributes = []) {
         return $this->add(new Record($attributes));
     }
-
     /**
      * @param array $attributes
      * @return mixed
@@ -143,7 +123,6 @@ class Element {
     function addHangup($attributes = []) {
         return $this->add(new Hangup($attributes));
     }
-
     /**
      * @param null $body
      * @param array $attributes
@@ -152,7 +131,6 @@ class Element {
     function addRedirect($body = null, $attributes = []) {
         return $this->add(new Redirect($body, $attributes));
     }
-
     /**
      * @param array $attributes
      * @return mixed
@@ -160,7 +138,6 @@ class Element {
     function addWait($attributes = []) {
         return $this->add(new Wait($attributes));
     }
-
     /**
      * @param null $body
      * @param array $attributes
@@ -169,7 +146,6 @@ class Element {
     function addConference($body = null, $attributes = []) {
         return $this->add(new Conference($body, $attributes));
     }
-
     /**
      * @param array $attributes
      * @return mixed
@@ -177,7 +153,6 @@ class Element {
     function addPreAnswer($attributes = []) {
         return $this->add(new PreAnswer($attributes));
     }
-
     /**
      * @param null $body
      * @param array $attributes
@@ -186,7 +161,6 @@ class Element {
     function addMessage($body = null, $attributes = []) {
         return $this->add(new Message($body, $attributes));
     }
-
     /**
      * @param null $body
      * @param array $attributes
@@ -195,15 +169,12 @@ class Element {
     function addDTMF($body = null, $attributes = []) {
         return $this->add(new DTMF($body, $attributes));
     }
-
     /**
      * @return mixed
      */
     public function getName() {
         return $this->name;
     }
-
-
     /**
      * @param Element $element
      * @return mixed
@@ -214,10 +185,8 @@ class Element {
             throw new PlivoXMLException($element->getName()." not nestable in ".$this->getName());
         }
         $this->childs[] = $element;
-
         return $element;
     }
-
     /**
      * @param \SimpleXMLElement $xml
      */
@@ -226,7 +195,6 @@ class Element {
             $xml->addAttribute($key, $value);
         }
     }
-
     /**
      * @param \SimpleXMLElement $xml
      */
@@ -241,7 +209,6 @@ class Element {
             $child->asChild($child_xml);
         }
     }
-
     /**
      * @param bool $header
      * @return mixed
@@ -250,7 +217,6 @@ class Element {
         if (!(isset($xmlstr))) {
             $xmlstr = '';
         }
-
         if ($this->body) {
             $xmlstr.= "<".$this->getName().">".htmlspecialchars($this->body)."</".$this->getName().">";
         } else {
@@ -264,15 +230,12 @@ class Element {
         foreach ($this->childs as $child) {
             $child->asChild($xml);
         }
-
         return $xml->asXML();
     }
-
     /**
      * @return mixed
      */
     public function __toString() {
         return $this->toXML();
     }
-
 }

@@ -87,7 +87,7 @@ class MessageInterface extends ResourceInterface
             array_push($messages, $newMessage);
         }
 
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        return new MessageList($this->client, $response->getContent()['meta'], $messages);
     }
 
 //    protected function getAllList()
@@ -137,7 +137,7 @@ class MessageInterface extends ResourceInterface
      *                   <br /> ErrorCode - Delivery Response code returned by the carrier attempting the delivery. See Supported error codes {https://www.plivo.com/docs/api/message/#standard-plivo-error-codes}.
      *   + [string] :method - The method used to call the url. Defaults to POST.
      *   + [string] :log - If set to false, the content of this message will not be logged on the Plivo infrastructure and the dst value will be masked (e.g., 141XXXXX528). Default is set to true.
-     * @return JSON output
+     * @return MessageCreateResponse output
      * @throws PlivoValidationException
      */
 
@@ -171,7 +171,12 @@ class MessageInterface extends ResourceInterface
             array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID])
         );
 
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        $responseContents = $response->getContent();
+        return new MessageCreateResponse(
+            $responseContents['message'],
+            $responseContents['message_uuid'],
+            $responseContents['api_id']
+        );
     }
 
 }
