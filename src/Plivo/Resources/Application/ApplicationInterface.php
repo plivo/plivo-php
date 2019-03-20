@@ -67,6 +67,7 @@ class ApplicationInterface extends ResourceInterface
         );
 
         $responseContents = $response->getContent();
+        
         return new ApplicationCreateResponse(
             $responseContents['api_id'],
             $responseContents['app_id'],

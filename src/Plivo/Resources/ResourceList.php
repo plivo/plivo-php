@@ -14,7 +14,7 @@ class ResourceList implements \IteratorAggregate
     /**
      * @var BaseClient
      */
-    protected $client;
+    // protected $client;
 
     /**
      * @var array
@@ -24,7 +24,7 @@ class ResourceList implements \IteratorAggregate
     /**
      * @var
      */
-    protected $uri;
+    // protected $uri;
 
     /**
      * @var
@@ -44,7 +44,7 @@ class ResourceList implements \IteratorAggregate
      */
     function __construct(BaseClient $plivoClient, array $meta, array $resources)
     {
-        $this->client = $plivoClient;
+        // $this->client = $plivoClient;
         $this->meta = $meta;
         $this->resources = $resources;
     }

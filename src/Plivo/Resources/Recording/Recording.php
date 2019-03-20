@@ -31,7 +31,7 @@ class Recording extends Resource
      */
     function __construct(BaseClient $client, array $response, $authId)
     {
-        parent::__construct($client);
+        // parent::__construct($client);
 
         $this->properties = [
             'addTime' => $response['add_time'],
