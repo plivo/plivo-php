@@ -1,6 +1,9 @@
 <?php
+
 namespace Plivo\XML;
+
 use Plivo\Exceptions\PlivoXMLException;
+
 /**
  * Class Element
  * @package Plivo\XML
@@ -10,11 +13,19 @@ class Element {
      * @var array
      */
     protected $nestables = [];
+
     protected $valid_attributes = [];
+
     protected $attributes = [];
+
     protected $name;
+
+    protected $voice_attribute = 'voice';
+
     protected $body = null;
+
     protected $childs = [];
+
     /**
      * Element constructor.
      * @param string $body
@@ -31,6 +42,7 @@ class Element {
                 get_class($this),
                 strrpos(get_class($this), '\\') + 1
             );
+        $this->name = $this->name === "Break_"?"Break":$this->name;
         $this->body = $body;
         foreach ($this->attributes as $key => $value) {
             if (!in_array($key, $this->valid_attributes)) {
@@ -40,44 +52,226 @@ class Element {
             $this->attributes[ $key ] = $this->convertValue($value);
         }
     }
+
     /**
      * @param $v
      * @return string
      */
     protected function convertValue($v) {
-        if ($v === true) {
-            return "true";
+
+        switch($v){
+            case "true":
+                return "true";
+                break;
+            case "false":
+                return "false";
+                break;
+            case null:
+                return "none";
+                break;
+            case "get":
+                return strtoupper($v);
+                break;
+            case "post":
+                return strtoupper($v);
+                break;
+            case "man":
+                return strtoupper($v);
+                break;
+            case "woman":
+                return strtoupper($v);
+                break;
         }
-        if ($v === false) {
-            return "false";
-        }
-        if ($v === null) {
-            return "none";
-        }
-        if ($v === "get") {
-            return "GET";
-        }
-        if ($v === "post") {
-            return "POST";
-        }
+
         return $v;
     }
+    /**
+     * @param null
+     * @throws PlivoXMLException
+     */
+    function checkIsSSMLSupported(){
+        $attribute = $this->voice_attribute;
+        $position = count($this->childs)-1;
+        $speak_element = simplexml_load_string($this->childs[$position]);
+        if($speak_element->attributes()->$attribute == 'WOMAN' ||
+            $speak_element->attributes()->$attribute == 'MAN'){
+            throw new PlivoXMLException(
+                "SSML supported is available only for Amazon Polly! ".$this->name);
+        }
+    }
+
+    /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addSpeak($body = null, $attributes = []) {
+        $this->add(new Speak($body, $attributes));
+        return $this;
+    }
+
+    /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function continueSpeak($body = null, $attributes = []) {
+        $element = new Cont($body,[]);
+        $position = count($this->childs)-1;
+        $element->setName('cont');
+        $this->childs[$position]->add($element);
+        return $this;
+    }
+
     /**
      * @param null $body
      * @param array $attributes
      * @return mixed
      */
-    function addSpeak($body = null, $attributes = []) {
-        return $this->add(new Speak($body, $attributes));
+    function addBreak($body = null, $attributes = []) {
+        $this->checkIsSSMLSupported();
+        $position = count($this->childs)-1;
+        $element = new Break_($body,$attributes);
+        $element->setName('break');
+        $this->childs[$position]->add($element);
+        return $this;
     }
+
     /**
-     * @param null $body
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addEmphasis($body = null, $attributes = []) {
+        $this->checkIsSSMLSupported();
+        $position = count($this->childs)-1;
+        $element = new Emphasis($body,$attributes);
+        $element->setName('emphasis');
+        $this->childs[$position]->add($element);
+        return $this;
+    }
+
+    /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addLang($body = null, $attributes = []) {
+        $this->checkIsSSMLSupported();
+        $position = count($this->childs)-1;
+        $element = new Lang($body,$attributes);
+        $element->setName('lang');
+        $this->childs[$position]->add($element);
+        return $this;
+    }
+
+    /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addP($body = null, $attributes = []) {
+        $this->checkIsSSMLSupported();
+        $position = count($this->childs)-1;
+        $element = new P($body,$attributes);
+        $element->setName('p');
+        $this->childs[$position]->add($element);
+        return $this;
+    }
+
+    /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addPhoneme($body = null, $attributes = []) {
+        $this->checkIsSSMLSupported();
+        $position = count($this->childs)-1;
+        $element = new Phoneme($body,$attributes);
+        $element->setName('phoneme');
+        $this->childs[$position]->add($element);
+        return $this;
+    }
+
+    /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addProsody($body = null, $attributes = []) {
+        $this->checkIsSSMLSupported();
+        $position = count($this->childs)-1;
+        $element = new Prosody($body,$attributes);
+        $element->setName('prosody');
+        $this->childs[$position]->add($element);
+        return $this;
+    }
+
+    /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addS($body = null, $attributes = []) {
+        $this->checkIsSSMLSupported();
+        $position = count($this->childs)-1;
+        $element = new S($body,$attributes);
+        $element->setName('s');
+        $this->childs[$position]->add($element);
+        return $this;
+    }
+
+    /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addSayAs($body = null, $attributes = []) {
+        $this->checkIsSSMLSupported();
+        $position = count($this->childs)-1;
+        $element = new SayAs($body,$attributes);
+        $element->setName('say-as');
+        $this->childs[$position]->add($element);
+        return $this;
+    }
+
+    /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addSub($body = null, $attributes = []) {
+        $this->checkIsSSMLSupported();
+        $position = count($this->childs)-1;
+        $element = new Sub($body,$attributes);
+        $element->setName('sub');
+        $this->childs[$position]->add($element);
+        return $this;
+    }
+
+    /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addW($body = null, $attributes = []) {
+        $this->checkIsSSMLSupported();
+        $position = count($this->childs)-1;
+        $element = new W($body,$attributes);
+        $element->setName('w');
+        $this->childs[$position]->add($element);
+        return $this;
+    }
+
+    /**
+     * @param string $body
      * @param array $attributes
      * @return mixed
      */
     function addPlay($body = null, $attributes = []) {
         return $this->add(new Play($body, $attributes));
     }
+
     /**
      * @param null $body
      * @param array $attributes
@@ -86,6 +280,7 @@ class Element {
     function addDial($body = null, $attributes = []) {
         return $this->add(new Dial($body, $attributes));
     }
+
     /**
      * @param null $body
      * @param array $attributes
@@ -94,6 +289,7 @@ class Element {
     function addNumber($body = null, $attributes = []) {
         return $this->add(new Number($body, $attributes));
     }
+
     /**
      * @param null $body
      * @param array $attributes
@@ -102,6 +298,7 @@ class Element {
     function addUser($body = null, $attributes = []) {
         return $this->add(new User($body, $attributes));
     }
+
     /**
      * @param array $attributes
      * @return mixed
@@ -109,6 +306,7 @@ class Element {
     function addGetDigits($attributes = []) {
         return $this->add(new GetDigits($attributes));
     }
+
     /**
      * @param array $attributes
      * @return mixed
@@ -116,6 +314,7 @@ class Element {
     function addRecord($attributes = []) {
         return $this->add(new Record($attributes));
     }
+
     /**
      * @param array $attributes
      * @return mixed
@@ -123,6 +322,7 @@ class Element {
     function addHangup($attributes = []) {
         return $this->add(new Hangup($attributes));
     }
+
     /**
      * @param null $body
      * @param array $attributes
@@ -131,6 +331,7 @@ class Element {
     function addRedirect($body = null, $attributes = []) {
         return $this->add(new Redirect($body, $attributes));
     }
+
     /**
      * @param array $attributes
      * @return mixed
@@ -138,6 +339,7 @@ class Element {
     function addWait($attributes = []) {
         return $this->add(new Wait($attributes));
     }
+
     /**
      * @param null $body
      * @param array $attributes
@@ -146,6 +348,7 @@ class Element {
     function addConference($body = null, $attributes = []) {
         return $this->add(new Conference($body, $attributes));
     }
+
     /**
      * @param array $attributes
      * @return mixed
@@ -153,6 +356,7 @@ class Element {
     function addPreAnswer($attributes = []) {
         return $this->add(new PreAnswer($attributes));
     }
+
     /**
      * @param null $body
      * @param array $attributes
@@ -161,6 +365,7 @@ class Element {
     function addMessage($body = null, $attributes = []) {
         return $this->add(new Message($body, $attributes));
     }
+
     /**
      * @param null $body
      * @param array $attributes
@@ -169,36 +374,55 @@ class Element {
     function addDTMF($body = null, $attributes = []) {
         return $this->add(new DTMF($body, $attributes));
     }
+
     /**
      * @return mixed
      */
     public function getName() {
         return $this->name;
     }
+
+    /**
+     * @param name $name
+     */
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+
     /**
      * @param Element $element
      * @return mixed
      * @throws PlivoXMLException
      */
     protected function add($element) {
-        if (!in_array($element->getName(), $this->nestables)) {
+        if ( !in_array($element->getName(), $this->nestables)) {
             throw new PlivoXMLException($element->getName()." not nestable in ".$this->getName());
         }
         $this->childs[] = $element;
+
         return $element;
     }
+
     /**
      * @param \SimpleXMLElement $xml
      */
     public function setAttributes($xml) {
         foreach ($this->attributes as $key => $value) {
-            $xml->addAttribute($key, $value);
+            if($key === 'xmllang'){
+                $xml->addAttribute('xml:lang', $value,"http://schema.omg.org/spec/XMI/2.1");
+            } else {
+                $xml->addAttribute($key, $value);
+            }
+            
         }
     }
+
     /**
      * @param \SimpleXMLElement $xml
      */
     public function asChild($xml) {
+        // print($this->getName());
         if ($this->body) {
             $child_xml = $xml->addChild($this->getName(), htmlspecialchars($this->body));
         } else {
@@ -209,6 +433,7 @@ class Element {
             $child->asChild($child_xml);
         }
     }
+
     /**
      * @param bool $header
      * @return mixed
@@ -230,12 +455,18 @@ class Element {
         foreach ($this->childs as $child) {
             $child->asChild($xml);
         }
-        return $xml->asXML();
+        $xml_string = $xml->asXML();
+        $xml_string = str_replace("<cont>"," ",$xml_string);
+        $xml_string = str_replace("</cont>"," ",$xml_string);
+
+        return $xml_string;
     }
+
     /**
      * @return mixed
      */
     public function __toString() {
         return $this->toXML();
     }
+
 }
