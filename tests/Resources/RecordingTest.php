@@ -49,11 +49,9 @@ class RecordingTest extends BaseTestCase
 
         self::assertNotNull($actual);
 
-        $actual = json_decode($actual);
-
-        foreach($actual->objects as $object) {
+        foreach($actual->resources as $object) {
             if($object) {
-                self::assertEquals("noname", $object->conference_name);
+                self::assertEquals("noname", $object->properties['conferenceName']);
             }    
         }
         

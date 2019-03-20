@@ -93,7 +93,8 @@ class NodeClass
         ];
 
         $response = $this->client->updateNode($this->nodeUrl, $params);
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        return $response->getContent();
+        // return json_encode($response->getContent(), JSON_FORCE_OBJECT);
     }
 
     /**

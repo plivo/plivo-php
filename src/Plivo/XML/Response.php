@@ -36,7 +36,6 @@ class Response extends Element {
      */
     public function toXML($header = false) {
         $xml = parent::toXML(true);
-
         return $xml;
     }
 }

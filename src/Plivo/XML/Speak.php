@@ -1,19 +1,13 @@
 <?php
-
 namespace Plivo\XML;
-
 use Plivo\Exceptions\PlivoXMLException;
-
-
 /**
  * Class Speak
  * @package Plivo\XML
  */
 class Speak extends Element {
     protected $nestables = [];
-
     protected $valid_attributes = ['voice', 'language', 'loop'];
-
     /**
      * Speak constructor.
      * @param string $body

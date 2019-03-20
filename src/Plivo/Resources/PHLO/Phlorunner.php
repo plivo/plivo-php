@@ -56,6 +56,7 @@ class Phlorunner
             "authId" => $authId
         ];
         $response = $this->client->getPhlorunnerApis($this->phlorunnerUrl, $arguments, $headers);
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        return $response->getContent();
+        // return json_encode($response->getContent(), JSON_FORCE_OBJECT);
     }
 }

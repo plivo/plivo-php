@@ -61,8 +61,13 @@ class EndpointInterface extends ResourceInterface
             $this->uri,
             array_merge($mandatoryArgs, ['app_id' => $appId])
         );
-
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        $responseContents = $response->getContent();
+        return new EndpointCreateReponse(
+            $responseContents['username'],
+            $responseContents['alias'],
+            $responseContents['message'],
+            $responseContents['endpoint_id'],
+            $responseContents['api_id']);
     }
 
     /**
@@ -110,8 +115,7 @@ class EndpointInterface extends ResourceInterface
 
             array_push($endpoints, $newEndpoint);
         }
-
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        return new ResourceList($this->client, $response->getContent()['meta'], $endpoints);
     }
 
     /**
