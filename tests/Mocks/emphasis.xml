@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Response>
+<Speak language="en-US" voice="Polly.Joanna">Hello,<break/><emphasis level="strong">Welcome</emphasis> to Plivo </Speak>
+</Response>

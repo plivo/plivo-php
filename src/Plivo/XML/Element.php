@@ -112,11 +112,11 @@ class Element {
 
     /**
      * @param string $body
-     * @param array $attributes
+     * @param null $attributes
      * @return mixed
      */
-    function continueSpeak($body = null, $attributes = []) {
-        $element = new Cont($body,[]);
+    function continueSpeak($body = null) {
+        $element = new Cont($body);
         $position = count($this->childs)-1;
         $element->setName('cont');
         $this->childs[$position]->add($element);
@@ -422,7 +422,6 @@ class Element {
      * @param \SimpleXMLElement $xml
      */
     public function asChild($xml) {
-        // print($this->getName());
         if ($this->body) {
             $child_xml = $xml->addChild($this->getName(), htmlspecialchars($this->body));
         } else {
