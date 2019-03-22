@@ -94,11 +94,27 @@ class CallInterface extends ResourceInterface
         );
 
         $responseContents = $response->getContent();
-        return new CallCreateResponse(
-            $responseContents['api_id'],
-            $responseContents['message'],
-            $responseContents['request_uuid']
-        );
+
+        if(is_array($responseContents) && isset($responseContents['error']) && isset($responseContents['api_id']))
+        {
+            return new CallCreateResponse(
+                $responseContents['api_id'],
+                $responseContents['error'],
+                null
+            );
+        }
+        else if(is_array($responseContents) && isset($responseContents['message'])&& isset($responseContents['api_id']) && isset($responseContents['request_uuid']))
+        {
+            return new CallCreateResponse(
+                $responseContents['api_id'],
+                $responseContents['message'],
+                $responseContents['request_uuid']
+            );
+        }
+        else
+        {
+            return (array) $responseContents;
+        }
     }
 
     /**
@@ -111,7 +127,7 @@ class CallInterface extends ResourceInterface
     {
         if (ArrayOperations::checkNull([$callUuid])) {
             throw
-            new PlivoValidationException(
+                new PlivoValidationException(
                 'call uuid is mandatory');
         }
         $response = $this->client->fetch(
@@ -136,7 +152,7 @@ class CallInterface extends ResourceInterface
     {
         if (ArrayOperations::checkNull([$liveCallUuid])) {
             throw
-            new PlivoValidationException(
+                new PlivoValidationException(
                 'live call uuid is mandatory');
         }
 
@@ -164,7 +180,7 @@ class CallInterface extends ResourceInterface
     {
         if (ArrayOperations::checkNull([$queuedCallUuid])) {
             throw
-            new PlivoValidationException(
+                new PlivoValidationException(
                 'queued call uuid is mandatory');
         }
 
@@ -227,9 +243,9 @@ class CallInterface extends ResourceInterface
         }
         return
             new CallList(
-                $this->client,
-                $response->getContent()['meta'],
-                $calls);
+            $this->client,
+            $response->getContent()['meta'],
+            $calls);
     }
 
     /**
@@ -240,7 +256,7 @@ class CallInterface extends ResourceInterface
     public function getListLive(array $optionalArgs = [])
     {
         $optionalArgs['status'] = 'live';
-        
+
         $response = $this->client->fetch(
             $this->uri,
             $optionalArgs
@@ -353,7 +369,7 @@ class CallInterface extends ResourceInterface
             $responseContents['message']
         );
     }
-    
+
     /**
      * Start recording a live call
      *
@@ -434,7 +450,7 @@ class CallInterface extends ResourceInterface
             $responseContents['message']
         );
     }
-    
+
     /**
      * Stop recording a live call
      *
@@ -450,18 +466,18 @@ class CallInterface extends ResourceInterface
         }
 
         $params = [];
-        
+
         if (!empty($url)) {
             $params = ['URL' => $url];
         }
-        
-        
+
+
         $this->client->delete(
             $this->uri . $liveCallUuid . '/Record/',
             $params
         );
     }
-    
+
     /**
      * Start playing audio in a live call
      *
@@ -535,7 +551,7 @@ class CallInterface extends ResourceInterface
             []
         );
     }
-    
+
     /**
      * Start speaking in a live call
      *
@@ -650,7 +666,7 @@ class CallInterface extends ResourceInterface
             $responseContents['message']
         );
     }
-    
+
     /**
      * Cancel the request
      *
