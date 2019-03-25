@@ -46,7 +46,7 @@ class Prosody extends Element {
 
     protected $valid_pitch_attribute_values = [
         'default','x-low', 'low', 'medium', 'high', 'x-high'
-    ]
+    ];
 
     /**
      * Prosody constructor.
