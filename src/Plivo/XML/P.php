@@ -32,8 +32,8 @@ class P extends Element {
      * @param array $attributes
      * @throws PlivoXMLException
      */
-    function __construct($body, $attributes = []) {
-        parent::__construct($body, $attributes);
+    function __construct($body) {
+        parent::__construct($body, null);
         if (!$body) {
             throw new PlivoXMLException("No p set for ".$this->getName());
         }
