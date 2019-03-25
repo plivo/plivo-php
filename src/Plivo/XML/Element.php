@@ -96,7 +96,7 @@ class Element {
         if($speak_element->attributes()->$attribute == 'WOMAN' ||
             $speak_element->attributes()->$attribute == 'MAN'){
             throw new PlivoXMLException(
-                "SSML supported is available only for Amazon Polly! ".$this->name);
+                "SSML support is available only for Amazon Polly! ".$this->name);
         }
     }
 

@@ -5,13 +5,13 @@ use Plivo\XML\Response;
 use Plivo\Tests\BaseTestCase;
 
 /**
- * Class PTest
+ * Class STest
  * @package Plivo\Tests\XML
  */
-class PTest extends BaseTestCase 
+class STest extends BaseTestCase 
 {
     
-    function testAddP()
+    function testAddS()
     {
         $response = new Response();
         $params1 = array(
@@ -20,24 +20,23 @@ class PTest extends BaseTestCase
         );
 
         $response->addSpeak('Hello,',$params1)
-            ->addP('Welcome to Plivo');
+            ->addS('Welcome to Plivo');
         $ssml = $response->toXML(true);
         self::assertNotNull($ssml);
 
-        self::assertXmlStringEqualsXmlFile(__DIR__ . '/../Mocks/pSpeak.xml',$ssml);
+        self::assertXmlStringEqualsXmlFile(__DIR__ . '/../Mocks/sSpeak.xml',$ssml);
     }
 
-    function testExceptionAddP()
+    function testExceptionAddS()
     {
         $this->expectPlivoException('Plivo\Exceptions\PlivoXMLException');
         $response = new Response();
         $params1 = array(
-            'language' => 'en-IN',
-            'voice' => 'Polly.Aditi'  
+            'language' => 'en-US' 
         );
 
         $response->addSpeak('Hello,',$params1)
-            ->addP('');
+            ->addS('');
     }
 
     function testExceptionSSMLSupported()
@@ -49,7 +48,7 @@ class PTest extends BaseTestCase
         );
 
         $response->addSpeak('Hello,',$params1)
-            ->addP('Welcome to Plivo');
+            ->addS('Welcome to Plivo');
     }
 
 }

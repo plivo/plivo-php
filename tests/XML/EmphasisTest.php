@@ -28,7 +28,7 @@ class EmphasisTest extends BaseTestCase
 
         self::assertNotNull($ssml);
 
-        self::assertXmlStringEqualsXmlFile(__DIR__ . '/../Mocks/emphasis.xml',$ssml);
+        self::assertXmlStringEqualsXmlFile(__DIR__ . '/../Mocks/emphasisSpeak.xml',$ssml);
     }
 
     function testExceptionEmphasis()
@@ -46,7 +46,7 @@ class EmphasisTest extends BaseTestCase
             ->continueSpeak('to Plivo');
     }
 
-    function testExceptionAttributeEmphasis()
+    function testExceptionAttributeLevelEmphasis()
     {
         $this->expectPlivoException('Plivo\Exceptions\PlivoXMLException');
         $params1 = array(
@@ -57,6 +57,36 @@ class EmphasisTest extends BaseTestCase
         $response->addSpeak('Hello,',$params1)
             ->addBreak()
             ->addEmphasis('Welcome',array('levels'=>'strong'))
+            ->continueSpeak('to Plivo');
+    }
+
+    function testExceptionAttributeLevelValueEmphasis()
+    {
+        $this->expectPlivoException('Plivo\Exceptions\PlivoXMLException');
+        $params1 = array(
+            'language' => 'en-US',
+            'voice' => 'Polly.Joanna'  
+        );
+        $response = new Response();
+        $response->addSpeak('Hello,',$params1)
+            ->addBreak()
+            ->addEmphasis('Welcome',array('level'=>'weak'))
+            ->continueSpeak('to Plivo');
+    }
+
+    function testExceptionSSMLSupported()
+    {
+        $this->expectPlivoException('Plivo\Exceptions\PlivoXMLException');
+        $params1 = array(
+            'language' => 'en-US' 
+        );
+        $params2 = array(
+            'strength' => 'x-weak',
+            'times' => '3s'  
+        );
+        $response = new Response();
+        $response->addSpeak('Hello,',$params1)
+            ->addEmphasis('Welcome',array('level'=>'strong'))
             ->continueSpeak('to Plivo');
     }
 }

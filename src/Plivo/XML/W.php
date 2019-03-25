@@ -28,6 +28,10 @@ class W extends Element {
         'role'
     ];
 
+    protected $valid_role_attribute_values = [
+        'amazon:VB','amazon:VBD','amazon:SENSE_1'
+    ];
+
     /**
      * W constructor.
      * @param string $body
@@ -35,9 +39,20 @@ class W extends Element {
      * @throws PlivoXMLException
      */
     function __construct($body, $attributes = []) {
-        parent::__construct($body, $attributes);
         if (!$body) {
             throw new PlivoXMLException("No w set for ".$this->getName());
         }
+
+        if(!empty($attributes)){
+            foreach ($attributes as $key => $value) {
+                if ($key ==='role' && !in_array($value, $this->valid_role_attribute_values)) {
+                    throw new PlivoXMLException(
+                        "invalid attribute value ".$value." for ".$key." ".$this->name);
+                }
+            }
+        }
+
+        parent::__construct($body, $attributes);
+        
     }
 }

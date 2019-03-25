@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Response>
+<Speak language="en-US" voice="Polly.Joanna">My favorite chemical element is <sub alias="Mercury">Hg</sub> , because it looks so shiny. </Speak>
+</Response>

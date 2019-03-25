@@ -5,7 +5,7 @@ use Plivo\XML\Response;
 use Plivo\Tests\BaseTestCase;
 
 /**
- * Class SpeakTest
+ * Class BreakTest
  * @package Plivo\Tests\XML
  */
 class BreakTest extends BaseTestCase 
@@ -65,5 +65,20 @@ class BreakTest extends BaseTestCase
         $response->addSpeak('Hello,',$params1);
         $response->addBreak($params2)
             ->continueSpeak('Welcome to Plivo');
+    }
+
+    function testExceptionSSMLSupported()
+    {
+        $this->expectPlivoException('Plivo\Exceptions\PlivoXMLException');
+        $params1 = array(
+            'language' => 'en-US' 
+        );
+        $params2 = array(
+            'strength' => 'x-weak',
+            'times' => '3s'  
+        );
+        $response = new Response();
+        $response->addSpeak('Hello,',$params1);
+        $response->addBreak($params2);
     }
 }

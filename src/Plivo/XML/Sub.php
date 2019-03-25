@@ -24,9 +24,18 @@ class Sub extends Element {
      * @throws PlivoXMLException
      */
     function __construct($body, $attributes = []) {
-        parent::__construct($body, $attributes);
         if (!$body) {
             throw new PlivoXMLException("No sub set for ".$this->getName());
         }
+        // if(!empty($attributes)){
+        //     foreach ($attributes as $key => $value) {
+        //         if ($key ==='interpret-as' && !in_array($value, $this->valid_interpret_as_attribute_values)) {
+        //             throw new PlivoXMLException(
+        //                 "invalid attribute value ".$value." for ".$key." ".$this->name);
+        //         }
+        //     }
+        // }
+        parent::__construct($body, $attributes);
+        
     }
 }

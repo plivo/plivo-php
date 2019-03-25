@@ -27,5 +27,4 @@ class ContSpeakTest extends BaseTestCase
 
         self::assertXmlStringEqualsXmlFile(__DIR__ . '/../Mocks/contSpeak.xml',$ssml);
     }
-
 }
