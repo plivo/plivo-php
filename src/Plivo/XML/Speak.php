@@ -72,7 +72,9 @@ class Speak extends Element {
         if(empty($attributes)){
             $attributes = array('voice'=>'woman');
         } else {
+            
             foreach ($attributes as $key => $value) {
+                
                 if ($key ==='voice' && !in_array($value, $this->valid_voice_attribute_values)) {
                     throw new PlivoXMLException(
                         "invalid attribute value ".$value." for ".$key." ".$this->name);
@@ -81,6 +83,9 @@ class Speak extends Element {
                     throw new PlivoXMLException(
                         "invalid attribute value ".$value." for ".$key." ".$this->name);
                 }
+            }
+            if(!array_key_exists("voice",$attributes)){
+                $attributes['voice'] = 'woman';
             }
         }
         parent::__construct($body, $attributes);

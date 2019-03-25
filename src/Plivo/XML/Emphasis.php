@@ -44,12 +44,15 @@ class Emphasis extends Element {
         if (!$body) {
             throw new PlivoXMLException("No emphasis set for ".$this->getName());
         }
-        foreach ($attributes as $key => $value) {
-            if ($key ==='level' && !in_array($value, $this->valid_level_attribute_values)) {
-                throw new PlivoXMLException(
-                    "invalid attribute value ".$value." for ".$key." ".$this->name);
+        if(!empty($attributes)){
+            foreach ($attributes as $key => $value) {
+                if ($key ==='level' && !in_array($value, $this->valid_level_attribute_values)) {
+                    throw new PlivoXMLException(
+                        "invalid attribute value ".$value." for ".$key." ".$this->name);
+                }
             }
         }
+        
         parent::__construct($body, $attributes);
     }
 }

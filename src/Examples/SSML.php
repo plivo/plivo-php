@@ -12,7 +12,7 @@ $params2 = array(
     'time' => '2s', # The tone to be used for reading out the text.  
 );
 $response->addSpeak('Hello, Rex! Your birthday is on ',$params1);
-// $response->addBreak($params2);
+$response->addBreak();
 $response->addProsody('really like ',array('pitch'=>'-1%'));
 // $response->addEmphasis('really like ',array('level'=>'strong'));
 // $response->addLang('plivo mein aapaka svaagat hai',array('xmllang'=>'hi-IN'));

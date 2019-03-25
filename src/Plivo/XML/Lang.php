@@ -48,12 +48,15 @@ class Lang extends Element {
         if (!$body) {
             throw new PlivoXMLException("No emphasis set for ".$this->getName());
         }
-        foreach ($attributes as $key => $value) {
-            if ($key ==='xmllang' && !in_array($value, $this->valid_lang_attribute_values)) {
-                throw new PlivoXMLException(
-                    "invalid attribute value ".$value." for ".$key." ".$this->name);
+        if(!empty($attributes)){
+            foreach ($attributes as $key => $value) {
+                if ($key ==='xmllang' && !in_array($value, $this->valid_lang_attribute_values)) {
+                    throw new PlivoXMLException(
+                        "invalid attribute value ".$value." for ".$key." ".$this->name);
+                }
             }
         }
+        
         parent::__construct($body, $attributes);
     }
 }

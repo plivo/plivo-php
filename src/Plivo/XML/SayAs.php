@@ -48,15 +48,16 @@ class SayAs extends Element {
         if (!$body) {
             throw new PlivoXMLException("No say-as set for ".$this->getName());
         }
-
-        foreach ($attributes as $key => $value) {
-            if ($key ==='interpret-as' && !in_array($value, $this->valid_interpret_as_attribute_values)) {
-                throw new PlivoXMLException(
-                    "invalid attribute value ".$value." for ".$key." ".$this->name);
-            }
-            if ($key ==='format' && !in_array($value, $this->valid_format_attribute_values)) {
-                throw new PlivoXMLException(
-                    "invalid attribute value ".$value." for ".$key." ".$this->name);
+        if(!empty($attributes)){
+            foreach ($attributes as $key => $value) {
+                if ($key ==='interpret-as' && !in_array($value, $this->valid_interpret_as_attribute_values)) {
+                    throw new PlivoXMLException(
+                        "invalid attribute value ".$value." for ".$key." ".$this->name);
+                }
+                if ($key ==='format' && !in_array($value, $this->valid_format_attribute_values)) {
+                    throw new PlivoXMLException(
+                        "invalid attribute value ".$value." for ".$key." ".$this->name);
+                }
             }
         }
         parent::__construct($body, $attributes);

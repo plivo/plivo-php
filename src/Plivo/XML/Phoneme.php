@@ -43,15 +43,17 @@ class Phoneme extends Element {
         if (!$body) {
             throw new PlivoXMLException("No phoneme set for ".$this->getName());
         }
-        foreach ($attributes as $key => $value) {
-            if ($key ==='alphabet' && !in_array($value, $this->valid_alphabet_attribute_values)) {
-                throw new PlivoXMLException(
-                    "invalid attribute value ".$value." for ".$key." ".$this->name);
+        if(!empty($attributes)){
+            foreach ($attributes as $key => $value) {
+                if ($key ==='alphabet' && !in_array($value, $this->valid_alphabet_attribute_values)) {
+                    throw new PlivoXMLException(
+                        "invalid attribute value ".$value." for ".$key." ".$this->name);
+                }
+                // if ($key ==='ph' && !in_array($value, $this->valid_ph_attribute_values)) {
+                //     throw new PlivoXMLException(
+                //         "invalid attribute value ".$value." for ".$key." ".$this->name);
+                // }
             }
-            // if ($key ==='ph' && !in_array($value, $this->valid_ph_attribute_values)) {
-            //     throw new PlivoXMLException(
-            //         "invalid attribute value ".$value." for ".$key." ".$this->name);
-            // }
         }
         parent::__construct($body, $attributes);
     }

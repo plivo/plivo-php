@@ -58,34 +58,35 @@ class Prosody extends Element {
         if (!$body) {
             throw new PlivoXMLException("No prosody set for ".$this->getName());
         }
-
-        foreach ($attributes as $key => $value) {
-            if ($key ==='volume' && !in_array($value, $this->valid_volume_attribute_values)) {
-                if (strpos($value, 'dB') !== false) {
-                } else {
-                    throw new PlivoXMLException(
-                        "invalid attribute value ".$value." for ".$key." ".$this->name);
-                }
-                
-            }
-            if ($key ==='rate' && !in_array($value, $this->valid_rate_attribute_values)) {
-                if (strpos($value, '%') !== false) {
-                    $per = explode('%',$value);
-                    if($per[0]<0){
+        if(!empty($attributes)){
+            foreach ($attributes as $key => $value) {
+                if ($key ==='volume' && !in_array($value, $this->valid_volume_attribute_values)) {
+                    if (strpos($value, 'dB') !== false) {
+                    } else {
                         throw new PlivoXMLException(
                             "invalid attribute value ".$value." for ".$key." ".$this->name);
                     }
-                } else {
-                    throw new PlivoXMLException(
-                        "invalid attribute value ".$value." for ".$key." ".$this->name);
+                    
                 }
-            }
+                if ($key ==='rate' && !in_array($value, $this->valid_rate_attribute_values)) {
+                    if (strpos($value, '%') !== false) {
+                        $per = explode('%',$value);
+                        if($per[0]<0){
+                            throw new PlivoXMLException(
+                                "invalid attribute value ".$value." for ".$key." ".$this->name);
+                        }
+                    } else {
+                        throw new PlivoXMLException(
+                            "invalid attribute value ".$value." for ".$key." ".$this->name);
+                    }
+                }
 
-            if ($key ==='pitch' && !in_array($value, $this->valid_pitch_attribute_values)) {
-                if (strpos($value, '%') !== false) {
-                } else {
-                    throw new PlivoXMLException(
-                        "invalid attribute value ".$value." for ".$key." ".$this->name);
+                if ($key ==='pitch' && !in_array($value, $this->valid_pitch_attribute_values)) {
+                    if (strpos($value, '%') !== false) {
+                    } else {
+                        throw new PlivoXMLException(
+                            "invalid attribute value ".$value." for ".$key." ".$this->name);
+                    }
                 }
             }
         }
