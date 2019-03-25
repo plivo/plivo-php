@@ -290,4 +290,79 @@ print_r($response);
 
 ?>
 
+<?php
+/**
+ * Example for Conference Bridge Leave
+ */
+require 'vendor/autoload.php';
+
+use Plivo\Resources\PHLO\PhloRestClient;
+use Plivo\Exceptions\PlivoRestException;
+
+
+$client = new PhloRestClient("YOUR_AUTH_ID", "YOUR_AUTH_TOKEN");
+$phlo = $client->phlo->get("YOUR_PHLO_ID");
+
+$conferenceBridge = $phlo->conferenceBridge()->get("YOUR_NODE_ID");
+$conferenceBridgeMember = $conferenceBridge->member("MEMBER_ADDRESS");
+
+try {
+	$response = $conferenceBridgeMember->leave();
+	print_r($response);
+} catch (PlivoRestException $ex) {
+	print_r($ex);
+} 
+
+?>
+
+<?php
+/**
+ * Example for Conference Bridge Mute
+ */
+require 'vendor/autoload.php';
+
+use Plivo\Resources\PHLO\PhloRestClient;
+use Plivo\Exceptions\PlivoRestException;
+
+
+$client = new PhloRestClient("YOUR_AUTH_ID", "YOUR_AUTH_TOKEN");
+$phlo = $client->phlo->get("YOUR_PHLO_ID");
+
+$conferenceBridge = $phlo->conferenceBridge()->get("YOUR_NODE_ID");
+$conferenceBridgeMember = $conferenceBridge->member("MEMBER_ADDRESS");
+
+try {
+	$response = $conferenceBridgeMember->mute();
+	print_r($response);
+} catch (PlivoRestException $ex) {
+	print_r($ex);
+} 
+
+?>
+
+<?php
+/**
+ * Example for Conference Bridge UnMute
+ */
+require 'vendor/autoload.php';
+
+use Plivo\Resources\PHLO\PhloRestClient;
+use Plivo\Exceptions\PlivoRestException;
+
+
+$client = new PhloRestClient("YOUR_AUTH_ID", "YOUR_AUTH_TOKEN");
+$phlo = $client->phlo->get("YOUR_PHLO_ID");
+
+$conferenceBridge = $phlo->conferenceBridge()->get("YOUR_NODE_ID");
+$conferenceBridgeMember = $conferenceBridge->member("MEMBER_ADDRESS");
+
+try {
+	$response = $conferenceBridgeMember->unmute();
+	print_r($response);
+} catch (PlivoRestException $ex) {
+	print_r($ex);
+} 
+
+?>
+
 
