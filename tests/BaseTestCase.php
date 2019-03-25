@@ -59,8 +59,7 @@ class BaseTestCase extends TestCase
         if (version_compare(phpversion(), '7.0.0', '<')) {
             self::setExpectedException($exception);
         } else {
-            // self::expectException($exception);
-            self::setExpectedException($exception);
+            self::expectException($exception);
         }
 
     }
