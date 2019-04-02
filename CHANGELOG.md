@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.3.2](https://github.com/plivo/plivo-php/releases/tag/v4.3.2) - 2019-04-02
+- Fix client->messages->create response by adding error handling.
+
 ## [v4.3.1](https://github.com/plivo/plivo-php/releases/tag/v4.3.1) - 2019-03-20
 - Fix Json responses for all resources.
 
