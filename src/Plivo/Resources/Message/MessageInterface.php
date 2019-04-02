@@ -5,6 +5,7 @@ namespace Plivo\Resources\Message;
 
 
 use Plivo\Exceptions\PlivoValidationException;
+use Plivo\Exceptions\PlivoRestException;
 use Plivo\Util\ArrayOperations;
 use Plivo\BaseClient;
 use Plivo\Resources\ResourceInterface;
@@ -172,11 +173,17 @@ class MessageInterface extends ResourceInterface
         );
 
         $responseContents = $response->getContent();
-        return new MessageCreateResponse(
-            $responseContents['message'],
-            $responseContents['message_uuid'],
-            $responseContents['api_id']
-        );
+        if(!array_key_exists("error",$responseContents)){
+            return new MessageCreateResponse(
+                $responseContents['message'],
+                $responseContents['message_uuid'],
+                $responseContents['api_id']
+            );
+        } else {
+            throw new PlivoRestException(
+                $responseContents['error']
+            );
+        }
     }
 
 }
