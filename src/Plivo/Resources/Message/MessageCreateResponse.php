@@ -18,9 +18,9 @@ class MessageCreateResponse extends ResponseUpdate
      * @param $message
      * @param array $messageUuid
      */
-    public function __construct($message, array $messageUuid, $apiId)
+    public function __construct($message, array $messageUuid, $apiId,$statusCode)
     {
-        parent::__construct($apiId, $message);
+        parent::__construct($apiId, $message,$statusCode);
         $this->messageUuid = $messageUuid;
     }
 

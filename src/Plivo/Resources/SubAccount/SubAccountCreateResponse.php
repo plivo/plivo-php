@@ -26,9 +26,9 @@ class SubAccountCreateResponse extends ResponseUpdate
      * @param $authId
      * @param $authToken
      */
-    public function __construct($apiId, $authId, $authToken, $message)
+    public function __construct($apiId, $authId, $authToken, $message,$statusCode)
     {
-        parent::__construct($message, $apiId);
+        parent::__construct($message, $apiId,$statusCode);
         $this->authId = $authId;
         $this->authToken = $authToken;
     }
