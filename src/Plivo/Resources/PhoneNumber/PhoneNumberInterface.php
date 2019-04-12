@@ -2,7 +2,7 @@
 
 namespace Plivo\Resources\PhoneNumber;
 
-
+use Plivo\Exceptions\PlivoResponseException;
 use Plivo\BaseClient;
 use Plivo\Resources\ResourceInterface;
 use Plivo\Resources\ResourceList;
@@ -83,12 +83,25 @@ class PhoneNumberInterface extends ResourceInterface
         );
 
         $responseContents = $response->getContent();
-        return new PhoneNumberBuyResponse(
-            $responseContents['api_id'],
-            $responseContents['message'],
-            $responseContents['numbers'][0]['number'],
-            $responseContents['numbers'][0]['status'],
-            $responseContents['status']
-        );
+        if(!array_key_exists("error",$responseContents)){
+            return new PhoneNumberBuyResponse(
+                $responseContents['api_id'],
+                $responseContents['message'],
+                $responseContents['numbers'][0]['number'],
+                $responseContents['numbers'][0]['status'],
+                $responseContents['status'],
+                $response->getStatusCode()
+            );
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+
+            );
+        }
+        
     }
 }

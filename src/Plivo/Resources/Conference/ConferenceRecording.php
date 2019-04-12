@@ -26,9 +26,9 @@ class ConferenceRecording extends ResponseUpdate
      * @param $url
      * @param $recordingId
      */
-    public function __construct($apiId, $message, $recordingId, $url)
+    public function __construct($apiId, $message, $recordingId, $url,$statusCode)
     {
-        parent::__construct($apiId, $message);
+        parent::__construct($apiId, $message,$statusCode);
 
         $this->url = $url;
         $this->recordingId = $recordingId;

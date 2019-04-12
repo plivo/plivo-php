@@ -7,6 +7,7 @@ use Plivo\BaseClient;
 use Plivo\Resources\ResourceInterface;
 use Plivo\Resources\ResponseDelete;
 use Plivo\Resources\ResponseUpdate;
+use Plivo\Exceptions\PlivoResponseException;
 use Plivo\Util\ArrayOperations;
 
 
@@ -68,10 +69,24 @@ class ApplicationInterface extends ResourceInterface
 
         $responseContents = $response->getContent();
         
-        return new ApplicationCreateResponse(
-            $responseContents['api_id'],
-            $responseContents['app_id'],
-            $responseContents['message']);
+        if(!array_key_exists("error",$responseContents)){
+            return new ApplicationCreateResponse(
+                $responseContents['api_id'],
+                $responseContents['app_id'],
+                $responseContents['message'],
+                $response->getStatusCode()
+            );
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+
+            );
+        }
+        
     }
 
     /**
@@ -105,10 +120,24 @@ class ApplicationInterface extends ResourceInterface
 
         $responseContents = $response->getContent();
 
-        return new ResponseUpdate(
-            $responseContents['api_id'],
-            $responseContents['message']
-        );
+        if(!array_key_exists("error",$responseContents)){
+            return new ResponseUpdate(
+                $responseContents['api_id'],
+                $responseContents['message'],
+                $response->getStatusCode()
+            );
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+
+            );
+        }
+
+        
     }
 
     /**
