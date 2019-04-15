@@ -21,13 +21,19 @@ class ResponseUpdate
     public $apiId;
 
     /**
+     * @var
+     */
+    public $statusCode;
+
+    /**
      * ResponseUpdate constructor.
      * @param $message
      */
-    public function __construct($apiId, $message)
+    public function __construct($apiId, $message,$statusCode = 200)
     {
         $this->_message = $message;
         $this->apiId = $apiId;
+        $this->statusCode = $statusCode;
     }
 
     /**
@@ -58,5 +64,13 @@ class ResponseUpdate
     public function getMessage()
     {
         return $this->_message;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatusCode()
+    {
+        return $this->getStatusCode;
     }
 }

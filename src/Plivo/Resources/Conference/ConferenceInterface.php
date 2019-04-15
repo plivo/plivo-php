@@ -10,6 +10,7 @@ namespace Plivo\Resources\Conference;
 
 
 use Plivo\Exceptions\PlivoValidationException;
+use Plivo\Exceptions\PlivoResponseException;
 use Plivo\BaseClient;
 use Plivo\Resources\ResourceInterface;
 use Plivo\Resources\ResponseDelete;
@@ -59,6 +60,8 @@ class ConferenceInterface extends ResourceInterface
             $this->uri . $conferenceName . '/',
             []
         );
+
+
 
         return new Conference(
             $this->client,
@@ -142,9 +145,24 @@ class ConferenceInterface extends ResourceInterface
 
         $responseContents = $response->getContent();
 
-        return new ResponseUpdate(
-            $responseContents['api_id'],
-            $responseContents['message']);
+        if(!array_key_exists("error",$responseContents)){
+            return new ResponseUpdate(
+                $responseContents['api_id'],
+                $responseContents['message'],
+                $response->getStatusCode()
+            );
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+
+            );
+        }
+
+        
     }
 
     /**
@@ -165,9 +183,22 @@ class ConferenceInterface extends ResourceInterface
 
         $responseContents = $response->getContent();
 
-        return new ResponseUpdate(
-            $responseContents['api_id'],
-            $responseContents['message']);
+        if(!array_key_exists("error",$responseContents)){
+            return new ResponseUpdate(
+                $responseContents['api_id'],
+                $responseContents['message'],
+                $response->getStatusCode()
+            );
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+
+            );
+        }
     }
 
     /**
@@ -208,9 +239,22 @@ class ConferenceInterface extends ResourceInterface
 
         $responseContents = $response->getContent();
 
-        return new ResponseUpdate(
-            $responseContents['api_id'],
-            $responseContents['message']);
+        if(!array_key_exists("error",$responseContents)){
+            return new ResponseUpdate(
+                $responseContents['api_id'],
+                $responseContents['message'],
+                $response->getStatusCode()
+            );
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+
+            );
+        }
     }
 
     /**
@@ -254,10 +298,22 @@ class ConferenceInterface extends ResourceInterface
         );
 
         $responseContents = $response->getContent();
+        if(!array_key_exists("error",$responseContents)){
+            return new ResponseUpdate(
+                $responseContents['api_id'],
+                $responseContents['message'],
+                $response->getStatusCode()
+            );
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
 
-        return new ResponseUpdate(
-            $responseContents['api_id'],
-            $responseContents['message']);
+            );
+        }
     }
 
     /**
@@ -296,10 +352,22 @@ class ConferenceInterface extends ResourceInterface
         );
 
         $responseContents = $response->getContent();
+        if(!array_key_exists("error",$responseContents)){
+            return new ResponseUpdate(
+                $responseContents['api_id'],
+                $responseContents['message'],
+                $response->getStatusCode()
+            );
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
 
-        return new ResponseUpdate(
-            $responseContents['api_id'],
-            $responseContents['message']);
+            );
+        }
     }
 
     /**
@@ -355,12 +423,26 @@ class ConferenceInterface extends ResourceInterface
 
         $responseContents = $response->getContent();
 
-        return new ConferenceRecording(
-            $responseContents['api_id'],
-            $responseContents['message'],
-            $responseContents['recording_id'],
-            $responseContents['url']
+        if(!array_key_exists("error",$responseContents)){
+            return new ConferenceRecording(
+                $responseContents['api_id'],
+                $responseContents['message'],
+                $responseContents['recording_id'],
+                $responseContents['url'],
+                $response->getStatusCode()
+                );
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+
             );
+        }
+
+        
     }
 
     /**

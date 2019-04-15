@@ -4,6 +4,7 @@ namespace Plivo\Resources\Number;
 
 
 use Plivo\Exceptions\PlivoValidationException;
+use Plivo\Exceptions\PlivoResponseException;
 use Plivo\BaseClient;
 
 use Plivo\Resources\ResourceInterface;
@@ -114,9 +115,22 @@ class NumberInterface extends ResourceInterface
 
         $responseContents = $response->getContent();
 
-        return new ResponseUpdate(
-            $responseContents['api_id'],
-            $responseContents['message']);
+        if(!array_key_exists("error",$responseContents)){
+            return new ResponseUpdate(
+                $responseContents['api_id'],
+                $responseContents['message'],
+                $response->getStatusCode()
+            );
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+
+            );
+        }
     }
 
     /**
@@ -170,9 +184,21 @@ class NumberInterface extends ResourceInterface
         );
 
         $responseContents = $response->getContent();
+        if(!array_key_exists("error",$responseContents)){
+            return new ResponseUpdate(
+                $responseContents['api_id'],
+                $responseContents['message'],
+                $response->getStatusCode()
+            );
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
 
-        return new ResponseUpdate(
-            $responseContents['api_id'],
-            $responseContents['message']);
+            );
+        }
     }
 }
