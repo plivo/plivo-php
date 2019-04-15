@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.3.3](https://github.com/plivo/plivo-php/releases/tag/v4.3.3) - 2019-04-15
+- Fix responses to return HTTP status codes.
+
 ## [v4.3.2](https://github.com/plivo/plivo-php/releases/tag/v4.3.2) - 2019-04-02
 - Fix client->messages->create response by adding error handling.
 
