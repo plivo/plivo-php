@@ -105,4 +105,12 @@ class PlivoResponseException extends PlivoRestException
         }
 
     }
+
+    /**
+     * @return mixed
+     */
+    public function getStatusCode()
+    {
+        return $this->statusCode;
+    }
 }
