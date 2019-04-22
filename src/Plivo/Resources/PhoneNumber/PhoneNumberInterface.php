@@ -90,12 +90,6 @@ class PhoneNumberInterface extends ResourceInterface
                 'phone number is mandatory');
         }
 
-        if (empty($appId)) {
-            throw
-            new PlivoValidationException(
-                'app_id is mandatory');
-        }
-
         $response = $this->client->update(
             $this->uri . $phoneNumber . '/',
             ['app_id'=>$appId]
