@@ -108,6 +108,13 @@ class NumberInterface extends ResourceInterface
      */
     public function update($number, $optionalArgs = [])
     {
+
+        if (empty($number)) {
+            throw
+            new PlivoValidationException(
+                'number is mandatory');
+        }
+
         $response = $this->client->update(
             $this->uri . $number . '/',
             $optionalArgs

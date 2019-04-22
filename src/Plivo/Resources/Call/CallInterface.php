@@ -72,6 +72,11 @@ class CallInterface extends ResourceInterface
     public function create($from, array $to, $answerUrl, $answerMethod,
                            array $optionalArgs = [])
     {
+        if (!is_numeric($from)) {
+            throw
+            new PlivoValidationException(
+                'from should be numeric');
+        }
         $mandatoryArgs = [
             'from' => $from,
             'to' => implode('<', $to),
