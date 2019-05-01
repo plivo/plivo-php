@@ -146,6 +146,12 @@ class EndpointInterface extends ResourceInterface
      */
     public function update($endpointId, array $optionalArgs = [])
     {
+        if (empty($endpointId)) {
+            throw
+            new PlivoValidationException(
+                'endpoint_id is mandatory');
+        }
+        
         $response = $this->client->update(
             $this->uri . $endpointId . '/',
             $optionalArgs

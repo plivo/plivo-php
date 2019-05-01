@@ -2,6 +2,7 @@
 
 namespace Plivo\Resources\PhoneNumber;
 
+use Plivo\Exceptions\PlivoValidationException;
 use Plivo\Exceptions\PlivoResponseException;
 use Plivo\BaseClient;
 use Plivo\Resources\ResourceInterface;
@@ -52,6 +53,12 @@ class PhoneNumberInterface extends ResourceInterface
      */
     public function getList($countryIso, $optionalArgs = [])
     {
+        if (empty($countryIso)) {
+            throw
+            new PlivoValidationException(
+                'country_iso is mandatory');
+        }
+
         $response = $this->client->fetch(
             $this->uri,
             array_merge(['country_iso'=>$countryIso], $optionalArgs)
@@ -77,6 +84,12 @@ class PhoneNumberInterface extends ResourceInterface
      */
     public function buy($phoneNumber, $appId = null)
     {
+        if (empty($phoneNumber)) {
+            throw
+            new PlivoValidationException(
+                'phone number is mandatory');
+        }
+
         $response = $this->client->update(
             $this->uri . $phoneNumber . '/',
             ['app_id'=>$appId]

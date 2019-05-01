@@ -46,6 +46,11 @@ class SubAccountInterface extends ResourceInterface
                 "Mandatory parameters cannot be null");
         }
 
+        if (empty($name)) {
+            throw new PlivoValidationException(
+                "Name is mandatory");
+        }
+
         $data = [
             'name' => $name,
             'enabled' => $enabled
@@ -89,6 +94,22 @@ class SubAccountInterface extends ResourceInterface
      */
     public function update($subAuthId, $name = null, $enabled = null)
     {
+        if (is_null($name)) {
+            throw new PlivoValidationException(
+                "Mandatory parameters cannot be null");
+        }
+
+        if (empty($name)) {
+            throw new PlivoValidationException(
+                "Name is mandatory");
+        }
+
+        if (empty($subAuthId)) {
+            throw
+            new PlivoValidationException(
+                'sub_auth_id is mandatory');
+        }
+
         $data = [
             'name' => $name,
             'enabled' => $enabled
@@ -129,6 +150,12 @@ class SubAccountInterface extends ResourceInterface
      */
     public function delete($subAuthId, $cascade = null)
     {
+        if (empty($subAuthId)) {
+            throw
+            new PlivoValidationException(
+                'sub_auth_id is mandatory');
+        }
+        
         $data = [
             'cascade' => $cascade
         ];

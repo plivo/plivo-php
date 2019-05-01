@@ -173,12 +173,12 @@ class ConferenceTest extends BaseTestCase
         $request = new PlivoRequest(
             'POST',
             'Account/MAXXXXXXXXXXXXXXXXXX/Conference/asdasdasdasd/Member/123,111,1/Play/',
-            ['url'=>""]);
+            ['url'=>"http://test.com"]);
         $body = file_get_contents(__DIR__ . '/../Mocks/conferenceMemberMuteCreateResponse.json');
 
         $this->mock(new PlivoResponse($request,201, $body));
 
-        $actual = $this->client->conferences->startPlaying("asdasdasdasd", ['123','111','1'], "");
+        $actual = $this->client->conferences->startPlaying("asdasdasdasd", ['123','111','1'], "http://test.com");
 
         $this->assertRequest($request);
 
