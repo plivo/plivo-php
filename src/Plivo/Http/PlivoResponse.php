@@ -1,13 +1,7 @@
 <?php
-
 namespace Plivo\Http;
-
-
-
 use Plivo\Exceptions\PlivoResponseException;
 use Plivo\Exceptions\PlivoRestException;
-
-
 /**
  * Class PlivoResponse
  * @package Plivo\Http
@@ -17,7 +11,7 @@ class PlivoResponse
     /**
      * @var int The HTTP status code response from Api
      */
-    protected $statusCode;
+    public $statusCode;
 
     /**
      * @var array The headers returned from Api.
@@ -27,7 +21,7 @@ class PlivoResponse
     /**
      * @var string The raw body of the response from Api.
      */
-    protected $content;
+    public $content;
 
     /**
      * @var array The decoded body of the Api response.

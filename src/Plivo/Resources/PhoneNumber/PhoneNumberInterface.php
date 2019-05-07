@@ -2,6 +2,7 @@
 
 namespace Plivo\Resources\PhoneNumber;
 
+use Plivo\Exceptions\PlivoValidationException;
 use Plivo\Exceptions\PlivoResponseException;
 use Plivo\BaseClient;
 use Plivo\Resources\ResourceInterface;
@@ -50,15 +51,20 @@ class PhoneNumberInterface extends ResourceInterface
      *   + [int] offset - Denotes the number of value items by which the results should be offset. Eg:- If the result contains a 1000 values and limit is set to 10 and offset is set to 705, then values 706 through 715 are displayed in the results. This parameter is also used for pagination of the results.
      * @return ResourceList output
      */
-    public function getList($countryIso, $optionalArgs = [])
+    public function getList($countryIso=null, $optionalArgs = [])
     {
+        if (empty($countryIso)) {
+            throw
+            new PlivoValidationException(
+                'country_iso is mandatory');
+        }
+
         $response = $this->client->fetch(
             $this->uri,
             array_merge(['country_iso'=>$countryIso], $optionalArgs)
         );
 
         $phoneNumbers = [];
-
         foreach ($response->getContent()['objects'] as $phoneNumber) {
             $newNumber = new PhoneNumber(
                 $this->client, $phoneNumber, $this->pathParams['authId']);
@@ -77,6 +83,17 @@ class PhoneNumberInterface extends ResourceInterface
      */
     public function buy($phoneNumber, $appId = null)
     {
+        if (empty($phoneNumber)) {
+            throw
+            new PlivoValidationException(
+                'phone number is mandatory');
+        }
+
+        if(!is_numeric($phoneNumber)){
+          throw new PlivoValidationException(
+             'Phone number should be numeric');
+        }
+
         $response = $this->client->update(
             $this->uri . $phoneNumber . '/',
             ['app_id'=>$appId]
@@ -102,6 +119,6 @@ class PhoneNumberInterface extends ResourceInterface
 
             );
         }
-        
+
     }
 }

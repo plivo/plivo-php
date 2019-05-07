@@ -2,7 +2,7 @@
 
 namespace Plivo\Resources\Pricing;
 
-
+use Plivo\Exceptions\PlivoValidationException;
 use Plivo\BaseClient;
 use Plivo\Resources\ResourceInterface;
 
@@ -35,6 +35,12 @@ class PricingInterface extends ResourceInterface
      */
     public function get($countryIso)
     {
+        if (empty($countryIso)) {
+            throw
+            new PlivoValidationException(
+                'country_iso is mandatory');
+        }
+
         $response = $this->client->fetch(
             $this->uri,
             ['country_iso' => $countryIso]

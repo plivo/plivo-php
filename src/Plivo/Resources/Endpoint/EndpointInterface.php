@@ -45,7 +45,7 @@ class EndpointInterface extends ResourceInterface
      * @return JSON output
      * @throws PlivoValidationException
      */
-    public function create($username, $password, $alias, $appId = null)
+    public function create($username=null, $password=null, $alias=null, $appId = null)
     {
         $mandatoryArgs = [
             'username' => $username,
@@ -99,6 +99,11 @@ class EndpointInterface extends ResourceInterface
                 'endpoint id is mandatory');
         }
 
+        if(!is_numeric($endpointId)){
+            throw new PlivoValidationException(
+                'Endpoint ID is always numeric');
+        }
+
         $response = $this->client->fetch(
             $this->uri . $endpointId .'/',
             []
@@ -146,6 +151,17 @@ class EndpointInterface extends ResourceInterface
      */
     public function update($endpointId, array $optionalArgs = [])
     {
+        if (empty($endpointId)) {
+            throw
+            new PlivoValidationException(
+                'endpoint_id is mandatory');
+        }
+
+        if(!is_numeric($endpointId)){
+            throw new PlivoValidationException(
+                'Endpoint ID is always numeric');
+        }
+
         $response = $this->client->update(
             $this->uri . $endpointId . '/',
             $optionalArgs
@@ -170,9 +186,9 @@ class EndpointInterface extends ResourceInterface
             );
         }
 
-        
+
     }
-    
+
     /**
      * Delete an endpoint
      *
@@ -186,8 +202,12 @@ class EndpointInterface extends ResourceInterface
             new PlivoValidationException(
                 'endpoint id is mandatory');
         }
-        
-        $this->client->delete(
+
+        if(!is_numeric($endpointId)){
+            throw new PlivoValidationException(
+                'endpoint ID is always numeric');
+        }
+      $response = $this->client->delete(
             $this->uri . $endpointId . '/',
             []
         );

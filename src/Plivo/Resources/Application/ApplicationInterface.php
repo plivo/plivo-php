@@ -58,17 +58,48 @@ class ApplicationInterface extends ResourceInterface
     public function create(
         $appName, array $optionalArgs = [])
     {
-        $mandaoryArgs = [
-            'app_name' => $appName
+      if(array_key_exists("answer_url",$optionalArgs)){
+            $answerUrl = $optionalArgs['answer_url'];
+      } else {
+          throw
+          new PlivoValidationException(
+              'answer_url is mandatory');
+      }
+
+        if (empty($appName)) {
+            throw
+            new PlivoValidationException(
+                 'app_name is mandatory');
+        }
+
+        if (!is_numeric($appId)){
+            throw new PlivoValidationException(
+                  'App ID is always numeric');
+
+        }
+
+        if (preg_match("/^(http|https):\\/\\/[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*
+                          \\.[a-z]{2,5}'.'((:[0-9]{1,5})?\\/.*)?$/i",$answerUrl)){
+                          return($answerUrl);
+                        } else{
+                          throw
+                          new PlivoValidationException (
+                            'answer_url is not a valid URL'
+                          );
+                        }
+
+        $mandatoryArgs = [
+            'app_name'  => $appName,
+            'answer_url'=> $answerUrl
         ];
 
         $response = $this->client->update(
             $this->uri,
-            array_merge($mandaoryArgs, $optionalArgs)
+            array_merge($mandatoryArgs, $optionalArgs)
         );
 
         $responseContents = $response->getContent();
-        
+
         if(!array_key_exists("error",$responseContents)){
             return new ApplicationCreateResponse(
                 $responseContents['api_id'],
@@ -86,7 +117,7 @@ class ApplicationInterface extends ResourceInterface
 
             );
         }
-        
+
     }
 
     /**
@@ -113,6 +144,28 @@ class ApplicationInterface extends ResourceInterface
      */
     public function update($appId, array $optionalArgs = [])
     {
+        if (empty($appId)) {
+            throw
+            new PlivoValidationException(
+                'app_id is mandatory');
+        }
+
+        if (!is_numeric($appId)){
+            throw new PlivoValidationException(
+                  'App ID is always numeric');
+
+        }
+
+        if (preg_match("/^(http|https):\\/\\/[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*
+                          \\.[a-z]{2,5}'.'((:[0-9]{1,5})?\\/.*)?$/i",$answerUrl)){
+                          return($answerUrl);
+                        } else{
+                          throw
+                          new PlivoValidationException (
+                            'answer_url is not a valid URL'
+                          );
+                        }
+
         $response = $this->client->update(
             $this->uri . $appId . '/',
             $optionalArgs
@@ -137,7 +190,7 @@ class ApplicationInterface extends ResourceInterface
             );
         }
 
-        
+
     }
 
     /**
@@ -147,6 +200,18 @@ class ApplicationInterface extends ResourceInterface
      */
     public function delete($appId)
     {
+        if (empty($appId)) {
+            throw
+            new PlivoValidationException(
+                'app_id is mandatory');
+        }
+
+        if (!is_numeric($appId)){
+            throw new PlivoValidationException(
+                  'App ID is always numeric');
+
+        }
+
         $response = $this->client->delete(
             $this->uri . $appId . '/',
             []
@@ -167,6 +232,12 @@ class ApplicationInterface extends ResourceInterface
             throw
             new PlivoValidationException(
                 'app id is mandatory');
+        }
+
+        if (!is_numeric($appId)){
+            throw new PlivoValidationException(
+                  'App ID is always numeric');
+
         }
 
         $response = $this->client->fetch(
