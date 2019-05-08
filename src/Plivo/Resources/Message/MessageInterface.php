@@ -1,16 +1,11 @@
 <?php
-
 namespace Plivo\Resources\Message;
-
-
-
 use Plivo\Exceptions\PlivoValidationException;
 use Plivo\Exceptions\PlivoRestException;
 use Plivo\Exceptions\PlivoResponseException;
 use Plivo\Util\ArrayOperations;
 use Plivo\BaseClient;
 use Plivo\Resources\ResourceInterface;
-
 /**
  * Class MessageInterface
  * @package Plivo\Resources\Message
@@ -30,8 +25,6 @@ class MessageInterface extends ResourceInterface
         ];
         $this->uri = "Account/".$authId."/Message/";
     }
-
-
     /**
      * @param $messageUuid
      * @return Message
@@ -42,19 +35,16 @@ class MessageInterface extends ResourceInterface
         if (ArrayOperations::checkNull([$messageUuid])) {
             throw
             new PlivoValidationException(
-                'message uuid is mandatory');
+                'message_uuid is mandatory');
         }
-
         $response = $this->client->fetch(
             $this->uri . $messageUuid .'/',
             []
         );
-
         return new Message(
             $this->client, $response->getContent(),
             $this->pathParams['authId']);
     }
-
     /**
      * Return a list of messages
      * @param array $optionalArgs
@@ -80,18 +70,13 @@ class MessageInterface extends ResourceInterface
             $this->uri,
             $optionalArgs
         );
-
         $messages = [];
-
         foreach ($response->getContent()['objects'] as $message) {
             $newMessage = new Message($this->client, $message, $this->pathParams['authId']);
-
             array_push($messages, $newMessage);
         }
-
         return new MessageList($this->client, $response->getContent()['meta'], $messages);
     }
-
 //    protected function getAllList()
 //    {
 //        $offset = 0;
@@ -114,7 +99,6 @@ class MessageInterface extends ResourceInterface
 //        );
 //        return new MessageList($this->client, $meta, $allMessages);
 //    }
-
     /**
      * Send a message
      *
@@ -142,39 +126,41 @@ class MessageInterface extends ResourceInterface
      * @return MessageCreateResponse output
      * @throws PlivoValidationException,PlivoResponseException
      */
-
-    public function create($src, array $dst, $text,
-                           array $optionalArgs = [], $powerpackUUID = null)
+    public function create($src=null, array $dst=null, $text=null,
+                           array $optionalArgs = [null], $powerpackUUID = null)
     {
+
         $mandatoryArgs = [
             'dst' => implode('<', $dst),
             'text' => $text
         ];
-
         if (ArrayOperations::checkNull($mandatoryArgs)) {
             throw new PlivoValidationException(
                 "Mandatory parameters cannot be null");
         }
-
         if (is_null($src) &&  is_null($powerpackUUID)) {
             throw new PlivoValidationException(
                 "Specify either powerpack_uuid or src in request params to send a message."
             );
         }
-
         if (!is_null($src) && !is_null($powerpackUUID)) {
             throw new PlivoValidationException(
                 "Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message."
             );
         }
 
+          if ($src===implode('<',$dst)){
+          throw new PlivoValidationException(
+            "src can not be same as dst");
+          }
+          
+
         $response = $this->client->update(
             $this->uri,
             array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID])
         );
-
         $responseContents = $response->getContent();
-        
+
         if(!array_key_exists("error",$responseContents)){
             return new MessageCreateResponse(
                 $responseContents['message'],
@@ -189,7 +175,6 @@ class MessageInterface extends ResourceInterface
                 null,
                 $response->getContent(),
                 $response->getStatusCode()
-
             );
         }
     }

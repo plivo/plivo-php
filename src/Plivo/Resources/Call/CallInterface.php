@@ -72,6 +72,21 @@ class CallInterface extends ResourceInterface
     public function create($from, array $to, $answerUrl, $answerMethod,
                            array $optionalArgs = [])
     {
+        if (!is_numeric($from)) {
+            throw
+            new PlivoValidationException(
+                'from should be numeric');
+        }
+
+        if (in_array($from, $to)) {
+            throw new PlivoValidationException(
+                "from and to cannot be same");
+        }
+        if(filter_var($answerUrl, FILTER_VALIDATE_URL) === FALSE){
+             throw new PlivoValidationException(
+              "answer_url is incorrect");
+        }
+
         $mandatoryArgs = [
             'from' => $from,
             'to' => implode('<', $to),
@@ -84,10 +99,7 @@ class CallInterface extends ResourceInterface
                 "Mandatory parameters cannot be null");
         }
 
-        if (in_array($from, $to)) {
-            throw new PlivoValidationException(
-                "from and to cannot be same");
-        }
+        /* Added URL validation*/
 
         $response = $this->client->update(
             $this->uri,
@@ -97,22 +109,20 @@ class CallInterface extends ResourceInterface
         $responseContents = $response->getContent();
         if(!array_key_exists("error",$responseContents)){
             return new CallCreateResponse(
-                $responseContents['api_id'],
-                $responseContents['message'],
-                $responseContents['request_uuid'],
-                $response->getStatusCode()
+              $responseContents['message'],
+              $responseContents['request_uuid'],
+              $responseContents['api_id'],
+              $response->getStatusCode()
             );
         } else {
             throw new PlivoResponseException(
-                $responseContents['error'],
-                0,
-                null,
-                $response->getContent(),
-                $response->getStatusCode()
-
+              $responseContents['error'],
+              0,
+              null,
+              $response->getContent(),
+              $response->getStatusCode()
             );
         }
-        
     }
 
     /**
@@ -219,7 +229,7 @@ class CallInterface extends ResourceInterface
     end_time\__gt: gt stands for greater than. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. E.g., To get all calls that ended after 2012-03-21 11:47, use end_time\__gt=2012-03-21 11:47<br />
     end_time\__gte: gte stands for greater than or equal. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. E.g., To get all calls that ended after or exactly at 2012-03-21 11:47[:30], use end_time\__gte=2012-03-21 11:47[:30]<br />
     end_time\__lt: lt stands for lesser than. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. E.g., To get all calls that ended before 2012-03-21 11:47, use end_time\__lt=2012-03-21 11:47<br />
-    end_time\__lte: lte stands for lesser than or equal. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. E.g., To get all calls that ended before or exactly at 2012-03-21 11:47[:30], use end_time\__lte=2012-03-21 11:47[:30]  
+    end_time\__lte: lte stands for lesser than or equal. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. E.g., To get all calls that ended before or exactly at 2012-03-21 11:47[:30], use end_time\__lte=2012-03-21 11:47[:30]
     Note: The above filters can be combined to get calls that ended in a particular time range. The timestamps need to be UTC timestamps.
      *   + [int] limit - Used to display the number of results per page. The maximum number of results that can be fetched is 20.
      *   + [int] offset - Denotes the number of value items by which the results should be offset. E.g., If the result contains a 1000 values and limit is set to 10 and offset is set to 705, then values 706 through 715 are displayed in the results. This parameter is also used for pagination of the results.
@@ -254,7 +264,7 @@ class CallInterface extends ResourceInterface
     public function getListLive(array $optionalArgs = [])
     {
         $optionalArgs['status'] = 'live';
-        
+
         $response = $this->client->fetch(
             $this->uri,
             $optionalArgs
@@ -319,7 +329,7 @@ class CallInterface extends ResourceInterface
                 "Which call to transfer? No callUuid given");
         }
 
-        if (isset($optionalArgs['legs'])) 
+        if (isset($optionalArgs['legs']))
         {
             switch ($optionalArgs['legs']) {
                 case 'aleg':
@@ -379,9 +389,9 @@ class CallInterface extends ResourceInterface
             );
         }
 
-        
+
     }
-    
+
     /**
      * Start recording a live call
      *
@@ -474,9 +484,9 @@ class CallInterface extends ResourceInterface
             );
         }
 
-        
+
     }
-    
+
     /**
      * Stop recording a live call
      *
@@ -492,18 +502,18 @@ class CallInterface extends ResourceInterface
         }
 
         $params = [];
-        
+
         if (!empty($url)) {
             $params = ['URL' => $url];
         }
-        
-        
+
+
         $this->client->delete(
             $this->uri . $liveCallUuid . '/Record/',
             $params
         );
     }
-    
+
     /**
      * Start playing audio in a live call
      *
@@ -570,7 +580,7 @@ class CallInterface extends ResourceInterface
             );
         }
 
-        
+
     }
 
     /**
@@ -591,7 +601,7 @@ class CallInterface extends ResourceInterface
             []
         );
     }
-    
+
     /**
      * Start speaking in a live call
      *
@@ -730,7 +740,7 @@ class CallInterface extends ResourceInterface
             );
         }
     }
-    
+
     /**
      * Cancel the request
      *

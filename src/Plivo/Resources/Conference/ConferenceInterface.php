@@ -48,7 +48,7 @@ class ConferenceInterface extends ResourceInterface
      * @return Conference
      * @throws PlivoValidationException
      */
-    public function get($conferenceName)
+    public function get($conferenceName=null)
     {
         if (ArrayOperations::checkNull([$conferenceName])) {
             throw
@@ -60,12 +60,11 @@ class ConferenceInterface extends ResourceInterface
             $this->uri . $conferenceName . '/',
             []
         );
-
-
-
+        $responseContents= $response->getContent();
         return new Conference(
             $this->client,
-            $response->getContent(),
+            $responseContents['api_id'],
+            $responseContents,
             $this->pathParams['authId'],
             $conferenceName);
     }
@@ -89,8 +88,13 @@ class ConferenceInterface extends ResourceInterface
      * @param null $conferenceName
      * @return ResponseDelete
      */
-    public function delete($conferenceName)
+    public function delete($conferenceName=null)
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
         $response = $this->client->delete(
             $this->uri . $conferenceName . '/',
             []
@@ -117,8 +121,28 @@ class ConferenceInterface extends ResourceInterface
      * @param $memberId
      * @return ResponseDelete
      */
-    public function hangUpMember($conferenceName, $memberId)
+    public function hangUpMember($conferenceName=null,$memberId=null)
+
     {
+
+      if (empty($conferenceName)) {
+          throw
+          new PlivoValidationException(
+              'conference_name is mandatory');
+        }
+
+      if (empty($memberId)){
+          throw
+          new PlivoValidationException(
+              'member_id is mandatory');
+        }
+
+        if (!is_numeric($memberId)){
+          throw
+          new PlivoValidationException(
+              'member_id should be numeric');
+        }
+
         $response = $this->client->delete(
             $this->uri . $conferenceName . '/Member/' . $memberId . '/',
             []
@@ -127,13 +151,70 @@ class ConferenceInterface extends ResourceInterface
         return new ResponseDelete();
     }
 
+    /*
+    Additional validation to check if the member ID is numeric values
+    Response:
+    (
+        [message:protected] => member_id should be numeric
+        [string:Exception:private] =>
+        [code:protected] => 0
+        [file:protected] => /Users/kiran/Desktop/plivotest/plivo-php/src/Plivo/Resources/Conference/ConferenceInterface.php
+        [line:protected] => 146
+        [trace:Exception:private] => Array
+            (
+                [0] => Array
+                    (
+                        [file] => /Users/kiran/Desktop/plivotest/plivo-php/programs/conference.php
+                        [line] => 12
+                        [function] => hangUpMember
+                        [class] => Plivo\Resources\Conference\ConferenceInterface
+                        [type] => ->
+                        [args] => Array
+                            (
+                                [0] => My conference
+                                [1] => abd
+                            )
+
+                    )
+
+            )
+
+        [previous:Exception:private] =>
+    )
+
+
+    Also, the  $conferenceName and $memberId is set to null.
+    Since the Attributecount error was overriding PlivoValidationException
+*/
+
     /**
      * @param $conferenceName
      * @param $memberId
      * @return ResponseUpdate
      */
-    public function kickMember($conferenceName, $memberId)
+    public function kickMember($conferenceName=null, $memberId=null)
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
+        if (empty($memberId)) {
+            throw
+            new PlivoValidationException(
+                'member_id is mandatory');
+        }
+
+        if (!is_numeric($memberId)){
+          throw
+          new PlivoValidationException(
+              'member_id should be numeric');
+        }
+
+    /* Addional validation as been added.
+    Now we also check if the member_id is numeric */
+
         $response = $this->client->update(
             $this->uri .
             $conferenceName .
@@ -162,7 +243,7 @@ class ConferenceInterface extends ResourceInterface
             );
         }
 
-        
+
     }
 
     /**
@@ -170,8 +251,29 @@ class ConferenceInterface extends ResourceInterface
      * @param array $memberId
      * @return ResponseUpdate
      */
-    public function muteMember($conferenceName, array $memberId)
+    public function muteMember($conferenceName=null, array $memberId=null)
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
+        if (empty($memberId)) {
+            throw
+            new PlivoValidationException(
+                'member_id is mandatory');
+        }
+
+        if (!is_numeric($memberId)){
+          throw
+          new PlivoValidationException(
+              'member_id should be numeric');
+        }
+
+        /* Addional validation as been added.
+        Now we also check if the member_id is numeric */
+
         $response = $this->client->update(
             $this->uri .
             $conferenceName .
@@ -206,8 +308,29 @@ class ConferenceInterface extends ResourceInterface
      * @param array $memberId
      * @return ResponseDelete
      */
-    public function unMuteMember($conferenceName, array $memberId)
+    public function unMuteMember($conferenceName=null, array $memberId=null)
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
+        if (empty($memberId)) {
+            throw
+            new PlivoValidationException(
+                'member_id is mandatory');
+        }
+
+        if (!is_numeric($memberId)){
+          throw
+          new PlivoValidationException(
+              'member_id should be numeric');
+        }
+
+        /* Addional validation as been added.
+        Now we also check if the member_id is numeric */
+
         $response = $this->client->delete(
             $this->uri .
             $conferenceName .
@@ -226,8 +349,113 @@ class ConferenceInterface extends ResourceInterface
      * @param $url
      * @return ResponseUpdate
      */
-    public function startPlaying($conferenceName, array $memberId, $url)
+    public function startPlaying($conferenceName=null, array $memberId=null, $url=null)
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
+        if (empty($memberId)) {
+            throw
+            new PlivoValidationException(
+                'member_id is mandatory');
+        }
+
+        if (empty($url)) {
+            throw new PlivoValidationException(
+                "url parameter is mandatory");
+        }
+
+        foreach($memberId as $ar){
+          if(!is_numeric($ar)){
+              throw
+              new PlivoValidationException(
+                  'member_id should be numeric');
+            }
+        }
+
+        if(filter_var($url, FILTER_VALIDATE_URL) === FALSE){
+          throw new PlivoValidationException(
+              "url is incorrect");
+        }
+
+        /* Addional validation as been added.
+        Now we also check if the member_id is numeric and if the URL is valid
+
+      --------------------------
+      When member ID is not numeric:
+    [message:protected] => member_id should be numeric
+    [string:Exception:private] =>
+    [code:protected] => 0
+    [file:protected] => /Users/kiran/Desktop/plivotest/plivo-php/src/Plivo/Resources/Conference/ConferenceInterface.php
+    [line:protected] => 375
+    [trace:Exception:private] => Array
+        (
+            [0] => Array
+                (
+                    [file] => /Users/kiran/Desktop/plivotest/plivo-php/programs/conference.php
+                    [line] => 13
+                    [function] => startPlaying
+                    [class] => Plivo\Resources\Conference\ConferenceInterface
+                    [type] => ->
+                    [args] => Array
+                        (
+                            [0] => My Conf Room
+                            [1] => Array
+                                (
+                                    [0] => 10
+                                    [1] => we
+                                )
+
+                            [2] => s3.amazonaws.com/plivocloud/Trumpet.mp3
+                        )
+
+                )
+
+        )
+
+    When URL is incorrect:
+
+        Plivo\Exceptions\PlivoValidationException Object
+       (
+           [message:protected] => url is incorrect
+           [string:Exception:private] =>
+           [code:protected] => 0
+           [file:protected] => /Users/kiran/Desktop/plivotest/plivo-php/src/Plivo/Resources/Conference/ConferenceInterface.php
+           [line:protected] => 381
+           [trace:Exception:private] => Array
+               (
+                   [0] => Array
+                       (
+                           [file] => /Users/kiran/Desktop/plivotest/plivo-php/programs/conference.php
+                           [line] => 13
+                           [function] => startPlaying
+                           [class] => Plivo\Resources\Conference\ConferenceInterface
+                           [type] => ->
+                           [args] => Array
+                               (
+                                   [0] => My Conf Room
+                                   [1] => Array
+                                       (
+                                           [0] => 10
+                                           [1] => 11
+                                       )
+
+                                   [2] => s3.amazonaws.com/plivocloud/Trumpet.mp3
+                               )
+
+                       )
+
+               )
+
+           [previous:Exception:private] =>
+       )
+
+
+        */
+
         $response = $this->client->update(
             $this->uri .
             $conferenceName .
@@ -262,8 +490,31 @@ class ConferenceInterface extends ResourceInterface
      * @param array $memberId
      * @return ResponseDelete
      */
-    public function stopPlaying($conferenceName, array $memberId)
+    public function stopPlaying($conferenceName=null, array $memberId=null)
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
+        if (empty($memberId)) {
+            throw
+            new PlivoValidationException(
+                'member_id is mandatory');
+        }
+
+        foreach($memberId as $ar){
+          if(!is_numeric($ar)){
+              throw
+              new PlivoValidationException(
+                  'member_id should be numeric');
+            }
+        }
+
+        /* Addional validation as been added.
+        Now we also check if the member_id is numeric */
+
         $response = $this->client->delete(
             $this->uri .
             $conferenceName .
@@ -286,8 +537,37 @@ class ConferenceInterface extends ResourceInterface
      *   + [string] language - The language to be used, see Supported voices and languages {https://www.plivo.com/docs/api/conference/member/#supported-voice-and-languages}. Defaults to en-US .
      * @return ResponseUpdate
      */
-    public function startSpeaking($conferenceName, array $memberId, $text, array $optionalArgs = [])
+    public function startSpeaking($conferenceName=null, array $memberId=null, $text=null, array $optionalArgs = [])
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
+        if (empty($memberId)) {
+            throw
+            new PlivoValidationException(
+                'member_id is mandatory');
+        }
+
+        if (empty($text)) {
+            throw
+            new PlivoValidationException(
+                'text is mandatory');
+        }
+
+        foreach($memberId as $ar){
+          if(!is_numeric($ar)){
+              throw
+              new PlivoValidationException(
+                  'member_id should be numeric');
+            }
+        }
+
+        /* Addional validation as been added.
+        Now we also check if the member_id is numeric */
+
         $response = $this->client->update(
             $this->uri .
             $conferenceName .
@@ -321,8 +601,31 @@ class ConferenceInterface extends ResourceInterface
      * @param array $memberId
      * @return ResponseDelete
      */
-    public function stopSpeaking($conferenceName, array $memberId)
+    public function stopSpeaking($conferenceName=null, array $memberId=null)
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
+        if (empty($memberId)) {
+            throw
+            new PlivoValidationException(
+                'member_id is mandatory');
+        }
+
+        foreach($memberId as $ar){
+          if(!is_numeric($ar)){
+              throw
+              new PlivoValidationException(
+                  'member_id should be numeric');
+            }
+        }
+
+        /* Addional validation as been added.
+        Now we also check if the member_id is numeric */
+
         $response = $this->client->delete(
             $this->uri .
             $conferenceName .
@@ -340,8 +643,31 @@ class ConferenceInterface extends ResourceInterface
      * @param array $memberId
      * @return ResponseUpdate
      */
-    public function makeDeaf($conferenceName, array $memberId)
+    public function makeDeaf($conferenceName=null, array $memberId=null)
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
+        if (empty($memberId)) {
+            throw
+            new PlivoValidationException(
+                'member_id is mandatory');
+        }
+
+        foreach($memberId as $ar){
+          if(!is_numeric($ar)){
+              throw
+              new PlivoValidationException(
+                  'member_id should be numeric');
+            }
+        }
+
+        /* Addional validation as been added.
+        Now we also check if the member_id is numeric */
+
         $response = $this->client->update(
             $this->uri .
             $conferenceName .
@@ -375,8 +701,31 @@ class ConferenceInterface extends ResourceInterface
      * @param array $memberId
      * @return ResponseDelete
      */
-    public function enableHearing($conferenceName, array $memberId)
+    public function enableHearing($conferenceName=null, array $memberId=null)
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
+        if (empty($memberId)) {
+            throw
+            new PlivoValidationException(
+                'member_id is mandatory');
+        }
+
+        foreach($memberId as $ar){
+          if(!is_numeric($ar)){
+              throw
+              new PlivoValidationException(
+                  'member_id should be numeric');
+            }
+        }
+
+        /* Addional validation as been added.
+        Now we also check if the member_id is numeric */
+
         $response = $this->client->delete(
             $this->uri .
             $conferenceName .
@@ -409,11 +758,17 @@ class ConferenceInterface extends ResourceInterface
      *                    <br /> recording_start_ms - when the recording started (epoch time UTC) in milliseconds.
      *                    <br /> recording_end_ms - when the recording ended (epoch time UTC) in milliseconds.
      *   + [string] callback_method - The method which is used to invoke the callback_url URL. Defaults to POST.
- 
+
      * @return ConferenceRecording
      */
-    public function startRecording($conferenceName, $optionalArgs = [])
+    public function startRecording($conferenceName=null, $optionalArgs = [])
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
         $response = $this->client->update(
             $this->uri .
             $conferenceName .
@@ -442,15 +797,21 @@ class ConferenceInterface extends ResourceInterface
             );
         }
 
-        
+
     }
 
     /**
      * @param $conferenceName
      * @return ResponseDelete
      */
-    public function stopRecording($conferenceName)
+    public function stopRecording($conferenceName=null)
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
         $response = $this->client->delete(
             $this->uri .
             $conferenceName .

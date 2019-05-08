@@ -1,11 +1,6 @@
 <?php
-
 namespace Plivo\Exceptions;
-
-
-
 use Throwable;
-
 /**
  * Class PlivoResponseException
  * @package Plivo\Exceptions
@@ -29,11 +24,12 @@ class PlivoResponseException extends PlivoRestException
      * @param array $responseData
      * @param integer $statusCode
      */
-    public function __construct($message = "", $code = 0, Throwable $previous = null, $responseData, $statusCode)
+    public function __construct($message, $code = 0, Throwable $previous = null, $responseData, $statusCode)
     {
         $this->responseData = $responseData;
         $this->statusCode = $statusCode;
-        parent::__construct($message, $code, $this->getException($this->getErrorMessage()));
+        $this->$result=parent::__construct($message, $code,$this->getException($this->getErrorMessage()));
+        return($result);
     }
 
     /**
@@ -65,6 +61,9 @@ class PlivoResponseException extends PlivoRestException
         // make exception based on the status code
         switch ($this->statusCode) {
             case 400:
+
+
+
                 return
                     $message?
                         new PlivoValidationException($message):
