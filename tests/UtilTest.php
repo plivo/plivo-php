@@ -1,6 +1,7 @@
 <?php
 
-use Plivo\Tests\BaseTestCase;
+namespace Plivo\Tests;
+
 use Plivo\Util\signatureValidation;
 
 

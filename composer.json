@@ -20,11 +20,17 @@
         "guzzlehttp/guzzle": "^6.0"
     },
     "autoload": {
-        "classmap": ["src/", "tests/"],
-        "exclude-from-classmap": []
+        "psr-4": {
+            "Plivo\\": "src/Plivo/"
+        }
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.8",
+        "phpunit/phpunit": "^4.8 || ^5.0 || ^6.0",
         "justinrainbow/json-schema": "^5.2"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Plivo\\Tests\\": "tests/"
+        }
     }
 }

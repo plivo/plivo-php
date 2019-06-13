@@ -7,4 +7,4 @@ php:
   # - hhvm # on Trusty only
   # - nightly # https://travis-ci.community/t/add-php-7-4-branch-to-test-against/2179
 before_install: "composer install"
-script: "phpunit --configuration tests/phpunit.xml"
+script: ./vendor/bin/phpunit
