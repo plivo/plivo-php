@@ -3,5 +3,5 @@
 @Library('plivo_standard_libs@sdks') _
 
 sdksPipeline ([
-	buildContainer: 'plivo/jenkins-ci/base/alpine:3.7'
+	buildContainer: 'plivo/jenkins-ci/base/alpine/3.7:latest'
 ])
