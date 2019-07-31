@@ -52,7 +52,7 @@ class MessageTest extends BaseTestCase {
 
         $this->mock(new PlivoResponse($request,200, $body));
 
-        $actual = $this->client->messages->create("+919999999999", ["+919012345678"], "Test");
+        $actual = $this->client->messages->create("+919999999999", ["+919012345678"], "Test", ["invalid_number"]);
 
         $this->assertRequest($request);
 
