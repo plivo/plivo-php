@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.3.4](https://github.com/plivo/plivo-php/releases/tag/v4.3.4) - 2019-07-31
+- Add logic to handle invalid numbers for bulk SMS
+
 ## [v4.3.3](https://github.com/plivo/plivo-php/releases/tag/v4.3.3) - 2019-04-15
 - Fix responses to return HTTP status codes.
 
