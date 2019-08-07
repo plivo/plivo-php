@@ -150,7 +150,8 @@ class MessageInterface extends ResourceInterface
             'dst' => implode('<', $dst),
             'text' => $text
         ];
-
+        $d = implode('<',$dst);
+        $t = explode('<',$d);
         if (ArrayOperations::checkNull($mandatoryArgs)) {
             throw new PlivoValidationException(
                 "Mandatory parameters cannot be null");
@@ -168,13 +169,19 @@ class MessageInterface extends ResourceInterface
             );
         }
 
+        foreach ($t as $a) {
+            if (!is_numeric($a)) {
+              throw new PlivoValidationException(
+                  'Destination number should be numeric');
+            }
+        }
         $response = $this->client->update(
             $this->uri,
             array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID])
         );
 
         $responseContents = $response->getContent();
-        
+
         if(!array_key_exists("error",$responseContents)){
             return new MessageCreateResponse(
                 $responseContents['message'],

@@ -69,16 +69,16 @@ class CallInterface extends ResourceInterface
      * @return JSON output
      * @throws PlivoValidationException,PlivoResponseException
      */
-    public function create($from, array $to, $answerUrl, $answerMethod,
+    public function create($from, array $to, $answerUrl,
                            array $optionalArgs = [])
     {
         $mandatoryArgs = [
             'from' => $from,
             'to' => implode('<', $to),
-            'answer_url' => $answerUrl,
-            'answer_method' => $answerMethod
+            'answer_url' => $answerUrl
         ];
-
+        $d = implode('<',$to);
+        $t = explode('<',$d);
         if (ArrayOperations::checkNull($mandatoryArgs)) {
             throw new PlivoValidationException(
                 "Mandatory parameters cannot be null");
@@ -89,6 +89,17 @@ class CallInterface extends ResourceInterface
                 "from and to cannot be same");
         }
 
+        if(!is_numeric($from)){
+            throw new PlivoValidationException(
+                'From number should be numeric');
+        }
+
+        foreach ($t as $a) {
+            if (!is_numeric($a)) {
+              throw new PlivoValidationException(
+                  'To number should be numeric');
+            }
+        }
         $response = $this->client->update(
             $this->uri,
             array_merge($mandatoryArgs, $optionalArgs)
@@ -112,7 +123,7 @@ class CallInterface extends ResourceInterface
 
             );
         }
-        
+
     }
 
     /**
@@ -219,7 +230,7 @@ class CallInterface extends ResourceInterface
     end_time\__gt: gt stands for greater than. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. E.g., To get all calls that ended after 2012-03-21 11:47, use end_time\__gt=2012-03-21 11:47<br />
     end_time\__gte: gte stands for greater than or equal. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. E.g., To get all calls that ended after or exactly at 2012-03-21 11:47[:30], use end_time\__gte=2012-03-21 11:47[:30]<br />
     end_time\__lt: lt stands for lesser than. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. E.g., To get all calls that ended before 2012-03-21 11:47, use end_time\__lt=2012-03-21 11:47<br />
-    end_time\__lte: lte stands for lesser than or equal. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. E.g., To get all calls that ended before or exactly at 2012-03-21 11:47[:30], use end_time\__lte=2012-03-21 11:47[:30]  
+    end_time\__lte: lte stands for lesser than or equal. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. E.g., To get all calls that ended before or exactly at 2012-03-21 11:47[:30], use end_time\__lte=2012-03-21 11:47[:30]
     Note: The above filters can be combined to get calls that ended in a particular time range. The timestamps need to be UTC timestamps.
      *   + [int] limit - Used to display the number of results per page. The maximum number of results that can be fetched is 20.
      *   + [int] offset - Denotes the number of value items by which the results should be offset. E.g., If the result contains a 1000 values and limit is set to 10 and offset is set to 705, then values 706 through 715 are displayed in the results. This parameter is also used for pagination of the results.
@@ -227,10 +238,19 @@ class CallInterface extends ResourceInterface
      */
     public function getList(array $optionalArgs = [])
     {
+      if (!is_numeric($optionalArgs['from_number'])){
+          throw new PlivoValidationException(
+              'From number should be numeric');
+      }
+      if (!is_numeric($optionalArgs['to_number'])){
+          throw new PlivoValidationException(
+              'To number should be numeric');
+      }
         $response = $this->client->fetch(
             $this->uri,
             $optionalArgs
         );
+
 
         $calls = [];
 
@@ -253,8 +273,16 @@ class CallInterface extends ResourceInterface
      */
     public function getListLive(array $optionalArgs = [])
     {
+      if (!is_numeric($optionalArgs['from_number'])){
+          throw new PlivoValidationException(
+              'From number should be numeric');
+      }
+      if (!is_numeric($optionalArgs['to_number'])){
+          throw new PlivoValidationException(
+              'To number should be numeric');
+      }
         $optionalArgs['status'] = 'live';
-        
+
         $response = $this->client->fetch(
             $this->uri,
             $optionalArgs
@@ -319,7 +347,7 @@ class CallInterface extends ResourceInterface
                 "Which call to transfer? No callUuid given");
         }
 
-        if (isset($optionalArgs['legs'])) 
+        if (isset($optionalArgs['legs']))
         {
             switch ($optionalArgs['legs']) {
                 case 'aleg':
@@ -379,9 +407,9 @@ class CallInterface extends ResourceInterface
             );
         }
 
-        
+
     }
-    
+
     /**
      * Start recording a live call
      *
@@ -474,9 +502,9 @@ class CallInterface extends ResourceInterface
             );
         }
 
-        
+
     }
-    
+
     /**
      * Stop recording a live call
      *
@@ -492,18 +520,18 @@ class CallInterface extends ResourceInterface
         }
 
         $params = [];
-        
+
         if (!empty($url)) {
             $params = ['URL' => $url];
         }
-        
-        
+
+
         $this->client->delete(
             $this->uri . $liveCallUuid . '/Record/',
             $params
         );
     }
-    
+
     /**
      * Start playing audio in a live call
      *
@@ -570,7 +598,7 @@ class CallInterface extends ResourceInterface
             );
         }
 
-        
+
     }
 
     /**
@@ -591,7 +619,7 @@ class CallInterface extends ResourceInterface
             []
         );
     }
-    
+
     /**
      * Start speaking in a live call
      *
@@ -730,7 +758,7 @@ class CallInterface extends ResourceInterface
             );
         }
     }
-    
+
     /**
      * Cancel the request
      *
