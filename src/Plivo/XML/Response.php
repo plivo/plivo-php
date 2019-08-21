@@ -35,7 +35,7 @@ class Response extends Element {
      * @return mixed
      */
     public function toXML($header = false) {
-        $xml = parent::toXML(true);
+        $xml = parent::toXML($header);
         return $xml;
     }
 }

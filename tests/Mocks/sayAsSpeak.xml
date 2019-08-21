@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Response>
+<Speak language="en-US" voice="Polly.Joanna">I was born on <say-as interpret-as="date" format="dmy">12-31-1977</say-as></Speak>
+</Response>

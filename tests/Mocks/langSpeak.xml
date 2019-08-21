@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Response>
+<Speak language="en-IN" voice="Polly.Aditi">Hello, Welcome to Plivo <lang xml:lang="hi-IN">hallo, plivo mein aapaka svaagat hai</lang></Speak>
+</Response>
