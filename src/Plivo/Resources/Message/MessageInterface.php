@@ -5,6 +5,8 @@ namespace Plivo\Resources\Message;
 
 
 use Plivo\Exceptions\PlivoValidationException;
+use Plivo\Exceptions\PlivoRestException;
+use Plivo\Exceptions\PlivoResponseException;
 use Plivo\Util\ArrayOperations;
 use Plivo\BaseClient;
 use Plivo\Resources\ResourceInterface;
@@ -138,7 +140,7 @@ class MessageInterface extends ResourceInterface
      *   + [string] :method - The method used to call the url. Defaults to POST.
      *   + [string] :log - If set to false, the content of this message will not be logged on the Plivo infrastructure and the dst value will be masked (e.g., 141XXXXX528). Default is set to true.
      * @return MessageCreateResponse output
-     * @throws PlivoValidationException
+     * @throws PlivoValidationException,PlivoResponseException
      */
 
     public function create($src, array $dst, $text,
@@ -172,11 +174,25 @@ class MessageInterface extends ResourceInterface
         );
 
         $responseContents = $response->getContent();
-        return new MessageCreateResponse(
-            $responseContents['message'],
-            $responseContents['message_uuid'],
-            $responseContents['api_id']
-        );
+        
+        if(!array_key_exists("error",$responseContents)){
+            return new MessageCreateResponse(
+                $responseContents['message'],
+                $responseContents['message_uuid'],
+                $responseContents['api_id'],
+                $response->getStatusCode(),
+                $responseContents['invalid_number']
+            );
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+
+            );
+        }
     }
 
 }
