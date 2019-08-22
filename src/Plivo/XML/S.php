@@ -15,10 +15,8 @@ class S extends Element {
         'break',
         'emphasis',
         'lang',
-        'p',
         'phoneme',
         'prosody',
-        's',
         'say-as',
         'sub',
         'w'

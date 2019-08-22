@@ -31,6 +31,7 @@ class SayAs extends Element {
         'time',
         'address',
         'expletive',
+        'interjection', # only selected languages https://developer.amazon.com/docs/custom-skills/speech-synthesis-markup-language-ssml-reference.html#supported-speechcons
         'telephone'
     ];
 
