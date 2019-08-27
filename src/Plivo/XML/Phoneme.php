@@ -20,7 +20,8 @@ class Phoneme extends Element {
 
     protected $valid_alphabet_attribute_values = [
         'ipa',
-        'x-sampa'
+        'x-sampa',
+        'x-amazon-pinyin'
     ];
 
     /**
