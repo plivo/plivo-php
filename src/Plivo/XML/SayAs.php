@@ -19,7 +19,7 @@ class SayAs extends Element {
     ];
 
     protected $valid_interpret_as_attribute_values = [
-        'character',
+        'characters',
         'spell-out',
         'cardinal',
         'number',
