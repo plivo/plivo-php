@@ -47,12 +47,12 @@ class Speak extends Element {
     ];
 
     protected $valid_lang_attribute_values = [
-        'cmn-CN','da-DK','nl-NL','en-AU','en-GB',
-        'en-IN','en-US','en-GB-WLS','fr-FR',
-        'fr-CA','de-DE','hi-IN','is-IS','it-IT',
-        'ja-JP','ko-KR','nb-NO','pl-PL','pt-BR',
-        'pt-PT','ro-RO','ru-RU','es-ES','es-MX',
-        'es-US','sv-SE','tr-TR','cy-GB'
+        'arb', 'cmn-CN','da-DK','nl-NL','en-AU',
+        'en-GB', 'en-IN','en-US','en-GB-WLS',
+        'fr-FR', 'fr-CA','de-DE','hi-IN','is-IS',
+        'it-IT', 'ja-JP','ko-KR','nb-NO','pl-PL',
+        'pt-BR', 'pt-PT','ro-RO','ru-RU','es-ES',
+        'es-MX', 'es-US','sv-SE','tr-TR','cy-GB'
     ];
 
     /**
