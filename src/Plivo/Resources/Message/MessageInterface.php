@@ -143,27 +143,17 @@ class MessageInterface extends ResourceInterface
      * @throws PlivoValidationException,PlivoResponseException
      */
 
-    public function create($src, array $dst, $text,
-                           array $optionalArgs = [], $powerpackUUID = null)
+    public function create(array $Args = [])
     {
-        $mandatoryArgs = [
-            'dst' => implode('<', $dst),
-            'text' => $text
-        ];
-        $d = implode('<',$dst);
-        $t = explode('<',$d);
-        if (ArrayOperations::checkNull($mandatoryArgs)) {
-            throw new PlivoValidationException(
-                "Mandatory parameters cannot be null");
-        }
-
-        if (is_null($src) &&  is_null($powerpackUUID)) {
+        $dest = $Args['dst'];
+        $t = explode('<',$dest);
+        if (!array_key_exists('src',$Args) &&  !array_key_exists('powerpackUUID',$Args)) {
             throw new PlivoValidationException(
                 "Specify either powerpack_uuid or src in request params to send a message."
             );
         }
 
-        if (!is_null($src) && !is_null($powerpackUUID)) {
+        if (!array_key_exists('src',$Args) && array_key_exists('powerpackUUID',$Args)) {
             throw new PlivoValidationException(
                 "Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message."
             );
@@ -176,20 +166,30 @@ class MessageInterface extends ResourceInterface
             }
         }
         $response = $this->client->update(
-            $this->uri,
-            array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID])
-        );
+            $this->uri,$Args);
+
 
         $responseContents = $response->getContent();
 
         if(!array_key_exists("error",$responseContents)){
+          if(array_key_exists("invalid_number", $responseContents)){
             return new MessageCreateResponse(
-                $responseContents['message'],
-                $responseContents['message_uuid'],
-                $responseContents['api_id'],
-                $response->getStatusCode(),
-                $responseContents['invalid_number']
-            );
+              $responseContents['message'],
+              $responseContents['message_uuid'],
+              $responseContents['api_id'],
+              $response->getStatusCode(),
+            	$responseContents['invalid_number']
+                );
+            }
+            else{
+                return new MessageCreateResponse(
+                    $responseContents['message'],
+                    $responseContents['message_uuid'],
+                    $responseContents['api_id'],
+                    $response->getStatusCode(),
+                    []
+                );
+            }
         } else {
             throw new PlivoResponseException(
                 $responseContents['error'],
@@ -201,5 +201,4 @@ class MessageInterface extends ResourceInterface
             );
         }
     }
-
 }
