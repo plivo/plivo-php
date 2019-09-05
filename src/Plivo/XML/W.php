@@ -49,6 +49,6 @@ class W extends Element {
         }
 
         parent::__construct($body, $attributes);
-        
+        $this->name = strtolower($this->name);
     }
 }

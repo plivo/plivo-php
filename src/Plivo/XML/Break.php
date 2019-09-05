@@ -64,5 +64,6 @@ class Break_ extends Element {
         }
         
         parent::__construct(null, $attributes);
+        $this->name = strtolower($this->name);
     }
 }

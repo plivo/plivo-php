@@ -44,9 +44,9 @@ class Lang extends Element {
      * @throws PlivoXMLException
      */
     function __construct($body, $attributes = []) {
-        
+
         if (!$body) {
-            throw new PlivoXMLException("No emphasis set for ".$this->getName());
+            throw new PlivoXMLException("No text set for ".$this->getName());
         }
         if(!empty($attributes)){
             foreach ($attributes as $key => $value) {
@@ -56,7 +56,8 @@ class Lang extends Element {
                 }
             }
         }
-        
+
         parent::__construct($body, $attributes);
+        $this->name = strtolower($this->name);
     }
 }

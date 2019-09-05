@@ -36,5 +36,6 @@ class P extends Element {
         if (!$body) {
             throw new PlivoXMLException("No p set for ".$this->getName());
         }
+        $this->name = strtolower($this->name);
     }
 }

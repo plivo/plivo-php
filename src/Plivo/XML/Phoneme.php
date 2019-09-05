@@ -31,7 +31,7 @@ class Phoneme extends Element {
      * @throws PlivoXMLException
      */
     function __construct($body, $attributes = []) {
-        
+
         if (!$body) {
             throw new PlivoXMLException("No phoneme set for ".$this->getName());
         }
@@ -44,5 +44,6 @@ class Phoneme extends Element {
             }
         }
         parent::__construct($body, $attributes);
+        $this->name = strtolower($this->name);
     }
 }

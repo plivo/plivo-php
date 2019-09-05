@@ -28,5 +28,6 @@ class Sub extends Element {
             throw new PlivoXMLException("No sub set for ".$this->getName());
         }
         parent::__construct($body, $attributes);
+        $this->name = strtolower($this->name);
     }
 }

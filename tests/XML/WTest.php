@@ -20,7 +20,7 @@ class WTest extends BaseTestCase
         );
 
         $params2 = array(
-            'interpret-as' => 'character'
+            'interpret-as' => 'characters'
         );
 
         $params3 = array(

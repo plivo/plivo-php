@@ -42,7 +42,7 @@ class Element {
                 get_class($this),
                 strrpos(get_class($this), '\\') + 1
             );
-        $this->name = $this->name === "Break_"?"Break":$this->name;
+        $this->name = $this->name === "Break_"?"break":$this->name;
         $this->body = $body;
         foreach ($this->attributes as $key => $value) {
             if (!in_array($key, $this->valid_attributes)) {
@@ -118,7 +118,6 @@ class Element {
     function continueSpeak($body = null) {
         $element = new Cont($body);
         $position = count($this->childs)-1;
-        $element->setName('cont');
         $this->childs[$position]->add($element);
         return $this;
     }
@@ -132,7 +131,6 @@ class Element {
         $this->checkIsSSMLSupported();
         $position = count($this->childs)-1;
         $element = new Break_($body,$attributes);
-        $element->setName('break');
         $this->childs[$position]->add($element);
         return $this;
     }
@@ -146,7 +144,6 @@ class Element {
         $this->checkIsSSMLSupported();
         $position = count($this->childs)-1;
         $element = new Emphasis($body,$attributes);
-        $element->setName('emphasis');
         $this->childs[$position]->add($element);
         return $this;
     }
@@ -160,7 +157,6 @@ class Element {
         $this->checkIsSSMLSupported();
         $position = count($this->childs)-1;
         $element = new Lang($body,$attributes);
-        $element->setName('lang');
         $this->childs[$position]->add($element);
         return $this;
     }
@@ -174,7 +170,6 @@ class Element {
         $this->checkIsSSMLSupported();
         $position = count($this->childs)-1;
         $element = new P($body,$attributes);
-        $element->setName('p');
         $this->childs[$position]->add($element);
         return $this;
     }
@@ -188,7 +183,6 @@ class Element {
         $this->checkIsSSMLSupported();
         $position = count($this->childs)-1;
         $element = new Phoneme($body,$attributes);
-        $element->setName('phoneme');
         $this->childs[$position]->add($element);
         return $this;
     }
@@ -202,7 +196,6 @@ class Element {
         $this->checkIsSSMLSupported();
         $position = count($this->childs)-1;
         $element = new Prosody($body,$attributes);
-        $element->setName('prosody');
         $this->childs[$position]->add($element);
         return $this;
     }
@@ -216,7 +209,6 @@ class Element {
         $this->checkIsSSMLSupported();
         $position = count($this->childs)-1;
         $element = new S($body,$attributes);
-        $element->setName('s');
         $this->childs[$position]->add($element);
         return $this;
     }
@@ -244,7 +236,6 @@ class Element {
         $this->checkIsSSMLSupported();
         $position = count($this->childs)-1;
         $element = new Sub($body,$attributes);
-        $element->setName('sub');
         $this->childs[$position]->add($element);
         return $this;
     }
@@ -258,7 +249,6 @@ class Element {
         $this->checkIsSSMLSupported();
         $position = count($this->childs)-1;
         $element = new W($body,$attributes);
-        $element->setName('w');
         $this->childs[$position]->add($element);
         return $this;
     }
@@ -395,7 +385,7 @@ class Element {
      * @return mixed
      * @throws PlivoXMLException
      */
-    protected function add($element) {
+    public function add($element) {
         if ( !in_array($element->getName(), $this->nestables)) {
             throw new PlivoXMLException($element->getName()." not nestable in ".$this->getName());
         }
@@ -410,11 +400,10 @@ class Element {
     public function setAttributes($xml) {
         foreach ($this->attributes as $key => $value) {
             if($key === 'xmllang'){
-                $xml->addAttribute('xml:lang', $value,"http://schema.omg.org/spec/XMI/2.1");
+                $xml->addAttribute('xml:lang', $value, "http://schema.omg.org/spec/XMI/2.1");
             } else {
                 $xml->addAttribute($key, $value);
             }
-            
         }
     }
 
@@ -455,6 +444,7 @@ class Element {
             $child->asChild($xml);
         }
         $xml_string = $xml->asXML();
+
         $xml_string = str_replace("<cont>"," ",$xml_string);
         $xml_string = str_replace("</cont>"," ",$xml_string);
 

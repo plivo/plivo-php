@@ -66,15 +66,11 @@ class Speak extends Element {
             throw new PlivoXMLException("No text set for ".$this->getName());
         } else if(strlen($body)>3000) {
             throw new PlivoXMLException("Exceeds the maximum limit of 3000 characters! ".$this->getName());
-        } else {   
-            $body = mb_encode_numericentity($body, [0x80, 0xffff, 0, 0xffff]);
         }
         if(empty($attributes)){
             $attributes = array('voice'=>'woman');
         } else {
-            
             foreach ($attributes as $key => $value) {
-                
                 if ($key ==='voice' && !in_array($value, $this->valid_voice_attribute_values)) {
                     throw new PlivoXMLException(
                         "invalid attribute value ".$value." for ".$key." ".$this->name);

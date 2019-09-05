@@ -56,7 +56,7 @@ class Prosody extends Element {
      */
     function __construct($body, $attributes = []) {
         if (!$body) {
-            throw new PlivoXMLException("No prosody set for ".$this->getName());
+            throw new PlivoXMLException("No text set for ".$this->getName());
         }
         if(!empty($attributes)){
             foreach ($attributes as $key => $value) {
@@ -66,7 +66,6 @@ class Prosody extends Element {
                         throw new PlivoXMLException(
                             "invalid attribute value ".$value." for ".$key." ".$this->name);
                     }
-                    
                 }
                 if ($key ==='rate' && !in_array($value, $this->valid_rate_attribute_values)) {
                     if (strpos($value, '%') !== false) {
@@ -92,6 +91,6 @@ class Prosody extends Element {
         }
 
         parent::__construct($body, $attributes);
-        
+        $this->name = strtolower($this->name);
     }
 }

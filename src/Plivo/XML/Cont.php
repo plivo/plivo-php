@@ -34,9 +34,8 @@ class Cont extends Element {
     function __construct($body) {
         if (!$body) {
             throw new PlivoXMLException("No text set for ".$this->getName());
-        } else {
-            $body = mb_encode_numericentity($body, [0x80, 0xffff, 0, 0xffff]);
         }
         parent::__construct($body,null);
+        $this->name = strtolower($this->name);
     }
 }
