@@ -143,62 +143,87 @@ class MessageInterface extends ResourceInterface
      * @throws PlivoValidationException,PlivoResponseException
      */
 
-    public function create(array $Args = [])
-    {
-        $dest = $Args['dst'];
-        $t = explode('<',$dest);
-        if (!array_key_exists('src',$Args) &&  !array_key_exists('powerpackUUID',$Args)) {
-            throw new PlivoValidationException(
-                "Specify either powerpack_uuid or src in request params to send a message."
-            );
-        }
-
-        if (!array_key_exists('src',$Args) && array_key_exists('powerpackUUID',$Args)) {
-            throw new PlivoValidationException(
-                "Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message."
-            );
-        }
-
+    public function create() {
+    $args = func_get_args();
+    if (sizeof($args)=='5' or sizeof($args)=='4' ){
+      $d = implode('<',$args[1]);
+      $t = explode('<',$d);
+      if (is_null($args[0]) &&  is_null($args[4])) {
+        throw new PlivoValidationException(
+          "Specify either powerpack_uuid or src in request params to send a message."
+        );
+      }
+      if (!is_null($args[0]) && !is_null($args[4])) {
+        throw new PlivoValidationException(
+          "Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message."
+        );
+      }
         foreach ($t as $a) {
-            if (!is_numeric($a)) {
-              throw new PlivoValidationException(
-                  'Destination number should be numeric');
+          if (!is_numeric($a)) {
+            throw new PlivoValidationException(
+              'Destination number should be numeric');
             }
-        }
-        $response = $this->client->update(
-            $this->uri,$Args);
-
-
-        $responseContents = $response->getContent();
-
-        if(!array_key_exists("error",$responseContents)){
-          if(array_key_exists("invalid_number", $responseContents)){
-            return new MessageCreateResponse(
-              $responseContents['message'],
-              $responseContents['message_uuid'],
-              $responseContents['api_id'],
-              $response->getStatusCode(),
-            	$responseContents['invalid_number']
-                );
-            }
-            else{
-                return new MessageCreateResponse(
-                    $responseContents['message'],
-                    $responseContents['message_uuid'],
-                    $responseContents['api_id'],
-                    $response->getStatusCode(),
-                    []
-                );
-            }
-        } else {
-            throw new PlivoResponseException(
-                $responseContents['error'],
-                0,
-                null,
-                $response->getContent(),
-                $response->getStatusCode()
-
+          }
+          if ($args[0] != null){
+            $response = $this->client->update(
+              $this->uri,array_merge($args[3],['src'=> $args[0]],['dst' => $args[1][0]],['text'=>$args[2]])
             );
+          } else {
+            $response = $this->client->update(
+              $this->uri,
+              array_merge($args[3],['powerpack_uuid' => $args[4]],['dst' => $args[1][0]],['text'=>$args[2]])
+            );
+          }
+      }elseif (sizeof($args)=='1'){
+        $dest = $args[0]['dst'];
+        print_r($args[0]['dst']);
+        $t = explode('<',$dest);
+        if (!array_key_exists('src',$args[0]) && !array_key_exists('powerpackUUID',$args[0])) {
+          throw new PlivoValidationException(
+            "Specify either powerpack_uuid or src in request params to send a message."
+          );
         }
-    }
-}
+        if (!array_key_exists('src',$args[0]) && array_key_exists('powerpackUUID',$args[0])) {
+          throw new PlivoValidationException(
+            "Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message."
+          );
+        }
+        foreach ($t as $a) {
+          if (!is_numeric($a)) {
+            throw new PlivoValidationException(
+              'Destination number should be numeric');
+            }
+          }
+          $response = $this->client->update(
+            $this->uri,$args[0]);
+          }
+          $responseContents = $response->getContent();
+          if(!array_key_exists("error",$responseContents)){
+            if(array_key_exists("invalid_number", $responseContents)){
+              return new MessageCreateResponse(
+                $responseContents['message'],
+                $responseContents['message_uuid'],
+                $responseContents['api_id'],
+                $response->getStatusCode(),
+                $responseContents['invalid_number']
+              );
+            } else{
+              return new MessageCreateResponse(
+                $responseContents['message'],
+                $responseContents['message_uuid'],
+                $responseContents['api_id'],
+                $response->getStatusCode(),
+                []
+              );
+            }
+          } else {
+            throw new PlivoResponseException(
+              $responseContents['error'],
+              0,
+              null,
+              $response->getContent(),
+              $response->getStatusCode()
+            );
+          }
+        }
+  }
