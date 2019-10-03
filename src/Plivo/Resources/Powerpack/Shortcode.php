@@ -5,16 +5,19 @@ namespace Plivo\Resources\Powerpack;
 
 use Plivo\BaseClient;
 use Plivo\Resources\Resource;
+use Plivo\Util\ArrayOperations;
+use Plivo\Exceptions\PlivoNotFoundException;
+
 
 /**
- * Class NumberPool
+ * Class Shortcode
  * @package Plivo\Resources\Powerpack
  * @property bool $added_on
  * @property bool $country_iso2
  * @property string $shortcode
  * @property string $number_pool_uuid
  */
-class Shortcode extends Resource
+class Shortcode
 {
     /**
      * Message constructor.
@@ -22,24 +25,49 @@ class Shortcode extends Resource
      * @param array $response
      * @param string $authId
      */
-    public function __construct(
-        BaseClient $client, $response, $authId)
+    /**
+     * @var null
+     */
+    protected $client;
+
+    /**
+     * @var string
+     */
+    private $uri;
+
+    public function __construct($client = null, $url = null)
     {
-        parent::__construct($client);
+        $this->client = $client;
+        $this->uri = $url;
+    }
 
-        $this->properties = [
-            'added_on' => $response['added_on'],
-            'country_iso2' => $response['country_iso2'],
-            'shortcode' => $response['number'],
-            'number_pool_uuid' => $response['number_pool_uuid']
-        ];
+     /**
+     * 
+     * @return Shortcode
+     */
+    public function get()
+    {
+        return new Shortcode($this->client, $this->$uri);
+    }
 
-        $this->pathParams = [
-            'authId' => $authId,
-            'number_pool_uuid' => $response['number_pool_uuid']
-        ];
-
-        $this->id = $response['number_pool_uuid'];
+    public function list($optionalArgs = []){
+        $response = $this->client->fetch(
+        $this->uri . '/Shortcode/' ,
+        $optionalArgs
+        );
+        return $response->getContent();
+    }
+    
+    public function find($shortcode){
+        if (ArrayOperations::checkNull([$shortcode])) {
+            throw
+            new PlivoValidationException(
+                'shortcode is mandatory');
+        }
+        $response = $this->client->fetch(
+            $this->uri . '/Shortcode/' . $shortcode . '/', []
+        );
+        return $response->getContent();
     }
 
 }
