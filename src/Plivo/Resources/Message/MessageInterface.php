@@ -8,7 +8,7 @@ use Plivo\Exceptions\PlivoValidationException;
 use Plivo\Exceptions\PlivoRestException;
 use Plivo\Exceptions\PlivoResponseException;
 use Plivo\Util\ArrayOperations;
-use Plivo\BaseClient;
+use Plivo\MessageClient;
 use Plivo\Resources\ResourceInterface;
 
 /**
@@ -19,10 +19,10 @@ class MessageInterface extends ResourceInterface
 {
     /**
      * MessageInterface constructor.
-     * @param BaseClient $plivoClient
+     * @param MessageClient $plivoClient
      * @param $authId
      */
-    public function __construct(BaseClient $plivoClient, $authId)
+    public function __construct(MessageClient $plivoClient, $authId)
     {
         parent::__construct($plivoClient);
         $this->pathParams = [
@@ -52,8 +52,11 @@ class MessageInterface extends ResourceInterface
 
         return new Message(
             $this->client, $response->getContent(),
-            $this->pathParams['authId']);
+            $this->pathParams['authId'], $this->uri);
     }
+
+    
+    
 
     /**
      * Return a list of messages
@@ -84,7 +87,7 @@ class MessageInterface extends ResourceInterface
         $messages = [];
 
         foreach ($response->getContent()['objects'] as $message) {
-            $newMessage = new Message($this->client, $message, $this->pathParams['authId']);
+            $newMessage = new Message($this->client, $message, $this->pathParams['authId'], $this->uri);
 
             array_push($messages, $newMessage);
         }
@@ -123,7 +126,7 @@ class MessageInterface extends ResourceInterface
      * @param string $text
      * @param array $optionalArgs
      *   + Valid arguments
-     *   + [string] :type - The type of message. Should be `sms` for a text message. Defaults to `sms`.
+     *   + [string] :type - The type of message. Should be `sms` or `mms`. Defaults to `sms`.
      *   + [string] :url - The URL to which with the status of the message is sent. The following parameters are sent to the URL:
      *                   <br /> To - Phone number of the recipient
      *                   <br /> From - Phone number of the sender
@@ -139,16 +142,16 @@ class MessageInterface extends ResourceInterface
      *                   <br /> ErrorCode - Delivery Response code returned by the carrier attempting the delivery. See Supported error codes {https://www.plivo.com/docs/api/message/#standard-plivo-error-codes}.
      *   + [string] :method - The method used to call the url. Defaults to POST.
      *   + [string] :log - If set to false, the content of this message will not be logged on the Plivo infrastructure and the dst value will be masked (e.g., 141XXXXX528). Default is set to true.
+     * [list] : media_urls - If your sending mms message, you can specify the media urls like ['https://yourmedia_urls/test.jpg','https://test.com/test.gif']
      * @return MessageCreateResponse output
      * @throws PlivoValidationException,PlivoResponseException
      */
 
-    public function create($src, array $dst, $text,
+    public function create($src, array $dst, $text=null,
                            array $optionalArgs = [], $powerpackUUID = null)
     {
         $mandatoryArgs = [
             'dst' => implode('<', $dst),
-            'text' => $text
         ];
 
         if (ArrayOperations::checkNull($mandatoryArgs)) {

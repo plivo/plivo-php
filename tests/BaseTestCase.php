@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Plivo\Authentication\BasicAuth;
 use Plivo\RestClient;
 use Plivo\BaseClient;
+use Plivo\MessageClient;
 
 /**
  * Class BaseTestCase

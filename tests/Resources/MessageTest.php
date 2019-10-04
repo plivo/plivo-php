@@ -78,6 +78,45 @@ class MessageTest extends BaseTestCase {
 
         self::assertEquals($actual->messageUuid, $messageUuid);
     }
+
+    public function testMediaGet()
+    {
+        $messageUuid = "5b40a428-bfc7-4daf-9d06-726c558bf3b8";
+        $mediaid = "973a04bd-cb2c-4de2-b9f2-5b54f9d33e6f";
+        $request = new PlivoRequest(
+            'GET',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Message/'.$messageUuid.'/Media/'.$mediaid.'/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/mediaResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->messages->get($messageUuid).getMedia($mediaid);
+
+        $this->assertRequest($request);
+
+        self::assertNotNull($actual);
+
+        self::assertEquals($actual->messageUuid, $messageUuid);
+    }
+    public function testMediaList()
+    {
+        $messageUuid = "5b40a428-bfc7-4daf-9d06-726c558bf3b8";
+        $request = new PlivoRequest(
+            'GET',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Message/'.$messageUuid.'/Media/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/mediaListResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->messages->get($messageUuid).listMedia();
+
+        $this->assertRequest($request);
+
+        self::assertNotNull($actual);
+
+    }
     
     function testMessageList()
     {
