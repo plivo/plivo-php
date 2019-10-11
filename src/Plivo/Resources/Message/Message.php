@@ -3,7 +3,7 @@
 namespace Plivo\Resources\Message;
 
 
-use Plivo\BaseClient;
+use Plivo\MessageClient;
 use Plivo\Resources\Resource;
 
 /**
