@@ -181,7 +181,7 @@ class MessageInterface extends ResourceInterface
                 $responseContents['message_uuid'],
                 $responseContents['api_id'],
                 $response->getStatusCode(),
-                $responseContents['invalid_number']
+                array_key_exists('invalid_number', $responseContents) ? $responseContents['invalid_number'] : []
             );
         } else {
             throw new PlivoResponseException(
