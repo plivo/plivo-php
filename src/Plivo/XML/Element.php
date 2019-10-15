@@ -113,6 +113,13 @@ class Element {
      * @param array $attributes
      * @return mixed
      */
+    function addGetInput($attributes = []) {
+        return $this->add(new GetInput($attributes));
+    }
+    /**
+     * @param array $attributes
+     * @return mixed
+     */
     function addRecord($attributes = []) {
         return $this->add(new Record($attributes));
     }

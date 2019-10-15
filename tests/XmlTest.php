@@ -55,6 +55,14 @@ class XmlTest extends BaseTestCase
             ]);
         
         $get_digits->addSpeak("Enter PIN number.", []);
+
+        $get_input = $resp->addGetInput(
+            [
+                'action' => "http://www.foo.com/gather_feedback",
+                "method" => "GET"
+            ]);
+        $get_input->addSpeak("Tell us more about your experience.", []);
+
         $resp->addSpeak("Input not recieved.", []);
         
         $resp->addHangup(
@@ -139,7 +147,7 @@ class XmlTest extends BaseTestCase
       
         $output = $resp->toXML(true);
         self::assertEquals(
-            "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Response><Conference callbackUrl=\"http://foo.com/confevents/\" callbackMethod=\"POST\" digitsMatch=\"#0,99,000\">My room</Conference><Dial confirmSound=\"http://foo.com/sound/\" confirmKey=\"3\"><Number sendDigits=\"wwww2410\">18217654321</Number><User sendDigits=\"wwww2410\">sip:john1234@phone.plivo.com</User></Dial><Dial timeout=\"20\" action=\"http://oo.com/dial_action/\"><Number>18217654321</Number></Dial><Dial><Number>15671234567</Number></Dial><DTMF>12345</DTMF><GetDigits action=\"http://www.foo.com/gather_pin/\" method=\"POST\"><Speak>Enter PIN number.</Speak></GetDigits><Speak>Input not recieved.</Speak><Hangup schedule=\"60\" reason=\"rejected\"/><Speak loop=\"0\">Call will hangup after a min.</Speak><Message src=\"12023222222\" dst=\"15671234567\" type=\"sms\" callbackUrl=\"http://foo.com/sms_status/\" callbackMethod=\"POST\">Hi, message from Plivo.</Message><Play>https://amazonaws.com/Trumpet.mp3</Play><PreAnswer><Speak>This call will cost $2 a min.</Speak></PreAnswer><Speak>Thanks for dropping by.</Speak><Record action=\"http://foo.com/get_recording/\" startOnDialAnswer=\"true\" redirect=\"false\"/><Dial><Number>15551234567</Number></Dial><Speak>Leave message after the beep.</Speak><Record action=\"http://foo.com/get_recording/\" maxLength=\"30\" finishOnKey=\"*\"/><Speak>Recording not received.</Speak><Speak>Your call is being transferred.</Speak><Redirect>http://foo.com/redirect/</Redirect><Speak loop=\"3\">Go green, go plivo.</Speak><Speak>I will wait 7 seconds starting now!</Speak><Wait length=\"7\"/><Speak>I just waited 7 seconds.</Speak><Wait length=\"120\" beep=\"true\"/><Play>https://s3.amazonaws.com/abc.mp3</Play><Wait length=\"10\"/><Speak>Hello</Speak><Wait length=\"10\" silence=\"true\" minSilence=\"3000\"/><Speak>Hello, welcome to the Jungle.</Speak></Response>\n",
+            "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Response><Conference callbackUrl=\"http://foo.com/confevents/\" callbackMethod=\"POST\" digitsMatch=\"#0,99,000\">My room</Conference><Dial confirmSound=\"http://foo.com/sound/\" confirmKey=\"3\"><Number sendDigits=\"wwww2410\">18217654321</Number><User sendDigits=\"wwww2410\">sip:john1234@phone.plivo.com</User></Dial><Dial timeout=\"20\" action=\"http://oo.com/dial_action/\"><Number>18217654321</Number></Dial><Dial><Number>15671234567</Number></Dial><DTMF>12345</DTMF><GetDigits action=\"http://www.foo.com/gather_pin/\" method=\"POST\"><Speak>Enter PIN number.</Speak></GetDigits><GetInput action=\"http://www.foo.com/gather_feedback/\" method=\"POST\"><Speak>Tell us more about your experience.</Speak></GetInput><Speak>Input not recieved.</Speak><Hangup schedule=\"60\" reason=\"rejected\"/><Speak loop=\"0\">Call will hangup after a min.</Speak><Message src=\"12023222222\" dst=\"15671234567\" type=\"sms\" callbackUrl=\"http://foo.com/sms_status/\" callbackMethod=\"POST\">Hi, message from Plivo.</Message><Play>https://amazonaws.com/Trumpet.mp3</Play><PreAnswer><Speak>This call will cost $2 a min.</Speak></PreAnswer><Speak>Thanks for dropping by.</Speak><Record action=\"http://foo.com/get_recording/\" startOnDialAnswer=\"true\" redirect=\"false\"/><Dial><Number>15551234567</Number></Dial><Speak>Leave message after the beep.</Speak><Record action=\"http://foo.com/get_recording/\" maxLength=\"30\" finishOnKey=\"*\"/><Speak>Recording not received.</Speak><Speak>Your call is being transferred.</Speak><Redirect>http://foo.com/redirect/</Redirect><Speak loop=\"3\">Go green, go plivo.</Speak><Speak>I will wait 7 seconds starting now!</Speak><Wait length=\"7\"/><Speak>I just waited 7 seconds.</Speak><Wait length=\"120\" beep=\"true\"/><Play>https://s3.amazonaws.com/abc.mp3</Play><Wait length=\"10\"/><Speak>Hello</Speak><Wait length=\"10\" silence=\"true\" minSilence=\"3000\"/><Speak>Hello, welcome to the Jungle.</Speak></Response>\n",
             $output);
     }
 }
