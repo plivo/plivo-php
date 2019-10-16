@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.3.5](https://github.com/plivo/plivo-php/releases/tag/v4.3.5) - 2019-10-316
+- Fix Undefined index for invalid_number: Bulk SMS
+
 ## [v4.3.4](https://github.com/plivo/plivo-php/releases/tag/v4.3.4) - 2019-07-31
 - Add logic to handle invalid numbers for bulk SMS
 
