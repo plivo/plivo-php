@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Response>
+<Speak language="en-US" voice="Polly.Joanna">The word <say-as interpret-as="characters">read</say-as> may be interpreted as either the present simple form <w role="amazon:VB">read</w> , or the past participle form <w role="amazon:VBD">read</w></Speak>
+</Response>

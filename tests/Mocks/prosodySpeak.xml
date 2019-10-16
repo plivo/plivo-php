@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Response>
+<Speak language="en-US" voice="Polly.Joanna">Although in some cases, it might help your audience to <prosody volume="loud" rate="medium" pitch="high">slow the speaking rate slightly to aid in comprehension.</prosody></Speak>
+</Response>
