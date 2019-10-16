@@ -25,7 +25,8 @@ class GetInput extends Element {
         'interimSpeechResultsCallback',
         'interimSpeechResultsCallbackMethod',
         'log',
-        'redirect'
+        'redirect',
+        'profanityFilter'
     ];
 
     /**
