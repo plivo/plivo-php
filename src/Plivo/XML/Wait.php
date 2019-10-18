@@ -10,7 +10,7 @@ namespace Plivo\XML;
 class Wait extends Element {
     protected $nestables = [];
 
-    protected $valid_attributes = ['length', 'silence', 'min_silence', 'minSilence', 'beep'];
+    protected $valid_attributes = ['length', 'silence', 'minSilence', 'beep'];
 
     /**
      * Wait constructor.
