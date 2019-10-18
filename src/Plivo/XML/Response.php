@@ -12,6 +12,7 @@ class Response extends Element {
         'Speak',
         'Play',
         'GetDigits',
+        'GetInput',
         'Record',
         'Dial',
         'Redirect',
