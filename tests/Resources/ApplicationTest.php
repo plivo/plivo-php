@@ -19,13 +19,19 @@ class ApplicationTest extends BaseTestCase
             'POST',
             'Account/MAXXXXXXXXXXXXXXXXXX/Application/',
             [
-                'app_name' => 'app'
+                'app_name' => 'app',
+                'answer_url' => 'http://answer.url',
+                'answer_method' => 'POST'
             ]);
         $body = file_get_contents(__DIR__ . '/../Mocks/applicationCreateResponse.json');
 
         $this->mock(new PlivoResponse($request,201, $body));
 
-        $actual = $this->client->applications->create('app');
+        $actual = $this->client->applications->create('app',
+        [
+            'answer_url' => 'http://answer.url',
+            'answer_method' => 'POST'
+	    ]);
 
         $this->assertRequest($request);
 

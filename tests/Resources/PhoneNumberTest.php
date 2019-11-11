@@ -33,6 +33,7 @@ class PhoneNumberTest extends BaseTestCase
     function testPhoneNumberCreate()
     {
         $number = 'sadasdasd';
+        $appId = '123123123123';
         $request = new PlivoRequest(
             'POST',
             'Account/MAXXXXXXXXXXXXXXXXXX/PhoneNumber/' . $number . '/',

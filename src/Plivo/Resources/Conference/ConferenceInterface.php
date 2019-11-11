@@ -91,6 +91,11 @@ class ConferenceInterface extends ResourceInterface
      */
     public function delete($conferenceName)
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
         $response = $this->client->delete(
             $this->uri . $conferenceName . '/',
             []
@@ -119,6 +124,18 @@ class ConferenceInterface extends ResourceInterface
      */
     public function hangUpMember($conferenceName, $memberId)
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
+        if (empty($memberId)) {
+            throw
+            new PlivoValidationException(
+                'member_id is mandatory');
+        }
+
         $response = $this->client->delete(
             $this->uri . $conferenceName . '/Member/' . $memberId . '/',
             []
@@ -134,6 +151,18 @@ class ConferenceInterface extends ResourceInterface
      */
     public function kickMember($conferenceName, $memberId)
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
+        if (empty($memberId)) {
+            throw
+            new PlivoValidationException(
+                'member_id is mandatory');
+        }
+
         $response = $this->client->update(
             $this->uri .
             $conferenceName .
@@ -172,6 +201,18 @@ class ConferenceInterface extends ResourceInterface
      */
     public function muteMember($conferenceName, array $memberId)
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
+        if (empty($memberId)) {
+            throw
+            new PlivoValidationException(
+                'member_id is mandatory');
+        }
+
         $response = $this->client->update(
             $this->uri .
             $conferenceName .
@@ -208,6 +249,18 @@ class ConferenceInterface extends ResourceInterface
      */
     public function unMuteMember($conferenceName, array $memberId)
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
+        if (empty($memberId)) {
+            throw
+            new PlivoValidationException(
+                'member_id is mandatory');
+        }
+
         $response = $this->client->delete(
             $this->uri .
             $conferenceName .
@@ -228,6 +281,23 @@ class ConferenceInterface extends ResourceInterface
      */
     public function startPlaying($conferenceName, array $memberId, $url)
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
+        if (empty($memberId)) {
+            throw
+            new PlivoValidationException(
+                'member_id is mandatory');
+        }
+        
+        if (empty($url)) {
+            throw new PlivoValidationException(
+                "url parameter is mandatory");
+        }
+
         $response = $this->client->update(
             $this->uri .
             $conferenceName .
@@ -264,6 +334,18 @@ class ConferenceInterface extends ResourceInterface
      */
     public function stopPlaying($conferenceName, array $memberId)
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
+        if (empty($memberId)) {
+            throw
+            new PlivoValidationException(
+                'member_id is mandatory');
+        }
+
         $response = $this->client->delete(
             $this->uri .
             $conferenceName .
@@ -288,6 +370,24 @@ class ConferenceInterface extends ResourceInterface
      */
     public function startSpeaking($conferenceName, array $memberId, $text, array $optionalArgs = [])
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
+        if (empty($memberId)) {
+            throw
+            new PlivoValidationException(
+                'member_id is mandatory');
+        }
+
+        if (empty($text)) {
+            throw
+            new PlivoValidationException(
+                'text is mandatory');
+        }
+
         $response = $this->client->update(
             $this->uri .
             $conferenceName .
@@ -323,6 +423,18 @@ class ConferenceInterface extends ResourceInterface
      */
     public function stopSpeaking($conferenceName, array $memberId)
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
+        if (empty($memberId)) {
+            throw
+            new PlivoValidationException(
+                'member_id is mandatory');
+        }
+
         $response = $this->client->delete(
             $this->uri .
             $conferenceName .
@@ -342,6 +454,18 @@ class ConferenceInterface extends ResourceInterface
      */
     public function makeDeaf($conferenceName, array $memberId)
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
+        if (empty($memberId)) {
+            throw
+            new PlivoValidationException(
+                'member_id is mandatory');
+        }
+
         $response = $this->client->update(
             $this->uri .
             $conferenceName .
@@ -377,6 +501,18 @@ class ConferenceInterface extends ResourceInterface
      */
     public function enableHearing($conferenceName, array $memberId)
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
+        if (empty($memberId)) {
+            throw
+            new PlivoValidationException(
+                'member_id is mandatory');
+        }
+
         $response = $this->client->delete(
             $this->uri .
             $conferenceName .
@@ -414,6 +550,11 @@ class ConferenceInterface extends ResourceInterface
      */
     public function startRecording($conferenceName, $optionalArgs = [])
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
         $response = $this->client->update(
             $this->uri .
             $conferenceName .
@@ -451,6 +592,12 @@ class ConferenceInterface extends ResourceInterface
      */
     public function stopRecording($conferenceName)
     {
+        if (empty($conferenceName)) {
+            throw
+            new PlivoValidationException(
+                'conference_name is mandatory');
+        }
+
         $response = $this->client->delete(
             $this->uri .
             $conferenceName .
