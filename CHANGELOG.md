@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.3.7](https://github.com/plivo/plivo-php/releases/tag/v4.3.7) - 2019-11-13
+- Add GetInput XML support
+
 ## [v4.3.6](https://github.com/plivo/plivo-php/releases/tag/v4.3.6) - 2019-10-16
 - Add SSML support
 
