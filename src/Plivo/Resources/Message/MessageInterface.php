@@ -118,10 +118,8 @@ class MessageInterface extends ResourceInterface
     /**
      * Send a message
      *
-     * @param string $src
-     * @param array $dst
-     * @param string $text
-     * @param array $optionalArgs
+     * @param string/array $dst
+     * @param array $args
      *   + Valid arguments
      *   + [string] :type - The type of message. Should be `sms` for a text message. Defaults to `sms`.
      *   + [string] :url - The URL to which with the status of the message is sent. The following parameters are sent to the URL:
@@ -143,26 +141,32 @@ class MessageInterface extends ResourceInterface
      * @throws PlivoValidationException,PlivoResponseException
      */
 
-    public function create($src, array $dst, $text,
-                           array $optionalArgs = [], $powerpackUUID = null)
+    public function create($dst, array $args = [])
     {
-        $mandatoryArgs = [
-            'dst' => implode('<', $dst),
-            'text' => $text
+        if (gettype($dst) == 'string') {
+            $dst = explode('<', $dst);
+        } 
+        $dest = [
+            'dst' => implode('<', $dst)
         ];
 
-        if (ArrayOperations::checkNull($mandatoryArgs)) {
+        if (ArrayOperations::checkNull($dest)) {
             throw new PlivoValidationException(
-                "Mandatory parameters cannot be null");
+                "Destination cannot be null");
         }
 
-        if (is_null($src) &&  is_null($powerpackUUID)) {
+        if (is_null($args['text'])) {
+            throw new PlivoValidationException(
+                "Message Body cannot be null");
+        }
+
+        if (is_null($args['src']) &&  is_null($args['powerpack_uuid'])) {
             throw new PlivoValidationException(
                 "Specify either powerpack_uuid or src in request params to send a message."
             );
         }
 
-        if (!is_null($src) && !is_null($powerpackUUID)) {
+        if (!is_null($args['src']) && !is_null($args['powerpack_uuid'])) {
             throw new PlivoValidationException(
                 "Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message."
             );
@@ -170,7 +174,7 @@ class MessageInterface extends ResourceInterface
 
         $response = $this->client->update(
             $this->uri,
-            array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID])
+            array_merge($dest, $args)
         );
 
         $responseContents = $response->getContent();
