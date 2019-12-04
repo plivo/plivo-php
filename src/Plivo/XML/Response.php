@@ -12,6 +12,7 @@ class Response extends Element {
         'Speak',
         'Play',
         'GetDigits',
+        'GetInput',
         'Record',
         'Dial',
         'Redirect',
@@ -35,7 +36,7 @@ class Response extends Element {
      * @return mixed
      */
     public function toXML($header = false) {
-        $xml = parent::toXML(true);
+        $xml = parent::toXML($header);
         return $xml;
     }
 }

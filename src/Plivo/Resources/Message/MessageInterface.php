@@ -179,13 +179,24 @@ class MessageInterface extends ResourceInterface
         $responseContents = $response->getContent();
         
         if(!array_key_exists("error",$responseContents)){
-            return new MessageCreateResponse(
-                $responseContents['message'],
-                $responseContents['message_uuid'],
-                $responseContents['api_id'],
-                $response->getStatusCode(),
-                $responseContents['invalid_number']
-            );
+            if(array_key_exists("invalid_number", $responseContents)){
+                return new MessageCreateResponse(
+                    $responseContents['message'],
+                    $responseContents['message_uuid'],
+                    $responseContents['api_id'],
+                    $response->getStatusCode(),
+                    $responseContents['invalid_number']
+                );
+            }
+            else{
+                return new MessageCreateResponse(
+                    $responseContents['message'],
+                    $responseContents['message_uuid'],
+                    $responseContents['api_id'],
+                    $response->getStatusCode(),
+                    []
+                );
+            }
         } else {
             throw new PlivoResponseException(
                 $responseContents['error'],

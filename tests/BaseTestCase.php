@@ -5,6 +5,7 @@ namespace Plivo\Tests;
 
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Runner\Version;
 use Plivo\Authentication\BasicAuth;
 use Plivo\RestClient;
 use Plivo\BaseClient;
@@ -28,7 +29,7 @@ class BaseTestCase extends TestCase
     /**
      *
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->client = new RestClient("MAXXXXXXXXXXXXXXXXXX", "AbcdEfghIjklMnop1234");
         $this->testClient = new TestClient(null,
@@ -57,7 +58,7 @@ class BaseTestCase extends TestCase
      */
     public function expectPlivoException($exception)
     {
-        if (version_compare(phpversion(), '7.0.0', '<')) {
+        if (version_compare(Version::id(), '7.0.0', '<')) {
             self::setExpectedException($exception);
         } else {
             self::expectException($exception);
