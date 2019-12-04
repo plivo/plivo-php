@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.3.8](https://github.com/plivo/plivo-php/releases/tag/v4.3.8) - 2019-12-04
+- Add MMS support
+
 ## [v4.3.7](https://github.com/plivo/plivo-php/releases/tag/v4.3.7) - 2019-11-13
 - Add GetInput XML support
 

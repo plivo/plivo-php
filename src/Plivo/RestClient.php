@@ -39,6 +39,11 @@ class RestClient
     public $client;
 
     /**
+     * @var MessageClient
+     */
+    public $msgClient;
+
+    /**
      * @var AccountInterface
      */
     protected $_account;
@@ -107,6 +112,7 @@ class RestClient
     {
         $this->client = new BaseClient(
             $authId, $authToken, $proxyHost, $proxyPort, $proxyUsername, $proxyPassword);
+        $this->msgClient = new MessageClient($authId, $authToken, $proxyHost, $proxyPort, $proxyUsername, $proxyPassword);
     }
 
     /**
@@ -141,7 +147,7 @@ class RestClient
     protected function getMessages()
     {
         if (!$this->_message) {
-            $this->_message = new MessageInterface($this->client, $this->client->getAuthId());
+            $this->_message = new MessageInterface($this->msgClient, $this->msgClient->getAuthId());
         }
         return $this->_message;
     }

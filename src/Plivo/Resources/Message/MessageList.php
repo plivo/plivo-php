@@ -3,7 +3,7 @@
 namespace Plivo\Resources\Message;
 
 
-use Plivo\BaseClient;
+use Plivo\MessageClient;
 use Plivo\Resources\ResourceList;
 
 /**
@@ -15,11 +15,11 @@ class MessageList extends ResourceList
 
     /**
      * MessageList constructor.
-     * @param BaseClient $plivoClient
+     * @param MessageClient $plivoClient
      * @param $meta
      * @param array $resources
      */
-    function __construct(BaseClient $plivoClient, $meta, array $resources)
+    function __construct(MessageClient $plivoClient, $meta, array $resources)
     {
         parent::__construct($plivoClient, $meta, $resources);
     }
