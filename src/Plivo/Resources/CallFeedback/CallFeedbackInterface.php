@@ -17,7 +17,7 @@ use Plivo\Util\ArrayOperations;
  */
 class CallFeedbackInterface extends ResourceInterface
 {
-    const CALLINSIGHTS_BASE_URL = "http://localhost:5000";
+    const CALLINSIGHTS_BASE_URL = "https://stats.plivo.com";
     const CALLINSIGHTS_API_VERSION = "v1";
     /**
      * CallFeedbackInterface constructor.
