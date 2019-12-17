@@ -72,12 +72,4 @@ class Message extends Resource
        );
    }
 
-   public function getMedia($media_id){
-       $response = $this->client->fetch(
-           $this->uri . $this->id .'/Media/'.$media_id.'/',
-           []
-        );
-       return $response->getContent();
-   }
-
 }
