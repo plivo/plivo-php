@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.3.9](https://github.com/plivo/plivo-php/releases/tag/v4.3.9) - 2019-12-20
+- Add Powerpack support
+
 ## [v4.3.8](https://github.com/plivo/plivo-php/releases/tag/v4.3.8) - 2019-12-04
 - Add MMS support
 
