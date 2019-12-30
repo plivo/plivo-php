@@ -55,8 +55,8 @@ class MessageInterface extends ResourceInterface
             $this->pathParams['authId'], $this->uri);
     }
 
-    
-    
+
+
 
     /**
      * Return a list of messages
@@ -147,7 +147,7 @@ class MessageInterface extends ResourceInterface
      * @throws PlivoValidationException,PlivoResponseException
      */
 
-    public function create($src, array $dst, $text=null,
+    public function create($src, array $dst, $text,
                            array $optionalArgs = [], $powerpackUUID = null)
     {
         $mandatoryArgs = [
@@ -173,11 +173,11 @@ class MessageInterface extends ResourceInterface
 
         $response = $this->client->update(
             $this->uri,
-            array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID])
+            array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID, 'text' => $text])
         );
 
         $responseContents = $response->getContent();
-        
+
         if(!array_key_exists("error",$responseContents)){
             if(array_key_exists("invalid_number", $responseContents)){
                 return new MessageCreateResponse(
