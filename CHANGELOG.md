@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.4.0](https://github.com/plivo/plivo-php/releases/tag/v4.4.0) - 2020-01-06
+- Fix Send SMS API exception
+
 ## [v4.3.9](https://github.com/plivo/plivo-php/releases/tag/v4.3.9) - 2019-12-20
 - Add Powerpack support
 
