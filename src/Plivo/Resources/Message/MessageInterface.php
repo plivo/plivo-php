@@ -143,6 +143,7 @@ class MessageInterface extends ResourceInterface
      *   + [string] :method - The method used to call the url. Defaults to POST.
      *   + [string] :log - If set to false, the content of this message will not be logged on the Plivo infrastructure and the dst value will be masked (e.g., 141XXXXX528). Default is set to true.
      * [list] : media_urls - If your sending mms message, you can specify the media urls like ['https://yourmedia_urls/test.jpg','https://test.com/test.gif']
+     * [List]: media_ids Minimum one media ids should be present in Media ids list to send mms. Maximum allowd 10 media ids inside the list (e.g, media_ids : ['1fs211ba-355b-11ea-bbc9-02121c1190q7'])
      * @return MessageCreateResponse output
      * @throws PlivoValidationException,PlivoResponseException
      */
