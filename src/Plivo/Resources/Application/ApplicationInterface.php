@@ -143,13 +143,17 @@ class ApplicationInterface extends ResourceInterface
     /**
      * Delete an application
      * @param string $appId
+     * @param string|null $cascade Specify if endpoints associated with this app be deleted or not. Takes a value of True or False.
      * @return ResponseDelete
      */
-    public function delete($appId)
+    public function delete($appId, $cascade = null)
     {
+        $data = [
+            'cascade' => $cascade
+        ];
         $response = $this->client->delete(
             $this->uri . $appId . '/',
-            []
+            $data
         );
 
         return new ResponseDelete($response->getStatusCode());
