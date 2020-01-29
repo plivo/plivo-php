@@ -1,0 +1,18 @@
+{
+    "api_id": "cd5fde12-d229-11e9-b61e-0242ac110007",
+    "meta": {
+        "limit": 20,
+        "next": "",
+        "offset": 0,
+        "previous": "",
+        "total_count": 1
+    },
+    "objects": [
+        {
+            "added_on": "2019-09-03T08:50:09.578928Z",
+            "country_iso2": "CA",
+            "number_pool_uuid": "659c7f88-c819-46e2-8af4-2d8a84249099",
+            "shortcode": "444444"
+        }
+    ]
+}

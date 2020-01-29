@@ -9,6 +9,7 @@ use Plivo\Resources\Call\CallInterface;
 use Plivo\Resources\Conference\ConferenceInterface;
 use Plivo\Resources\Endpoint\EndpointInterface;
 use Plivo\Resources\Message\MessageInterface;
+use Plivo\Resources\Powerpack\PowerpackInterface;
 use Plivo\Resources\Number\NumberInterface;
 use Plivo\Resources\PhoneNumber\PhoneNumberInterface;
 use Plivo\Resources\Pricing\PricingInterface;
@@ -25,6 +26,7 @@ use Plivo\Resources\CallFeedback\CallFeedbackInterface;
  * @property ApplicationInterface application Interface to handle all Application related api calls
  * @property AccountInterface account Interface to handle all Account related api calls
  * @property MessageInterface message Interface to handle all Message related api calls
+ * @property PowerpackInterface powerpack Interface to handle all Powerpack related api calls
  * @property EndpointInterface endpoint Interface to handle all Endpoint related api calls
  * @property NumberInterface number Interface to handle all Number related api calls
  * @property PhoneNumberInterface phoneNumber Interface to handle all PhoneNumber related api calls
@@ -41,6 +43,11 @@ class RestClient
     public $client;
 
     /**
+     * @var MessageClient
+     */
+    public $msgClient;
+
+    /**
      * @var AccountInterface
      */
     protected $_account;
@@ -48,6 +55,11 @@ class RestClient
      * @var MessageInterface
      */
     protected $_message;
+
+    /**
+     * @var PowerpackInterface
+     */
+    protected $_powerpack;
     /**
      * @var ApplicationInterface
      */
@@ -114,6 +126,7 @@ class RestClient
     {
         $this->client = new BaseClient(
             $authId, $authToken, $proxyHost, $proxyPort, $proxyUsername, $proxyPassword);
+        $this->msgClient = new MessageClient($authId, $authToken, $proxyHost, $proxyPort, $proxyUsername, $proxyPassword);
     }
 
     /**
@@ -148,9 +161,20 @@ class RestClient
     protected function getMessages()
     {
         if (!$this->_message) {
-            $this->_message = new MessageInterface($this->client, $this->client->getAuthId());
+            $this->_message = new MessageInterface($this->msgClient, $this->msgClient->getAuthId());
         }
         return $this->_message;
+    }
+
+    /**
+     * @return PowerpackInterface
+     */
+    protected function getPowerpacks()
+    {
+        if (!$this->_powerpack) {
+            $this->_powerpack = new PowerpackInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_powerpack;
     }
 
     /**
