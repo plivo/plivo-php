@@ -19,26 +19,25 @@ class MediaInterface extends ResourceInterface
      * @param BaseClient $plivoClient The Plivo api REST client
      * @param string $authId The authentication token
      */
-    public function __construct(BaseClient $plivoClient, $mediaUri)
+    public function __construct(BaseClient $plivoClient, $authId)
     {
         parent::__construct($plivoClient);
 
         $this->pathParams = [
             'authId' => $authId
         ];
-
-        $this->uri = $mediaUri . "Media/";
+        $this->uri = "Account/".$authId."/Media/";
     }
 
     /**
      * You can call this method to retrieve all your media
      * @return Array
      */
-    public function list()
+    public function list($optionalArgs = [])
     {
         $response = $this->client->fetch(
             $this->uri,
-            []
+            $optionalArgs
         );
 
         return json_encode($response->getContent(), JSON_FORCE_OBJECT);
@@ -63,11 +62,11 @@ class MediaInterface extends ResourceInterface
      * You can call this method to add an media
      * @return Array
      */
-    public function upload($params) 
+    public function upload($optionalArgs = []) 
     {
         $response = $this->client->update(
             $this->uri,
-            $params
+            $optionalArgs
         );
 
         return json_encode($response->getContent(), JSON_FORCE_OBJECT);
