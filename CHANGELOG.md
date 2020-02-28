@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.4.1](https://github.com/plivo/plivo-php/releases/tag/v4.4.1) - 2020-02-28
+- Add Media support.
+
 ## [v4.4.0](https://github.com/plivo/plivo-php/releases/tag/v4.4.0) - 2020-01-06
 - Fix Send SMS API exception
 
