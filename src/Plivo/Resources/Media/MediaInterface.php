@@ -64,12 +64,29 @@ class MediaInterface extends ResourceInterface
      */
     public function upload($optionalArgs = []) 
     {
+        $files = array();
+        foreach ($optionalArgs as $path ) {
+            $files[] = [
+                'name' => 'file',
+                'contents' => file_get_contents($path),
+                'filename' => basename($path)
+            ];
+        };
+         $data = [
+            'multipart' => $files
+            ];
+        try {
         $response = $this->client->update(
-            $this->uri,
-            $optionalArgs
-        );
-
+                    $this->uri,
+                    $data
+                );
         return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        }
+
+        //catch exception
+        catch(Exception $e) {
+        echo 'Message: ' .$e->getMessage();
+        }
     }
 
     
