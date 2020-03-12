@@ -204,7 +204,7 @@ class BaseClient
      */
     public function update($uri, $params)
     {
-        $url = none;
+        $url = NULL;
         $isCallInsightsRequest = FALSE;
         if (array_key_exists("isCallInsightsRequest", $params)) {
             $isCallInsightsRequest = TRUE;

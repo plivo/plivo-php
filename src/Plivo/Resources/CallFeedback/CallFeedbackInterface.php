@@ -32,6 +32,21 @@ class CallFeedbackInterface extends ResourceInterface
 
     public function create($callUUID, $rating, $issues=[], $notes="")
     {
+        if ($callUUID == "") {
+            throw new PlivoValidationException(
+                "callUUID cannot be empty");
+        }
+        
+        if (is_int($rating) != 1 and is_double($rating) != 1) {
+            throw new PlivoValidationException(
+                "Rating has to be a float between 1 - 5");
+        }
+
+        if ($rating < 1 or $rating > 5) {
+            throw new PlivoValidationException(
+                "Rating has to be a float between 1 - 5");
+        }
+
         $mandatoryArgs = [
             'callUUID' => $callUUID,
             'rating' => $rating
