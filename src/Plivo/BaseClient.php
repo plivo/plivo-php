@@ -138,19 +138,11 @@ class BaseClient
     public function prepareRequestMessage(PlivoRequest $request, $fullUrl = null)
     {
         $url = $fullUrl ? $fullUrl : self::BASE_API_URL . $request->getUrl();
-
-        $requestBody = json_encode($request->getParams(), JSON_FORCE_OBJECT);
-
-        if (array_key_exists("isCallInsightsRequest", $request->getParams())) {
-            unset($request->getParams()['isCallInsightsRequest']);
-            $requestBody = json_encode($request->getParams());
-        }
-        
         return [
             $url,
             $request->getMethod(),
             $request->getHeaders(),
-            $requestBody,
+            $request->getParams(),
         ];
     }
 
@@ -218,6 +210,7 @@ class BaseClient
         if ($isCallInsightsRequest) {
             return $this->sendRequest($request, $url);
         }
+
         return $this->sendRequest($request);
     }
 

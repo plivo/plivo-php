@@ -79,7 +79,7 @@ class CallFeedbackInterface extends ResourceInterface
         print_r($responseContents);
         if(!array_key_exists("error",$responseContents)){
             return new CallFeedbackCreateResponse(
-                none,
+                'none',
                 $responseContents['message'],
                 $response->getStatusCode()
             );

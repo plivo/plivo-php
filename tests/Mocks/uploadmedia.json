@@ -1,0 +1,13 @@
+{
+    "api_id": "9ed21aec-4bfa-11ea-a8ea-0242ac110010",
+    "objects": [{
+        "content_type": "image/jpeg",
+        "file_name": "jpeg.jpeg",
+        "media_id": "31e7de16-de14-4009-b31f-9c9653c5f319",
+        "size": 931524,
+        "status": "success",
+        "status_code": 201,
+        "upload_time": "2020-02-10T07:57:47.007081Z",
+        "url": "https://xxxx/Media/31e7de16-de14-4009-b31f-9c9653c5f319"
+    }]
+}
