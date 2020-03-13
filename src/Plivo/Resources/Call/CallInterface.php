@@ -698,7 +698,7 @@ class CallInterface extends ResourceInterface
                 "Which call to send digits in? No callUuid given");
         }
 
-        if (empty($digits)) {
+        if (empty($digits) && $digits !== '0') {
             throw new PlivoValidationException(
                 "digits cannot be null");
         }
