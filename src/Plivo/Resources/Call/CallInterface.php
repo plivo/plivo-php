@@ -633,7 +633,9 @@ class CallInterface extends ResourceInterface
                 "Which call to speak in? No callUuid given");
         }
 
-        if (empty($text)) {
+        if (empty($text) &&
+            ((isset($text) && $text !== '0') ||
+             (!isset($text)))) {
             throw new PlivoValidationException(
                 "text cannot be null");
         }
