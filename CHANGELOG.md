@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.4.2](https://github.com/plivo/plivo-php/releases/tag/v4.4.2) - 2020-03-16
+- Fix DTMF and Speak functions treating '0' as null
+
 ## [v4.4.1](https://github.com/plivo/plivo-php/releases/tag/v4.4.1) - 2020-02-28
 - Add Media support.
 
