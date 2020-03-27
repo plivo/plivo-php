@@ -10,6 +10,7 @@ use Plivo\Resources\Conference\ConferenceInterface;
 use Plivo\Resources\Endpoint\EndpointInterface;
 use Plivo\Resources\Message\MessageInterface;
 use Plivo\Resources\Powerpack\PowerpackInterface;
+use Plivo\Resources\Media\MediaInterface;
 use Plivo\Resources\Number\NumberInterface;
 use Plivo\Resources\PhoneNumber\PhoneNumberInterface;
 use Plivo\Resources\Pricing\PricingInterface;
@@ -26,6 +27,7 @@ use Plivo\Resources\SubAccount\SubAccountInterface;
  * @property AccountInterface account Interface to handle all Account related api calls
  * @property MessageInterface message Interface to handle all Message related api calls
  * @property PowerpackInterface powerpack Interface to handle all Powerpack related api calls
+ * @property MediaInterface media Interface to handle all upload mms media api 
  * @property EndpointInterface endpoint Interface to handle all Endpoint related api calls
  * @property NumberInterface number Interface to handle all Number related api calls
  * @property PhoneNumberInterface phoneNumber Interface to handle all PhoneNumber related api calls
@@ -58,6 +60,12 @@ class RestClient
      * @var PowerpackInterface
      */
     protected $_powerpack;
+
+     /**
+     * @var MediaInterface
+     */
+    protected $_media;
+
     /**
      * @var ApplicationInterface
      */
@@ -168,6 +176,17 @@ class RestClient
             $this->_powerpack = new PowerpackInterface($this->client, $this->client->getAuthId());
         }
         return $this->_powerpack;
+    }
+
+    /**
+     * @return MediaInterface
+     */
+    protected function getMedia()
+    {
+        if (!$this->_media) {
+            $this->_media = new MediaInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_media;
     }
 
     /**
