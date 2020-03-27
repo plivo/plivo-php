@@ -102,6 +102,10 @@ class PlivoGuzzleHttpClient implements PlivoHttpClientInterface
         $request->setHeaders($headers);
         $options =[];
         $requestBody = json_encode($request->getParams(), JSON_FORCE_OBJECT);
+        if (array_key_exists("isCallInsightsRequest", $request->getParams())) {
+            unset($request->getParams()['isCallInsightsRequest']);
+            $requestBody = json_encode($request->getParams());
+        }
         if(isset($body['multipart'])){
             unset($headers['Content-type']);
             $options = [
