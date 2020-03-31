@@ -28,10 +28,16 @@ class NumberPool
      */
     public $shortcodes;
 
+    /**
+     * @var tollfree object
+     */
+    public $tollfree;
+
     public function __construct($client = null, $url)
     {
         $this->client = $client;
         $this->shortcodes = new Shortcode($this->client, $url);
         $this->numbers = new Numbers($this->client, $url);
+        $this->tollfree = new Tollfree($this->client, $url);
     }
 }

@@ -10,14 +10,14 @@ use Plivo\Exceptions\PlivoNotFoundException;
 
 
 /**
- * Class Shortcode
+ * Class Tollfree
  * @package Plivo\Resources\Powerpack
  * @property bool $added_on
  * @property bool $country_iso2
- * @property string $shortcode
+ * @property string $tollfree
  * @property string $number_pool_uuid
  */
-class Shortcode
+class Tollfree
 {
     /**
      * Message constructor.
@@ -43,42 +43,62 @@ class Shortcode
 
      /**
      * 
-     * @return Shortcode
+     * @return Tollfree
      */
     public function get()
     {
-        return new Shortcode($this->client, $this->$uri);
+        return new Tollfree($this->client, $this->$uri);
     }
 
     public function list($optionalArgs = []){
         $response = $this->client->fetch(
-        $this->uri . '/Shortcode/' ,
+        $this->uri . '/Tollfree/' ,
         $optionalArgs
         );
         return $response->getContent();
     }
     
-    public function find($shortcode){
-        if (ArrayOperations::checkNull([$shortcode])) {
+    public function find($tollfree){
+        if (ArrayOperations::checkNull([$tollfree])) {
             throw
             new PlivoValidationException(
-                'shortcode is mandatory');
+                'tollfree is mandatory');
         }
         $response = $this->client->fetch(
-            $this->uri . '/Shortcode/' . $shortcode . '/', []
+            $this->uri . '/Tollfree/' . $tollfree . '/', []
         );
         return $response->getContent();
     }
 
-    public function remove( $shortcode, $optionalArgs = [])
+    /**
+     * Add tollfree
+     * @param string tollfree
+     * @return Response
+     */
+    public function add( $tollfree)
     {
-        if (ArrayOperations::checkNull([$shortcode])) {
+       if (ArrayOperations::checkNull([$tollfree])) {
             throw
             new PlivoValidationException(
-                'shortcode is mandatory');
+                'tollfree is mandatory');
+        } 
+       $response = $this->client->update(
+            $this->uri . '/Tollfree/' . $tollfree . '/',
+            [] 
+        );
+        return $response->getContent();
+    
+    }
+
+    public function remove( $tollfree, $optionalArgs = [])
+    {
+        if (ArrayOperations::checkNull([$tollfree])) {
+            throw
+            new PlivoValidationException(
+                'tollfree is mandatory');
         }
         $response = $this->client->delete(
-            $this->uri . '/Shortcode/' . $shortcode . '/',
+            $this->uri . '/Tollfree/' . $tollfree . '/',
             $optionalArgs  
         );
         return $response->getContent();

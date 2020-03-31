@@ -120,6 +120,32 @@ class Powerpack extends Resource
      * 
      * @throws PlivoValidationException
      */
+    public function find_tollfree($tollfree)
+    {
+        if (ArrayOperations::checkNull([$this->id])) {
+            throw
+            new PlivoValidationException(
+                'powerpack uuid is mandatory');
+        }
+        if (ArrayOperations::checkNull([$tollfree])) {
+            throw
+            new PlivoValidationException(
+                'tollfree is mandatory');
+        }
+    
+        $response = $this->client->fetch(
+            $this->url . '/Tollfree/' . $tollfree . '/', []
+        );
+        return $response->getContent();   
+        
+    }
+
+    /**
+     * @param $number
+     * @return Powerpack
+     * 
+     * @throws PlivoValidationException
+     */
     public function find_number( $number)
     {
         if (ArrayOperations::checkNull([$this->id])) {
@@ -179,6 +205,46 @@ class Powerpack extends Resource
 
     }
 
+    /**
+     * Remove an tollfree
+     * @param bool unrent
+     * @return ResponseDelete
+     */
+    public function remove_tollfree( $tollfree, $optionalArgs = [])
+    {
+        if (ArrayOperations::checkNull([$tollfree])) {
+            throw
+            new PlivoValidationException(
+                'tollfree is mandatory');
+        }
+        $response = $this->client->delete(
+            $this->url . '/Tollfree/' . $tollfree . '/',
+            $optionalArgs  
+        );
+        return $response->getContent();
+
+    }
+
+    /**
+     * Remove an shortcode
+     * @param bool unrent
+     * @return ResponseDelete
+     */
+    public function remove_shortcode( $shortcode, $optionalArgs = [])
+    {
+        if (ArrayOperations::checkNull([$shortcode])) {
+            throw
+            new PlivoValidationException(
+                'shortcode is mandatory');
+        }
+        $response = $this->client->delete(
+            $this->url . '/Shortcode/' . $shortcode . '/',
+            $optionalArgs  
+        );
+        return $response->getContent();
+
+    }
+
 
     /**
      * Add an number
@@ -198,6 +264,25 @@ class Powerpack extends Resource
         );
         return $response->getContent();
     
+    }
+
+    /**
+     * Add a tollfree
+     * @param string number
+     * @return Response
+     */
+    public function add_tollfree( $tollfree)
+    {
+       if (ArrayOperations::checkNull([$tollfree])) {
+            throw
+            new PlivoValidationException(
+                'tollfree is mandatory');
+        } 
+       $response = $this->client->update(
+            $this->url . '/Tollfree/' . $tollfree . '/',
+            [] 
+        );
+        return $response->getContent();
     }
 
     /**
@@ -246,6 +331,28 @@ class Powerpack extends Resource
         
         $response = $this->client->fetch(
             $this->url . '/Shortcode/' ,
+          $optionalArgs
+        );
+        return $response->getContent();
+    }
+
+    /**
+     * Return a list of tollfree
+     * @param array $optionalArgs
+    *  + [int] limit - 
+    *   + [int] offset - 
+     * @return ResourceList output
+     */
+    public function list_tollfree( $optionalArgs = [])
+    {
+        if (ArrayOperations::checkNull([$this->id])) {
+            throw
+            new PlivoValidationException(
+                'powerpack uuid is mandatory');
+        }
+        
+        $response = $this->client->fetch(
+            $this->url . '/Tollfree/' ,
           $optionalArgs
         );
         return $response->getContent();

@@ -16,6 +16,7 @@ use Plivo\Resources\PhoneNumber\PhoneNumberInterface;
 use Plivo\Resources\Pricing\PricingInterface;
 use Plivo\Resources\Recording\RecordingInterface;
 use Plivo\Resources\SubAccount\SubAccountInterface;
+use Plivo\Resources\CallFeedback\CallFeedbackInterface;
 
 /**
  * Class RestClient
@@ -33,6 +34,7 @@ use Plivo\Resources\SubAccount\SubAccountInterface;
  * @property PhoneNumberInterface phoneNumber Interface to handle all PhoneNumber related api calls
  * @property PricingInterface pricing Interface to handle all Pricing related api calls
  * @property RecordingInterface recording Interface to handle all Recording related api calls
+ * @property CallFeedbackInterface callfeedback Interface to handle user feedback for calls
  *
  */
 class RestClient
@@ -107,6 +109,11 @@ class RestClient
      * @var RecordingInterface
      */
     protected $_recording;
+
+    /**
+     * @var CallFeedbackInterface
+     */
+    protected $_callFeedback;
 
     /**
      * RestClient constructor.
@@ -286,5 +293,16 @@ class RestClient
             $this->_recording = new RecordingInterface($this->client, $this->client->getAuthId());
         }
         return $this->_recording;
+    }
+
+    /**
+     * @return CallFeedbackInterface
+     */
+    protected function getCallFeedback()
+    {
+        if (!$this->_callFeedback) {
+            $this->_callFeedback = new CallFeedbackInterface($this->client);
+        }
+        return $this->_callFeedback;
     }
 }
