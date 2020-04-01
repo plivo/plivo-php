@@ -75,12 +75,12 @@ class v3SignatureValidation
                 $value = sort($value, SORT_NATURAL);
                 foreach ($value as $val)
                 {
-                    $paramsString = array_push($paramsString, strval($key)."=".strval($val));
+                    $paramsString = array_push($paramsString, strval($key).strval($val));
                 }
             }
             else
             {
-                $paramsString = array_push($paramsString, strval($key)."=".strval($value));
+                $paramsString = array_push($paramsString, strval($key).strval($value));
             }
         }
         return implode("", $paramsString);
