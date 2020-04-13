@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.7.1](https://github.com/plivo/plivo-php/releases/tag/v4.7.1) - 2020-04-13
+- Fix MMS media_urls response.
+
 ## [v4.7.0](https://github.com/plivo/plivo-php/releases/tag/v4.7.0) - 2020-03-31
 - Add application cascade delete support.
 
