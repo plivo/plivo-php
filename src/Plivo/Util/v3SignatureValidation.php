@@ -19,9 +19,11 @@ class v3SignatureValidation
 
     private static function getMapFromQuery($queryString)
     {
-        $queryArray = explode("&", $queryString);
         $queryMap = array();
-
+        if ($queryString == null) {
+            return $queryMap;
+        }
+        $queryArray = explode("&", $queryString);
         foreach ($queryArray as $param)
         {
             $keyValue = explode("=", $param);
@@ -75,12 +77,12 @@ class v3SignatureValidation
                 $value = sort($value, SORT_NATURAL);
                 foreach ($value as $val)
                 {
-                    $paramsString = array_push($paramsString, strval($key).strval($val));
+                    array_push($paramsString, strval($key).strval($val));
                 }
             }
             else
             {
-                $paramsString = array_push($paramsString, strval($key).strval($value));
+                array_push($paramsString, strval($key).strval($value));
             }
         }
         return implode("", $paramsString);
@@ -113,7 +115,7 @@ class v3SignatureValidation
     private static function constructPostUrl($uri, $params)
     {
 
-        $baseURL = self::constructGetUrl($uri, array(),count($params) > 0 ? true : false);
+        $baseURL = self::constructGetUrl($uri, array(),count($params) > 0 ? false : true);
         return $baseURL.self::getSortedParamsString($params);
     }
 
@@ -156,7 +158,6 @@ class v3SignatureValidation
             throw new PlivoValidationException('method not allowed for signature validation');
         }
         $signature = self::getSignatureV3($auth_token, $base_url, $nonce);
-        echo $signature;
         return in_array($signature, explode(',', $v3_signature));
     }
 }
