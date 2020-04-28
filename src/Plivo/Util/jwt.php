@@ -24,10 +24,10 @@ class AccessToken
      *
      * @param string|null $authId
      * @param string|null $authToken
-     * @param string $username
-     * @param integer|null $validFrom
-     * @param integer|null $lifetime
-     * @param integer|null $validTill
+     * @param string $username endpoint
+     * @param integer|null $validFrom valid not before this epoch
+     * @param integer|null $lifetime validity in seconds
+     * @param integer|null $validTill validity expires at this epoch
      * @param null $uid
      */
     public function __construct(
@@ -46,15 +46,15 @@ class AccessToken
         }
         $this->username = $username;
         $this->validFrom = $validFrom?:intval(gmdate('U'));
-        $this->lifetime = $lifetime?:14400;
+        $this->lifetime = $lifetime?:86400;
         if ($lifetime != null) {
             if ($validTill != null) {
                 throw new PlivoValidationException("use either lifetime or validTill");
             }
         } else if ($validTill != null) {
             $this->lifetime = $validTill-$this->validFrom;
-            if ($this->lifetime < 180 || $this->lifetime > 84600) {
-                throw new PlivoValidationException("lifetime out of [180, 84600]");
+            if ($this->lifetime < 180 || $this->lifetime > 86400) {
+                throw new PlivoValidationException("lifetime out of [180, 86400]");
             }
         }
         $this->uid = $uid?:$this->username."-".microtime(true);
