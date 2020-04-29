@@ -143,13 +143,17 @@ class ApplicationInterface extends ResourceInterface
     /**
      * Delete an application
      * @param string $appId
+     * @param array $optionalArgs
+     *   + boolean cascade - Delete associated endpoints
+     *   + string new_endpoint_application - Link associated endpoints with new application
+     *
      * @return ResponseDelete
      */
-    public function delete($appId)
+    public function delete($appId, array $optionalArgs = [])
     {
         $response = $this->client->delete(
             $this->uri . $appId . '/',
-            []
+            $optionalArgs
         );
 
         return new ResponseDelete($response->getStatusCode());

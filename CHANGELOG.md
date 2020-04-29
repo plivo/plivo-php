@@ -1,7 +1,20 @@
 # Change Log
 
-## [v4.5.0](https://github.com/plivo/plivo-php/releases/tag/v4.5.0) - 2020-04-29
+
+## [v4.8.0](https://github.com/plivo/plivo-php/releases/tag/v4.8.0) - 2020-04-29
 - Add V3 signature helper functions.
+
+## [v4.7.1](https://github.com/plivo/plivo-php/releases/tag/v4.7.1) - 2020-04-13
+- Fix MMS media_urls response.
+
+## [v4.7.0](https://github.com/plivo/plivo-php/releases/tag/v4.7.0) - 2020-03-31
+- Add application cascade delete support.
+
+## [v4.6.0](https://github.com/plivo/plivo-php/releases/tag/v4.6.0) - 2020-03-30
+- Add Tollfree support for Powerpack
+
+## [v4.5.0](https://github.com/plivo/plivo-php/releases/tag/v4.5.0) - 2020-03-27
+- Add post call quality feedback API support.
 
 ## [v4.4.2](https://github.com/plivo/plivo-php/releases/tag/v4.4.2) - 2020-03-16
 - Fix DTMF and Speak functions treating '0' as null
