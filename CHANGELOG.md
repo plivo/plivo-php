@@ -1,5 +1,9 @@
 # Change Log
 
+
+## [v4.8.0](https://github.com/plivo/plivo-php/releases/tag/v4.8.0) - 2020-04-29
+- Add V3 signature helper functions.
+
 ## [v4.7.1](https://github.com/plivo/plivo-php/releases/tag/v4.7.1) - 2020-04-13
 - Fix MMS media_urls response.
 
