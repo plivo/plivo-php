@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.8.1](https://github.com/plivo/plivo-php/releases/tag/v4.8.1) - 2020-05-04
+- Add JWT helper functions.
+
 ## [v4.7.1](https://github.com/plivo/plivo-php/releases/tag/v4.7.1) - 2020-04-13
 - Fix MMS media_urls response.
 
