@@ -45,14 +45,14 @@ class AccessToken
             throw new PlivoValidationException("null username not allowed");
         }
         $this->username = $username;
-        $this->validFrom = $validFrom?:intval(gmdate('U'));
-        $this->lifetime = $lifetime?:86400;
+        $this->validFrom = intval($validFrom?:gmdate('U'));
+        $this->lifetime = intval($lifetime?:86400);
         if ($lifetime != null) {
             if ($validTill != null) {
                 throw new PlivoValidationException("use either lifetime or validTill");
             }
         } else if ($validTill != null) {
-            $this->lifetime = $validTill-$this->validFrom;
+            $this->lifetime = intval($validTill)-$this->validFrom;
             if ($this->lifetime < 180 || $this->lifetime > 86400) {
                 throw new PlivoValidationException("lifetime out of [180, 86400]");
             }
