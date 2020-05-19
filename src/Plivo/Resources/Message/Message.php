@@ -3,7 +3,7 @@
 namespace Plivo\Resources\Message;
 
 
-use Plivo\BaseClient;
+use Plivo\MessageClient;
 use Plivo\Resources\Resource;
 
 /**
@@ -25,12 +25,12 @@ class Message extends Resource
 {
     /**
      * Message constructor.
-     * @param BaseClient $client The Plivo API REST client
+     * @param MessageClient $client The Plivo API REST client
      * @param array $response
      * @param string $authId
      */
     public function __construct(
-        BaseClient $client, $response, $authId)
+        MessageClient $client, $response, $authId, $uri)
     {
         parent::__construct($client);
 
@@ -54,6 +54,22 @@ class Message extends Resource
         ];
 
         $this->id = $response['message_uuid'];
+        $this->uri = $uri;
     }
+
+    public function listMedia(){
+        $response = $this->client->fetch(
+           $this->uri . $this->id .'/Media/',
+           []
+        );
+       return $response->getContent();
+   }
+
+   public function deleteMedia(){
+       return $response = $this->client->delete(
+           $this->uri . $this->id .'/Media/',
+           []
+       );
+   }
 
 }

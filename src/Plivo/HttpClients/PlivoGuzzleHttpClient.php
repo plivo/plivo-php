@@ -100,21 +100,37 @@ class PlivoGuzzleHttpClient implements PlivoHttpClientInterface
     {
         $headers["Authorization"] = "Basic " . base64_encode("$this->authId:$this->authToken");
         $request->setHeaders($headers);
-
-        $options = [
+        $options =[];
+        $requestBody = json_encode($request->getParams()); 
+        if (array_key_exists("isCallInsightsRequest", $request->getParams())) {
+            unset($request->getParams()['isCallInsightsRequest']);
+            $requestBody = $requestBody;
+        }
+        if(isset($body['multipart'])){
+            $requestBody= json_encode($request->getParams(), JSON_FORCE_OBJECT);
+            unset($headers['Content-type']);
+            $options = [
             'http_errors' => false,
             'headers' => $headers,
-            'body' => $body,
+            'body' => $requestBody,
             'timeout' => $timeOut,
-            'connect_timeout' => 60
+            'connect_timeout' => 160,
+            'multipart' => $body['multipart']
         ];
-
+        } else{
+            $options = [
+            'http_errors' => false,
+            'headers' => $headers,
+            'body' => $requestBody,
+            'timeout' => $timeOut,
+            'connect_timeout' => 60,
+        ];
+        }
         try {
             $rawResponse = $this->guzzleClient->request($method, $url, $options);
         } catch (RequestException $e) {
             throw new PlivoRequestException($e->getMessage());
         }
-
         $rawHeaders = $rawResponse->getHeaders();
         $rawBody = $rawResponse->getBody()->getContents();
         $httpStatusCode = $rawResponse->getStatusCode();

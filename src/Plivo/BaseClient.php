@@ -138,14 +138,11 @@ class BaseClient
     public function prepareRequestMessage(PlivoRequest $request, $fullUrl = null)
     {
         $url = $fullUrl ? $fullUrl : self::BASE_API_URL . $request->getUrl();
-
-        $requestBody = json_encode($request->getParams(), JSON_FORCE_OBJECT);
-
         return [
             $url,
             $request->getMethod(),
             $request->getHeaders(),
-            $requestBody,
+            $request->getParams(),
         ];
     }
 
@@ -184,7 +181,7 @@ class BaseClient
      * @return PlivoResponse
      */
     public function fetch($uri, $params)
-    {
+    {   
         $request =
             new PlivoRequest(
                 'GET', $uri, ArrayOperations::removeNull($params));
@@ -199,9 +196,20 @@ class BaseClient
      */
     public function update($uri, $params)
     {
+        $url = NULL;
+        $isCallInsightsRequest = FALSE;
+        if (array_key_exists("isCallInsightsRequest", $params)) {
+            $isCallInsightsRequest = TRUE;
+            $url = $params['CallInsightsEndpoint'];
+            unset($params['CallInsightsEndpoint']);
+        }
         $request =
             new PlivoRequest(
                 'POST', $uri, ArrayOperations::removeNull($params));
+
+        if ($isCallInsightsRequest) {
+            return $this->sendRequest($request, $url);
+        }
 
         return $this->sendRequest($request);
     }

@@ -9,11 +9,14 @@ use Plivo\Resources\Call\CallInterface;
 use Plivo\Resources\Conference\ConferenceInterface;
 use Plivo\Resources\Endpoint\EndpointInterface;
 use Plivo\Resources\Message\MessageInterface;
+use Plivo\Resources\Powerpack\PowerpackInterface;
+use Plivo\Resources\Media\MediaInterface;
 use Plivo\Resources\Number\NumberInterface;
 use Plivo\Resources\PhoneNumber\PhoneNumberInterface;
 use Plivo\Resources\Pricing\PricingInterface;
 use Plivo\Resources\Recording\RecordingInterface;
 use Plivo\Resources\SubAccount\SubAccountInterface;
+use Plivo\Resources\CallFeedback\CallFeedbackInterface;
 
 /**
  * Class RestClient
@@ -24,11 +27,14 @@ use Plivo\Resources\SubAccount\SubAccountInterface;
  * @property ApplicationInterface application Interface to handle all Application related api calls
  * @property AccountInterface account Interface to handle all Account related api calls
  * @property MessageInterface message Interface to handle all Message related api calls
+ * @property PowerpackInterface powerpack Interface to handle all Powerpack related api calls
+ * @property MediaInterface media Interface to handle all upload mms media api 
  * @property EndpointInterface endpoint Interface to handle all Endpoint related api calls
  * @property NumberInterface number Interface to handle all Number related api calls
  * @property PhoneNumberInterface phoneNumber Interface to handle all PhoneNumber related api calls
  * @property PricingInterface pricing Interface to handle all Pricing related api calls
  * @property RecordingInterface recording Interface to handle all Recording related api calls
+ * @property CallFeedbackInterface callfeedback Interface to handle user feedback for calls
  *
  */
 class RestClient
@@ -39,6 +45,11 @@ class RestClient
     public $client;
 
     /**
+     * @var MessageClient
+     */
+    public $msgClient;
+
+    /**
      * @var AccountInterface
      */
     protected $_account;
@@ -46,6 +57,17 @@ class RestClient
      * @var MessageInterface
      */
     protected $_message;
+
+    /**
+     * @var PowerpackInterface
+     */
+    protected $_powerpack;
+
+     /**
+     * @var MediaInterface
+     */
+    protected $_media;
+
     /**
      * @var ApplicationInterface
      */
@@ -89,6 +111,11 @@ class RestClient
     protected $_recording;
 
     /**
+     * @var CallFeedbackInterface
+     */
+    protected $_callFeedback;
+
+    /**
      * RestClient constructor.
      * @param string|null $authId
      * @param string|null $authToken
@@ -107,6 +134,7 @@ class RestClient
     {
         $this->client = new BaseClient(
             $authId, $authToken, $proxyHost, $proxyPort, $proxyUsername, $proxyPassword);
+        $this->msgClient = new MessageClient($authId, $authToken, $proxyHost, $proxyPort, $proxyUsername, $proxyPassword);
     }
 
     /**
@@ -141,9 +169,31 @@ class RestClient
     protected function getMessages()
     {
         if (!$this->_message) {
-            $this->_message = new MessageInterface($this->client, $this->client->getAuthId());
+            $this->_message = new MessageInterface($this->msgClient, $this->msgClient->getAuthId());
         }
         return $this->_message;
+    }
+
+    /**
+     * @return PowerpackInterface
+     */
+    protected function getPowerpacks()
+    {
+        if (!$this->_powerpack) {
+            $this->_powerpack = new PowerpackInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_powerpack;
+    }
+
+    /**
+     * @return MediaInterface
+     */
+    protected function getMedia()
+    {
+        if (!$this->_media) {
+            $this->_media = new MediaInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_media;
     }
 
     /**
@@ -243,5 +293,16 @@ class RestClient
             $this->_recording = new RecordingInterface($this->client, $this->client->getAuthId());
         }
         return $this->_recording;
+    }
+
+    /**
+     * @return CallFeedbackInterface
+     */
+    protected function getCallFeedback()
+    {
+        if (!$this->_callFeedback) {
+            $this->_callFeedback = new CallFeedbackInterface($this->client);
+        }
+        return $this->_callFeedback;
     }
 }

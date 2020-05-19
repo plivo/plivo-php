@@ -1,0 +1,20 @@
+{
+    "api_id": "21a04c42-d229-11e9-b61e-0242ac110007",
+    "meta": {
+        "limit": 20,
+        "next": "",
+        "offset": 0,
+        "previous": "",
+        "total_count": 1
+    },
+    "objects": [
+        {
+            "account_phone_number_resource": "/v1/Account/MAODZKMDFJMJU3MTEYNG/Number/15799140348/",
+            "added_on": "2019-09-03T08:50:09.578928Z",
+            "country_iso2": "CA",
+            "number": "15799140348",
+            "number_pool_uuid": "659c7f88-c819-46e2-8af4-2d8a84249099",
+            "type": "fixed"
+        }
+    ]
+}

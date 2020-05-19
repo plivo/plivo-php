@@ -9,6 +9,7 @@ use PHPUnit\Runner\Version;
 use Plivo\Authentication\BasicAuth;
 use Plivo\RestClient;
 use Plivo\BaseClient;
+use Plivo\MessageClient;
 
 /**
  * Class BaseTestCase

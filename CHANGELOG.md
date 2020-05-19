@@ -1,5 +1,36 @@
 # Change Log
 
+
+## [v4.8.0](https://github.com/plivo/plivo-php/releases/tag/v4.8.0) - 2020-04-29
+- Add V3 signature helper functions.
+
+## [v4.7.1](https://github.com/plivo/plivo-php/releases/tag/v4.7.1) - 2020-04-13
+- Fix MMS media_urls response.
+
+## [v4.7.0](https://github.com/plivo/plivo-php/releases/tag/v4.7.0) - 2020-03-31
+- Add application cascade delete support.
+
+## [v4.6.0](https://github.com/plivo/plivo-php/releases/tag/v4.6.0) - 2020-03-30
+- Add Tollfree support for Powerpack
+
+## [v4.5.0](https://github.com/plivo/plivo-php/releases/tag/v4.5.0) - 2020-03-27
+- Add post call quality feedback API support.
+
+## [v4.4.2](https://github.com/plivo/plivo-php/releases/tag/v4.4.2) - 2020-03-16
+- Fix DTMF and Speak functions treating '0' as null
+
+## [v4.4.1](https://github.com/plivo/plivo-php/releases/tag/v4.4.1) - 2020-02-28
+- Add Media support.
+
+## [v4.4.0](https://github.com/plivo/plivo-php/releases/tag/v4.4.0) - 2020-01-06
+- Fix Send SMS API exception
+
+## [v4.3.9](https://github.com/plivo/plivo-php/releases/tag/v4.3.9) - 2019-12-20
+- Add Powerpack support
+
+## [v4.3.8](https://github.com/plivo/plivo-php/releases/tag/v4.3.8) - 2019-12-04
+- Add MMS support
+
 ## [v4.3.7](https://github.com/plivo/plivo-php/releases/tag/v4.3.7) - 2019-11-13
 - Add GetInput XML support
 
