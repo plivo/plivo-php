@@ -1,7 +1,13 @@
 # Change Log
 
-## [v4.8.0](https://github.com/plivo/plivo-php/releases/tag/v4.8.0) - 2020-05-04
+## [v4.9.0](https://github.com/plivo/plivo-php/releases/tag/v4.9.0) - 2020-05-28
 - Add JWT helper functions.
+
+## [v4.8.1](https://github.com/plivo/plivo-php/releases/tag/v4.8.1) - 2020-05-28
+- Fix Create Endpoint response.
+
+## [v4.8.0](https://github.com/plivo/plivo-php/releases/tag/v4.8.0) - 2020-04-29
+- Add V3 signature helper functions.
 
 ## [v4.7.1](https://github.com/plivo/plivo-php/releases/tag/v4.7.1) - 2020-04-13
 - Fix MMS media_urls response.
