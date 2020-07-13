@@ -41,12 +41,15 @@ class Call extends Resource
         parent::__construct($client);
 
         $this->properties = [
+            'apiId' => $response['api_id'],
             'answerTime' => $response['answer_time'],
             'billDuration' => $response['bill_duration'],
             'billedDuration' => $response['billed_duration'],
             'callDirection' => $response['call_direction'],
             'callDuration' => $response['call_duration'],
+            'callState' => $response['call_state'],
             'callUuid' => $response['call_uuid'],
+            'conferenceUuid' => $response['conference_uuid'],
             'endTime' => $response['end_time'],
             'from' => $response['from_number'],
             'initiationTime' => $response['initiation_time'],
