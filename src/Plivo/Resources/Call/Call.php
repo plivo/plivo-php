@@ -41,7 +41,6 @@ class Call extends Resource
         parent::__construct($client);
 
         $this->properties = [
-            'apiId' => $response['api_id'],
             'answerTime' => $response['answer_time'],
             'billDuration' => $response['bill_duration'],
             'billedDuration' => $response['billed_duration'],
