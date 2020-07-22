@@ -60,7 +60,7 @@ class EndpointInterface extends ResourceInterface
 
         $response = $this->client->update(
             $this->uri,
-            array_merge($mandatoryArgs, ['app_id' => $appId])
+            array_merge($mandatoryArgs, ['app_id' => $appId, 'isVoiceRequest' => true])
         );
         $responseContents = $response->getContent();
         if(!array_key_exists("error",$responseContents)){
@@ -98,10 +98,10 @@ class EndpointInterface extends ResourceInterface
             new PlivoValidationException(
                 'endpoint id is mandatory');
         }
-
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->fetch(
             $this->uri . $endpointId .'/',
-            []
+            $optionalArgs
         );
 
         return new Endpoint(
@@ -118,6 +118,7 @@ class EndpointInterface extends ResourceInterface
      */
     public function getList($optionalArgs = [])
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->fetch(
             $this->uri,
             $optionalArgs
@@ -146,6 +147,7 @@ class EndpointInterface extends ResourceInterface
      */
     public function update($endpointId, array $optionalArgs = [])
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->update(
             $this->uri . $endpointId . '/',
             $optionalArgs
@@ -186,10 +188,10 @@ class EndpointInterface extends ResourceInterface
             new PlivoValidationException(
                 'endpoint id is mandatory');
         }
-        
+        $optionalArgs['isVoiceRequest'] = true;
         $this->client->delete(
             $this->uri . $endpointId . '/',
-            []
+            $optionalArgs
         );
     }
 }
