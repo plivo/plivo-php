@@ -162,7 +162,6 @@ class CallInterface extends ResourceInterface
             $this->uri . $liveCallUuid . '/',
             $params
         );
-        print $response;
         return new CallLive(
             $this->client,
             $response->getContent(),

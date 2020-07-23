@@ -167,16 +167,13 @@ class BaseClient
             $this->prepareRequestMessage($request, $fullUrl);
         if(static::$isVoiceRequest){
             if(static::$voiceRetryCount == 0){
-                print static::$voiceRetryCount;
                 $url = self::VOICE_BASE_API_URL . $request->getUrl();
             }
             elseif(static::$voiceRetryCount == 1){
                 $url = self::VOICE_BASE_API_FALLBACK_URL_1 . $request->getUrl();
-                print static::$voiceRetryCount;
             }
             elseif(static::$voiceRetryCount == 2){
                 $url = self::VOICE_BASE_API_FALLBACK_URL_2 . $request->getUrl();
-                print static::$voiceRetryCount;
             }
         }
 
