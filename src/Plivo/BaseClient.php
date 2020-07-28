@@ -168,7 +168,7 @@ class BaseClient
         static::$requestCount++;
 
         if (!$plivoResponse->ok()) {
-            return $plivoResponse;
+            throw $plivoResponse->getThrownException();
         }
 
         return $plivoResponse;
