@@ -21,13 +21,13 @@ class BaseClient
      * @const BASE API URL
      */
     const BASE_API_URL = 'https://api.plivo.com/';
-    const VOICE_BASE_API_URL = 'https://voice.plivo.com/';
-    const VOICE_BASE_API_FALLBACK_URL_1 = 'https://voice-usw1.plivo.com/';
-    const VOICE_BASE_API_FALLBACK_URL_2 = 'https:// voice-use1.plivo.com/';
+    const VOICE_BASE_API_URL = 'https://api-dev.voice.plivodev.com/';
+    const VOICE_BASE_API_FALLBACK_URL_1 = 'https://api-dev.voice.plivodev.com/';
+    const VOICE_BASE_API_FALLBACK_URL_2 = 'https://api-qa.voice.plivodev.com/';
     /**
      * @const Default timeout for request
      */
-    const DEFAULT_REQUEST_TIMEOUT = 5;
+    const DEFAULT_REQUEST_TIMEOUT = 10;
 
     /**
      * @var int|null Request timeout
@@ -194,7 +194,7 @@ class BaseClient
                 static::$voiceRetryCount = 0;
                 return $plivoResponse;
             }
-            $this->sendRequest($request, null);
+            return $this->sendRequest($request, null);
         }
         static::$voiceRetryCount = 0;
         return $plivoResponse;
@@ -245,8 +245,8 @@ class BaseClient
         if ($isCallInsightsRequest) {
             return $this->sendRequest($request, $url);
         }
-
-        return $this->sendRequest($request);
+        $req = $this->sendRequest($request);
+        return $req;
     }
 
     /**
