@@ -1,6 +1,6 @@
 # Change Log
 
-## [v4.10.0](https://github.com/plivo/plivo-php/releases/tag/v4.9.0) - 2020-07-23
+## [v4.10.0](https://github.com/plivo/plivo-php/releases/tag/v4.10.0) - 2020-08-03
 - Add retries to multiple regions for voice requests.
 
 ## [v4.9.0](https://github.com/plivo/plivo-php/releases/tag/v4.9.0) - 2020-05-28
