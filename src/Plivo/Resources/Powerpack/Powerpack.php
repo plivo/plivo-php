@@ -315,7 +315,7 @@ class Powerpack extends Resource
         }
 
         $response = $this->client->update(
-            $this->powerpack_url .'Powerpack/' . $uuid .'/' ,
+            $this->powerpack_url .'Powerpack/' . $this->id .'/' ,
             $optionalArgs
         );
 
