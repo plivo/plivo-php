@@ -55,10 +55,10 @@ class ConferenceInterface extends ResourceInterface
             new PlivoValidationException(
                 'conference name is mandatory');
         }
-
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->fetch(
             $this->uri . $conferenceName . '/',
-            []
+            $optionalArgs
         );
 
 
@@ -75,9 +75,10 @@ class ConferenceInterface extends ResourceInterface
      */
     public function getList()
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->fetch(
             $this->uri,
-            []
+            $optionalArgs
         );
 
         $conferenceNames = $response->getContent()['conferences'];
@@ -91,9 +92,10 @@ class ConferenceInterface extends ResourceInterface
      */
     public function delete($conferenceName)
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->delete(
             $this->uri . $conferenceName . '/',
-            []
+            $optionalArgs
         );
 
         return new ResponseDelete();
@@ -104,9 +106,10 @@ class ConferenceInterface extends ResourceInterface
      */
     public function deleteAll()
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->delete(
             $this->uri,
-            []
+            $optionalArgs
         );
 
         return new ResponseDelete();
@@ -119,9 +122,10 @@ class ConferenceInterface extends ResourceInterface
      */
     public function hangUpMember($conferenceName, $memberId)
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->delete(
             $this->uri . $conferenceName . '/Member/' . $memberId . '/',
-            []
+            $optionalArgs
         );
 
         return new ResponseDelete();
@@ -134,13 +138,14 @@ class ConferenceInterface extends ResourceInterface
      */
     public function kickMember($conferenceName, $memberId)
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->update(
             $this->uri .
             $conferenceName .
             '/Member/' .
             $memberId .
             '/Kick/',
-            []
+            $optionalArgs
         );
 
         $responseContents = $response->getContent();
@@ -172,13 +177,14 @@ class ConferenceInterface extends ResourceInterface
      */
     public function muteMember($conferenceName, array $memberId)
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->update(
             $this->uri .
             $conferenceName .
             '/Member/' .
             join(',', $memberId) .
             '/Mute/',
-            []
+            $optionalArgs
         );
 
         $responseContents = $response->getContent();
@@ -208,13 +214,14 @@ class ConferenceInterface extends ResourceInterface
      */
     public function unMuteMember($conferenceName, array $memberId)
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->delete(
             $this->uri .
             $conferenceName .
             '/Member/' .
             join(',', $memberId) .
             '/Mute/',
-            []
+            $optionalArgs
         );
 
         return new ResponseDelete();
@@ -234,7 +241,8 @@ class ConferenceInterface extends ResourceInterface
             '/Member/' .
             join(',', $memberId) .
             '/Play/',
-            ['url' => $url]
+            ['url' => $url,
+             'isVoiceRequest' => true]
         );
 
         $responseContents = $response->getContent();
@@ -264,13 +272,14 @@ class ConferenceInterface extends ResourceInterface
      */
     public function stopPlaying($conferenceName, array $memberId)
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->delete(
             $this->uri .
             $conferenceName .
             '/Member/' .
             join(',', $memberId) .
             '/Play/',
-            []
+            $optionalArgs
         );
 
         return new ResponseDelete();
@@ -288,6 +297,7 @@ class ConferenceInterface extends ResourceInterface
      */
     public function startSpeaking($conferenceName, array $memberId, $text, array $optionalArgs = [])
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->update(
             $this->uri .
             $conferenceName .
@@ -323,13 +333,14 @@ class ConferenceInterface extends ResourceInterface
      */
     public function stopSpeaking($conferenceName, array $memberId)
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->delete(
             $this->uri .
             $conferenceName .
             '/Member/' .
             join(',', $memberId) .
             '/Speak/',
-            []
+            $optionalArgs
         );
 
         return new ResponseDelete();
@@ -342,13 +353,14 @@ class ConferenceInterface extends ResourceInterface
      */
     public function makeDeaf($conferenceName, array $memberId)
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->update(
             $this->uri .
             $conferenceName .
             '/Member/' .
             join(',', $memberId) .
             '/Deaf/',
-            []
+            $optionalArgs
         );
 
         $responseContents = $response->getContent();
@@ -377,13 +389,14 @@ class ConferenceInterface extends ResourceInterface
      */
     public function enableHearing($conferenceName, array $memberId)
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->delete(
             $this->uri .
             $conferenceName .
             '/Member/' .
             join(',', $memberId) .
             '/Deaf/',
-            []
+            $optionalArgs
         );
 
         return new ResponseDelete();
@@ -414,6 +427,7 @@ class ConferenceInterface extends ResourceInterface
      */
     public function startRecording($conferenceName, $optionalArgs = [])
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->update(
             $this->uri .
             $conferenceName .
@@ -451,11 +465,12 @@ class ConferenceInterface extends ResourceInterface
      */
     public function stopRecording($conferenceName)
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->delete(
             $this->uri .
             $conferenceName .
             '/Record/',
-            []
+            $optionalArgs
         );
 
         return new ResponseDelete();

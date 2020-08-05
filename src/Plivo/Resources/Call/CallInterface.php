@@ -78,6 +78,7 @@ class CallInterface extends ResourceInterface
             'answer_url' => $answerUrl,
             'answer_method' => $answerMethod
         ];
+        $optionalArgs['isVoiceRequest'] = true;
 
         if (ArrayOperations::checkNull($mandatoryArgs)) {
             throw new PlivoValidationException(
@@ -128,9 +129,10 @@ class CallInterface extends ResourceInterface
             new PlivoValidationException(
                 'call uuid is mandatory');
         }
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->fetch(
             $this->uri . $callUuid . '/',
-            []
+            $optionalArgs
         );
 
         return new Call(
@@ -155,12 +157,11 @@ class CallInterface extends ResourceInterface
         }
 
         $params = ['status' => 'live'];
-
+        $params['isVoiceRequest'] = true;
         $response = $this->client->fetch(
             $this->uri . $liveCallUuid . '/',
             $params
         );
-
         return new CallLive(
             $this->client,
             $response->getContent(),
@@ -183,7 +184,7 @@ class CallInterface extends ResourceInterface
         }
 
         $params = ['status' => 'queued'];
-
+        $params['isVoiceRequest'] = true;
         $response = $this->client->fetch(
             $this->uri . $queuedCallUuid . '/',
             $params
@@ -227,6 +228,7 @@ class CallInterface extends ResourceInterface
      */
     public function getList(array $optionalArgs = [])
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->fetch(
             $this->uri,
             $optionalArgs
@@ -254,7 +256,7 @@ class CallInterface extends ResourceInterface
     public function getListLive(array $optionalArgs = [])
     {
         $optionalArgs['status'] = 'live';
-        
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->fetch(
             $this->uri,
             $optionalArgs
@@ -273,7 +275,7 @@ class CallInterface extends ResourceInterface
     public function getListQueued()
     {
         $params = ['status' => 'queued'];
-
+        $params['isVoiceRequest'] = true;
         $response = $this->client->fetch(
             $this->uri,
             $params
@@ -291,9 +293,10 @@ class CallInterface extends ResourceInterface
      */
     public function delete($callUuid = null)
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $this->client->delete(
             $this->uri . $callUuid . '/',
-            []
+            $optionalArgs
         );
     }
 
@@ -354,7 +357,7 @@ class CallInterface extends ResourceInterface
                 "default is aleg, hence alegUrl is mandatory"
             );
         }
-
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->update(
             $this->uri . $liveCallUuid . '/',
             $optionalArgs
@@ -447,7 +450,7 @@ class CallInterface extends ResourceInterface
             throw new PlivoValidationException(
                 "Which call to record? No callUuid given");
         }
-
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->update(
             $this->uri . $liveCallUuid . '/Record/',
             $optionalArgs
@@ -497,7 +500,7 @@ class CallInterface extends ResourceInterface
             $params = ['URL' => $url];
         }
         
-        
+        $params['isVoiceRequest'] = true;
         $this->client->delete(
             $this->uri . $liveCallUuid . '/Record/',
             $params
@@ -543,7 +546,7 @@ class CallInterface extends ResourceInterface
             throw new PlivoValidationException(
                 "urls cannot be null");
         }
-
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->update(
             $this->uri . $liveCallUuid . '/Play/',
             array_merge(
@@ -585,10 +588,11 @@ class CallInterface extends ResourceInterface
             throw new PlivoValidationException(
                 "Which call to stop playing in? No callUuid given");
         }
+        $optionalArgs['isVoiceRequest'] = true;
 
         $this->client->delete(
             $this->uri . $liveCallUuid . '/Play/',
-            []
+            $optionalArgs
         );
     }
     
@@ -639,7 +643,7 @@ class CallInterface extends ResourceInterface
             throw new PlivoValidationException(
                 "text cannot be null");
         }
-
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->update(
             $this->uri . $liveCallUuid . '/Speak/',
             array_merge(['text'=>$text], $optionalArgs)
@@ -677,10 +681,10 @@ class CallInterface extends ResourceInterface
             throw new PlivoValidationException(
                 "Which call to stop speaking in? No callUuid given");
         }
-
+        $optionalArgs['isVoiceRequest'] = true;
         $this->client->delete(
             $this->uri . $liveCallUuid . '/Speak/',
-            []
+            $optionalArgs
         );
     }
 
@@ -711,7 +715,8 @@ class CallInterface extends ResourceInterface
             $this->uri . $liveCallUuid . '/DTMF/',
             [
                 'digits' => $digits,
-                'leg' => $leg
+                'leg' => $leg,
+                'isVoiceRequest' => true
             ]
         );
 
@@ -747,13 +752,14 @@ class CallInterface extends ResourceInterface
             throw new PlivoValidationException(
                 "Which call request to cancel? No requestUuid given");
         }
+        $optionalArgs['isVoiceRequest'] = true;
         $this->client->delete(
             "Account/".
             $this->pathParams['authId'].
             "/Request/".
             $requestUuid.
             '/',
-            []
+            $optionalArgs
         );
     }
 }
