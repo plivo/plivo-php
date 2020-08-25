@@ -48,6 +48,7 @@ class RecordingInterface extends ResourceInterface
      */
     protected function getList($optionalArgs = [])
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->fetch(
             $this->uri,
             $optionalArgs
@@ -79,10 +80,10 @@ class RecordingInterface extends ResourceInterface
             new PlivoValidationException(
                 'recording id is mandatory');
         }
-
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->fetch(
             $this->uri . $recordingId .'/',
-            []
+            $optionalArgs
         );
 
         return new Recording(
@@ -103,9 +104,10 @@ class RecordingInterface extends ResourceInterface
             new PlivoValidationException(
                 'recording id is mandatory');
         }
+        $optionalArgs['isVoiceRequest'] = true;
         $this->client->delete(
             $this->uri . $recordingId . '/',
-            []
+            $optionalArgs
         );
     }
 }

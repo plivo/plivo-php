@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.10.0](https://github.com/plivo/plivo-php/releases/tag/v4.10.0) - 2020-08-03
+- Add retries to multiple regions for voice requests.
+
 ## [v4.9.1](https://github.com/plivo/plivo-php/releases/tag/v4.9.1) - 2020-07-21
 - Fix Get Call Details API response.
 

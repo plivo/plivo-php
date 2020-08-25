@@ -21,10 +21,13 @@ class BaseClient
      * @const BASE API URL
      */
     const BASE_API_URL = 'https://api.plivo.com/';
+    const VOICE_BASE_API_URL = 'https://voice.plivo.com/';
+    const VOICE_BASE_API_FALLBACK_URL_1 = 'https://voice-usw1.plivo.com/';
+    const VOICE_BASE_API_FALLBACK_URL_2 = 'https://voice-use1.plivo.com/';
     /**
      * @const Default timeout for request
      */
-    const DEFAULT_REQUEST_TIMEOUT = 5;
+    const DEFAULT_REQUEST_TIMEOUT = 20;
 
     /**
      * @var int|null Request timeout
@@ -42,6 +45,10 @@ class BaseClient
      * @var int Number of requests made
      */
     public static $requestCount = 0;
+
+    public static $voiceRetryCount = 0;
+
+    public static $isVoiceRequest = false;
 
     /**
      * Instantiates a new BaseClient object.
@@ -158,7 +165,17 @@ class BaseClient
         $fullUrl = $url ? $url : null;
         list($url, $method, $headers, $body) =
             $this->prepareRequestMessage($request, $fullUrl);
-
+        if(static::$isVoiceRequest){
+            if(static::$voiceRetryCount == 0){
+                $url = self::VOICE_BASE_API_URL . $request->getUrl();
+            }
+            elseif(static::$voiceRetryCount == 1){
+                $url = self::VOICE_BASE_API_FALLBACK_URL_1 . $request->getUrl();
+            }
+            elseif(static::$voiceRetryCount == 2){
+                $url = self::VOICE_BASE_API_FALLBACK_URL_2 . $request->getUrl();
+            }
+        }
         $timeout = $this->timeout ?: static::DEFAULT_REQUEST_TIMEOUT;
 
         $plivoResponse =
@@ -167,10 +184,18 @@ class BaseClient
 
         static::$requestCount++;
 
-        if (!$plivoResponse->ok()) {
+        if (!$plivoResponse->ok() && !static::$isVoiceRequest) {
             return $plivoResponse;
         }
-
+        if($plivoResponse->getStatusCode() >= 500 && static::$isVoiceRequest){
+            static::$voiceRetryCount++;
+            if(static::$voiceRetryCount > 2){
+                static::$voiceRetryCount = 0;
+                return $plivoResponse;
+            }
+            return $this->sendRequest($request, null);
+        }
+        static::$voiceRetryCount = 0;
         return $plivoResponse;
     }
 
@@ -181,7 +206,11 @@ class BaseClient
      * @return PlivoResponse
      */
     public function fetch($uri, $params)
-    {   
+    {
+        if (array_key_exists("isVoiceRequest", $params)){
+            static::$isVoiceRequest = true;
+            unset($params['isVoiceRequest']);
+        }
         $request =
             new PlivoRequest(
                 'GET', $uri, ArrayOperations::removeNull($params));
@@ -203,6 +232,10 @@ class BaseClient
             $url = $params['CallInsightsEndpoint'];
             unset($params['CallInsightsEndpoint']);
         }
+        elseif (array_key_exists("isVoiceRequest", $params)){
+            static::$isVoiceRequest = true;
+            unset($params['isVoiceRequest']);
+        }
         $request =
             new PlivoRequest(
                 'POST', $uri, ArrayOperations::removeNull($params));
@@ -210,7 +243,6 @@ class BaseClient
         if ($isCallInsightsRequest) {
             return $this->sendRequest($request, $url);
         }
-
         return $this->sendRequest($request);
     }
 
@@ -264,6 +296,10 @@ class BaseClient
      */
     public function delete($uri, $params)
     {
+        if (array_key_exists("isVoiceRequest", $params)){
+            static::$isVoiceRequest = true;
+            unset($params['isVoiceRequest']);
+        }
         $request =
             new PlivoRequest(
                 'DELETE', $uri, ArrayOperations::removeNull($params));
