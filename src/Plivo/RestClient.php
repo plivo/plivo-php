@@ -17,6 +17,7 @@ use Plivo\Resources\Pricing\PricingInterface;
 use Plivo\Resources\Recording\RecordingInterface;
 use Plivo\Resources\SubAccount\SubAccountInterface;
 use Plivo\Resources\CallFeedback\CallFeedbackInterface;
+use Plivo\Resources\MultiPartyCall\MultiPartyCallInterface;
 
 /**
  * Class RestClient
@@ -114,6 +115,11 @@ class RestClient
      * @var CallFeedbackInterface
      */
     protected $_callFeedback;
+
+    /**
+     * @var MultiPartyCallInterface
+     */
+    protected $_multiPartyCall;
 
     /**
      * RestClient constructor.
@@ -304,5 +310,13 @@ class RestClient
             $this->_callFeedback = new CallFeedbackInterface($this->client);
         }
         return $this->_callFeedback;
+    }
+
+    public function getMultiPartyCalls()
+    {
+        if(!$this->_multiPartyCall){
+            $this->_multiPartyCall = new MultiPartyCallInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_multiPartyCall;
     }
 }
