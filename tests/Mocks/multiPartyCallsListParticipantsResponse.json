@@ -1,0 +1,30 @@
+{
+  "api_id": "d53e6c49-ee0e-11ea-b02e-0242ac110003",
+  "meta": {
+    "count": 1,
+    "limit": 20,
+    "next": null,
+    "offset": 0,
+    "previous": null
+  },
+  "objects": [
+    {
+      "billed_amount": null,
+      "billed_duration": null,
+      "call_uuid": "426c1fb3-8f47-46e5-a916-51faa85ca90e",
+      "coach_mode": false,
+      "duration": null,
+      "end_mpc_on_exit": false,
+      "exit_cause": null,
+      "exit_time": null,
+      "hold": false,
+      "join_time": "2020-09-03 17:24:12+00:00",
+      "member_id": "2132",
+      "mpc_uuid": "7503f05f-2d6e-4ab3-b9e6-3b0d81ae9087",
+      "mute": false,
+      "resource_uri": "/v1/Account/MAMDJMMTEZOWY0ZMQWM2/MultiPartyCall/uuid_7503f05f-2d6e-4ab3-b9e6-3b0d81ae9087/Participant/2132/",
+      "role": "agent",
+      "start_mpc_on_enter": true
+    }
+  ]
+}
