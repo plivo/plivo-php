@@ -1,7 +1,7 @@
 # Change Log
 
 ## [v4.11.0](https://github.com/plivo/plivo-php/releases/tag/v4.11.0) - 2020-08-25
-- Powerpack for mms.
+- Add Powerpack for mms.
 
 ## [v4.10.0](https://github.com/plivo/plivo-php/releases/tag/v4.10.0) - 2020-08-03
 - Add retries to multiple regions for voice requests.
