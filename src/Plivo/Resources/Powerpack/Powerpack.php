@@ -69,6 +69,7 @@ class Powerpack extends Resource
      *   + [string] pattern 
      *   + [string] country_iso 
      *   + [string] type
+     *   + [string] service  (Supported services are 'sms' and 'mms'. Would list all numbers belonging to the pool, if   not set)
     *  + [int] limit - 
     *   + [int] offset - 
      * @return ResourceList output
@@ -142,11 +143,15 @@ class Powerpack extends Resource
 
     /**
      * @param $number
+     * @param array $optionalArgs
+     * Valid arguments
+     *   + [string] service  (Supported services are 'sms' and 'mms'. Would search for both the services if not set)
+
      * @return Powerpack
      * 
      * @throws PlivoValidationException
      */
-    public function find_number( $number)
+    public function find_number( $number, $optionalArgs = [])
     {
         if (ArrayOperations::checkNull([$this->id])) {
             throw
@@ -160,7 +165,7 @@ class Powerpack extends Resource
         }
 
         $response = $this->client->fetch(
-            $this->url . '/Number/' . $number . '/', []
+            $this->url . '/Number/' . $number . '/', $optionalArgs 
         );
         return $response->getContent();
         
@@ -249,9 +254,12 @@ class Powerpack extends Resource
     /**
      * Add an number
      * @param string number
+     * @param array $optionalArgs
+     * Valid arguments
+     *   + [string] service  (Supported services are 'sms' and 'mms'. Default to 'sms' if not set.)
      * @return Response
      */
-    public function add_number( $number)
+    public function add_number( $number, $optionalArgs = [])
     {
        if (ArrayOperations::checkNull([$number])) {
             throw
@@ -260,7 +268,7 @@ class Powerpack extends Resource
         } 
        $response = $this->client->update(
             $this->url . '/Number/' . $number . '/',
-            [] 
+            $optionalArgs
         );
         return $response->getContent();
     
@@ -307,7 +315,7 @@ class Powerpack extends Resource
         }
 
         $response = $this->client->update(
-            $this->powerpack_url .'Powerpack/' . $uuid .'/' ,
+            $this->powerpack_url .'Powerpack/' . $this->id .'/' ,
             $optionalArgs
         );
 
@@ -365,6 +373,7 @@ class Powerpack extends Resource
      *   + [string] pattern 
      *   + [string] country_iso 
      *   + [string] type
+     *   + [string] service  (Supported services are 'sms' and 'mms'. Would give count of all numbers belonging to the pool if not set.)
      * $uuid -- powerpack uuid
     *  + [int] limit - 
     *   + [int] offset - 
@@ -389,6 +398,7 @@ class Powerpack extends Resource
      * Add an number
      * @param string $uuid
      * @param array optionalArgs
+     * + [string] service (Supported services are 'sms' and 'mms'. Defaults to 'sms' when not set)
      * @return Response
      */
     public function buy_add_number( $optionalArgs = [])
@@ -396,6 +406,11 @@ class Powerpack extends Resource
         $data = [
             'rent' => 'true'
         ];
+        $service = $optionalArgs['service'];
+        if (ArrayOperations::checkNull([$service])) {
+            $service = 'sms';
+        }
+        $data['service'] = $service;
         $number = $optionalArgs['number'];
         if (ArrayOperations::checkNull([$number])){
         $country_iso = $optionalArgs['country_iso2'];
