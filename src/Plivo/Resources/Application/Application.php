@@ -79,7 +79,7 @@ class Application extends Resource
             'resourceUri' => $response['resource_uri'],
             'sipUri' => $response['sip_uri'],
             'subAccount' => $response['sub_account'],
-            'logIncomingMessages' => $response['log_incoming_messages']
+            'logIncomingMessages' => $response['log_incoming_message']
         ];
 
         $this->pathParams = [
