@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.12.0](https://github.com/plivo/plivo-php/releases/tag/v4.12.0) - 2020-09-15
+- Add support for Lookup API.
+
 ## [v4.11.1](https://github.com/plivo/plivo-php/releases/tag/v4.11.1) - 2020-09-17
 - Fix "Media is invalid" error while using Send MMS API.
 

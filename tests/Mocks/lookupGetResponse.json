@@ -1,0 +1,21 @@
+{
+    "api_id": "930692a3-6f09-45b5-80f5-5585565fb30e",
+    "country": {
+        "code_iso2": "US",
+        "code_iso3": "USA",
+        "name": "United States"
+    },
+    "number_format": {
+        "e164": "+14154305555",
+        "international": "+1 415-430-5555",
+        "national": "(415) 430-5555",
+        "rfc3966": "tel:+1-415-430-5555"
+    },
+    "service_provider": {
+        "mobile_country_code": "310",
+        "mobile_network_code": "160",
+        "name": "Cingular Wireless",
+        "ported": true,
+        "type": "mobile"
+    }
+}
