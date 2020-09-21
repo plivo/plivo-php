@@ -24,11 +24,11 @@ class LookupInterface extends ResourceInterface
     /**
      * Lookup a phone number.
      * @param number
-     * @param info
+     * @param type
      */
-    public function get($number, $info = "service_provider")
+    public function get($number, $type = "carrier")
     {
-        $uri = $this->uri . $number . '?info=' . $info;
+        $uri = $this->uri . $number . '?type=' . $type;
         $response = $this->client->fetch(
             $uri,
             []

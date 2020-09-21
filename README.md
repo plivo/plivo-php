@@ -172,7 +172,7 @@ require 'vendor/autoload.php';
 use Plivo\RestClient;
 
 $client = new RestClient("AUTH_ID", "AUTH_TOKEN");
-$response = $client->lookup->get("<number-goes-here>", "service_provider");
+$response = $client->lookup->get("<number-goes-here>", "carrier");
 ```
 
 ### Generate Plivo XML
