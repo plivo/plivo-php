@@ -76,6 +76,7 @@ class MultiPartyCallInterface extends ResourceInterface
         if(isset($optionalArgs['offset'])){
             MPCUtils::validRange('offset', $optionalArgs['offset'], false, 0);
         }
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->fetch(
             $this->uri,
             $optionalArgs
@@ -99,6 +100,7 @@ class MultiPartyCallInterface extends ResourceInterface
         $mpcId = self::mpcId($optionalArgs['uuid'], $optionalArgs['friendly_name']);
         unset($optionalArgs['uuid']);
         unset($optionalArgs['friendly_name']);
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->fetch(
             $this->uri. $mpcId. "/",
             $optionalArgs
@@ -332,6 +334,7 @@ class MultiPartyCallInterface extends ResourceInterface
             $optionalArgs['exit_sound_method'] = 'GET';
         }
         $mandatoryArgs = ['role' => $role];
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->update(
             $this->uri. $mpcId. "/Participant/",
             array_merge($mandatoryArgs, $optionalArgs)
@@ -357,7 +360,7 @@ class MultiPartyCallInterface extends ResourceInterface
         unset($optionalArgs['friendly_name']);
         $response = $this->client->update(
             $this->uri. $mpcId. "/",
-            ['status' => 'active']
+            ['status' => 'active', 'isVoiceRequest' => true]
         );
         return $response->getContent();
     }
@@ -378,6 +381,7 @@ class MultiPartyCallInterface extends ResourceInterface
         $mpcId = self::mpcId($optionalArgs['uuid'], $optionalArgs['friendly_name']);
         unset($optionalArgs['uuid']);
         unset($optionalArgs['friendly_name']);
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->delete($this->uri. $mpcId. "/",
             $optionalArgs
         );
@@ -415,6 +419,7 @@ class MultiPartyCallInterface extends ResourceInterface
         else{
             $optionalArgs['status_callback_method'] = 'POST';
         }
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->update(
             $this->uri. $mpcId. '/Record/',
             $optionalArgs
@@ -438,6 +443,7 @@ class MultiPartyCallInterface extends ResourceInterface
         $mpcId = self::mpcId($optionalArgs['uuid'], $optionalArgs['friendly_name']);
         unset($optionalArgs['uuid']);
         unset($optionalArgs['friendly_name']);
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->delete(
             $this->uri. $mpcId. '/Record/',
             $optionalArgs
@@ -461,6 +467,7 @@ class MultiPartyCallInterface extends ResourceInterface
         $mpcId = self::mpcId($optionalArgs['uuid'], $optionalArgs['friendly_name']);
         unset($optionalArgs['uuid']);
         unset($optionalArgs['friendly_name']);
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->update(
             $this->uri. $mpcId. '/Record/Pause/',
             $optionalArgs
@@ -484,6 +491,7 @@ class MultiPartyCallInterface extends ResourceInterface
         $mpcId = self::mpcId($optionalArgs['uuid'], $optionalArgs['friendly_name']);
         unset($optionalArgs['uuid']);
         unset($optionalArgs['friendly_name']);
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->update(
             $this->uri. $mpcId. '/Record/Resume/',
             $optionalArgs
@@ -510,6 +518,7 @@ class MultiPartyCallInterface extends ResourceInterface
         if(isset($optionalArgs['call_uuid'])){
             MPCUtils::validParam('callUuid', $optionalArgs['call_uuid'], ['string'], false);
         }
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->fetch(
             $this->uri. $mpcId. '/Participant/',
             $optionalArgs
@@ -543,6 +552,7 @@ class MultiPartyCallInterface extends ResourceInterface
         if(isset($optionalArgs['hold'])){
             MPCUtils::validParam('hold', $optionalArgs['hold'], ['boolean'], false);
         }
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->update(
             $this->uri. $mpcId. '/Participant/'. $participantId. '/',
             $optionalArgs
@@ -567,6 +577,7 @@ class MultiPartyCallInterface extends ResourceInterface
         $mpcId = self::mpcId($optionalArgs['uuid'], $optionalArgs['friendly_name']);
         unset($optionalArgs['uuid']);
         unset($optionalArgs['friendly_name']);
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->delete(
             $this->uri. $mpcId. '/Participant/'. $participantId. '/',
             $optionalArgs
@@ -591,6 +602,7 @@ class MultiPartyCallInterface extends ResourceInterface
         $mpcId = self::mpcId($optionalArgs['uuid'], $optionalArgs['friendly_name']);
         unset($optionalArgs['uuid']);
         unset($optionalArgs['friendly_name']);
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->fetch(
             $this->uri. $mpcId. '/Participant/'. $participantId. '/',
             $optionalArgs
