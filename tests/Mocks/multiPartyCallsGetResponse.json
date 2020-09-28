@@ -1,0 +1,19 @@
+{
+  "api_id": "8970c2b3-edfb-11ea-b02e-0242ac110003",
+  "billed_amount": "0.00500",
+  "billed_duration": 60,
+  "creation_time": "2020-08-31 15:12:03+00:00",
+  "duration": 3,
+  "end_time": "2020-08-31 15:12:06+00:00",
+  "friendly_name": "TestMPC",
+  "mpc_uuid": "ca8e8a44-48e1-445d-afd5-1fcccdbccd9d",
+  "participants": "/v1/Account/MAMDJMMTEZOWY0ZMQWM2/MultiPartyCall/uuid_ca8e8a44-48e1-445d-afd5-1fcccdbccd9d/Participant/",
+  "recording": null,
+  "resource_uri": "/v1/Account/MAMDJMMTEZOWY0ZMQWM2/MultiPartyCall/uuid_ca8e8a44-48e1-445d-afd5-1fcccdbccd9d/",
+  "start_time": null,
+  "status": "Ended",
+  "stay_alone": false,
+  "sub_account": null,
+  "termination_cause": "No Active Participants",
+  "termination_cause_code": 1000
+}

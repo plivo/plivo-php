@@ -346,6 +346,10 @@ class Element {
         return $this->add(new Conference($body, $attributes));
     }
 
+    function addMultiPartyCall($body = null, $attributes = []) {
+        return $this->add(new MultiPartyCall($body, $attributes));
+    }
+
     /**
      * @param array $attributes
      * @return mixed

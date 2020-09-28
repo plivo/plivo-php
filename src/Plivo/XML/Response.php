@@ -21,7 +21,8 @@ class Response extends Element {
         'PreAnswer',
         'Conference',
         'DTMF',
-        'Message'
+        'Message',
+        'MultiPartyCall'
     ];
 
     /**

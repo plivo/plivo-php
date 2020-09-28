@@ -1,5 +1,8 @@
 # Change Log
 
+## [v5.11.1](https://github.com/plivo/plivo-php/releases/tag/v5.11.1) - 2020-09-24
+- Add SDK support for MPC APIs and XML.
+
 ## [v4.19.0](https://github.com/plivo/plivo-php/releases/tag/v4.19.0) - 2021-06-15
 - Add stir verification param as part of Get CDR and live call APIs
 
@@ -21,7 +24,7 @@
 ## [v4.17.1](https://github.com/plivo/plivo-php/releases/tag/v4.17.1) - 2021-02-15
 - Fix PHP v8 deprectaion warning for PlivoResponseException
 
-## [v4.17.0](https://github.com/plivo/plivo-php/releases/tag/v4.17.0) - 2020-12-17
+## [v4.17.0](https://github.com/plivo/plivo-php/releases/tag/v4.16.0) - 2020-12-17
 - Add exception to handle destination param - SMS.
 
 ## [v4.16.0](https://github.com/plivo/plivo-php/releases/tag/v4.16.0) - 2020-12-08
