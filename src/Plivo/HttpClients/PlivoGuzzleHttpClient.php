@@ -10,7 +10,7 @@ use Plivo\Http\PlivoRequest;
 use Plivo\Http\PlivoResponse;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\TransferException;
+use GuzzleHttp\Exception\RequestException;
 
 
 /**
@@ -131,7 +131,7 @@ class PlivoGuzzleHttpClient implements PlivoHttpClientInterface
         }
         try {
             $rawResponse = $this->guzzleClient->request($method, $url, $options);
-        } catch (TransferException $e) {
+        } catch (RequestException $e) {
             throw new PlivoRequestException($e->getMessage());
         }
         $rawHeaders = $rawResponse->getHeaders();

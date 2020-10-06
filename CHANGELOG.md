@@ -1,4 +1,6 @@
 # Change Log
+## [v4.12.0](https://github.com/plivo/plivo-php/releases/tag/v4.12.0) - 2020-10-06
+- Upgarde Guzzle Http cleint Version 6 to 7.
 
 ## [v4.11.1](https://github.com/plivo/plivo-php/releases/tag/v4.11.1) - 2020-09-17
 - Fix "Media is invalid" error while using Send MMS API.
