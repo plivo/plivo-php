@@ -49,10 +49,7 @@ class MessageInterface extends ResourceInterface
             $this->uri . $messageUuid .'/',
             []
         );
-
-        return new Message(
-            $this->client, $response->getContent(),
-            $this->pathParams['authId'], $this->uri);
+        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
     }
 
     
