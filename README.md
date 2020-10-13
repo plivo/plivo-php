@@ -4,6 +4,8 @@
 
 The Plivo PHP SDK makes it simpler to integrate communications into your PHP applications using the Plivo REST API. Using the SDK, you will be able to make voice calls, send SMS and generate Plivo XML to control your call flows.
 
+**Supported PHP Versions**: This SDK works with PHP 7.1.0+.
+
 ## Installation
 
 ### To install Composer
