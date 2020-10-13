@@ -1,4 +1,6 @@
 # Change Log
+## [v4.14.1](https://github.com/plivo/plivo-php/releases/tag/v4.14.1) - 2020-10-113
+- Fix "issue 168", On invalid or not existing message get request.
 
 ## [v4.11.1](https://github.com/plivo/plivo-php/releases/tag/v4.11.1) - 2020-09-17
 - Fix "Media is invalid" error while using Send MMS API.
