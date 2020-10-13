@@ -1,6 +1,11 @@
 # Change Log
-## [v4.14.1](https://github.com/plivo/plivo-php/releases/tag/v4.14.1) - 2020-10-113
-- Fix "issue 168", On invalid or not existing message get request.
+
+## [v4.13.0](https://github.com/plivo/plivo-php/releases/tag/v4.13.0) - 2020-10-13
+- Add support to Guzzle HTTP client 7.
+- Fix "issue-168", _Undefined index: from_number_ on Invalid or not existing message GET request.
+
+## [v4.12.0](https://github.com/plivo/plivo-php/releases/tag/v4.12.0) - 2020-09-21
+- Add support for Lookup API.
 
 ## [v4.11.1](https://github.com/plivo/plivo-php/releases/tag/v4.11.1) - 2020-09-17
 - Fix "Media is invalid" error while using Send MMS API.

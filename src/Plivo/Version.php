@@ -2,7 +2,6 @@
 
 namespace Plivo;
 
-
 /**
  * Class Version
  * @package Plivo
@@ -21,11 +20,11 @@ class Version
     /**
      * @const int PHP helper library minor version number
      */
-    const MINOR = 14;
+    const MINOR = 13;
     /**
      * @const int PHP helper library patch number
      */
-    const PATCH = 1;
+    const PATCH = 0;
     /**
      * @return string
      */
