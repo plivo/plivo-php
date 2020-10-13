@@ -1,6 +1,6 @@
 # Change Log
-## [v4.12.0](https://github.com/plivo/plivo-php/releases/tag/v4.12.0) - 2020-10-06
-- Upgarde Guzzle Http cleint Version 6 to 7.
+## [v4.13.0](https://github.com/plivo/plivo-php/releases/tag/v4.13.0) - 2020-10-13
+- Add support to Guzzle HTTP client 7.
 
 ## [v4.12.0](https://github.com/plivo/plivo-php/releases/tag/v4.12.0) - 2020-09-21
 - Add support for Lookup API.
