@@ -18,7 +18,7 @@ class LookupInterface extends ResourceInterface
     public function __construct(BaseClient $plivoClient)
     {
         parent::__construct($plivoClient);
-        $this->uri = "Lookup/Number/";
+        $this->uri = "Number/";
     }
 
     /**
@@ -31,7 +31,7 @@ class LookupInterface extends ResourceInterface
         $uri = $this->uri . $number . '?type=' . $type;
         $response = $this->client->fetch(
             $uri,
-            []
+            ['isLookupRequest' => true]
         );
 
         // returns a nested associative array and is better than subclassing
