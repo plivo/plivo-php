@@ -18,7 +18,7 @@ class LookupTest extends BaseTestCase
         $number = "+14154305555";
         $request = new PlivoRequest(
             'GET',
-            'Lookup/Number/'.$number.'?type=carrier',
+            'Number/'.$number.'?type=carrier',
             []
         );
         $body = file_get_contents(__DIR__ . '/../Mocks/lookupGetResponse.json');
@@ -30,6 +30,6 @@ class LookupTest extends BaseTestCase
         self::assertNotNull($actual);
         self::assertEquals($actual["phone_number"], $number);
         self::assertEquals($actual["format"]["e164"], $number);
-        self::assertEquals($actual["resource_uri"], "/v1/Lookup/Number/+14154305555?type=carrier");
+        self::assertEquals($actual["resource_uri"], "/v1/Number/+14154305555?type=carrier");
     }
 }

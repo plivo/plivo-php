@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.14.0](https://github.com/plivo/plivo-php/releases/tag/v4.14.0) - 2020-10-25
+- Change Lookup API endpoint and response.
+
 ## [v4.13.0](https://github.com/plivo/plivo-php/releases/tag/v4.13.0) - 2020-10-13
 - Add support to Guzzle HTTP client 7.
 - Fix "issue-168", _Undefined index: from_number_ error - Retrieve Message Details API with Invalid message UUID.
