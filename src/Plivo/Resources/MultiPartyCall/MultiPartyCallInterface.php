@@ -405,7 +405,7 @@ class MultiPartyCallInterface extends ResourceInterface
         unset($optionalArgs['uuid']);
         unset($optionalArgs['friendly_name']);
         if(isset($optionalArgs['file_format'])){
-            MPCUtils::validParam('fileFormat', $optionalArgs['file_format'], ['string'],false, ['mp3', 'wav']);
+            MPCUtils::validParam('fileFormat', strtolower($optionalArgs['file_format']), ['string'],false, ['mp3', 'wav']);
         }
         else{
             $optionalArgs['file_format'] = 'mp3';
