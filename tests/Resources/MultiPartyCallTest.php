@@ -122,7 +122,7 @@ class MultiPartyCallTest extends BaseTestCase{
         );
         $body = file_get_contents(__DIR__ . '/../Mocks/multiPartyCallsStartRecordingResponse.json');
 
-        $this->mock(new PlivoResponse($request,200, $body));
+        $this->mock(new PlivoResponse($request,202, $body));
         $actual = $this->client->multiPartyCalls->startRecording(['friendly_name' => 'Voice', 'file_format' => 'wav',
                 'status_callback_url'=> 'https://plivo.com/status',
                 'status_callback_method'=> 'POST']

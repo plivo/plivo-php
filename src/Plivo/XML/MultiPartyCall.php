@@ -190,8 +190,8 @@ class MultiPartyCall extends Element {
         if(isset($attributes['statusCallbackUrl']) and !MPCUtils::validUrl('statusCallbackUrl', $attributes['statusCallbackUrl'], false)){
             throw new PlivoXMLException('Invalid attribute value ' . $attributes['statusCallbackUrl']. ' for statusCallbackUrl');
         }
-        if(isset($attributes['customerHoldMusicUrl']) and !MPCUtils::validUrl('customerHoldMusicUrl', $attributes['customerHoldMusicUrl'], false)){
-            throw new PlivoXMLException('Invalid attribute value ' . $attributes['customerHoldMusicUrl']. ' for customerHoldMusicUrl');
+        if(isset($attributes['onExitActionUrl']) and !MPCUtils::validUrl('onExitActionUrl', $attributes['onExitActionUrl'], false)){
+            throw new PlivoXMLException('Invalid attribute value ' . $attributes['onExitActionUrl']. ' for onExitActionUrl');
         }
     }
 }

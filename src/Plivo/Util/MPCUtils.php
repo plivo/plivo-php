@@ -158,7 +158,7 @@ class MPCUtils{
             if($paramValue < $lowerBound || $paramValue > $upperBound){
                 throw new PlivoValidationException($paramName . " ranges between " . $lowerBound . " and " . $upperBound);
             }
-            if($paramValue >= $lowerBound || $paramValue <= $upperBound){
+            if($paramValue >= $lowerBound && $paramValue <= $upperBound){
                 return true;
             }
         }
