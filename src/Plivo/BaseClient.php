@@ -24,6 +24,7 @@ class BaseClient
     const VOICE_BASE_API_URL = 'https://voice.plivo.com/';
     const VOICE_BASE_API_FALLBACK_URL_1 = 'https://voice-usw1.plivo.com/';
     const VOICE_BASE_API_FALLBACK_URL_2 = 'https://voice-use1.plivo.com/';
+    const LOOKUP_API_BASE_URL = 'https://lookup.plivo.com/';
     /**
      * @const Default timeout for request
      */
@@ -49,6 +50,8 @@ class BaseClient
     public static $voiceRetryCount = 0;
 
     public static $isVoiceRequest = false;
+
+    public static $isLookupRequest = false;
 
     /**
      * Instantiates a new BaseClient object.
@@ -175,7 +178,10 @@ class BaseClient
             elseif(static::$voiceRetryCount == 2){
                 $url = self::VOICE_BASE_API_FALLBACK_URL_2 . $request->getUrl();
             }
-        }
+	}
+	if (static::$isLookupRequest) {
+	    $url = self::LOOKUP_API_BASE_URL . $request->getUrl();
+	}
         $timeout = $this->timeout ?: static::DEFAULT_REQUEST_TIMEOUT;
 
         $plivoResponse =
@@ -210,6 +216,10 @@ class BaseClient
         if (array_key_exists("isVoiceRequest", $params)){
             static::$isVoiceRequest = true;
             unset($params['isVoiceRequest']);
+	}
+        if (array_key_exists("isLookupRequest", $params)){
+            static::$isLookupRequest = true;
+            unset($params['isLookupRequest']);
         }
         $request =
             new PlivoRequest(

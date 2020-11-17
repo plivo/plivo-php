@@ -55,6 +55,7 @@ class Numbers
      * Add an number
      * @param string $uuid
      * @param array optionalArgs
+     * + [string] service (Supported services are 'sms' and 'mms'. Defaults to 'sms' when not set)
      * @return Response
      */
     public function buy_add_number( $optionalArgs = [])
@@ -62,6 +63,11 @@ class Numbers
         $data = [
             'rent' => 'true'
         ];
+        $service = $optionalArgs['service'];
+        if (ArrayOperations::checkNull([$service])) {
+            $service = 'sms';
+        }
+        $data['service'] = $service;
         $number = $optionalArgs['number'];
         if (ArrayOperations::checkNull([$number])){
         $country_iso = $optionalArgs['country_iso2'];
@@ -111,9 +117,12 @@ class Numbers
     /**
      * Add an number
      * @param string number
+     * @param array $optionalArgs
+     * Valid arguments
+     *  + [string] service  (Supported services are 'sms' and 'mms'. Defaults to 'sms' if   not set)
      * @return Response
      */
-    public function add( $number)
+    public function add( $number, $optionalArgs = [])
     {
        if (ArrayOperations::checkNull([$number])) {
             throw
@@ -122,7 +131,7 @@ class Numbers
         } 
        $response = $this->client->update(
             $this->url . '/Number/' . $number . '/',
-            [] 
+            $optionalArgs 
         );
         return $response->getContent();
     
@@ -150,11 +159,14 @@ class Numbers
 
     /**
      * @param $number
+     * * @param array $optionalArgs
+     * Valid arguments
+     *  + [string] service  (Supported services are 'sms' and 'mms'. Defaults to 'sms' if   not set)
      * @return Powerpack
      * 
      * @throws PlivoValidationException
      */
-    public function find( $number)
+    public function find( $number, $optionalArgs = [])
     {
         if (ArrayOperations::checkNull([$number])) {
             throw
@@ -163,12 +175,18 @@ class Numbers
         }
 
         $response = $this->client->fetch(
-            $this->url . '/Number/' . $number . '/', []
+            $this->url . '/Number/' . $number . '/', $optionalArgs
         );
         return $response->getContent();
         
     }
-
+    /**
+     * @param array $optionalArgs
+     * Valid arguments
+     *  + [string] service  (Supported services are 'sms' and 'mms'. Defaults to 'sms' if   not set)
+     * @return Response
+     * 
+     */
     public function list( $optionalArgs = [])
     {   
         $response = $this->client->fetch(
