@@ -1,6 +1,6 @@
 # Change Log
 
-## [v4.15.1](https://github.com/plivo/plivo-php/releases/tag/v4.15.1) - 2020-11-18
+## [v4.15.1](https://github.com/plivo/plivo-php/releases/tag/v4.15.1) - 2020-11-17
 - Fix resource not found exception when making sequential requests.
 
 ## [v4.15.0](https://github.com/plivo/plivo-php/releases/tag/v4.15.0) - 2020-11-17
