@@ -18,6 +18,7 @@ use Plivo\Exceptions\PlivoNotFoundException;
  * @property string $application_type
  * @property string $created_on
  * @property string $number_pool
+ * @property array $number_priority
  */
 class Powerpack extends Resource
 {
@@ -48,6 +49,7 @@ class Powerpack extends Resource
             'created_on' => $response['created_on'],
             'local_connect' => $response['local_connect'],
             'number_pool' => $response['number_pool'],
+            'number_priority' => $response['number_priority'],
         ];
 
         $this->pathParams = [
@@ -303,6 +305,7 @@ class Powerpack extends Resource
      *   + string local_connect - 
      *   + string application_type - 
      *   + string application_id - 
+     *   + array number_priority -
      *
      * @return PowerpackUpdateResponse output
      */

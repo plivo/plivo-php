@@ -92,6 +92,7 @@ class PowerpackInterface extends ResourceInterface
      *   + string local_connect - 
      *   + string application_type - 
      *   + string application_id - 
+     *   + array number_priority -
      *
      * @return PowerpackCreateResponse output
      */

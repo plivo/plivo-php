@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.15.0](https://github.com/plivo/plivo-php/releases/tag/v4.15.0) - 2020-11-17
+- Add number_priority support for Powerpack API.
+
 ## [v4.14.0](https://github.com/plivo/plivo-php/releases/tag/v4.14.0) - 2020-10-25
 - Change Lookup API endpoint and response.
 
