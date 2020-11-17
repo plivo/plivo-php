@@ -168,9 +168,6 @@ class BaseClient
         $fullUrl = $url ? $url : null;
         list($url, $method, $headers, $body) =
             $this->prepareRequestMessage($request, $fullUrl);
-        if (!static::$isVoiceRequest) {
-            $url = self::BASE_API_URL . $request->getUrl();
-        }
         if (static::$isVoiceRequest) {
             if (static::$voiceRetryCount == 0) {
                 $url = self::VOICE_BASE_API_URL . $request->getUrl();
@@ -218,6 +215,9 @@ class BaseClient
             static::$isVoiceRequest = true;
             unset($params['isVoiceRequest']);
         }
+        else{
+            static::$isVoiceRequest = false;
+        }
         if (array_key_exists("isLookupRequest", $params)) {
             static::$isLookupRequest = true;
             unset($params['isLookupRequest']);
@@ -245,6 +245,9 @@ class BaseClient
         } elseif (array_key_exists("isVoiceRequest", $params)) {
             static::$isVoiceRequest = true;
             unset($params['isVoiceRequest']);
+        }
+        else{
+            static::$isVoiceRequest = false;
         }
         $request =
             new PlivoRequest(
@@ -309,6 +312,9 @@ class BaseClient
         if (array_key_exists("isVoiceRequest", $params)) {
             static::$isVoiceRequest = true;
             unset($params['isVoiceRequest']);
+        }
+        else{
+            static::$isVoiceRequest = false;
         }
         $request =
             new PlivoRequest(
