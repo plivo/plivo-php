@@ -52,8 +52,8 @@ class MessageInterface extends ResourceInterface
         return json_encode($response->getContent(), JSON_FORCE_OBJECT);
     }
 
-    
-    
+
+
 
     /**
      * Return a list of messages
@@ -144,7 +144,7 @@ class MessageInterface extends ResourceInterface
      * @throws PlivoValidationException,PlivoResponseException
      */
 
-    public function create($src, array $dst, $text=null,
+    public function create($src, array $dst, $text,
                            array $optionalArgs = [], $powerpackUUID = null)
     {
         $mandatoryArgs = [
@@ -174,7 +174,7 @@ class MessageInterface extends ResourceInterface
         );
 
         $responseContents = $response->getContent();
-        
+
         if(!array_key_exists("error",$responseContents)){
             if(array_key_exists("invalid_number", $responseContents)){
                 return new MessageCreateResponse(
