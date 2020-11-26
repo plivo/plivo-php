@@ -1,5 +1,7 @@
 # Change Log
 
+## [v4.15.1](https://github.com/plivo/plivo-php/releases/tag/v4.15.2) - 2020-11-26
+- Fix retrieve_application response.
 ## [v4.15.1](https://github.com/plivo/plivo-php/releases/tag/v4.15.1) - 2020-11-17
 - Fix resource not found exception when making sequential requests.
 
