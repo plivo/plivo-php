@@ -1,9 +1,5 @@
 <?php
-
 namespace Plivo\Resources\Message;
-
-
-
 use Plivo\Exceptions\PlivoValidationException;
 use Plivo\Exceptions\PlivoRestException;
 use Plivo\Exceptions\PlivoResponseException;
@@ -25,12 +21,9 @@ class MessageInterface extends ResourceInterface
     public function __construct(MessageClient $plivoClient, $authId)
     {
         parent::__construct($plivoClient);
-        $this->pathParams = [
-            'authId' => $authId
-        ];
-        $this->uri = "Account/".$authId."/Message/";
+        $this->pathParams = ['authId' => $authId];
+        $this->uri = "Account/" . $authId . "/Message/";
     }
-
 
     /**
      * @param $messageUuid
@@ -39,21 +32,16 @@ class MessageInterface extends ResourceInterface
      */
     public function get($messageUuid)
     {
-        if (ArrayOperations::checkNull([$messageUuid])) {
-            throw
-            new PlivoValidationException(
-                'message uuid is mandatory');
+        if (ArrayOperations::checkNull([$messageUuid]))
+        {
+            throw new PlivoValidationException('message uuid is mandatory');
         }
 
-        $response = $this->client->fetch(
-            $this->uri . $messageUuid .'/',
-            []
-        );
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        $response = $this
+            ->client
+            ->fetch($this->uri . $messageUuid . '/', []);
+        return json_encode($response->getContent() , JSON_FORCE_OBJECT);
     }
-
-    
-    
 
     /**
      * Return a list of messages
@@ -76,45 +64,45 @@ class MessageInterface extends ResourceInterface
      */
     protected function getList($optionalArgs = [])
     {
-        $response = $this->client->fetch(
-            $this->uri,
-            $optionalArgs
-        );
+        $response = $this
+            ->client
+            ->fetch($this->uri, $optionalArgs);
 
         $messages = [];
 
-        foreach ($response->getContent()['objects'] as $message) {
+        foreach ($response->getContent() ['objects'] as $message)
+        {
             $newMessage = new Message($this->client, $message, $this->pathParams['authId'], $this->uri);
 
             array_push($messages, $newMessage);
         }
 
-        return new MessageList($this->client, $response->getContent()['meta'], $messages);
+        return new MessageList($this->client, $response->getContent() ['meta'], $messages);
     }
 
-//    protected function getAllList()
-//    {
-//        $offset = 0;
-//        $response = $this->getList(null,null,null,null,null, $offset);
-//        var_dump($response->getMeta()['total_count']);
-//        $allMessages = $response->get();
-//        while ($response->getMeta()['next'] !== null) {
-//            $offset+=20;
-//            $response = $this->getList(null,null,null,null,null, $offset);
-//            array_push($allMessages, $response->get());
-//        }
-//        $count = count($allMessages);
-//        echo $count;
-//        $meta = array(
-//            'limit' => $count,
-//            "next" => null,
-//            "offset" => 0,
-//            "previous" => null,
-//            "total_count" => $count
-//        );
-//        return new MessageList($this->client, $meta, $allMessages);
-//    }
-
+    //    protected function getAllList()
+    //    {
+    //        $offset = 0;
+    //        $response = $this->getList(null,null,null,null,null, $offset);
+    //        var_dump($response->getMeta()['total_count']);
+    //        $allMessages = $response->get();
+    //        while ($response->getMeta()['next'] !== null) {
+    //            $offset+=20;
+    //            $response = $this->getList(null,null,null,null,null, $offset);
+    //            array_push($allMessages, $response->get());
+    //        }
+    //        $count = count($allMessages);
+    //        echo $count;
+    //        $meta = array(
+    //            'limit' => $count,
+    //            "next" => null,
+    //            "offset" => 0,
+    //            "previous" => null,
+    //            "total_count" => $count
+    //        );
+    //        return new MessageList($this->client, $meta, $allMessages);
+    //    }
+    
     /**
      * Send a message
      *
@@ -144,66 +132,101 @@ class MessageInterface extends ResourceInterface
      * @throws PlivoValidationException,PlivoResponseException
      */
 
-    public function create($src, array $dst, $text=null,
-                           array $optionalArgs = [], $powerpackUUID = null)
+    public function __call($name_of_method, $arguments)
     {
-        $mandatoryArgs = [
-            'dst' => implode('<', $dst),
-        ];
-
-        if (ArrayOperations::checkNull($mandatoryArgs)) {
-            throw new PlivoValidationException(
-                "Mandatory parameters cannot be null");
-        }
-
-        if (is_null($src) &&  is_null($powerpackUUID)) {
-            throw new PlivoValidationException(
-                "Specify either powerpack_uuid or src in request params to send a message."
-            );
-        }
-
-        if (!is_null($src) && !is_null($powerpackUUID)) {
-            throw new PlivoValidationException(
-                "Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message."
-            );
-        }
-
-        $response = $this->client->update(
-            $this->uri,
-            array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID, 'text' => $text])
-        );
-
-        $responseContents = $response->getContent();
-        
-        if(!array_key_exists("error",$responseContents)){
-            if(array_key_exists("invalid_number", $responseContents)){
-                return new MessageCreateResponse(
-                    $responseContents['message'],
-                    $responseContents['message_uuid'],
-                    $responseContents['api_id'],
-                    $response->getStatusCode(),
-                    $responseContents['invalid_number']
-                );
+        if ($name_of_method == 'create' and count($arguments) == 1)
+        {
+            $arguments = $arguments[0];
+            $dest = explode('<', $arguments['dst']);
+            if (!array_key_exists('src', $arguments) && !array_key_exists('powerpackUUID', $arguments))
+            {
+                throw new PlivoValidationException("Specify either powerpack_uuid or src in request params to send a message.");
             }
-            else{
-                return new MessageCreateResponse(
-                    $responseContents['message'],
-                    $responseContents['message_uuid'],
-                    $responseContents['api_id'],
-                    $response->getStatusCode(),
-                    []
-                );
-            }
-        } else {
-            throw new PlivoResponseException(
-                $responseContents['error'],
-                0,
-                null,
-                $response->getContent(),
-                $response->getStatusCode()
 
-            );
+            if (!array_key_exists('src', $arguments) && array_key_exists('powerpackUUID', $arguments))
+            {
+                throw new PlivoValidationException("Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message.");
+            }
+
+            foreach ($dest as $dst)
+            {
+                if (!is_numeric($dst))
+                {
+                    throw new PlivoValidationException('Destination number should be numeric');
+                }
+            }
+            $response = $this
+                ->client
+                ->update($this->uri, $arguments);
+
+            $responseContents = $response->getContent();
+
+            if (!array_key_exists("error", $responseContents))
+            {
+                if (array_key_exists("invalid_number", $responseContents))
+                {
+                    return new MessageCreateResponse($responseContents['message'], $responseContents['message_uuid'], $responseContents['api_id'], $response->getStatusCode() , $responseContents['invalid_number']);
+                }
+                else
+                {
+                    return new MessageCreateResponse($responseContents['message'], $responseContents['message_uuid'], $responseContents['api_id'], $response->getStatusCode() , []);
+                }
+            }
+            else
+            {
+                throw new PlivoResponseException($responseContents['error'], 0, null, $response->getContent() , $response->getStatusCode());
+            }
+        }
+
+        else
+        {
+            $src = $arguments[0];
+            $dst = $arguments[1];
+            $text = $arguments[2];
+            $optionalArgs = $arguments[3];
+            $powerpackUUID = $arguments[4];
+            {
+                $mandatoryArgs = ['dst' => implode('<', $dst) , ];
+
+                if (ArrayOperations::checkNull($mandatoryArgs))
+                {
+                    throw new PlivoValidationException("Mandatory parameters cannot be null");
+                }
+
+                if (is_null($src) && is_null($powerpackUUID))
+                {
+                    throw new PlivoValidationException("Specify either powerpack_uuid or src in request params to send a message.");
+                }
+
+                if (!is_null($src) && !is_null($powerpackUUID))
+                {
+                    throw new PlivoValidationException("Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message.");
+                }
+
+                $response = $this
+                    ->client
+                    ->update($this->uri, array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID, 'text' => $text]));
+
+                $responseContents = $response->getContent();
+
+                if (!array_key_exists("error", $responseContents))
+                {
+                    if (array_key_exists("invalid_number", $responseContents))
+                    {
+                        return new MessageCreateResponse($responseContents['message'], $responseContents['message_uuid'], $responseContents['api_id'], $response->getStatusCode() , $responseContents['invalid_number']);
+                    }
+                    else
+                    {
+                        return new MessageCreateResponse($responseContents['message'], $responseContents['message_uuid'], $responseContents['api_id'], $response->getStatusCode() , []);
+                    }
+                }
+                else
+                {
+                    throw new PlivoResponseException($responseContents['error'], 0, null, $response->getContent() , $response->getStatusCode());
+                }
+
+            };
+
         }
     }
-
 }
