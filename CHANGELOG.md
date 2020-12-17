@@ -1,5 +1,7 @@
 # Change Log
 
+## [v4.17.0](https://github.com/plivo/plivo-php/releases/tag/v4.16.0) - 2020-12-17
+- Add exception to handle destination param - SMS.
 ## [v4.16.0](https://github.com/plivo/plivo-php/releases/tag/v4.16.0) - 2020-12-08
 - Fix retrieve_application API response.
 
