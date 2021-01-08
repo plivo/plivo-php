@@ -148,7 +148,7 @@ class MPCUtils{
         if($mandatory and !$paramValue){
             throw new PlivoValidationException($paramName . " is a required parameter");
         }
-        if(!$paramValue){
+        if(!isset($paramValue)){
             return true;
         }
         if(!self::expectedType($paramName, ['integer'], $paramValue)){

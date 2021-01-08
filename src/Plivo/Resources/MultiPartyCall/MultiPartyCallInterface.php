@@ -143,6 +143,7 @@ class MultiPartyCallInterface extends ResourceInterface
         if(isset($optionalArgs['to'])){
             MPCUtils::validParam('to', $optionalArgs['to'], ['string'], false);
             MPCUtils::validMultipleDestinationNos('to', $optionalArgs['to'], ['role' => $role, 'delimiter' => '<', 'agentLimit' => 20]);
+            $optionalArgs['to'] = preg_replace('/\s+/', '', $optionalArgs['to']);
         }
         if(isset($optionalArgs['call_uuid'])){
             MPCUtils::validParam('callUuid', $optionalArgs['call_uuid'], ['string'], false);
