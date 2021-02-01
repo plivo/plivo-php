@@ -77,7 +77,7 @@ class MessageInterface extends ResourceInterface
             array_push($messages, $newMessage);
         }
 
-        return new MessageList($this->client, $response->getContent() ['meta'], $messages);
+        return new MessageList($this->client, $response->getContent()['meta'], $messages);
     }
 
     //    protected function getAllList()
@@ -137,24 +137,16 @@ class MessageInterface extends ResourceInterface
         if ($name_of_method == 'create' and count($arguments) == 1)
         {
             $arguments = $arguments[0];
-            $dest = explode('<', $arguments['dst']);
-            if (!array_key_exists('src', $arguments) && !array_key_exists('powerpackUUID', $arguments))
+            if (array_key_exists('src', $arguments) && array_key_exists('powerpack_uuid', $arguments))
             {
                 throw new PlivoValidationException("Specify either powerpack_uuid or src in request params to send a message.");
             }
 
-            if (!array_key_exists('src', $arguments) && array_key_exists('powerpackUUID', $arguments))
+            if (array_key_exists('src', $arguments) && array_key_exists('powerpack_uuid', $arguments))
             {
                 throw new PlivoValidationException("Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message.");
             }
 
-            foreach ($dest as $dst)
-            {
-                if (!is_numeric($dst))
-                {
-                    throw new PlivoValidationException('Destination number should be numeric');
-                }
-            }
             $response = $this
                 ->client
                 ->update($this->uri, $arguments);
