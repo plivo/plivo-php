@@ -18,6 +18,7 @@ use Plivo\Resources\Pricing\PricingInterface;
 use Plivo\Resources\Recording\RecordingInterface;
 use Plivo\Resources\SubAccount\SubAccountInterface;
 use Plivo\Resources\CallFeedback\CallFeedbackInterface;
+use Plivo\Resources\RegulatoryCompliance\EndUserInterface;
 
 /**
  * Class RestClient
@@ -37,6 +38,7 @@ use Plivo\Resources\CallFeedback\CallFeedbackInterface;
  * @property PricingInterface pricing Interface to handle all Pricing related api calls
  * @property RecordingInterface recording Interface to handle all Recording related api calls
  * @property CallFeedbackInterface callfeedback Interface to handle user feedback for calls
+ * @property EndUserInterface endUser Interface to handle all EndUser related api calls
  *
  */
 class RestClient
@@ -121,6 +123,11 @@ class RestClient
      * @var CallFeedbackInterface
      */
     protected $_callFeedback;
+
+    /**
+     * @var EndUserInterface
+     */
+    protected $_endUser;
 
     /**
      * RestClient constructor.
@@ -329,5 +336,16 @@ class RestClient
             $this->_callFeedback = new CallFeedbackInterface($this->client);
         }
         return $this->_callFeedback;
+    }
+
+    /**
+     * @return EndUserInterface
+     */
+    public function getEndUsers()
+    {
+        if (!$this->_endUser) {
+            $this->_endUser = new EndUserInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_endUser;
     }
 }
