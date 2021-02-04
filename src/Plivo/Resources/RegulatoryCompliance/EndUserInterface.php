@@ -103,9 +103,20 @@ class EndUserInterface extends ResourceInterface
             []
         );
 
-        return new EndUser(
-            $this->client, $response->getContent(),
-            $this->pathParams['authId']);
+        if(!array_key_exists("error", $response->getContent())){
+            return new EndUser(
+                $this->client, $response->getContent(),
+                $this->pathParams['authId']
+            );
+        } else {
+            throw new PlivoResponseException(
+                $response->getContent()['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+            );
+        }
     }
 
     /**
@@ -120,13 +131,22 @@ class EndUserInterface extends ResourceInterface
             $optionalArgs
         );
 
-        $endUsers = [];
-
-        foreach ($response->getContent()['objects'] as $endUser) {
-            $newEndUser = new EndUser($this->client, $endUser, $this->pathParams['authId']);
-            array_push($endUsers, $newEndUser);
+        if(!array_key_exists("error", $response->getContent())){
+            $endUsers = [];
+            foreach ($response->getContent()['objects'] as $endUser) {
+                $newEndUser = new EndUser($this->client, $endUser, $this->pathParams['authId']);
+                array_push($endUsers, $newEndUser);
+            }
+            return new ResourceList($this->client, $response->getContent()['meta'], $endUsers);
+        } else {
+            throw new PlivoResponseException(
+                $response->getContent()['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+            );
         }
-        return new ResourceList($this->client, $response->getContent()['meta'], $endUsers);
     }
 
     /**

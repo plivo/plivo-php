@@ -144,9 +144,20 @@ class ComplianceDocumentInterface extends ResourceInterface
             []
         );
 
-        return new ComplianceDocument(
-            $this->client, $response->getContent(),
-            $this->pathParams['authId']);
+        if(!array_key_exists("error", $response->getContent())){
+            return new ComplianceDocument(
+                $this->client, $response->getContent(),
+                $this->pathParams['authId']
+            );
+        } else {
+            throw new PlivoResponseException(
+                $response->getContent()['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+            );
+        }
     }
 
     /**
@@ -161,13 +172,22 @@ class ComplianceDocumentInterface extends ResourceInterface
             $optionalArgs
         );
 
-        $complianceDocuments = [];
-
-        foreach ($response->getContent()['objects'] as $complianceDocument) {
-            $newComplianceDocument = new ComplianceDocument($this->client, $complianceDocument, $this->pathParams['authId']);
-            array_push($complianceDocuments, $newComplianceDocument);
+        if(!array_key_exists("error", $response->getContent())){
+            $complianceDocuments = [];
+            foreach ($response->getContent()['objects'] as $complianceDocument) {
+                $newComplianceDocument = new ComplianceDocument($this->client, $complianceDocument, $this->pathParams['authId']);
+                array_push($complianceDocuments, $newComplianceDocument);
+            }
+            return new ResourceList($this->client, $response->getContent()['meta'], $complianceDocuments);
+        } else {
+            throw new PlivoResponseException(
+                $response->getContent()['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+            );
         }
-        return new ResourceList($this->client, $response->getContent()['meta'], $complianceDocuments);
     }
 
     /**

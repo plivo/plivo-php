@@ -4,6 +4,7 @@ namespace Plivo\Resources\RegulatoryCompliance;
 
 
 use Plivo\Exceptions\PlivoValidationException;
+use Plivo\Exceptions\PlivoResponseException;
 use Plivo\BaseClient;
 
 use Plivo\Resources\ResourceInterface;
@@ -12,15 +13,15 @@ use Plivo\Resources\ResourceList;
 use Plivo\Util\ArrayOperations;
 
 /**
- * Class ComplianceDocumentTypeInterface
+ * Class ComplianceRequirementInterface
  * @package Plivo\Resources\RegulatoryCompliance
  * @property ResourceList $list
  * @method ResourceList list(array $optionalArgs)
  */
-class ComplianceDocumentTypeInterface extends ResourceInterface
+class ComplianceRequirementInterface extends ResourceInterface
 {
     /**
-     * ComplianceDocumentTypeInterface constructor.
+     * ComplianceRequirementInterface constructor.
      * @param BaseClient $plivoClient
      * @param $authId
      */
@@ -30,29 +31,29 @@ class ComplianceDocumentTypeInterface extends ResourceInterface
         $this->pathParams = [
             'authId' => $authId
         ];
-        $this->uri = "Account/".$authId."/ComplianceDocumentType/";
+        $this->uri = "Account/".$authId."/ComplianceRequirement/";
     }
 
     /**
-     * This method lets you get details of a single complianceDocumentType on your account using the $complianceDocumentTypeId.
-     * @param $complianceDocumentTypeId
-     * @return ComplianceDocumentType
+     * This method lets you get details of a single complianceRequirement on your account using the $complianceRequirementId.
+     * @param $complianceRequirementId
+     * @return ComplianceRequirement
      * @throws PlivoValidationException
      */
-    public function get($complianceDocumentTypeId)
+    public function get($complianceRequirementId)
     {
-        if (ArrayOperations::checkNull([$complianceDocumentTypeId])) {
+        if (ArrayOperations::checkNull([$complianceRequirementId])) {
             throw
             new PlivoValidationException(
-                'complianceDocumentTypeId is mandatory');
+                'complianceRequirementId is mandatory');
         }
         $response = $this->client->fetch(
-            $this->uri . $complianceDocumentTypeId .'/',
+            $this->uri . $complianceRequirementId .'/',
             []
         );
 
         if(!array_key_exists("error", $response->getContent())){
-            return new ComplianceDocumentType(
+            return new ComplianceRequirement(
                 $this->client, $response->getContent(),
                 $this->pathParams['authId']
             );
@@ -65,13 +66,13 @@ class ComplianceDocumentTypeInterface extends ResourceInterface
                 $response->getStatusCode()
             );
         }
-
     }
 
     /**
-     * This method lets you get details of all complianceDocumentTypes.
+     * This method lets you fetch a complianceRequirement via params
      * @param array $optionalArgs
-     * @return ResourceList
+     * @return ComplianceRequirement
+     * @throws PlivoValidationException
      */
     public function getList($optionalArgs = [])
     {
@@ -81,12 +82,10 @@ class ComplianceDocumentTypeInterface extends ResourceInterface
         );
 
         if(!array_key_exists("error", $response->getContent())){
-            $complianceDocumentTypes = [];
-            foreach ($response->getContent()['objects'] as $complianceDocumentType) {
-                $newComplianceDocumentType = new ComplianceDocumentType($this->client, $complianceDocumentType, $this->pathParams['authId']);
-                array_push($complianceDocumentTypes, $newComplianceDocumentType);
-            }
-            return new ResourceList($this->client, $response->getContent()['meta'], $complianceDocumentTypes);
+            return new ComplianceRequirement(
+                $this->client, $response->getContent(),
+                $this->pathParams['authId']
+            );
         } else {
             throw new PlivoResponseException(
                 $response->getContent()['error'],

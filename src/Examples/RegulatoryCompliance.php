@@ -193,3 +193,34 @@ try {
 catch (PlivoRestException $ex) {
     print_r($ex);
 }
+
+// List ComplianceRequirement
+echo "########## List ComplianceRequirement ###################\n";
+try {
+    $params = array(
+        'country_iso2' => 'FR',
+        'number_type' => 'mobile',
+        'end_user_type' => 'business'
+    );
+    $response = $client->complianceRequirement->list(
+        $params
+    );
+
+    print_r($response->properties);
+}
+catch (PlivoRestException $ex) {
+    print_r($ex);
+}
+
+// Get ComplianceRequirement by complianceRequirementId
+echo "########## Get ComplianceRequirement ###################\n";
+try {
+    $response = $client->complianceRequirement->get(
+        "28701b64-46b7-42b0-a620-98fec19e4db1"
+    );
+
+    print_r($response->properties);
+}
+catch (PlivoRestException $ex) {
+    print_r($ex);
+}
