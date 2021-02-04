@@ -110,24 +110,24 @@ class PlivoGuzzleHttpClient implements PlivoHttpClientInterface
             $requestBody = $requestBody;
         }
         if(isset($body['multipart'])){
-            $requestBody= json_encode($request->getParams(), JSON_FORCE_OBJECT);
+            $requestBody = json_encode($request->getParams(), JSON_FORCE_OBJECT);
             unset($headers['Content-type']);
             $options = [
-            'http_errors' => false,
-            'headers' => $headers,
-            'body' => $requestBody,
-            'timeout' => $timeOut,
-            'connect_timeout' => 160,
-            'multipart' => $body['multipart']
-        ];
+                'http_errors' => false,
+                'headers' => $headers,
+                'body' => $requestBody,
+                'timeout' => $timeOut,
+                'connect_timeout' => 160,
+                'multipart' => $body['multipart']
+            ];
         } else{
             $options = [
-            'http_errors' => false,
-            'headers' => $headers,
-            'body' => $requestBody,
-            'timeout' => $timeOut,
-            'connect_timeout' => 60,
-        ];
+                'http_errors' => false,
+                'headers' => $headers,
+                'body' => $requestBody,
+                'timeout' => $timeOut,
+                'connect_timeout' => 60,
+            ];
         }
         try {
             $rawResponse = $this->guzzleClient->request($method, $url, $options);

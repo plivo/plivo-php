@@ -111,8 +111,84 @@ try {
         "6264e9ee-5826-4f9a-80ce-00b00f7a6c0c"
     );
 
-//     print_r($response);
     print_r($response->properties);
+}
+catch (PlivoRestException $ex) {
+    print_r($ex);
+}
+
+// List ComplianceDocument
+echo "########## List ComplianceDocument ###################\n";
+try {
+    $params = array(
+        'limit' => 1
+    );
+    $response = $client->complianceDocument->list(
+        $params
+    );
+
+    print_r($response->resources[0]->properties);
+}
+catch (PlivoRestException $ex) {
+    print_r($ex);
+}
+
+// Get ComplianceDocument by complianceDocumentId
+echo "########## Get ComplianceDocument ###################\n";
+try {
+    $response = $client->complianceDocument->get(
+        "f9aacb6f-9e05-40e7-baad-a126921b72bc"
+    );
+
+    print_r($response->properties);
+}
+catch (PlivoRestException $ex) {
+    print_r($ex);
+}
+
+// Create ComplianceDocument by complianceDocumentId
+echo "########## Create ComplianceDocument ###################\n";
+try {
+    $response = $client->complianceDocument->create(
+        "alias",
+        "652e1445-1657-4a80-972f-6dbd467b00b5",
+        "900b6f44-b0e8-4c48-a58b-5be7ef58396a",
+        "filePath",
+        ["authorized_representative_name" => "lsumpsum"]
+    );
+
+    print_r($response);
+}
+catch (PlivoRestException $ex) {
+    print_r($ex);
+}
+
+// Update ComplianceDocument by complianceDocumentId
+echo "########## Update ComplianceDocument ###################\n";
+try {
+    $params = array(
+        'alias' => 'alias',
+        'end_user_id' => '652e1445-1657-4a80-972f-6dbd467b00b5'
+    );
+    $response = $client->complianceDocument->update(
+        '6e661510-31cd-4d09-84ab-e739939df85e',
+        $params
+    );
+
+    print_r($response);
+}
+catch (PlivoRestException $ex) {
+    print_r($ex);
+}
+
+// Delete ComplianceDocument by complianceDocumentId
+echo "########## Delete ComplianceDocument ###################\n";
+try {
+    $response = $client->complianceDocument->delete(
+        "f9aacb6f-9e05-40e7-baad-a126921b72bc"
+    );
+
+    print_r($response);
 }
 catch (PlivoRestException $ex) {
     print_r($ex);

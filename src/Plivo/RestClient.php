@@ -20,6 +20,7 @@ use Plivo\Resources\SubAccount\SubAccountInterface;
 use Plivo\Resources\CallFeedback\CallFeedbackInterface;
 use Plivo\Resources\RegulatoryCompliance\EndUserInterface;
 use Plivo\Resources\RegulatoryCompliance\ComplianceDocumentTypeInterface;
+use Plivo\Resources\RegulatoryCompliance\ComplianceDocumentInterface;
 
 /**
  * Class RestClient
@@ -41,6 +42,7 @@ use Plivo\Resources\RegulatoryCompliance\ComplianceDocumentTypeInterface;
  * @property CallFeedbackInterface callfeedback Interface to handle user feedback for calls
  * @property EndUserInterface endUser Interface to handle all EndUser related api calls
  * @property ComplianceDocumentTypeInterface complianceDocumentType Interface to handle all ComplianceDocumentType related api calls
+ * @property ComplianceDocumentInterface complianceDocument Interface to handle all ComplianceDocument related api calls
  *
  */
 class RestClient
@@ -135,6 +137,11 @@ class RestClient
      * @var ComplianceDocumentTypeInterface
      */
     protected $_complianceDocumentType;
+
+    /**
+     * @var ComplianceDocumentInterface
+     */
+    protected $_complianceDocument;
 
     /**
      * RestClient constructor.
@@ -365,6 +372,17 @@ class RestClient
             $this->_complianceDocumentType = new ComplianceDocumentTypeInterface($this->client, $this->client->getAuthId());
         }
         return $this->_complianceDocumentType;
+    }
+
+    /**
+     * @return ComplianceDocumentInterface
+     */
+    public function getComplianceDocument()
+    {
+        if (!$this->_complianceDocument) {
+            $this->_complianceDocument = new ComplianceDocumentInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_complianceDocument;
     }
 
 }

@@ -9,12 +9,12 @@ use Plivo\Resources\Resource;
 /**
  * Class ComplianceDocumentType
  * @package Plivo\Resources\RegulatoryCompliance
- * @property string documentTypeId
- * @property string documentName
- * @property string description
- * @property string proofRequired
- * @property string createdAt
- * @property array information
+ * @property string $documentTypeId
+ * @property string $documentName
+ * @property string $description
+ * @property string $proofRequired
+ * @property string $createdAt
+ * @property array $information
  */
 class ComplianceDocumentType extends Resource
 {

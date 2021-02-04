@@ -10,10 +10,10 @@ use Plivo\Resources\Resource;
  * Class EndUser
  * @package Plivo\Resources\RegulatoryCompliance
  * @property string $endUserId A unique ID for your endUser. All API operations will be performed with this ID.
- * @property string createdAt
- * @property string name
- * @property string lastName
- * @property string endUserType
+ * @property string $createdAt
+ * @property string $name
+ * @property string $lastName
+ * @property string $endUserType
  */
 class EndUser extends Resource
 {
