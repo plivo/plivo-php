@@ -1,5 +1,43 @@
 # Change Log
 
+## [v4.17.0](https://github.com/plivo/plivo-php/releases/tag/v4.16.0) - 2020-12-17
+- Add exception to handle destination param - SMS.
+## [v4.16.0](https://github.com/plivo/plivo-php/releases/tag/v4.16.0) - 2020-12-08
+- Fix retrieve_application API response.
+
+## [v4.15.1](https://github.com/plivo/plivo-php/releases/tag/v4.15.1) - 2020-11-17
+- Fix resource not found exception when making sequential requests.
+
+## [v4.15.0](https://github.com/plivo/plivo-php/releases/tag/v4.15.0) - 2020-11-17
+- Add number_priority support for Powerpack API.
+
+## [v4.14.0](https://github.com/plivo/plivo-php/releases/tag/v4.14.0) - 2020-10-25
+- Change Lookup API endpoint and response.
+
+## [v4.13.0](https://github.com/plivo/plivo-php/releases/tag/v4.13.0) - 2020-10-13
+- Add support to Guzzle HTTP client 7.
+- Fix "issue-168", _Undefined index: from_number_ error - Retrieve Message Details API with Invalid message UUID.
+
+## [v4.12.0](https://github.com/plivo/plivo-php/releases/tag/v4.12.0) - 2020-09-21
+- Add support for Lookup API.
+
+## [v4.11.1](https://github.com/plivo/plivo-php/releases/tag/v4.11.1) - 2020-09-17
+- Fix "Media is invalid" error while using Send MMS API.
+
+## [v4.11.0](https://github.com/plivo/plivo-php/releases/tag/v4.11.0) - 2020-08-25
+- Add Powerpack for mms.
+
+## [v4.10.0](https://github.com/plivo/plivo-php/releases/tag/v4.10.0) - 2020-08-03
+- Add retries to multiple regions for voice requests.
+
+## [v4.9.1](https://github.com/plivo/plivo-php/releases/tag/v4.9.1) - 2020-07-21
+- Fix Get Call Details API response.
+
+## [v4.9.0](https://github.com/plivo/plivo-php/releases/tag/v4.9.0) - 2020-05-28
+- Add JWT helper functions.
+
+## [v4.8.1](https://github.com/plivo/plivo-php/releases/tag/v4.8.1) - 2020-05-28
+- Fix Create Endpoint response.
 
 ## [v4.8.0](https://github.com/plivo/plivo-php/releases/tag/v4.8.0) - 2020-04-29
 - Add V3 signature helper functions.

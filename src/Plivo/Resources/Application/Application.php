@@ -16,9 +16,12 @@ use Plivo\Resources\Resource;
  * endpoint attached to the application, Plivo will send a request to the
  * answer_url with the attributes of the call. We expect a valid Plivo XML to
  * be returned as a response to the request Plivo makes.
+ * @property string $apiId
  * @property string $appId
  * @property string $appName A friendly name for your Plivo application.
+ * @property string $applicationType represents the type of application.
  * @property string $defaultApp Default app
+ * @property boolean $defaultEndpointApp Default to an Endpoint
  * @property boolean $enabled Set to true if the application is enabled.
  * @property string $fallbackAnswerUrl Plivo will request this URL with the
  * same parameters sent to the answer_url if the answer_url returns a non 200
@@ -65,9 +68,12 @@ class Application extends Resource
         $this->properties = [
             'answerMethod' => $response['answer_method'],
             'answerUrl' => $response['answer_url'],
+            'apiId' => $response['api_id'],
             'appId' => $response['app_id'],
             'appName' => $response['app_name'],
+            'applicationType' => $response['application_type'],
             'defaultApp' => $response['default_app'],
+            'defaultEndpointApp' => $response['default_endpoint_app'],
             'enabled' => $response['enabled'],
             'fallbackAnswerUrl' => $response['fallback_answer_url'],
             'fallbackMethod' => $response['fallback_method'],
@@ -79,7 +85,7 @@ class Application extends Resource
             'resourceUri' => $response['resource_uri'],
             'sipUri' => $response['sip_uri'],
             'subAccount' => $response['sub_account'],
-            'logIncomingMessages' => $response['log_incoming_messages']
+            'logIncomingMessages' => $response['log_incoming_message']
         ];
 
         $this->pathParams = [

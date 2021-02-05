@@ -101,7 +101,10 @@ class PlivoGuzzleHttpClient implements PlivoHttpClientInterface
         $headers["Authorization"] = "Basic " . base64_encode("$this->authId:$this->authToken");
         $request->setHeaders($headers);
         $options =[];
-        $requestBody = json_encode($request->getParams()); 
+        $requestBody = json_encode($request->getParams());
+        if(empty($request->getParams())){
+            $requestBody = json_encode($request->getParams(), JSON_FORCE_OBJECT);
+        }
         if (array_key_exists("isCallInsightsRequest", $request->getParams())) {
             unset($request->getParams()['isCallInsightsRequest']);
             $requestBody = $requestBody;

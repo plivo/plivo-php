@@ -61,7 +61,7 @@ class ApplicationInterface extends ResourceInterface
         $mandaoryArgs = [
             'app_name' => $appName
         ];
-
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->update(
             $this->uri,
             array_merge($mandaoryArgs, $optionalArgs)
@@ -113,6 +113,7 @@ class ApplicationInterface extends ResourceInterface
      */
     public function update($appId, array $optionalArgs = [])
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->update(
             $this->uri . $appId . '/',
             $optionalArgs
@@ -151,6 +152,7 @@ class ApplicationInterface extends ResourceInterface
      */
     public function delete($appId, array $optionalArgs = [])
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->delete(
             $this->uri . $appId . '/',
             $optionalArgs
@@ -172,10 +174,10 @@ class ApplicationInterface extends ResourceInterface
             new PlivoValidationException(
                 'app id is mandatory');
         }
-
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->fetch(
             $this->uri . $appId . '/',
-            []
+            $optionalArgs
         );
 
         return new Application(
@@ -198,6 +200,7 @@ class ApplicationInterface extends ResourceInterface
      */
     public function getList(array $optionalArgs = [])
     {
+        $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->fetch(
             $this->uri,
             $optionalArgs

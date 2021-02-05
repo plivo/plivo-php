@@ -49,10 +49,7 @@ class MessageInterface extends ResourceInterface
             $this->uri . $messageUuid .'/',
             []
         );
-
-        return new Message(
-            $this->client, $response->getContent(),
-            $this->pathParams['authId'], $this->uri);
+        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
     }
 
     
@@ -147,9 +144,13 @@ class MessageInterface extends ResourceInterface
      * @throws PlivoValidationException,PlivoResponseException
      */
 
-    public function create($src, array $dst, $text=null,
-                           array $optionalArgs = [], $powerpackUUID = null)
+    public function create($src, $dst, $text=null,array $optionalArgs = [], $powerpackUUID = null)
     {
+        if (!is_array($dst))
+        {
+            throw new PlivoValidationException("Destination parameter must be of the type array");
+        }        
+        
         $mandatoryArgs = [
             'dst' => implode('<', $dst),
         ];

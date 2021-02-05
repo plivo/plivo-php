@@ -14,15 +14,15 @@ class EndpointCreateReponse extends ResponseUpdate
     /**
      * @var string The username of the endpoint
      */
-    protected $username;
+    public $username;
     /**
      * @var string The friendly name of the endpoint
      */
-    protected $alias;
+    public $alias;
     /**
      * @var string The ID of the endpoint
      */
-    protected $endpointId;
+    public $endpointId;
 
     /**
      * EndpointCreateReponse constructor.
