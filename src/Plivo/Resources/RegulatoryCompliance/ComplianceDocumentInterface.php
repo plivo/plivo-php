@@ -191,7 +191,7 @@ class ComplianceDocumentInterface extends ResourceInterface
     }
 
     /**
-     * Modify an complianceDocument
+     * Modify a complianceDocument
      *
      * @param $complianceDocumentId
      * @param array $optionalArgs
@@ -243,7 +243,7 @@ class ComplianceDocumentInterface extends ResourceInterface
     }
 
     /**
-     * Delete an complianceDocument
+     * Delete a complianceDocument
      *
      * @param $complianceDocumentId
      * @throws PlivoValidationException

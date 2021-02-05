@@ -22,6 +22,7 @@ use Plivo\Resources\RegulatoryCompliance\EndUserInterface;
 use Plivo\Resources\RegulatoryCompliance\ComplianceDocumentTypeInterface;
 use Plivo\Resources\RegulatoryCompliance\ComplianceDocumentInterface;
 use Plivo\Resources\RegulatoryCompliance\ComplianceRequirementInterface;
+use Plivo\Resources\RegulatoryCompliance\ComplianceApplicationInterface;
 
 /**
  * Class RestClient
@@ -45,6 +46,7 @@ use Plivo\Resources\RegulatoryCompliance\ComplianceRequirementInterface;
  * @property ComplianceDocumentTypeInterface complianceDocumentType Interface to handle all ComplianceDocumentType related api calls
  * @property ComplianceDocumentInterface complianceDocument Interface to handle all ComplianceDocument related api calls
  * @property ComplianceRequirementInterface complianceRequirement Interface to handle all ComplianceRequirement related api calls
+ * @property ComplianceApplicationInterface complianceApplication Interface to handle all ComplianceApplication related api calls
  *
  */
 class RestClient
@@ -149,6 +151,11 @@ class RestClient
      * @var ComplianceRequirementInterface
      */
     protected $_complianceRequirement;
+
+    /**
+     * @var ComplianceApplicationInterface
+     */
+    protected $_complianceApplication;
 
     /**
      * RestClient constructor.
@@ -401,6 +408,17 @@ class RestClient
             $this->_complianceRequirement = new ComplianceRequirementInterface($this->client, $this->client->getAuthId());
         }
         return $this->_complianceRequirement;
+    }
+
+    /**
+     * @return ComplianceApplicationInterface
+     */
+    public function getComplianceApplication()
+    {
+        if (!$this->_complianceApplication) {
+            $this->_complianceApplication = new ComplianceApplicationInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_complianceApplication;
     }
 
 }

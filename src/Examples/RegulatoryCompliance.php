@@ -224,3 +224,89 @@ try {
 catch (PlivoRestException $ex) {
     print_r($ex);
 }
+
+// List ComplianceApplication
+echo "########## List ComplianceApplication ###################\n";
+try {
+    $params = array(
+        'limit' => 1
+    );
+    $response = $client->complianceApplication->list(
+        $params
+    );
+
+    print_r($response->resources[0]->properties);
+}
+catch (PlivoRestException $ex) {
+    print_r($ex);
+}
+
+// Get ComplianceApplication by complianceApplicationId
+echo "########## Get ComplianceApplication ###################\n";
+try {
+    $response = $client->complianceApplication->get(
+        "913780b6-67d5-43d9-8d7e-e7f16f052b1f"
+    );
+
+    print_r($response->properties);
+}
+catch (PlivoRestException $ex) {
+    print_r($ex);
+}
+
+// Delete ComplianceApplication by complianceApplicationId
+echo "########## Delete ComplianceApplication ###################\n";
+try {
+    $response = $client->complianceApplication->delete(
+        "75729eb5-28d2-4593-a9a1-dec3ca348c19"
+    );
+
+    print_r($response);
+}
+catch (PlivoRestException $ex) {
+    print_r($ex);
+}
+
+// Create ComplianceApplication by complianceApplicationId
+echo "########## Create ComplianceApplication ###################\n";
+try {
+    $response = $client->complianceApplication->create(
+        "app_php_18",
+        "dda8585a-2c90-4286-b1df-b9e472bcef36",
+        ["535d8bfe-f76c-485c-b34c-225cb39ad773"],
+        null,
+        ['country_iso2' => 'BE', 'number_type' => 'mobile', 'end_user_type' => 'individual']
+    );
+
+    print_r($response);
+}
+catch (PlivoRestException $ex) {
+    print_r($ex);
+}
+
+// Update ComplianceApplication by complianceApplicationId
+echo "########## Update ComplianceApplication ###################\n";
+try {
+    $response = $client->complianceApplication->update(
+        "3d10e180-abba-443d-85fd-f27d834ee7ed",
+        ["535d8bfe-f76c-485c-b34c-225cb39ad773"]
+    );
+
+    print_r($response);
+}
+catch (PlivoRestException $ex) {
+    print_r($ex);
+}
+
+// Submit ComplianceApplication by complianceApplicationId
+echo "########## Submit ComplianceApplication ###################\n";
+try {
+    $response = $client->complianceApplication->submit(
+        "65882418-e1f2-40dd-94b6-f490ee9eef22"
+    );
+
+    print_r($response);
+}
+catch (PlivoRestException $ex) {
+    print_r($ex);
+}
