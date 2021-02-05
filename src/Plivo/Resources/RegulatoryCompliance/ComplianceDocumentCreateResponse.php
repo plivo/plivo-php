@@ -70,7 +70,7 @@ class ComplianceDocumentCreateResponse extends ResponseUpdate
      */
     public function getDocumentId()
     {
-        return $this->getDocumentId;
+        return $this->documentId;
     }
 
     /**

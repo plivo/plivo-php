@@ -88,7 +88,7 @@ class ComplianceApplicationCreateResponse extends ResponseUpdate
      */
     public function getComplianceApplicationId()
     {
-        return $this->getComplianceApplicationId;
+        return $this->complianceApplicationId;
     }
 
     /**
