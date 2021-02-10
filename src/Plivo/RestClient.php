@@ -18,11 +18,6 @@ use Plivo\Resources\Pricing\PricingInterface;
 use Plivo\Resources\Recording\RecordingInterface;
 use Plivo\Resources\SubAccount\SubAccountInterface;
 use Plivo\Resources\CallFeedback\CallFeedbackInterface;
-use Plivo\Resources\RegulatoryCompliance\EndUserInterface;
-use Plivo\Resources\RegulatoryCompliance\ComplianceDocumentTypeInterface;
-use Plivo\Resources\RegulatoryCompliance\ComplianceDocumentInterface;
-use Plivo\Resources\RegulatoryCompliance\ComplianceRequirementInterface;
-use Plivo\Resources\RegulatoryCompliance\ComplianceApplicationInterface;
 
 /**
  * Class RestClient
@@ -42,11 +37,6 @@ use Plivo\Resources\RegulatoryCompliance\ComplianceApplicationInterface;
  * @property PricingInterface pricing Interface to handle all Pricing related api calls
  * @property RecordingInterface recording Interface to handle all Recording related api calls
  * @property CallFeedbackInterface callfeedback Interface to handle user feedback for calls
- * @property EndUserInterface endUser Interface to handle all EndUser related api calls
- * @property ComplianceDocumentTypeInterface complianceDocumentType Interface to handle all ComplianceDocumentType related api calls
- * @property ComplianceDocumentInterface complianceDocument Interface to handle all ComplianceDocument related api calls
- * @property ComplianceRequirementInterface complianceRequirement Interface to handle all ComplianceRequirement related api calls
- * @property ComplianceApplicationInterface complianceApplication Interface to handle all ComplianceApplication related api calls
  *
  */
 class RestClient
@@ -131,31 +121,6 @@ class RestClient
      * @var CallFeedbackInterface
      */
     protected $_callFeedback;
-
-    /**
-     * @var EndUserInterface
-     */
-    protected $_endUser;
-
-    /**
-     * @var ComplianceDocumentTypeInterface
-     */
-    protected $_complianceDocumentType;
-
-    /**
-     * @var ComplianceDocumentInterface
-     */
-    protected $_complianceDocument;
-
-    /**
-     * @var ComplianceRequirementInterface
-     */
-    protected $_complianceRequirement;
-
-    /**
-     * @var ComplianceApplicationInterface
-     */
-    protected $_complianceApplication;
 
     /**
      * RestClient constructor.
@@ -365,60 +330,4 @@ class RestClient
         }
         return $this->_callFeedback;
     }
-
-    /**
-     * @return EndUserInterface
-     */
-    public function getEndUser()
-    {
-        if (!$this->_endUser) {
-            $this->_endUser = new EndUserInterface($this->client, $this->client->getAuthId());
-        }
-        return $this->_endUser;
-    }
-
-    /**
-     * @return ComplianceDocumentTypeInterface
-     */
-    public function getComplianceDocumentType()
-    {
-        if (!$this->_complianceDocumentType) {
-            $this->_complianceDocumentType = new ComplianceDocumentTypeInterface($this->client, $this->client->getAuthId());
-        }
-        return $this->_complianceDocumentType;
-    }
-
-    /**
-     * @return ComplianceDocumentInterface
-     */
-    public function getComplianceDocument()
-    {
-        if (!$this->_complianceDocument) {
-            $this->_complianceDocument = new ComplianceDocumentInterface($this->client, $this->client->getAuthId());
-        }
-        return $this->_complianceDocument;
-    }
-
-    /**
-     * @return ComplianceRequirementInterface
-     */
-    public function getComplianceRequirement()
-    {
-        if (!$this->_complianceRequirement) {
-            $this->_complianceRequirement = new ComplianceRequirementInterface($this->client, $this->client->getAuthId());
-        }
-        return $this->_complianceRequirement;
-    }
-
-    /**
-     * @return ComplianceApplicationInterface
-     */
-    public function getComplianceApplication()
-    {
-        if (!$this->_complianceApplication) {
-            $this->_complianceApplication = new ComplianceApplicationInterface($this->client, $this->client->getAuthId());
-        }
-        return $this->_complianceApplication;
-    }
-
 }
