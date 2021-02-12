@@ -29,7 +29,7 @@ class PlivoResponseException extends PlivoRestException
      * @param array $responseData
      * @param integer $statusCode
      */
-    public function __construct(?string $message, ?int $code, $responseData, $statusCode)
+    public function __construct(?string $message, ?int $code, ?Throwable $previous, $responseData, $statusCode)
     {
         $this->responseData = $responseData;
         $this->statusCode = $statusCode;
