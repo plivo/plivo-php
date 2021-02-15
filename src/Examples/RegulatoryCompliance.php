@@ -67,7 +67,7 @@ catch (PlivoRestException $ex) {
 echo "########## Delete EndUser ###################\n";
 try {
     $response = $client->endUser->delete(
-        "721b29c4-4291-4922-8743-94d84843945c"
+        "1252fa3a-d5f9-4e49-b42b-fb2d5557dfee"
     );
 
     print_r($response);
@@ -80,7 +80,7 @@ catch (PlivoRestException $ex) {
 echo "########## Create EndUser ###################\n";
 try {
     $response = $client->endUser->create(
-        "EndUserName", "Business", "EndUserLastName",
+        "EndUserName", "Business", "EndUserLastName"
     );
     print_r($response);
 }
@@ -137,7 +137,7 @@ catch (PlivoRestException $ex) {
 echo "########## Get ComplianceDocument ###################\n";
 try {
     $response = $client->complianceDocument->get(
-        "f9aacb6f-9e05-40e7-baad-a126921b72bc"
+        "d2f4905f-9c8b-499f-ab10-82f261f796bd"
     );
 
     print_r($response->properties);
@@ -153,8 +153,7 @@ try {
         "alias",
         "652e1445-1657-4a80-972f-6dbd467b00b5",
         "900b6f44-b0e8-4c48-a58b-5be7ef58396a",
-        "filePath",
-        ["authorized_representative_name" => "lsumpsum"]
+        ["authorized_representative_name" => "lsumpsum", "path" => "file path"]
     );
 
     print_r($response);
@@ -168,10 +167,11 @@ echo "########## Update ComplianceDocument ###################\n";
 try {
     $params = array(
         'alias' => 'alias',
-        'end_user_id' => '652e1445-1657-4a80-972f-6dbd467b00b5'
+        'end_user_id' => '652e1445-1657-4a80-972f-6dbd467b00b5',
+        'path' => 'file path'
     );
     $response = $client->complianceDocument->update(
-        '6e661510-31cd-4d09-84ab-e739939df85e',
+        'd2f4905f-9c8b-499f-ab10-82f261f796bd',
         $params
     );
 
@@ -245,7 +245,7 @@ catch (PlivoRestException $ex) {
 echo "########## Get ComplianceApplication ###################\n";
 try {
     $response = $client->complianceApplication->get(
-        "913780b6-67d5-43d9-8d7e-e7f16f052b1f"
+        "65882418-e1f2-40dd-94b6-f490ee9eef22"
     );
 
     print_r($response->properties);
@@ -258,7 +258,7 @@ catch (PlivoRestException $ex) {
 echo "########## Delete ComplianceApplication ###################\n";
 try {
     $response = $client->complianceApplication->delete(
-        "75729eb5-28d2-4593-a9a1-dec3ca348c19"
+        "65882418-e1f2-40dd-94b6-f490ee9eef22"
     );
 
     print_r($response);

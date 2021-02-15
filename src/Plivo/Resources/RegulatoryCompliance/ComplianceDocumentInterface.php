@@ -60,13 +60,12 @@ class ComplianceDocumentInterface extends ResourceInterface
      * @param string $alias
      * @param string $endUserId
      * @param string $documentTypeId
-     * @param null|string $path
      * @param null|string $dataFields
      * @param null|string $appID
      * @return JSON output
      * @throws PlivoValidationException
      */
-    public function create($alias, $endUserId, $documentTypeId, $path = null, $dataFields = null, $appID = null)
+    public function create($alias, $endUserId, $documentTypeId, $dataFields = null, $appID = null)
     {
         $mandatoryArgs = [
             'end_user_id' => $endUserId,
@@ -78,7 +77,10 @@ class ComplianceDocumentInterface extends ResourceInterface
             throw new PlivoValidationException(
                 "Mandatory parameters cannot be null");
         }
-
+        $path = null;
+        if (array_key_exists("path", $dataFields)) {
+            $path = $dataFields["path"];
+        }
         $multipart = $this->constructComplianceDocumentFilePayload($path);
         foreach ($mandatoryArgs as $key => $value) {
             $multipart[] = [
@@ -200,12 +202,16 @@ class ComplianceDocumentInterface extends ResourceInterface
      *   + [string] alias - The name of your complianceDocument.
      *   + [string] end_user_id - The last name of your complianceDocument.
      *   + [string] document_type_id - The type of the complianceDocument.
-     * @param null|string $path
+     *   + [string] path - File path for the complianceDocument.
      * @param null|string $appID
      * @return ResponseUpdate
      */
-    public function update($complianceDocumentId, array $optionalArgs = [], $path=null, $appID=null)
+    public function update($complianceDocumentId, array $optionalArgs = [], $appID=null)
     {
+        $path = null;
+        if (array_key_exists("path", $optionalArgs)) {
+            $path = $optionalArgs["path"];
+        }
         $multipart = $this->constructComplianceDocumentFilePayload($path);
         foreach ($optionalArgs as $key => $value) {
             $multipart[] = [
@@ -233,7 +239,7 @@ class ComplianceDocumentInterface extends ResourceInterface
             );
         } else {
             throw new PlivoResponseException(
-                $responseContents['error'],
+                "",
                 0,
                 null,
                 $response->getContent(),
@@ -255,9 +261,18 @@ class ComplianceDocumentInterface extends ResourceInterface
             new PlivoValidationException(
                 'complianceDocumentId is mandatory');
         }
-        $this->client->delete(
+        $response = $this->client->delete(
             $this->uri . $complianceDocumentId . '/',
             []
         );
+        if(array_key_exists("error", $response->getContent()) && strlen($response->getContent()['error']) > 0) {
+            throw new PlivoResponseException(
+                $response->getContent()['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+            );
+        }
     }
 }
