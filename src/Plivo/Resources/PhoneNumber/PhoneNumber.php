@@ -26,6 +26,7 @@ use Plivo\Resources\Resource;
  * @property string $smsRate
  * @property string $mmsEnabled
  * @property string $mmsRate
+ * @property string $complianceRequirement
  * @property string $voiceEnabled
  * @property string $voiceRate
  */
@@ -60,7 +61,8 @@ class PhoneNumber extends Resource
             'mmsEnabled' => $response['mms_enabled'],
             'mmsRate' => $response['mms_rate'],
             'voiceEnabled' => $response['voice_enabled'],
-            'voiceRate' => $response['voice_rate']
+            'voiceRate' => $response['voice_rate'],
+            'complianceRequirement' => $response['compliance_requirement']
         ];
 
         $this->pathParams = [

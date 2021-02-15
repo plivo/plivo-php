@@ -32,6 +32,8 @@ use Plivo\Resources\Resource;
  * @property string $voiceEnabled Lets you know if the number is voice enabled. If the value returned is 'true', then
  * you will be able to receive calls on this number.
  * @property string $voiceRate The cost of receiving a voice call on this number per minute in USD.
+ * @property string $complianceApplicationId The ID of compliance application associated with this number.
+ * @property string $complianceStatus The status of the compliance application associated with this number.
  * @property string $subAccount The subaccount associated with the number. If the number belongs to the main parent
  * account, this value will be null.
  */
@@ -66,7 +68,9 @@ class Number extends Resource
             'mmsRate' => $response['mms_rate'],
             'subAccount' => $response['sub_account'],
             'voiceEnabled' => $response['voice_enabled'],
-            'voiceRate' => $response['voice_rate']
+            'voiceRate' => $response['voice_rate'],
+            'complianceApplicationId' => $response['compliance_application_id'],
+            'complianceStatus' => $response['compliance_status']
         ];
 
         $this->pathParams = [
