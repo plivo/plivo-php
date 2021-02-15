@@ -76,7 +76,7 @@ class EndUserInterface extends ResourceInterface
             );
         } else {
             throw new PlivoResponseException(
-                $responseContents['error'],
+                "",
                 0,
                 null,
                 $response->getContent(),
@@ -177,7 +177,7 @@ class EndUserInterface extends ResourceInterface
             );
         } else {
             throw new PlivoResponseException(
-                $responseContents['error'],
+                "",
                 0,
                 null,
                 $response->getContent(),
@@ -199,9 +199,18 @@ class EndUserInterface extends ResourceInterface
             new PlivoValidationException(
                 'endUserId is mandatory');
         }
-        $this->client->delete(
+        $response = $this->client->delete(
             $this->uri . $endUserId . '/',
             []
         );
+        if(array_key_exists("error", $response->getContent()) && strlen($response->getContent()['error']) > 0) {
+            throw new PlivoResponseException(
+                $response->getContent()['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+            );
+        }
     }
 }
