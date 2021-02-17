@@ -33,6 +33,9 @@ class PlivoResponseException extends PlivoRestException
     {
         $this->responseData = $responseData;
         $this->statusCode = $statusCode;
+        if (empty($message)) {
+            $message = $this->getErrorMessage();
+        }
         parent::__construct($message, $code, $this->getException($this->getErrorMessage()));
     }
 
