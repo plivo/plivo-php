@@ -1,6 +1,6 @@
 # Change Log
 
-## [v4.18.0](https://github.com/plivo/plivo-php/releases/tag/v4.18.0) - 2021-02-17
+## [v4.18.0](https://github.com/plivo/plivo-php/releases/tag/v4.18.0) - 2021-02-18
 - Add support for Regulatory Compliance APIs.
 - Add "active","city","country","mmsEnabled","mmsRate","complianceApplicationId","complianceStatus" - these new feilds in the List/Get rented numbers
 - Add "city","mmsEnabled","mmsRate","complianceRequirement" - These new feilds are added in the Search Phone Number
