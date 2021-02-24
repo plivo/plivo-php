@@ -46,6 +46,8 @@ class PhoneNumberInterface extends ResourceInterface
      *                  <br /> By default, numbers that have either voice or sms or both enabled are returned.
      *   + [string] lata - Numbers can be searched using Local Access and Transport Area {http://en.wikipedia.org/wiki/Local_access_and_transport_area}. This filter is applicable only for country_iso US and CA.
      *   + [string] rate_center - Numbers can be searched using Rate Center {http://en.wikipedia.org/wiki/Telephone_exchange}. This filter is application only for country_iso US and CA.
+     *   + [string] npanxx - Numbers can be searched using NpaNxx of a number. This filter is applicable only for country_iso US and CA.
+     *   + [string] local_calling_area - If true, will return numbers belonging to the same rate_center of given input npanxx. This filter is applicable with filter npanxx.
      *   + [int] limit - Used to display the number of results per page. The maximum number of results that can be fetched is 20.
      *   + [int] offset - Denotes the number of value items by which the results should be offset. Eg:- If the result contains a 1000 values and limit is set to 10 and offset is set to 705, then values 706 through 715 are displayed in the results. This parameter is also used for pagination of the results.
      * @return ResourceList output
