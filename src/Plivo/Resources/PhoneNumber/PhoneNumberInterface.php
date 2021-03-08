@@ -59,15 +59,24 @@ class PhoneNumberInterface extends ResourceInterface
             array_merge(['country_iso'=>$countryIso], $optionalArgs)
         );
 
-        $phoneNumbers = [];
+        if(!array_key_exists("error", $response->getContent())) {
+            $phoneNumbers = [];
+            foreach ($response->getContent()['objects'] as $phoneNumber) {
+                $newNumber = new PhoneNumber(
+                    $this->client, $phoneNumber, $this->pathParams['authId']);
 
-        foreach ($response->getContent()['objects'] as $phoneNumber) {
-            $newNumber = new PhoneNumber(
-                $this->client, $phoneNumber, $this->pathParams['authId']);
-
-            array_push($phoneNumbers, $newNumber);
+                array_push($phoneNumbers, $newNumber);
+            }
+            return new ResourceList($this->client, $response->getContent()['meta'], $phoneNumbers);
+        } else {
+            throw new PlivoResponseException(
+                $response->getContent()['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+            );
         }
-        return new ResourceList($this->client, $response->getContent()['meta'], $phoneNumbers);
     }
 
     /**
