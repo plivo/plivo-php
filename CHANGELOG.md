@@ -1,5 +1,9 @@
 # Change Log
 
+## [v4.18.1](https://github.com/plivo/plivo-php/releases/tag/v4.18.1) - 2021-03-10
+
+- Add "npanxx" and "local_calling_area" support for Search Phone Number.
+
 ## [v4.18.0](https://github.com/plivo/plivo-php/releases/tag/v4.18.0) - 2021-02-18
 - Add support for Regulatory Compliance APIs.
 - Add "active","city","country","mmsEnabled","mmsRate","complianceApplicationId","complianceStatus" - these new feilds in the List/Get rented numbers
