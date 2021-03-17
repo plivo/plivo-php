@@ -74,13 +74,18 @@ class EndpointInterface extends ResourceInterface
                 $response->getStatusCode()
             );
         } else {
+            $exceptionStr = "";
+            foreach ($responseContents['error'] as $value){
+                foreach ($value as $exception){
+                    $exceptionStr .= $exception."\n";
+                }
+            }
             throw new PlivoResponseException(
-                $responseContents['error'],
+                $exceptionStr,
                 0,
                 null,
                 $response->getContent(),
                 $response->getStatusCode()
-
             );
         }
     }
