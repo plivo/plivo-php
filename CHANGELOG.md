@@ -1,8 +1,11 @@
 # Change Log
 
-## [v4.18.1](https://github.com/plivo/plivo-php/releases/tag/v4.18.1) - 2021-03-10
+## [v4.18.2](https://github.com/plivo/plivo-php/releases/tag/v4.18.1) - 2021-03-18
 
 - Add "npanxx" and "local_calling_area" support for Search Phone Number.
+
+## [v4.18.1](https://github.com/plivo/plivo-php/releases/tag/v4.18.1) - 2021-03-17
+- Fix error message for 400 bad request in create endpoint API
 
 ## [v4.18.0](https://github.com/plivo/plivo-php/releases/tag/v4.18.0) - 2021-02-18
 - Add support for Regulatory Compliance APIs.
