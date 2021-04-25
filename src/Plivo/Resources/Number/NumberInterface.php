@@ -123,7 +123,7 @@ class NumberInterface extends ResourceInterface
             );
         } else {
             throw new PlivoResponseException(
-                $responseContents['error'],
+                "",
                 0,
                 null,
                 $response->getContent(),
