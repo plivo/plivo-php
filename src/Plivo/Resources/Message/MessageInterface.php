@@ -178,6 +178,11 @@ class MessageInterface extends ResourceInterface
             $optionalArgs = $arguments[3];
             $powerpackUUID = $arguments[4];
             {
+                if (!is_array($dst))
+                {
+                    throw new PlivoValidationException("Destination parameter must be of the type array");
+                }
+                
                 $mandatoryArgs = ['dst' => implode('<', $dst) , ];
 
                 if (ArrayOperations::checkNull($mandatoryArgs))
