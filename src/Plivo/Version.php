@@ -16,11 +16,11 @@ class Version
     /**
      * @const int PHP helper library major version number
      */
-    const MAJOR = 4;
+    const MAJOR = 18;
     /**
      * @const int PHP helper library minor version number
      */
-    const MINOR = 18;
+    const MINOR = 3;
     /**
      * @const int PHP helper library patch number
      */
