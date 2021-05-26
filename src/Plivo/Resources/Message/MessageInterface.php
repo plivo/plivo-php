@@ -37,10 +37,19 @@ class MessageInterface extends ResourceInterface
             throw new PlivoValidationException('message uuid is mandatory');
         }
 
-        $response = $this
-            ->client
-            ->fetch($this->uri . $messageUuid . '/', []);
-        return json_encode($response->getContent() , JSON_FORCE_OBJECT);
+
+        $response = $this->client->fetch(
+            $this->uri . $messageUuid .'/',
+            []
+        );
+        // return the object for chain method 
+        if ($response->getStatusCode() == 200){
+            return new Message(
+            $this->client, $response->getContent(),
+            $this->pathParams['authId'], $this->uri);
+        }
+        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+
     }
 
     /**

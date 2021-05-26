@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.18.3](https://github.com/plivo/plivo-php/releases/tag/v4.18.3) - 2021-05-12
+- Fixing the listMedia function invoke to fetch the media detail on message_uuid
+
 ## [v4.18.2](https://github.com/plivo/plivo-php/releases/tag/v4.18.2) - 2021-03-18
 - Add "npanxx" and "local_calling_area" support for Search Phone Number.
 

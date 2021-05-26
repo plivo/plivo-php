@@ -56,6 +56,10 @@ class Message extends Resource
         $this->id = $response['message_uuid'];
         $this->uri = $uri;
     }
+    // above PHP 5.6, it hides the other object info on output 
+    public function __debugInfo() {
+        return $this->properties;
+    }
 
     public function listMedia(){
         $response = $this->client->fetch(
