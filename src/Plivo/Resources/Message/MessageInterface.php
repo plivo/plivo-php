@@ -147,29 +147,8 @@ class MessageInterface extends ResourceInterface
                 throw new PlivoValidationException("Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message.");
             }
 
-            $response = $this
-                ->client
-                ->update($this->uri, $arguments);
-
-            $responseContents = $response->getContent();
-
-            if (!array_key_exists("error", $responseContents))
-            {
-                if (array_key_exists("invalid_number", $responseContents))
-                {
-                    return new MessageCreateResponse($responseContents['message'], $responseContents['message_uuid'], $responseContents['api_id'], $response->getStatusCode() , $responseContents['invalid_number']);
-                }
-                else
-                {
-                    return new MessageCreateResponse($responseContents['message'], $responseContents['message_uuid'], $responseContents['api_id'], $response->getStatusCode() , []);
-                }
-            }
-            else
-            {
-                throw new PlivoResponseException($responseContents['error'], 0, null, $response->getContent() , $response->getStatusCode());
-            }
+            $response = $this->client->update($this->uri, $arguments);
         }
-
         else
         {
             $src = $arguments[0];
@@ -200,11 +179,11 @@ class MessageInterface extends ResourceInterface
                     throw new PlivoValidationException("Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message.");
                 }
 
-                $response = $this
-                    ->client
-                    ->update($this->uri, array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID, 'text' => $text]));
+                $response = $this->client->update($this->uri, array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID, 'text' => $text]));
 
-                $responseContents = $response->getContent();
+            };
+        }
+        $responseContents = $response->getContent();
 
                 if (!array_key_exists("error", $responseContents))
                 {
@@ -221,9 +200,6 @@ class MessageInterface extends ResourceInterface
                 {
                     throw new PlivoResponseException($responseContents['error'], 0, null, $response->getContent() , $response->getStatusCode());
                 }
-
-            };
-
-        }
     }
+
 }
