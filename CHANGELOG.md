@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.19.1](https://github.com/plivo/plivo-php/releases/tag/v4.11.2) - 2021-06-07
+- Adds VoiceNetworkGroup to List/Get Call response.
+
 ## [v4.19.0](https://github.com/plivo/plivo-php/releases/tag/v4.19.0) - 2021-06-15
 - Add stir verification param as part of Get CDR and live call APIs
 
