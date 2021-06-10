@@ -16,5 +16,6 @@
 			"resource_uri": "/v1/Account/MAXXXXXXXXXXXXXXXXXX/Call/4d04c52e-cea3-4458-bbdb-0bfc314ee7cd/",
 			"to_number": "919686218339",
 			"total_amount": "0.02770",
-			"total_rate": "0.02770"
+			"total_rate": "0.02770",
+			"stir_verification": "Not Applicable"
 }
