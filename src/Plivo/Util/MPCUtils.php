@@ -30,6 +30,24 @@ class MPCUtils{
         }
     }
 
+    public static function validMultipleDestinationIntegers($paramName, $paramValue){
+        $values = explode("<",$paramValue);
+        for ($i=0;$i<sizeof($values);$i++)
+        {
+            if((is_numeric($values[$i]) && !is_double(1*$values[$i]))){
+                if($paramName == 'delayDial'){
+                    MPCUtils::validRange('DelayDial Destination Value', (int)$values[$i], false, 0, 120);
+                }
+                else{
+                    MPCUtils::validRange('RingTimeout Destination Value', (int)$values[$i], false, 15, 120);
+                }
+            }
+            else{
+                throw new PlivoValidationException($paramName. ' Destination Values must be integers');
+            }
+        }
+    }
+
     public static function validParam($paramName, $paramValue, $expectedTypes = null, $mandatory = false, $expectedValues = null){
         if($mandatory and !$paramValue){
             throw new PlivoValidationException($paramName . " is a required parameter");
