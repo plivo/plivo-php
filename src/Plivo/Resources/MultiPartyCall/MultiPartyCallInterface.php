@@ -148,6 +148,13 @@ class MultiPartyCallInterface extends ResourceInterface
         if(isset($optionalArgs['call_uuid'])){
             MPCUtils::validParam('callUuid', $optionalArgs['call_uuid'], ['string'], false);
         }
+        if(isset($optionalArgs['caller_name'])){
+            MPCUtils::validParam('callerName', $optionalArgs['caller_name'], ['string'], false);
+            MPCUtils::validRange('callerName', strlen($optionalArgs['caller_name']), false, 0, 50);
+        }
+        else{
+            $optionalArgs['caller_name'] = $optionalArgs['from'];
+        }
         if(isset($optionalArgs['call_status_callback_url'])){
             MPCUtils::validUrl('callStatusCallbackUrl', $optionalArgs['call_status_callback_url'], false);
         }
@@ -179,10 +186,28 @@ class MultiPartyCallInterface extends ResourceInterface
             $optionalArgs['dial_music'] = 'Real';
         }
         if(isset($optionalArgs['ring_timeout'])){
-            MPCUtils::validRange('ringTimeout', $optionalArgs['ring_timeout'], false, 15, 120);
+            MPCUtils::validParam('ringTimeout', $optionalArgs['ring_timeout'], ['string','integer'], false);
+            if(is_int($optionalArgs['ring_timeout'])){
+                MPCUtils::validRange('ringTimeout', $optionalArgs['ring_timeout'], false, 15, 120);
+            }
+            else{
+                MPCUtils::validMultipleDestinationIntegers('ringTimeout',$optionalArgs['ring_timeout']);
+            }
         }
         else{
             $optionalArgs['ring_timeout'] = 45;
+        }
+        if(isset($optionalArgs['delay_dial'])){
+            MPCUtils::validParam('delayDial', $optionalArgs['delay_dial'], ['string','integer'], false);
+            if(is_int($optionalArgs['delay_dial'])){
+                MPCUtils::validRange('delayDial', $optionalArgs['delay_dial'], false, 0, 120);
+            }
+            else{
+                MPCUtils::validMultipleDestinationIntegers('delayDial',$optionalArgs['delay_dial']);
+            }
+        }
+        else{
+            $optionalArgs['delay_dial']=0;
         }
         if(isset($optionalArgs['max_duration'])){
             MPCUtils::validRange('maxDuration', $optionalArgs['max_duration'], false, 300, 28800);
@@ -495,6 +520,121 @@ class MultiPartyCallInterface extends ResourceInterface
         $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->update(
             $this->uri. $mpcId. '/Record/Resume/',
+            $optionalArgs
+        );
+        return $response->getContent();
+    }
+
+    public function startParticipantRecording($participantId, array $optionalArgs = []){
+        MPCUtils::validParam('participantId', $participantId, ['string', 'integer'], true);
+        if(isset($optionalArgs['uuid'])){
+            MPCUtils::validParam('uuid', $optionalArgs['uuid'], ['string'],false);
+        }
+        if(isset($optionalArgs['friendly_name'])){
+            MPCUtils::validParam('friendly_name', $optionalArgs['friendly_name'], ['string'],false);
+        }
+        if(!isset($optionalArgs['uuid'])){
+            $optionalArgs['uuid'] = null;
+        }
+        if(!isset($optionalArgs['friendly_name'])){
+            $optionalArgs['friendly_name'] = null;
+        }
+        $mpcId = self::mpcId($optionalArgs['uuid'], $optionalArgs['friendly_name']);
+        unset($optionalArgs['uuid']);
+        unset($optionalArgs['friendly_name']);
+        if(isset($optionalArgs['file_format'])){
+            MPCUtils::validParam('fileFormat', strtolower($optionalArgs['file_format']), ['string'],false, ['mp3', 'wav']);
+        }
+        else{
+            $optionalArgs['file_format'] = 'mp3';
+        }
+        if(isset($optionalArgs['status_callback_url'])){
+            MPCUtils::validUrl('statusCallbackUrl', $optionalArgs['status_callback_url'], false);
+        }
+        if(isset($optionalArgs['status_callback_method'])){
+            MPCUtils::validParam('statusCallbackMethod', strtoupper($optionalArgs['status_callback_method']), ['string'], false, ['GET', 'POST']);
+        }
+        else{
+            $optionalArgs['status_callback_method'] = 'POST';
+        }
+        $optionalArgs['isVoiceRequest'] = true;
+        $response = $this->client->update(
+            $this->uri. $mpcId. '/Participant/'. $participantId. '/Record/',
+            $optionalArgs
+        );
+        return $response->getContent();
+    }
+
+    public function stopParticipantRecording($participantId, array $optionalArgs = []){
+        MPCUtils::validParam('participantId', $participantId, ['string', 'integer'], true);
+        if(isset($optionalArgs['uuid'])){
+            MPCUtils::validParam('uuid', $optionalArgs['uuid'], ['string'],false);
+        }
+        if(isset($optionalArgs['friendly_name'])){
+            MPCUtils::validParam('friendly_name', $optionalArgs['friendly_name'], ['string'],false);
+        }
+        if(!isset($optionalArgs['uuid'])){
+            $optionalArgs['uuid'] = null;
+        }
+        if(!isset($optionalArgs['friendly_name'])){
+            $optionalArgs['friendly_name'] = null;
+        }
+        $mpcId = self::mpcId($optionalArgs['uuid'], $optionalArgs['friendly_name']);
+        unset($optionalArgs['uuid']);
+        unset($optionalArgs['friendly_name']);
+        $optionalArgs['isVoiceRequest'] = true;
+        $response = $this->client->delete(
+            $this->uri. $mpcId. '/Participant/'. $participantId. '/Record/',
+            $optionalArgs
+        );
+        return $response->getContent();
+    }
+
+    public function pauseParticipantRecording($participantId, array $optionalArgs = []){
+        MPCUtils::validParam('participantId', $participantId, ['string', 'integer'], true);
+        if(isset($optionalArgs['uuid'])){
+            MPCUtils::validParam('uuid', $optionalArgs['uuid'], ['string'],false);
+        }
+        if(isset($optionalArgs['friendly_name'])){
+            MPCUtils::validParam('friendly_name', $optionalArgs['friendly_name'], ['string'],false);
+        }
+        if(!isset($optionalArgs['uuid'])){
+            $optionalArgs['uuid'] = null;
+        }
+        if(!isset($optionalArgs['friendly_name'])){
+            $optionalArgs['friendly_name'] = null;
+        }
+        $mpcId = self::mpcId($optionalArgs['uuid'], $optionalArgs['friendly_name']);
+        unset($optionalArgs['uuid']);
+        unset($optionalArgs['friendly_name']);
+        $optionalArgs['isVoiceRequest'] = true;
+        $response = $this->client->update(
+            $this->uri. $mpcId. '/Participant/'. $participantId. '/Record/Pause/',
+            $optionalArgs
+        );
+        return $response->getContent();
+    }
+
+    public function resumeParticipantRecording($participantId, array $optionalArgs = []){
+        MPCUtils::validParam('participantId', $participantId, ['string', 'integer'], true);
+        if(isset($optionalArgs['uuid'])){
+            MPCUtils::validParam('uuid', $optionalArgs['uuid'], ['string'],false);
+        }
+        if(isset($optionalArgs['friendly_name'])){
+            MPCUtils::validParam('friendly_name', $optionalArgs['friendly_name'], ['string'],false);
+        }
+        if(!isset($optionalArgs['uuid'])){
+            $optionalArgs['uuid'] = null;
+        }
+        if(!isset($optionalArgs['friendly_name'])){
+            $optionalArgs['friendly_name'] = null;
+        }
+        $mpcId = self::mpcId($optionalArgs['uuid'], $optionalArgs['friendly_name']);
+        unset($optionalArgs['uuid']);
+        unset($optionalArgs['friendly_name']);
+        $optionalArgs['isVoiceRequest'] = true;
+        $response = $this->client->update(
+            $this->uri. $mpcId. '/Participant/'. $participantId. '/Record/Resume/',
             $optionalArgs
         );
         return $response->getContent();
