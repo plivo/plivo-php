@@ -89,7 +89,7 @@ require 'vendor/autoload.php'
 
 ### Authentication
 
-To make the API requests, you need to create a `RestClient` and provide it with authentication credentials (which can be found at [https://manage.plivo.com/dashboard/](https://manage.plivo.com/dashboard/)).
+To make the API requests, you need to create a `RestClient` and provide it with authentication credentials (which can be found at [https://console.plivo.com/dashboard/](https://console.plivo.com/dashboard/)).
 
 We recommend that you store your credentials in the `PLIVO_AUTH_ID` and the `PLIVO_AUTH_TOKEN` environment variables, so as to avoid the possibility of accidentally committing them to source control. If you do this, you can initialise the client with no arguments and it will automatically fetch them from the environment variables:
 
@@ -108,7 +108,7 @@ Alternatively, you can specifiy the authentication credentials while initializin
 require 'vendor/autoload.php';
 use Plivo\RestClient;
 
-$client = new RestClient("your_auth_id", "your_auth_token");
+$client = new RestClient("<auth_id>", "<auth_token>");
 ```
 
 ## The Basics
@@ -145,8 +145,8 @@ use Plivo\RestClient;
 
 $client = new RestClient();
 $message_created = $client->messages->create(
-    'the_source_number',
-    ['the_destination_number'],
+    '+14156667778',
+    ['+14156667777'],
     'Hello, world!'
 );
 ```
@@ -160,8 +160,8 @@ use Plivo\RestClient;
 
 $client = new RestClient();
 $call_made = $client->calls->create(
-    'the_source_number',
-    ['the_destination_number'],
+    '+14156667778',
+    ['+14156667777'],
     'https://answer.url'
 );
 ```
@@ -173,7 +173,7 @@ $call_made = $client->calls->create(
 require 'vendor/autoload.php';
 use Plivo\RestClient;
 
-$client = new RestClient("AUTH_ID", "AUTH_TOKEN");
+$client = new RestClient("<auth_id>", "<auth_token>");
 $response = $client->lookup->get("<number-goes-here>");
 ```
 
@@ -208,8 +208,8 @@ This generates the following XML:
 require 'vendor/autoload.php';
 use Plivo\Resources\PHLO\PhloRestClient;
 use Plivo\Exceptions\PlivoRestException;
-$client = new PhloRestClient("YOUR_AUTH_ID", "YOUR_AUTH_TOKEN");
-$phlo = $client->phlo->get("YOUR_PHLO_ID");
+$client = new PhloRestClient("<auth_id>", "<auth_token>");
+$phlo = $client->phlo->get("<phlo_id>");
 try {
     $response = $phlo->run(["field1" => "value1", "field2" => "value2"]); // These are the fields entered in the PHLO console
     print_r($response);
@@ -220,7 +220,7 @@ try {
 ```
 
 ### More examples
-Refer to the [Plivo API Reference](https://api-reference.plivo.com/latest/php/introduction/overview) for more examples. Also refer to the [guide to setting up dev environment](https://developers.plivo.com/getting-started/setting-up-dev-environment/) on [Plivo Developers Portal](https://developers.plivo.com) to setup a simple PHP server & use it to test out your integration in under 5 minutes.
+More examples are available [here](https://github.com/plivo/plivo-examples-php). Also refer to the [guides for configuring the PHP laravel to run various scenarios](https://www.plivo.com/docs/sms/quickstart/php-laravel/) & use it to test out your integration in under 5 minutes.
 
 ## Reporting issues
 Report any feedback or problems with this version by [opening an issue on Github](https://github.com/plivo/plivo-php/issues).
