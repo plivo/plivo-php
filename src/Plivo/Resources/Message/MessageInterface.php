@@ -1,6 +1,7 @@
 <?php
 namespace Plivo\Resources\Message;
 use Plivo\Exceptions\PlivoValidationException;
+use Plivo\Exceptions\PlivoRestException;
 use Plivo\Exceptions\PlivoResponseException;
 use Plivo\Util\ArrayOperations;
 use Plivo\MessageClient;
@@ -72,7 +73,7 @@ class MessageInterface extends ResourceInterface
             array_push($messages, $newMessage);
         }
 
-        return new MessageList($this->client, $response->getContent() ['meta'], $messages);
+        return new MessageList($this->client, $response->getContent()['meta'], $messages);
     }
 
     //    protected function getAllList()
@@ -143,26 +144,7 @@ class MessageInterface extends ResourceInterface
             }
 
             $response = $this->client->update($this->uri, $arguments);
-
-            $responseContents = $response->getContent();
-
-            if (!array_key_exists("error", $responseContents))
-            {
-                if (array_key_exists("invalid_number", $responseContents))
-                {
-                    return new MessageCreateResponse($responseContents['message'], $responseContents['message_uuid'], $responseContents['api_id'], $response->getStatusCode() , $responseContents['invalid_number']);
-                }
-                else
-                {
-                    return new MessageCreateResponse($responseContents['message'], $responseContents['message_uuid'], $responseContents['api_id'], $response->getStatusCode() , []);
-                }
-            }
-            else
-            {
-                throw new PlivoResponseException($responseContents['error'], 0, null, $response->getContent() , $response->getStatusCode());
-            }
         }
-
         else
         {
             $src = $arguments[0];
@@ -175,7 +157,7 @@ class MessageInterface extends ResourceInterface
                 {
                     throw new PlivoValidationException("Destination parameter must be of the type array");
                 }
-
+                
                 $mandatoryArgs = ['dst' => implode('<', $dst) , ];
 
                 if (ArrayOperations::checkNull($mandatoryArgs))
@@ -195,7 +177,10 @@ class MessageInterface extends ResourceInterface
 
                 $response = $this->client->update($this->uri, array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID, 'text' => $text]));
 
-                $responseContents = $response->getContent();
+            };
+        }
+        
+        $responseContents = $response->getContent();
 
                 if (!array_key_exists("error", $responseContents))
                 {
@@ -212,9 +197,6 @@ class MessageInterface extends ResourceInterface
                 {
                     throw new PlivoResponseException($responseContents['error'], 0, null, $response->getContent() , $response->getStatusCode());
                 }
-
-            };
-
-        }
     }
+
 }
