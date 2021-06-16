@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.18.4](https://github.com/plivo/plivo-php/releases/tag/v4.18.4) - 2021-06-18
+- Removed total_count field from meta data for list MDR response
+
 ## [v4.18.3](https://github.com/plivo/plivo-php/releases/tag/v4.18.3) - 2021-05-12
 - Fixing the listMedia function invoke to fetch the media detail on message_uuid
 
