@@ -29,7 +29,8 @@ class CallLive extends Resource
             'to' => $response['to'],
             'callName' => $response['caller_name'],
             'callUuid' => $response['call_uuid'],
-            'sessionStart' => $response['session_start']
+            'sessionStart' => $response['session_start'],
+            'stirVerification' => $response['stir_verification']
         ];
 
         $this->pathParams = [
