@@ -20,11 +20,12 @@ class Version
     /**
      * @const int PHP helper library minor version number
      */
-    const MINOR = 18;
+    const MINOR = 19;
     /**
      * @const int PHP helper library patch number
      */
-    const PATCH = 4;
+    const PATCH = 1;
+
     /**
      * @return string
      */

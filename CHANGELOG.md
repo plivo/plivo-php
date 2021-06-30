@@ -1,7 +1,10 @@
 # Change Log
 
-## [4.18.4](https://github.com/plivo/plivo-php/releases/tag/v4.18.4) - 2021-06-18
+## [v4.19.1](https://github.com/plivo/plivo-php/releases/tag/v4.19.1) - 2021-06-18
 - Removed total_count field from meta data for list MDR response
+
+## [v4.19.0](https://github.com/plivo/plivo-php/releases/tag/v4.19.0) - 2021-06-15
+- Add stir verification param as part of Get CDR and live call APIs
 
 ## [v4.18.3](https://github.com/plivo/plivo-php/releases/tag/v4.18.3) - 2021-05-12
 - Fixing the listMedia function invoke to fetch the media detail on message_uuid
