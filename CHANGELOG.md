@@ -1,6 +1,6 @@
 # Change Log
 
-## [v5.0.0](https://github.com/plivo/plivo-php/releases/tag/v5.0.0) - 2020-09-24
+## [v4.20.0](https://github.com/plivo/plivo-php/releases/tag/v4.20.0) - 2021-07-01
 - Add SDK support for MPC APIs and XML.
 
 ## [v4.19.0](https://github.com/plivo/plivo-php/releases/tag/v4.19.0) - 2021-06-15
