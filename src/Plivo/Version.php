@@ -25,7 +25,6 @@ class Version
      * @const int PHP helper library patch number
      */
     const PATCH = 1;
-
     /**
      * @return string
      */
