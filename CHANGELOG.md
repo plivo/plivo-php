@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.19.2](https://github.com/plivo/plivo-php/releases/tag/v4.19.2) - 2021-07-05
+- **WARNING**: Removed total_count field from meta data for list MDR response
+
 ## [v4.19.1](https://github.com/plivo/plivo-php/releases/tag/v4.19.1) - 2021-07-02
 - Adds VoiceNetworkGroup to List/Get Call response.
 
