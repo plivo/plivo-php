@@ -20,6 +20,8 @@ use Plivo\Resources\Resource;
  * @property string $totalAmount
  * @property string $totalRate
  * @property string $units
+ * @property ?string $errorCode
+ * @property ?string $powerpackID
  */
 class Message extends Resource
 {
@@ -47,6 +49,14 @@ class Message extends Resource
             'totalRate' => $response['total_rate'],
             'units' => $response['units']
         ];
+
+        // handled empty string and null case
+        if (!empty($response['powerpack_id'])) {
+            $this->properties['powerpackID'] = $response['powerpack_id'];
+        }
+        if (!empty($response['error_code'])) {
+            $this->properties['errorCode'] = $response['error_code'];
+        }
 
         $this->pathParams = [
             'authId' => $authId,

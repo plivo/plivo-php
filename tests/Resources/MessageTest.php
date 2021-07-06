@@ -79,6 +79,22 @@ class MessageTest extends BaseTestCase {
         self::assertEquals($actual->messageUuid, $messageUuid);
     }
 
+    public function testMessageGetwithPowerpack()
+    {
+        $messageUuid = "5b40a428-bfc7-4daf-9d06-726c558bf3b8";
+        $expected_ppk = "15c01cc2-4b9f-4d3b-bd15-3c4b38984cc4";
+        $request = new PlivoRequest(
+            'GET',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Message/'.$messageUuid.'/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/messageGetResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->messages->get($messageUuid);
+
+        self::assertEquals($actual->powerpackID, $expected_ppk);
+    }
     public function testMediaList()
     {
         $messageUuid = "5b40a428-bfc7-4daf-9d06-726c558bf3b8";

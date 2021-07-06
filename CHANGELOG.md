@@ -1,4 +1,6 @@
 # Change Log
+## [v4.20.0](https://github.com/plivo/plivo-php/releases/tag/v4.20.0) - 2021-07-06
+- Added powerpack_id filter for list mdr 
 
 ## [v4.20.0](https://github.com/plivo/plivo-php/releases/tag/v4.20.0) - 2021-07-13
 - Add SDK support for MPC APIs and XML.
