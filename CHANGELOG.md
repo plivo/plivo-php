@@ -1,4 +1,6 @@
 # Change Log
+## [v4.20.0](https://github.com/plivo/plivo-php/releases/tag/v4.20.0) - 2021-07-06
+- Added powerpack_id filter for list mdr 
 
 ## [v4.19.2](https://github.com/plivo/plivo-php/releases/tag/v4.19.2) - 2021-07-05
 - **WARNING**: Remove total_count field from meta data for list MDR response
