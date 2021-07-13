@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.20.0](https://github.com/plivo/plivo-php/releases/tag/v4.20.0) - 2021-07-13
+- Add SDK support for MPC APIs and XML.
+
 ## [v4.19.2](https://github.com/plivo/plivo-php/releases/tag/v4.19.2) - 2021-07-05
 - **WARNING**: Remove total_count field from meta data for list MDR response
 
@@ -27,7 +30,7 @@
 ## [v4.17.1](https://github.com/plivo/plivo-php/releases/tag/v4.17.1) - 2021-02-15
 - Fix PHP v8 deprectaion warning for PlivoResponseException
 
-## [v4.17.0](https://github.com/plivo/plivo-php/releases/tag/v4.17.0) - 2020-12-17
+## [v4.17.0](https://github.com/plivo/plivo-php/releases/tag/v4.16.0) - 2020-12-17
 - Add exception to handle destination param - SMS.
 
 ## [v4.16.0](https://github.com/plivo/plivo-php/releases/tag/v4.16.0) - 2020-12-08

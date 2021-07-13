@@ -23,6 +23,7 @@ use Plivo\Resources\RegulatoryCompliance\ComplianceDocumentTypeInterface;
 use Plivo\Resources\RegulatoryCompliance\ComplianceDocumentInterface;
 use Plivo\Resources\RegulatoryCompliance\ComplianceRequirementInterface;
 use Plivo\Resources\RegulatoryCompliance\ComplianceApplicationInterface;
+use Plivo\Resources\MultiPartyCall\MultiPartyCallInterface;
 
 /**
  * Class RestClient
@@ -156,6 +157,11 @@ class RestClient
      * @var ComplianceApplicationInterface
      */
     protected $_complianceApplication;
+
+    /**
+     * @var MultiPartyCallInterface
+     */
+    protected $_multiPartyCall;
 
     /**
      * RestClient constructor.
@@ -421,4 +427,12 @@ class RestClient
         return $this->_complianceApplication;
     }
 
+
+    public function getMultiPartyCalls()
+    {
+        if(!$this->_multiPartyCall){
+            $this->_multiPartyCall = new MultiPartyCallInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_multiPartyCall;
+    }
 }
