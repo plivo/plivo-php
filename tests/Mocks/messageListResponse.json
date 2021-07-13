@@ -4,8 +4,7 @@
     "limit": 20,
     "next": "/v1/Account/MAXXXXXXXXXXXXXXXXXX/Message/?limit=20&offset=20",
     "offset": 0,
-    "previous": null,
-    "total_count": 49
+    "previous": null
   },
   "objects": [
     {
