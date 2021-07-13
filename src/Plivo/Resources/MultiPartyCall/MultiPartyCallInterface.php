@@ -187,10 +187,7 @@ class MultiPartyCallInterface extends ResourceInterface
         }
         if(isset($optionalArgs['ring_timeout'])){
             MPCUtils::validParam('ringTimeout', $optionalArgs['ring_timeout'], ['string','integer'], false);
-            if(is_int($optionalArgs['ring_timeout'])){
-                MPCUtils::validRange('ringTimeout', $optionalArgs['ring_timeout'], false, 15, 120);
-            }
-            else{
+            if(is_string($optionalArgs['ring_timeout'])){
                 MPCUtils::validMultipleDestinationIntegers('ringTimeout',$optionalArgs['ring_timeout']);
             }
         }
@@ -199,10 +196,7 @@ class MultiPartyCallInterface extends ResourceInterface
         }
         if(isset($optionalArgs['delay_dial'])){
             MPCUtils::validParam('delayDial', $optionalArgs['delay_dial'], ['string','integer'], false);
-            if(is_int($optionalArgs['delay_dial'])){
-                MPCUtils::validRange('delayDial', $optionalArgs['delay_dial'], false, 0, 120);
-            }
-            else{
+            if(is_string($optionalArgs['delay_dial'])){
                 MPCUtils::validMultipleDestinationIntegers('delayDial',$optionalArgs['delay_dial']);
             }
         }

@@ -34,15 +34,7 @@ class MPCUtils{
         $values = explode("<",$paramValue);
         for ($i=0;$i<sizeof($values);$i++)
         {
-            if((is_numeric($values[$i]) && !is_double(1*$values[$i]))){
-                if($paramName == 'delayDial'){
-                    MPCUtils::validRange('DelayDial Destination Value', (int)$values[$i], false, 0, 120);
-                }
-                else{
-                    MPCUtils::validRange('RingTimeout Destination Value', (int)$values[$i], false, 15, 120);
-                }
-            }
-            else{
+            if((!is_numeric($values[$i]) || is_double(1*$values[$i]))){
                 throw new PlivoValidationException($paramName. ' Destination Values must be integers');
             }
         }
