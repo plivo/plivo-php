@@ -64,22 +64,31 @@ class MessageInterface extends ResourceInterface
      *   + [int] :limit Used to display the number of results per page. The maximum number of results that can be fetched is 20.
      *   + [int] :offset Denotes the number of value items by which the results should be offset. Eg:- If the result contains a 1000 values and limit is set to 10 and offset is set to 705, then values 706 through 715 are displayed in the results. This parameter is also used for pagination of the results.
      *   + [string] :error_code Delivery Response code returned by the carrier attempting the delivery. See Supported error codes {https://www.plivo.com/docs/api/message/#standard-plivo-error-codes}.
+     *   + [string] : powerpack_id - Filter the results by Powerpack ID.
      * @return MessageList
      */
     protected function getList($optionalArgs = [])
     {
-        $response = $this->client->fetch($this->uri, $optionalArgs);
-
-        $messages = [];
-
-        foreach ($response->getContent() ['objects'] as $message)
-        {
-            $newMessage = new Message($this->client, $message, $this->pathParams['authId'], $this->uri);
-
-            array_push($messages, $newMessage);
+        $response = $this->client->fetch(
+            $this->uri,
+            $optionalArgs
+        );
+        if(!array_key_exists("error", $response->getContent())) {
+            $messages = [];
+            foreach ($response->getContent()['objects'] as $message) {
+                $newMessage = new Message($this->client, $message, $this->pathParams['authId'], $this->uri);
+                array_push($messages, $newMessage);
+            }
+            return new MessageList($this->client, $response->getContent()['meta'], $messages);
+        } else {
+            throw new PlivoResponseException(
+                $response->getContent()['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+            );
         }
-
-        return new MessageList($this->client, $response->getContent()['meta'], $messages);
     }
 
     //    protected function getAllList()

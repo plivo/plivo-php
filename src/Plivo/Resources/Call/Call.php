@@ -26,6 +26,8 @@ use Plivo\Resources\Resource;
  * @property string $hangupCauseCode Hangup Cause Code
  * @property string $hangupCauseName Hangup Cause Name
  * @property string $hangupSource Hangup Source
+ * @property string $stirVerification Stir Verification
+ * @property string $voiceNetworkGroup Voice Network Group
  */
 class Call extends Resource
 {
@@ -59,7 +61,9 @@ class Call extends Resource
             'totalRate' => $response['total_rate'],
             'hangupCauseCode' => $response['hangup_cause_code'],
             'hangupCauseName' => $response['hangup_cause_name'],
-            'hangupSource' => $response['hangup_source']
+            'hangupSource' => $response['hangup_source'],
+            'stirVerification' => $response['stir_verification'],
+            'voiceNetworkGroup' => $response['voice_network_group']
         ];
 
         $this->pathParams = [
