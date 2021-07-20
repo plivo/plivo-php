@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.22.0](https://github.com/plivo/plivo-php/releases/tag/v4.22.0) - 2021-07-20
+- This version includes advancements to the Messaging Interface that deals with the [Send SMS/MMS](https://www.plivo.com/docs/sms/api/message#send-a-message) interface, Creating a standard structure for `request/input` arguments to make implementation easier and incorporating support for the older interface.
+
 ## [v4.21.0](https://github.com/plivo/plivo-php/releases/tag/v4.21.0) - 2021-07-13
 - Power pack ID has been included to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message).
 - Support for filtering messages by Power pack ID has been added to the [list all messages API](https://www.plivo.com/docs/sms/api/message#list-all-messages).
