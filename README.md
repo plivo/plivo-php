@@ -144,11 +144,11 @@ require 'vendor/autoload.php';
 use Plivo\RestClient;
 
 $client = new RestClient();
-$message_created = $client->messages->create(
-    '+14156667778',
-    ['+14156667777'],
-    'Hello, world!'
-);
+$message_created = $client->messages->create([ 
+        "src" => "+14156667778", 
+        "dst" => "+14156667777", 
+        "text"  =>"Hello, this is a sample text from Plivo"
+]);
 ```
 
 ### Make a call
