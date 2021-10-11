@@ -29,20 +29,20 @@ use Plivo\Resources\MultiPartyCall\MultiPartyCallInterface;
  * Class RestClient
  * @package Plivo
  *
- * @property CallInterface call Interface to handle all Call related api calls
- * @property SubAccountInterface subAccount Interface to handle all SubAccount related api calls
- * @property ApplicationInterface application Interface to handle all Application related api calls
- * @property AccountInterface account Interface to handle all Account related api calls
- * @property MessageInterface message Interface to handle all Message related api calls
- * @property PowerpackInterface powerpack Interface to handle all Powerpack related api calls
+ * @property CallInterface calls Interface to handle all Call related api calls
+ * @property SubAccountInterface subAccounts Interface to handle all SubAccount related api calls
+ * @property ApplicationInterface applications Interface to handle all Application related api calls
+ * @property AccountInterface accounts Interface to handle all Account related api calls
+ * @property MessageInterface messages Interface to handle all Message related api calls
+ * @property PowerpackInterface powerpacks Interface to handle all Powerpack related api calls
  * @property MediaInterface media Interface to handle all upload mms media api
  * @property LookupInterface lookup Interface to handle calls to the Lookup API
- * @property EndpointInterface endpoint Interface to handle all Endpoint related api calls
- * @property NumberInterface number Interface to handle all Number related api calls
- * @property PhoneNumberInterface phoneNumber Interface to handle all PhoneNumber related api calls
+ * @property EndpointInterface endpoints Interface to handle all Endpoint related api calls
+ * @property NumberInterface numbers Interface to handle all Number related api calls
+ * @property PhoneNumberInterface phoneNumbers Interface to handle all PhoneNumber related api calls
  * @property PricingInterface pricing Interface to handle all Pricing related api calls
- * @property RecordingInterface recording Interface to handle all Recording related api calls
- * @property CallFeedbackInterface callfeedback Interface to handle user feedback for calls
+ * @property RecordingInterface recordings Interface to handle all Recording related api calls
+ * @property CallFeedbackInterface callFeedback Interface to handle user feedback for calls
  * @property EndUserInterface endUser Interface to handle all EndUser related api calls
  * @property ComplianceDocumentTypeInterface complianceDocumentType Interface to handle all ComplianceDocumentType related api calls
  * @property ComplianceDocumentInterface complianceDocument Interface to handle all ComplianceDocument related api calls
