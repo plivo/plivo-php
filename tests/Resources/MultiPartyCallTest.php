@@ -49,6 +49,7 @@ class MultiPartyCallTest extends BaseTestCase{
                 'confirm_key_sound_method'=> 'GET',
                 'dial_music'=> 'Real',
                 'ring_timeout'=> 45,
+                'delay_dial'=> 0,
                 'max_duration'=> 14400,
                 'max_participants'=> 10,
                 'wait_music_method'=> 'GET',
