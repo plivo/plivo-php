@@ -115,7 +115,6 @@ class PlivoGuzzleHttpClient implements PlivoHttpClientInterface
             $options = [
                 'http_errors' => false,
                 'headers' => $headers,
-                'body' => $requestBody,
                 'timeout' => $timeOut,
                 'connect_timeout' => 160,
                 'multipart' => $body['multipart']
@@ -124,10 +123,12 @@ class PlivoGuzzleHttpClient implements PlivoHttpClientInterface
             $options = [
                 'http_errors' => false,
                 'headers' => $headers,
-                'body' => $requestBody,
                 'timeout' => $timeOut,
                 'connect_timeout' => 60,
             ];
+        }
+        if($method != "GET"){
+            $options['body'] = $requestBody;
         }
         try {
             $rawResponse = $this->guzzleClient->request($method, $url, $options);
