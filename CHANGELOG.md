@@ -1,6 +1,7 @@
 # Change Log
-## [v4.21.2](https://github.com/plivo/plivo-php/releases/tag/v4.21.2) - 2021-10-18
-- Fixing the Get request.
+
+## [v4.21.2](https://github.com/plivo/plivo-php/releases/tag/v4.21.2) - 2021-10-19
+- Fixing the `GET` request.
 
 ## [v4.21.1](https://github.com/plivo/plivo-php/releases/tag/v4.21.1) - 2021-07-27
 - Updated default HTTP client request timeout to 5 seconds.
