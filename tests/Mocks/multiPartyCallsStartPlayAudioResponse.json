@@ -1,0 +1,72 @@
+{
+  "api_id": "c07db813-3721-11ec-8bcd-0242ac110008",
+  "message": "play queued into MPC",
+  "mpcMemberId": [
+    "1003"
+  ],
+  "mpcName": "samplempc"
+}
+
+
+[role] => Agent
+[call_uuid] => 1234-5678-4321-0987
+[call_status_callback_method] => POST
+[confirm_key_sound_method] => GET
+[dial_music] => Real
+[ring_timeout] => 45
+[max_duration] => 14400
+[max_participants] => 10
+[wait_music_method] => GET
+[agent_hold_music_method] => GET
+[customer_hold_music_method] => GET
+[recording_callback_method] => GET
+[status_callback_method] => GET
+[on_exit_action_method] => POST
+[record] =>
+[record_file_format] => mp3
+[status_callback_events] => mpc-state-changes,participant-state-changes
+[stay_alone] =>
+[coach_mode] => 1
+[mute] =>
+[hold] =>
+[start_mpc_on_enter] => 1
+[end_mpc_on_exit] =>
+[relay_dtmf_inputs] =>
+[enter_sound] => beep:1
+[enter_sound_method] => GET
+[exit_sound] => beep:2
+[exit_sound_method] => GET
+[start_recording_audio_method] => GET
+[stop_recording_audio_method] => GET
+
+[role] => Agent
+[call_uuid] => 1234-5678-4321-0987
+[call_status_callback_method] => POST
+[confirm_key_sound_method] => GET
+[dial_music] => Real
+[ring_timeout] => 45
+[delay_dial] => 0
+[max_duration] => 14400
+[max_participants] => 10
+[wait_music_method] => GET
+[agent_hold_music_method] => GET
+[customer_hold_music_method] => GET
+[recording_callback_method] => GET
+[status_callback_method] => GET
+[on_exit_action_method] => POST
+[record] =>
+[record_file_format] => mp3
+[status_callback_events] => mpc-state-changes,participant-state-changes
+[stay_alone] =>
+[coach_mode] => 1
+[mute] =>
+[hold] =>
+[start_mpc_on_enter] => 1
+[end_mpc_on_exit] =>
+[relay_dtmf_inputs] =>
+[enter_sound] => beep:1
+[enter_sound_method] => GET
+[exit_sound] => beep:2
+[exit_sound_method] => GET
+[start_recording_audio_method] => GET
+[stop_recording_audio_method] => GET
