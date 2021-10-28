@@ -59,7 +59,7 @@ class PhoneNumberInterface extends ResourceInterface
             array_merge(['country_iso'=>$countryIso], $optionalArgs)
         );
 
-        if($response->getStatusCode() == 200 || $response->getStatusCode() == 201) {
+        if($response->getStatusCode() == 200) {
             $phoneNumbers = [];
             foreach ($response->getContent()['objects'] as $phoneNumber) {
                 $newNumber = new PhoneNumber(
@@ -67,6 +67,15 @@ class PhoneNumberInterface extends ResourceInterface
 
                 array_push($phoneNumbers, $newNumber);
             }
+
+            // If there are no phone numbers for the provided params, set the failure
+            // reason instead.
+            if (empty($phoneNumbers) && $response->getContent()['error'] != null){
+                $errorList = [];
+                array_push($errorList, $response->getContent()['error'] );
+                return new ResourceList($this->client, $response->getContent()['meta'], $errorList);
+            }
+
             return new ResourceList($this->client, $response->getContent()['meta'], $phoneNumbers);
         } else {
             throw new PlivoResponseException(
