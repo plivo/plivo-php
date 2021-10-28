@@ -12,7 +12,7 @@ use Plivo\Resources\ResourceList;
 class PhoneNumberListResponse extends ResourceList
 {
     // String 
-    protected $error;
+    public $error;
     
     /**
      * PhoneNumberListResponse constructor.
