@@ -68,7 +68,11 @@ class PhoneNumberInterface extends ResourceInterface
                 array_push($phoneNumbers, $newNumber);
             }
 
-            return new PhoneNumberListResponse($this->client, $response->getContent()['meta'], $phoneNumbers, $response->getContent()['error']);
+            if (empty($phoneNumbers) && $response->getContent()['error'] != null){
+                return new PhoneNumberListResponse($this->client, $response->getContent()['meta'], $phoneNumbers, $response->getContent()['error']);
+            }
+
+            return new ResourceList($this->client, $response->getContent()['meta'], $phoneNumbers);
         } else {
             throw new PlivoResponseException(
                 $response->getContent()['error'],
