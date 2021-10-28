@@ -2,8 +2,8 @@
 
 namespace Plivo\Resources\PhoneNumber;
 
-
-use Plivo\Resources\ResponseUpdate;
+use Plivo\BaseClient;
+use Plivo\Resources\ResourceList;
 
 /**
  * Class PhoneNumberListResponse
