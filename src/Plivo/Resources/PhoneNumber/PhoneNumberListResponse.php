@@ -23,7 +23,7 @@ class PhoneNumberListResponse extends ResourceList
      */
     public function __construct(BaseClient $plivoClient, array $meta, array $resources, $error)
     {
-        parent::__construct($apiID, $message, $statusCode);
+        parent::__construct($plivoClient, $meta, $resources);
 
         $this->error = $error;
     }
