@@ -59,7 +59,7 @@ class PhoneNumberInterface extends ResourceInterface
             array_merge(['country_iso'=>$countryIso], $optionalArgs)
         );
 
-        if(!array_key_exists("error", $response->getContent())) {
+        if($response->getStatusCode() == 200 || $response->getStatusCode() == 201) {
             $phoneNumbers = [];
             foreach ($response->getContent()['objects'] as $phoneNumber) {
                 $newNumber = new PhoneNumber(
