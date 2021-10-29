@@ -50,7 +50,7 @@ class PhoneNumberInterface extends ResourceInterface
      *   + [string] local_calling_area - If true, will return numbers belonging to the same rate_center of given input npanxx. This filter is applicable with filter npanxx.
      *   + [int] limit - Used to display the number of results per page. The maximum number of results that can be fetched is 20.
      *   + [int] offset - Denotes the number of value items by which the results should be offset. Eg:- If the result contains a 1000 values and limit is set to 10 and offset is set to 705, then values 706 through 715 are displayed in the results. This parameter is also used for pagination of the results.
-     * @return ResourceList output
+     * @return PhoneNumberListResponse output
      */
     public function getList($countryIso, $optionalArgs = [])
     {
@@ -59,7 +59,7 @@ class PhoneNumberInterface extends ResourceInterface
             array_merge(['country_iso'=>$countryIso], $optionalArgs)
         );
 
-        if(!array_key_exists("error", $response->getContent())) {
+        if($response->getStatusCode() == 200) {
             $phoneNumbers = [];
             foreach ($response->getContent()['objects'] as $phoneNumber) {
                 $newNumber = new PhoneNumber(
@@ -67,6 +67,11 @@ class PhoneNumberInterface extends ResourceInterface
 
                 array_push($phoneNumbers, $newNumber);
             }
+
+            if (empty($phoneNumbers) && $response->getContent()['error'] != null){
+                return new PhoneNumberListResponse($this->client, $response->getContent()['meta'], $phoneNumbers, $response->getContent()['error']);
+            }
+
             return new ResourceList($this->client, $response->getContent()['meta'], $phoneNumbers);
         } else {
             throw new PlivoResponseException(

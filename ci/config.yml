@@ -2,3 +2,7 @@
 parent: central
 serviceName: plivo-php
 language: php-sdk
+postDeployJobs:
+  prod:
+    - name: plivo/messaging-qa/phpSDKSmoke
+      disabled: false
