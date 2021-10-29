@@ -1,7 +1,7 @@
 # Change Log
 
-## [v4.21.3](https://github.com/plivo/plivo-php/releases/tag/v4.21.3) - 2021-10-28
-- Fix "https://plivo-team.atlassian.net/browse/DEVEX-421" - Unable to Search PhoneNumbers
+## [v4.21.3](https://github.com/plivo/plivo-php/releases/tag/v4.21.3) - 2021-10-29
+- Fix `exception` returned by [Search phone number API](https://www.plivo.com/docs/numbers/api/phone-number/search-phone-numbers/) for successful request.
 
 ## [v4.21.2](https://github.com/plivo/plivo-php/releases/tag/v4.21.2) - 2021-10-19
 - Fixing the `GET` request.
