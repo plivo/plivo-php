@@ -1,0 +1,18 @@
+{
+    "api_id": "12ae5a32-3751-11ec-8e4c-0242ac110002",
+    "campaign": {
+        "brand_id": "BHYYNCK",
+        "campaign_id": "CMPT4EP",
+        "mno_metadata": {
+            "AT&T": {
+                "tpm": 4500
+            },
+            "T-Mobile": {
+                "brand_tier": "TOP"
+            },
+            "Verizon Wireless": {}
+        },
+        "reseller_id": "RPDPPUM",
+        "usecase": "ACCOUNT_NOTIFICATION"
+    }
+}

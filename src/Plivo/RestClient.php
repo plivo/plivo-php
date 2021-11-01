@@ -11,6 +11,8 @@ use Plivo\Resources\Endpoint\EndpointInterface;
 use Plivo\Resources\Message\MessageInterface;
 use Plivo\Resources\Powerpack\PowerpackInterface;
 use Plivo\Resources\Media\MediaInterface;
+use Plivo\Resources\Brand\BrandInterface;
+use Plivo\Resources\Campaign\CampaignInterface;
 use Plivo\Resources\Lookup\LookupInterface;
 use Plivo\Resources\Number\NumberInterface;
 use Plivo\Resources\PhoneNumber\PhoneNumberInterface;
@@ -76,6 +78,17 @@ class RestClient
      */
     protected $_powerpack;
 
+
+     /**
+     * @var BrandInterface
+     */
+    protected $_brand;
+
+
+     /**
+     * @var CampaignInterface
+     */
+    protected $_campaign;
      /**
      * @var MediaInterface
      */
@@ -238,6 +251,28 @@ class RestClient
             $this->_powerpack = new PowerpackInterface($this->client, $this->client->getAuthId());
         }
         return $this->_powerpack;
+    }
+
+    /**
+     * @return BrandInterface
+     */
+    protected function getBrand()
+    {
+        if (!$this->_brand) {
+            $this->_brand = new BrandInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_brand;
+    }
+
+     /**
+     * @return CampaignInterface
+     */
+    protected function getCampaign()
+    {
+        if (!$this->_campaign) {
+            $this->_campaign = new CampaignInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_campaign;
     }
 
     /**

@@ -1,0 +1,49 @@
+{
+    "api_id": "b9df43c0-374c-11ec-97b3-0242ac110002",
+    "brands": [
+        {
+            "brand_id": "ABCDEFG",
+            "company_name": "ABC Inc.",
+            "ein": "111111111",
+            "ein_issuing_country": "US",
+            "email": "johndoe@abc.com",
+            "entity_type": "PRIVATE_PROFIT",
+            "registration_status": "COMPLETED",
+            "vertical": "RETAIL",
+            "website": "http://www.abcmobile.com"
+        },
+        {
+            "brand_id": "QWERTYU",
+            "company_name": "ABC Inc.",
+            "ein": "111111111",
+            "ein_issuing_country": "US",
+            "email": "johndoe@abc.com",
+            "entity_type": "PRIVATE_PROFIT",
+            "registration_status": "COMPLETED",
+            "vertical": "RETAIL",
+            "website": "http://www.abcmobile.com"
+        },
+        {
+            "brand_id": "IOPLKJH",
+            "company_name": "test_public",
+            "ein": "11122233",
+            "ein_issuing_country": "IN",
+            "email": "test@gmail.com",
+            "entity_type": "PUBLIC_PROFIT",
+            "registration_status": "COMPLETED",
+            "vertical": "AGRICULTURE",
+            "website": "www.testpublic.com"
+        },
+        {
+            "brand_id": "ASDFGH",
+            "company_name": "test inc.",
+            "ein": "4453336545",
+            "ein_issuing_country": "IN",
+            "email": "tests@gmail.com",
+            "entity_type": "PUBLIC_PROFIT",
+            "registration_status": "COMPLETED",
+            "vertical": "AGRICULTURE",
+            "website": "https://www.plivo.com/"
+        }
+    ]
+}
