@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.22.0](https://github.com/plivo/plivo-node/tree/v4.22.0) - (2021-11-03)
+- Added Voice MPC enhancements.
+
 ## [v4.21.3](https://github.com/plivo/plivo-php/releases/tag/v4.21.3) - 2021-10-29
 - Fix `exception` returned by [Search phone number API](https://www.plivo.com/docs/numbers/api/phone-number/search-phone-numbers/) for successful request.
 
