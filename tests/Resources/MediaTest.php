@@ -33,7 +33,7 @@ class MediaTest extends BaseTestCase {
 
         self::assertNotNull($actual);
 
-        self::assertEquals($actual->media_id, $mediaID);
+        self::assertEquals($actual["media_id"], $mediaID);
     }
 
     public function testMediaList()
