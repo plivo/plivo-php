@@ -1,14 +1,23 @@
 name: CI
 
-on: [push]
-
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+    
 jobs:
   build-test:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        php-version: [7.0, 7.1, 7.2, 7.3, 7.4]
     steps:
     - uses: actions/checkout@v2
     - uses: php-actions/composer@v5 # or alternative dependency management
     - uses: php-actions/phpunit@v3
+    - name: Install Dependencies
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     with:
+      php_version: ${{ matrix.php-version }}
       configuration: tests/phpunit.xml
