@@ -40,7 +40,7 @@ class PowerpackTest extends BaseTestCase {
         $body = file_get_contents(__DIR__ . '/../Mocks/powerpackResponse.json');
 
         $this->mock(new PlivoResponse($request,200, $body));
-        $actual = $powerpack->update([
+        $actual = $this->client->powerpacks->update([
             'name' => "powerpackname",
         ]);
         $this->assertRequest($request);
