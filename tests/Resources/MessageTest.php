@@ -57,6 +57,27 @@ class MessageTest extends BaseTestCase {
         self::assertNotNull($actual);
     }
 
+    public function testnewMessageCreate()
+    {
+        $request = new PlivoRequest(
+            'POST',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Message/',
+            [
+                "dst" => "+919012345678",
+                "text" => "Test",
+                "src" => "+919999999999"
+            ]);
+        $body = file_get_contents(__DIR__ . '/../Mocks/messageSendResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->messages->create([ "src" => "+919999999999", "dst" => "+919012345678", "text"  =>"Test"]);
+
+        $this->assertRequest($request);
+
+        self::assertNotNull($actual);
+    }
+
     public function testMessageGet()
     {
         $messageUuid = "5b40a428-bfc7-4daf-9d06-726c558bf3b8";
