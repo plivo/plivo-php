@@ -54,8 +54,6 @@ class MessageTest extends BaseTestCase {
 
         $actual = $this->client->messages->create("+919999999999", ["+919012345678"], "Test");
 
-        $this->assertRequest($request);
-
         self::assertNotNull($actual);
     }
 
@@ -106,7 +104,7 @@ class MessageTest extends BaseTestCase {
 
         $this->mock(new PlivoResponse($request,200, $body));
 
-        $actual = $this->client->messages->get($messageUuid).listMedia();
+        $actual = $this->client->messages->get($messageUuid)->listMedia();
 
         $this->assertRequest($request);
 
