@@ -68,7 +68,6 @@ class Application extends Resource
         $this->properties = [
             'answerMethod' => $response['answer_method'],
             'answerUrl' => $response['answer_url'],
-            'apiId' => $response['api_id'],
             'appId' => $response['app_id'],
             'appName' => $response['app_name'],
             'applicationType' => $response['application_type'],

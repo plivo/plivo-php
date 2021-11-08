@@ -1,10 +1,13 @@
 # Change Log
 
-## [v4.22.0](https://github.com/plivo/plivo-php/releases/tag/v4.22.0) - 2021-09-22
+## [v4.23.0](https://github.com/plivo/plivo-php/releases/tag/v4.23.0) - 2021-11-08
 **Features - Messaging**
 - This version includes advancements to the Messaging Interface that deals with the [Send SMS/MMS](https://www.plivo.com/docs/sms/api/message#send-a-message) interface, Creating a standard structure for `request/input` arguments to make implementation easier and incorporating support for the older interface.
 
  Example for [send SMS](https://github.com/plivo/plivo-php#send-a-message)
+
+## [v4.22.0](https://github.com/plivo/plivo-node/tree/v4.22.0) - (2021-11-03)
+- Added Voice MPC enhancements.
 
 ## [v4.21.3](https://github.com/plivo/plivo-php/releases/tag/v4.21.3) - 2021-10-29
 - Fix `exception` returned by [Search phone number API](https://www.plivo.com/docs/numbers/api/phone-number/search-phone-numbers/) for successful request.
