@@ -1,6 +1,6 @@
 <?php
 
-namespace Plivo\Tests\Resources;
+namespace Resources;
 
 
 
@@ -44,7 +44,7 @@ class MessageTest extends BaseTestCase {
             'POST',
             'Account/MAXXXXXXXXXXXXXXXXXX/Message/',
             [
-                "dst" => "+919012345678",
+                "dst" => ["+919012345678",
                 "text" => "Test",
                 "src" => "+919999999999"
             ]);

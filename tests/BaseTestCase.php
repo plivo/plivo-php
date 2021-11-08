@@ -24,6 +24,7 @@ class BaseTestCase extends TestCase
     /**
      * @var TestClient
      */
+
     protected $testClient = null;
 
     /**
@@ -34,6 +35,7 @@ class BaseTestCase extends TestCase
         $this->client = new RestClient("MAXXXXXXXXXXXXXXXXXX", "AbcdEfghIjklMnop1234");
         $this->testClient = new TestClient(null,
             new BasicAuth("MAXXXXXXXXXXXXXXXXXX", "AbcdEfghIjklMnop1234"));
+        $this->client->msgClient->setHttpClientHandler($this->testClient);
         $this->client->client->setHttpClientHandler($this->testClient);
     }
 
