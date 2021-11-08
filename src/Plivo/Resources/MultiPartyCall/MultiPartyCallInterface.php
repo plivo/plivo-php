@@ -152,7 +152,7 @@ class MultiPartyCallInterface extends ResourceInterface
             MPCUtils::validParam('callerName', $optionalArgs['caller_name'], ['string'], false);
             MPCUtils::validRange('callerName', strlen($optionalArgs['caller_name']), false, 0, 50);
         }
-        else{
+        elseif(isset($optionalArgs['from'])) {
             $optionalArgs['caller_name'] = $optionalArgs['from'];
         }
         if(isset($optionalArgs['call_status_callback_url'])){
