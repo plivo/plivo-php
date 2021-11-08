@@ -54,8 +54,6 @@ class MessageTest extends BaseTestCase {
 
         $actual = $this->client->messages->create("+919999999999", ["+919012345678"], "Test");
 
-        $this->assertRequest($request);
-
         self::assertNotNull($actual);
     }
 
@@ -100,17 +98,23 @@ class MessageTest extends BaseTestCase {
         $messageUuid = "5b40a428-bfc7-4daf-9d06-726c558bf3b8";
         $request = new PlivoRequest(
             'GET',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Message/'.$messageUuid.'/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/messageGetResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->messages->get($messageUuid);
+        $request = new PlivoRequest(
+            'GET',
             'Account/MAXXXXXXXXXXXXXXXXXX/Message/'.$messageUuid.'/Media/',
             []);
         $body = file_get_contents(__DIR__ . '/../Mocks/mediaListResponse.json');
 
         $this->mock(new PlivoResponse($request,200, $body));
 
-        $actual = $this->client->messages->get($messageUuid).listMedia();
-
-        $this->assertRequest($request);
-
-        self::assertNotNull($actual);
+        $mediaList = $actual->listMedia();
+        self::assertNotNull($mediaList);
 
     }
     
