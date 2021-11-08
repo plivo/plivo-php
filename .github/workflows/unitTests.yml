@@ -17,11 +17,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
       - uses: php-actions/composer@v5
-
       - name: PHPUnit Tests
-        uses: php-actions/phpunit@v2 
+        uses: php-actions/phpunit@v3
         with:
           php_version: ${{ matrix.php-version }}
           configuration: tests/phpunit.xml
