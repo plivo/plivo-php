@@ -1,9 +1,10 @@
 # Change Log
 
-## [v4.24.0](https://github.com/plivo/plivo-php/releases/tag/v4.22.0) - 2021-11-10
-- 10DLC api support
-- Brand: Create, Get and List
-- Campaign: Create, Get and List
+## [v4.24.0](https://github.com/plivo/plivo-php/releases/tag/v4.24.0) - 2021-11-11
+**Features - Messaging**
+- Added new 10DLC API:
+  - Brand API: `Create`, `Get`  and `List`.
+  - Campaign API: `Create`, `Get` and `List`.
 
 ## [v4.23.0](https://github.com/plivo/plivo-php/releases/tag/v4.23.0) - 2021-11-08
 **Features - Messaging**
