@@ -2,7 +2,7 @@
 
 ## [v4.24.0](https://github.com/plivo/plivo-php/releases/tag/v4.24.0) - 2021-11-11
 **Features - Messaging**
-- Added new 10DLC API:
+- New 10DLC API:
   - Brand API: `Create`, `Get`  and `List`.
   - Campaign API: `Create`, `Get` and `List`.
 
