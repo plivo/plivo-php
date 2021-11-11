@@ -1,0 +1,14 @@
+{
+    "api_id": "71aa47e0-3750-11ec-8e4c-0242ac110002",
+    "brand": {
+        "brand_id": "BRPXS6E",
+        "company_name": "ABC Inc.",
+        "ein": "111111111",
+        "ein_issuing_country": "US",
+        "email": "johndoe@abc.com",
+        "entity_type": "PRIVATE_PROFIT",
+        "registration_status": "COMPLETED",
+        "vertical": "RETAIL",
+        "website": "http://www.abcmobile.com"
+    }
+}

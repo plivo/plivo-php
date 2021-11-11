@@ -1,5 +1,11 @@
 # Change Log
 
+## [v4.24.0](https://github.com/plivo/plivo-php/releases/tag/v4.24.0) - 2021-11-11
+**Features - Messaging**
+- New 10DLC API:
+  - Brand API: `Create`, `Get`  and `List`.
+  - Campaign API: `Create`, `Get` and `List`.
+
 ## [v4.23.0](https://github.com/plivo/plivo-php/releases/tag/v4.23.0) - 2021-11-08
 **Features - Messaging**
 - This version includes advancements to the Messaging Interface that deals with the [Send SMS/MMS](https://www.plivo.com/docs/sms/api/message#send-a-message) interface, Creating a standard structure for `request/input` arguments to make implementation easier and incorporating support for the older interface.

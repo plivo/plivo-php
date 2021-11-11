@@ -1,0 +1,92 @@
+{
+    "api_id": "5e639fd0-374e-11ec-8e4c-0242ac110002",
+    "campaigns": [
+        {
+            "brand_id": "BHYYNCK",
+            "campaign_id": "CMPT4EP",
+            "mno_metadata": {
+                "AT&T": {
+                    "tpm": 4500
+                },
+                "T-Mobile": {
+                    "brand_tier": "TOP"
+                },
+                "Verizon Wireless": {}
+            },
+            "reseller_id": "RPDPPUM",
+            "usecase": "ACCOUNT_NOTIFICATION"
+        },
+        {
+            "brand_id": "B8OD95Z",
+            "campaign_id": "CAIKXXT",
+            "mno_metadata": {
+                "AT&T": {
+                    "tpm": 4500
+                },
+                "T-Mobile": {
+                    "brand_tier": "TOP"
+                },
+                "US Cellular": {},
+                "Verizon Wireless": {}
+            },
+            "reseller_id": "",
+            "usecase": "MIXED"
+        },
+        {
+            "brand_id": "BHYYNCK",
+            "campaign_id": "CCXMMAW",
+            "mno_metadata": {
+                "AT&T": {
+                    "tpm": 4500
+                },
+                "T-Mobile": {
+                    "brand_tier": "TOP"
+                },
+                "US Cellular": {},
+                "Verizon Wireless": {}
+            },
+            "reseller_id": "RPDPPUM",
+            "usecase": "ACCOUNT_NOTIFICATION"
+        },
+        {
+            "brand_id": "B8OD95Z",
+            "campaign_id": "CWOOIAT",
+            "reseller_id": "",
+            "usecase": "2FA"
+        },
+        {
+            "brand_id": "BHYYNCK",
+            "campaign_id": "CRIGC80",
+            "mno_metadata": {
+                "AT&T": {
+                    "tpm": 600
+                },
+                "T-Mobile": {
+                    "brand_tier": "TOP",
+                    "tpm": 200
+                },
+                "Verizon Wireless": {
+                    "tpm": 500
+                }
+            },
+            "reseller_id": "",
+            "usecase": "MIXED"
+        },
+        {
+            "brand_id": "BRPXS6E",
+            "campaign_id": "CFAPDR8",
+            "mno_metadata": {
+                "AT&T": {
+                    "tpm": 4500
+                },
+                "T-Mobile": {
+                    "brand_tier": "TOP"
+                },
+                "US Cellular": {},
+                "Verizon Wireless": {}
+            },
+            "reseller_id": "",
+            "usecase": "ACCOUNT_NOTIFICATION"
+        }
+    ]
+}

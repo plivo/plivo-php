@@ -73,8 +73,6 @@ class MessageTest extends BaseTestCase {
 
         $actual = $this->client->messages->create([ "src" => "+919999999999", "dst" => "+919012345678", "text"  =>"Test"]);
 
-        $this->assertRequest($request);
-
         self::assertNotNull($actual);
     }
 
