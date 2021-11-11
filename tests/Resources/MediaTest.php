@@ -18,7 +18,7 @@ class MediaTest extends BaseTestCase {
 
     public function testMediaGet()
     {
-        $mediaID = "31e7de16-de14-4009-b31f-9c9653c5f319";
+        $mediaID = "98854bc5-ea05-4837-a301-0272523e6156";
         $request = new PlivoRequest(
             'GET',
             'Account/MAXXXXXXXXXXXXXXXXXX/Media/'.$mediaID.'/',
@@ -32,8 +32,8 @@ class MediaTest extends BaseTestCase {
         $this->assertRequest($request);
 
         self::assertNotNull($actual);
-
-        self::assertEquals($actual->mediaID, $mediaID);
+        $res = json_decode($actual);
+        self::assertEquals($res->media_id, $mediaID);
     }
 
     public function testMediaList()

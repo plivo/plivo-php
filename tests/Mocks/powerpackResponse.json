@@ -7,5 +7,43 @@
     "name": "vishnu_sep_01",
     "number_pool": "/v1/Account/MAODZKMDFJMJU3MTEYNG/NumberPool/659c7f88-c819-46e2-8af4-2d8a84249099/",
     "sticky_sender": true,
-    "uuid": "86bbb125-97bb-4d72-89fd-81d5c515b015"
+    "uuid": "86bbb125-97bb-4d72-89fd-81d5c515b015",
+    "number_priority": [
+        {
+            "country_iso": "US",
+            "priority": {
+                "priority1": "shortcode",
+                "priority2": "tollfree",
+                "priority3": "longcode"
+            },
+            "service_type": "SMS"
+        },
+        {
+            "country_iso": "CA",
+            "priority": {
+                "priority1": "shortcode",
+                "priority2": "longcode",
+                "priority3": "tollfree"
+            },
+            "service_type": "SMS"
+        },
+        {
+            "country_iso": "US",
+            "priority": {
+                "priority1": "shortcode",
+                "priority2": "tollfree",
+                "priority3": "longcode"
+            },
+            "service_type": "MMS"
+        },
+        {
+            "country_iso": "CA",
+            "priority": {
+                "priority1": "shortcode",
+                "priority2": "longcode",
+                "priority3": "tollfree"
+            },
+            "service_type": "MMS"
+        }
+    ]
 }

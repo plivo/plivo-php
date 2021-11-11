@@ -9,6 +9,7 @@
   },
   "objects": [
     {
+      "city":"US",
       "country": "UNITED STATES",
       "lata": 722,
       "monthly_rental_rate": "0.80000",
@@ -27,6 +28,7 @@
       "voice_rate": "0.00500"
     },
     {
+      "city":"US",
       "country": "UNITED STATES",
       "lata": 722,
       "monthly_rental_rate": "0.80000",

@@ -4,6 +4,7 @@
   "api_id": "9ae358d0-3f08-11e7-b6f4-061564b78b75",
   "app_id": "20468599130939380",
   "app_name": "0.8522478089992022",
+  "application_type": "XML",
   "default_app": false,
   "default_endpoint_app": false,
   "enabled": true,
@@ -17,6 +18,5 @@
   "resource_uri": "/v1/Account/MAXXXXXXXXXXXXXXXXXX/Application/20468599130939380/",
   "sip_uri": "sip:20468599130939380@app.plivo.com",
   "sub_account": null,
-  "log_incoming_messages": true
-
+  "log_incoming_message": true
 }

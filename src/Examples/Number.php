@@ -22,7 +22,7 @@ try {
         'US', $params
     );
 
-    print_r($response)
+    print_r($response);
 //     print_r($response->resources[0]->properties);
 }
 catch (PlivoRestException $ex) {

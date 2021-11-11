@@ -49,6 +49,7 @@ class MultiPartyCallTest extends BaseTestCase{
                 'confirm_key_sound_method'=> 'GET',
                 'dial_music'=> 'Real',
                 'ring_timeout'=> 45,
+                'delay_dial'=> 0,
                 'max_duration'=> 14400,
                 'max_participants'=> 10,
                 'wait_music_method'=> 'GET',
@@ -71,6 +72,8 @@ class MultiPartyCallTest extends BaseTestCase{
                 'enter_sound_method'=> 'GET',
                 'exit_sound'=> 'beep:2',
                 'exit_sound_method'=> 'GET',
+                'start_recording_audio_method'=> 'GET',
+                'stop_recording_audio_method'=> 'GET'
             ]);
         $body = file_get_contents(__DIR__ . '/../Mocks/multiPartyCallsAddParticipantResponse.json');
 
@@ -218,8 +221,93 @@ class MultiPartyCallTest extends BaseTestCase{
         );
         $body = file_get_contents(__DIR__ . '/../Mocks/multiPartyCallsGetParticipantResponse.json');
 
-        $this->mock(new PlivoResponse($request,200));
+        $this->mock(new PlivoResponse($request,200, $body));
         $actual = $this->client->multiPartyCalls->getParticipant(10, ['uuid' => '12345678-90123456']);
+        $this->assertRequest($request);
+        self::assertNotNull($actual);
+    }
+
+    function testMPCStartParticipantRecording(){
+        $request = new PlivoRequest(
+            'POST',
+            'Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_12345678-90123456/Participant/10/Record/',
+            ['file_format'=> 'wav',
+                'status_callback_url'=> 'https://plivo.com/status',
+                'status_callback_method'=> 'POST']
+        );
+        $body = file_get_contents(__DIR__ . '/../Mocks/multiPartyCallsStartParticipantRecordingResponse.json');
+
+        $this->mock(new PlivoResponse($request,200));
+        $actual = $this->client->multiPartyCalls->startParticipantRecording(10, ['uuid' => '12345678-90123456',
+            'file_format'=> 'wav',
+            'status_callback_url'=> 'https://plivo.com/status',
+            'status_callback_method'=> 'POST']);
+        $this->assertRequest($request);
+        self::assertNotNull($actual);
+    }
+
+    function testMPCStopParticipantRecording(){
+        $request = new PlivoRequest(
+            'DELETE',
+            'Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_12345678-90123456/Participant/10/Record/',
+            []
+        );
+
+        $this->mock(new PlivoResponse($request,204));
+        $actual = $this->client->multiPartyCalls->stopParticipantRecording(10, ['uuid' => '12345678-90123456']);
+        $this->assertRequest($request);
+        self::assertNotNull($actual);
+    }
+
+    function testMPCPauseParticipantRecording(){
+        $request = new PlivoRequest(
+            'POST',
+            'Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_12345678-90123456/Participant/10/Record/Pause/',
+            []
+        );
+
+        $this->mock(new PlivoResponse($request,204));
+        $actual = $this->client->multiPartyCalls->pauseParticipantRecording(10, ['uuid' => '12345678-90123456']);
+        $this->assertRequest($request);
+        self::assertNotNull($actual);
+    }
+
+    function testMPCResumeParticipantRecording(){
+        $request = new PlivoRequest(
+            'POST',
+            'Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_12345678-90123456/Participant/10/Record/Resume/',
+            []
+        );
+
+        $this->mock(new PlivoResponse($request,204));
+        $actual = $this->client->multiPartyCalls->resumeParticipantRecording(10, ['uuid' => '12345678-90123456']);
+        $this->assertRequest($request);
+        self::assertNotNull($actual);
+    }
+
+    function testMPCStartPlayAudio(){
+        $request = new PlivoRequest(
+            'POST',
+            'Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_12345678-90123456/Member/10/Play/',
+            ['url' => 'https://s3.amazonaws.com/XXX/XXX.mp3']
+        );
+        $body = file_get_contents(__DIR__ . '/../Mocks/multiPartyCallsStartPlayAudioResponse.json');
+
+        $this->mock(new PlivoResponse($request,202, $body));
+        $actual = $this->client->multiPartyCalls->startPlayAudio(10, "https://s3.amazonaws.com/XXX/XXX.mp3", ['uuid' => '12345678-90123456']);
+        $this->assertRequest($request);
+        self::assertNotNull($actual);
+    }
+
+    function testMPCStopPlayAudio(){
+        $request = new PlivoRequest(
+            'DELETE',
+            'Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_12345678-90123456/Member/10/Play/',
+            []
+        );
+
+        $this->mock(new PlivoResponse($request,204));
+        $actual = $this->client->multiPartyCalls->stopPlayAudio(10, ['uuid' => '12345678-90123456']);
         $this->assertRequest($request);
         self::assertNotNull($actual);
     }

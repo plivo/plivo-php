@@ -1,0 +1,8 @@
+{
+  "api_id": "c07db813-3721-11ec-8bcd-0242ac110008",
+  "message": "play queued into MPC",
+  "mpcMemberId": [
+    "1003"
+  ],
+  "mpcName": "samplempc"
+}
