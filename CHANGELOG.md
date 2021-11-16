@@ -1,5 +1,9 @@
 # Change Log
 
+## [v4.25.0](https://github.com/plivo/plivo-php/releases/tag/v4.25.0) - 2021-11-16
+**Features - Voice: Multiparty calls**
+- Removed start recording  and stop recording announcements on MPC.
+
 ## [v4.24.0](https://github.com/plivo/plivo-php/releases/tag/v4.24.0) - 2021-11-11
 **Features - Messaging**
 - New 10DLC API:

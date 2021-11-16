@@ -353,24 +353,6 @@ class MultiPartyCallInterface extends ResourceInterface
         else{
             $optionalArgs['exit_sound_method'] = 'GET';
         }
-        if(isset($optionalArgs['start_recording_audio'])){
-            MPCUtils::validUrl('startRecordingAudio', $optionalArgs['start_recording_audio'], false);
-        }
-        if(isset($optionalArgs['start_recording_audio_method'])){
-            MPCUtils::validParam('startRecordingAudioMethod', strtoupper($optionalArgs['start_recording_audio_method']), ['string'], false, ['GET', 'POST']);
-        }
-        else{
-            $optionalArgs['start_recording_audio_method'] = 'GET';
-        }
-        if(isset($optionalArgs['stop_recording_audio'])){
-            MPCUtils::validUrl('stopRecordingAudio', $optionalArgs['stop_recording_audio'], false);
-        }
-        if(isset($optionalArgs['stop_recording_audio_method'])){
-            MPCUtils::validParam('stopRecordingAudioMethod', strtoupper($optionalArgs['stop_recording_audio_method']), ['string'], false, ['GET', 'POST']);
-        }
-        else{
-            $optionalArgs['stop_recording_audio_method'] = 'GET';
-        }
         $mandatoryArgs = ['role' => $role];
         $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->update(
