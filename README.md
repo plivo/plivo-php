@@ -1,6 +1,6 @@
 # plivo-php
 
-[![Build Status](https://travis-ci.org/plivo/plivo-php.svg?branch=master)](https://travis-ci.org/plivo/plivo-php)
+[![UnitTests](https://github.com/plivo/plivo-php/actions/workflows/unitTests.yml/badge.svg?branch=master&event=push)](https://github.com/plivo/plivo-php/actions/workflows/unitTests.yml)
 
 The Plivo PHP SDK makes it simpler to integrate communications into your PHP applications using the Plivo REST API. Using the SDK, you will be able to make voice calls, send SMS and generate Plivo XML to control your call flows.
 
