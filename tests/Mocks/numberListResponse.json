@@ -23,7 +23,8 @@
       "sms_rate": "0.00000",
       "sub_account": null,
       "voice_enabled": true,
-      "voice_rate": "0.00850"
+      "voice_rate": "0.00850",
+      "city": "us"
     },
     {
       "active": true,
@@ -40,7 +41,8 @@
       "sms_rate": "0.00000",
       "sub_account": null,
       "voice_enabled": true,
-      "voice_rate": "0.00850"
+      "voice_rate": "0.00850",
+      "city": "us"
     },
     {
       "active": true,
@@ -57,7 +59,8 @@
       "sms_rate": "0.00000",
       "sub_account": null,
       "voice_enabled": true,
-      "voice_rate": "0.00850"
+      "voice_rate": "0.00850",
+      "city": "us"
     }
   ]
 }
