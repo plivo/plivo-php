@@ -26,7 +26,8 @@
       "sms_rate": "0.00800",
       "voice_enabled": true,
       "voice_rate": "0.00500",
-      "mms_enabled": true
+      "mms_enabled": true,
+      "mms_rate": "0.00500"
     },
     {
       "city":"US",
@@ -46,7 +47,8 @@
       "sms_rate": "0.00800",
       "voice_enabled": true,
       "voice_rate": "0.00500",
-      "mms_enabled": true
+      "mms_enabled": true,
+      "mms_rate": "0.00500"
     }
   ]
 }
