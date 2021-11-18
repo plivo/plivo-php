@@ -71,9 +71,7 @@ class MultiPartyCallTest extends BaseTestCase{
                 'enter_sound'=> 'beep:1',
                 'enter_sound_method'=> 'GET',
                 'exit_sound'=> 'beep:2',
-                'exit_sound_method'=> 'GET',
-                'start_recording_audio_method'=> 'GET',
-                'stop_recording_audio_method'=> 'GET'
+                'exit_sound_method'=> 'GET'
             ]);
         $body = file_get_contents(__DIR__ . '/../Mocks/multiPartyCallsAddParticipantResponse.json');
 
