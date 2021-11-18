@@ -18,5 +18,6 @@
   "city": "us",
   "country": "US",
   "mms_enabled": true,
-  "mms_rate": "0.00850"
+  "mms_rate": "0.00850",
+  "compliance_application_id": "12344"
 }
