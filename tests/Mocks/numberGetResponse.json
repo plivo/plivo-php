@@ -16,5 +16,7 @@
   "voice_enabled": true,
   "voice_rate": "0.00850",
   "city": "us",
-  "country": "US"
+  "country": "US",
+  "mms_enabled": true,
+  "mms_rate": "0.00850"
 }

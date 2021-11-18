@@ -27,7 +27,8 @@
       "voice_enabled": true,
       "voice_rate": "0.00500",
       "mms_enabled": true,
-      "mms_rate": "0.00500"
+      "mms_rate": "0.00500",
+      "compliance_requirement": true
     },
     {
       "city":"US",
@@ -48,7 +49,8 @@
       "voice_enabled": true,
       "voice_rate": "0.00500",
       "mms_enabled": true,
-      "mms_rate": "0.00500"
+      "mms_rate": "0.00500",
+      "compliance_requirement": true
     }
   ]
 }
