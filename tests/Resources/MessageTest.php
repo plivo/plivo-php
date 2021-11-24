@@ -147,7 +147,7 @@ class MessageTest extends BaseTestCase {
         
         $this->mock(new PlivoResponse($request,202, $body));
         
-        $actual = $this->client->messages->list;
+        $actual = $this->client->messages->list();
         
         $this->assertRequest($request);
         
