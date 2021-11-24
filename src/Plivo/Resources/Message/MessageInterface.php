@@ -67,7 +67,7 @@ class MessageInterface extends ResourceInterface
      *   + [string] : powerpack_id - Filter the results by Powerpack ID.
      * @return MessageList
      */
-    protected function getList($optionalArgs = [])
+    public function getList($optionalArgs = [])
     {
         $response = $this->client->fetch(
             $this->uri,
