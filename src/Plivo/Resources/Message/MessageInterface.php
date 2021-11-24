@@ -265,7 +265,15 @@ class MessageInterface extends ResourceInterface
         
         elseif($name_of_method=='list')
         {
-            $response = $this->client->fetch($this->uri,$optionalArgs = $arguments[0]);
+            if (empty($arguments[0]))
+            {
+                $args = [];
+            }
+            else
+            {
+                $args = $arguments[0];
+            }
+            $response = $this->client->fetch($this->uri,$optionalArgs = $args);
         if(!array_key_exists("error", $response->getContent())) {
             $messages = [];
             foreach ($response->getContent()['objects'] as $message) {
