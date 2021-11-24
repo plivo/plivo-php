@@ -162,37 +162,68 @@ class MessageInterface extends ResourceInterface
         }
         else
         {
-            $src = $arguments[0];
-            $dst = $arguments[1];
-            $text = $arguments[2];
-            $optionalArgs = $arguments[3];
-            $powerpackUUID = $arguments[4];
+            if (empty($arguments[0]))
+            {   
+                $src = null;
+            }
+            else
             {
-                if (!is_array($dst))
-                {
-                    throw new PlivoValidationException("Destination parameter must be of the type array");
-                }
+                $src = $arguments[0];
+            }
+            
+            $dst = $arguments[1];
+            
+            if (empty($arguments[2]) || is_null($arguments[2]))
+            {   
+                $text = null;
+            }
+            else
+            {
+                $text = $arguments[2];
+            }
+            
+            if (empty($arguments[3]))
+            {   
+                $optionalArgs = [];
+            }
+            else
+            {
+                $optionalArgs = $arguments[3];
+            }
+
+            if (empty($arguments[4]) || is_null($arguments[4]))
+            {
+                $powerpackUUID = null;
+            }
+            else
+            {
+                $powerpackUUID = $arguments[4];   
+            }
+
+            if (!is_array($dst))
+            {
+                throw new PlivoValidationException("Destination parameter must be of the type array");
+            }
                 
-                $mandatoryArgs = ['dst' => implode('<', $dst) , ];
+            $mandatoryArgs = ['dst' => implode('<', $dst) , ];
 
-                if (ArrayOperations::checkNull($mandatoryArgs))
-                {
-                    throw new PlivoValidationException("Mandatory parameters cannot be null");
-                }
+            if (ArrayOperations::checkNull($mandatoryArgs))
+            {
+                throw new PlivoValidationException("Mandatory parameters cannot be null");
+            }
 
-                if (is_null($src) && is_null($powerpackUUID))
-                {
-                    throw new PlivoValidationException("Specify either powerpack_uuid or src in request params to send a message.");
-                }
+            if (is_null($src) && is_null($powerpackUUID))
+            {
+                throw new PlivoValidationException("Specify either powerpack_uuid or src in request params to send a message.");
+            }
 
-                if (!is_null($src) && !is_null($powerpackUUID))
-                {
-                    throw new PlivoValidationException("Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message.");
-                }
+            if (!is_null($src) && !is_null($powerpackUUID))
+            {
+                throw new PlivoValidationException("Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message.");
+            }
 
-                $response = $this->client->update($this->uri, array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID, 'text' => $text]));
+            $response = $this->client->update($this->uri, array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID, 'text' => $text]));
 
-            };
         }
         $responseContents = $response->getContent();
 
