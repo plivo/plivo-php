@@ -67,52 +67,53 @@ class MessageInterface extends ResourceInterface
      *   + [string] : powerpack_id - Filter the results by Powerpack ID.
      * @return MessageList
      */
-    public function getList($optionalArgs = [])
-    {
-        $response = $this->client->fetch(
-            $this->uri,
-            $optionalArgs
-        );
-        if(!array_key_exists("error", $response->getContent())) {
-            $messages = [];
-            foreach ($response->getContent()['objects'] as $message) {
-                $newMessage = new Message($this->client, $message, $this->pathParams['authId'], $this->uri);
-                array_push($messages, $newMessage);
-            }
-            return new MessageList($this->client, $response->getContent()['meta'], $messages);
-        } else {
-            throw new PlivoResponseException(
-                $response->getContent()['error'],
-                0,
-                null,
-                $response->getContent(),
-                $response->getStatusCode()
-            );
-        }
-    }
+    
+    // public function getList($optionalArgs = [])
+    // {
+    //     $response = $this->client->fetch(
+    //         $this->uri,
+    //         $optionalArgs
+    //     );
+    //     if(!array_key_exists("error", $response->getContent())) {
+    //         $messages = [];
+    //         foreach ($response->getContent()['objects'] as $message) {
+    //             $newMessage = new Message($this->client, $message, $this->pathParams['authId'], $this->uri);
+    //             array_push($messages, $newMessage);
+    //         }
+    //         return new MessageList($this->client, $response->getContent()['meta'], $messages);
+    //     } else {
+    //         throw new PlivoResponseException(
+    //             $response->getContent()['error'],
+    //             0,
+    //             null,
+    //             $response->getContent(),
+    //             $response->getStatusCode()
+    //         );
+    //     }
+    // }
 
-    //    protected function getAllList()
-    //    {
-    //        $offset = 0;
-    //        $response = $this->getList(null,null,null,null,null, $offset);
-    //        var_dump($response->getMeta()['total_count']);
-    //        $allMessages = $response->get();
-    //        while ($response->getMeta()['next'] !== null) {
-    //            $offset+=20;
-    //            $response = $this->getList(null,null,null,null,null, $offset);
-    //            array_push($allMessages, $response->get());
-    //        }
-    //        $count = count($allMessages);
-    //        echo $count;
-    //        $meta = array(
-    //            'limit' => $count,
-    //            "next" => null,
-    //            "offset" => 0,
-    //            "previous" => null,
-    //            "total_count" => $count
-    //        );
-    //        return new MessageList($this->client, $meta, $allMessages);
-    //    }
+       protected function getAllList()
+       {
+           $offset = 0;
+           $response = $this->getList(null,null,null,null,null, $offset);
+           var_dump($response->getMeta()['total_count']);
+           $allMessages = $response->get();
+           while ($response->getMeta()['next'] !== null) {
+               $offset+=20;
+               $response = $this->getList(null,null,null,null,null, $offset);
+               array_push($allMessages, $response->get());
+           }
+           $count = count($allMessages);
+           echo $count;
+           $meta = array(
+               'limit' => $count,
+               "next" => null,
+               "offset" => 0,
+               "previous" => null,
+               "total_count" => $count
+           );
+           return new MessageList($this->client, $meta, $allMessages);
+       }
     
     /**
      * Send a message
@@ -159,8 +160,27 @@ class MessageInterface extends ResourceInterface
             }
 
             $response = $this->client->update($this->uri, $arguments);
+
+            $responseContents = $response->getContent();
+
+                if (!array_key_exists("error", $responseContents))
+                {
+                    if (array_key_exists("invalid_number", $responseContents))
+                    {
+                        return new MessageCreateResponse($responseContents['message'], $responseContents['message_uuid'], $responseContents['api_id'], $response->getStatusCode() , $responseContents['invalid_number']);
+                    }
+                    else
+                    {
+                        return new MessageCreateResponse($responseContents['message'], $responseContents['message_uuid'], $responseContents['api_id'], $response->getStatusCode() , []);
+                    }
+                }
+                else
+                {
+                    throw new PlivoResponseException($responseContents['error'], 0, null, $response->getContent() , $response->getStatusCode());
+                }
         }
-        else
+
+        elseif($name_of_method == 'create' and count($arguments)>1)
         {
             if (empty($arguments[0]))
             {   
@@ -223,9 +243,8 @@ class MessageInterface extends ResourceInterface
             }
 
             $response = $this->client->update($this->uri, array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID, 'text' => $text]));
-
-        }
-        $responseContents = $response->getContent();
+            
+            $responseContents = $response->getContent();
 
                 if (!array_key_exists("error", $responseContents))
                 {
@@ -242,6 +261,29 @@ class MessageInterface extends ResourceInterface
                 {
                     throw new PlivoResponseException($responseContents['error'], 0, null, $response->getContent() , $response->getStatusCode());
                 }
+        }
+        
+        elseif($name_of_method=='list')
+        {
+            $response = $this->client->fetch($this->uri,$optionalArgs = $arguments[0]);
+        if(!array_key_exists("error", $response->getContent())) {
+            $messages = [];
+            foreach ($response->getContent()['objects'] as $message) {
+                $newMessage = new Message($this->client, $message, $this->pathParams['authId'], $this->uri);
+                array_push($messages, $newMessage);
+            }
+            return new MessageList($this->client, $response->getContent()['meta'], $messages);
+        } 
+        else 
+        {
+            throw new PlivoResponseException(
+                $response->getContent()['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+            );
+        }
+        }     
     }
-
 }
