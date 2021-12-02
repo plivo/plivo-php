@@ -134,7 +134,7 @@ class MessageInterface extends ResourceInterface
      * @throws PlivoValidationException,PlivoResponseException
      */
     // 
-    public function create($src=null, $dst=[], $text=null,array $optionalArgs = [], $powerpackUUID = null)
+    public function create($src=null, $dst=null, $text=null,array $optionalArgs = [], $powerpackUUID = null)
     {
         if (is_array($src))
         {
@@ -143,15 +143,15 @@ class MessageInterface extends ResourceInterface
             $dst = isset($optionalArgs['dst']) ? $optionalArgs['dst'] : $dst;
             $text = isset($optionalArgs['text']) ? $optionalArgs['text'] : $text;
             $powerpackUUID = isset($optionalArgs['powerpackUUID']) ? $optionalArgs['powerpackUUID'] : $powerpackUUID;
+        }       
+        if (is_array($dst){
+            $mandatoryArgs = [
+                'dst' => implode('<', $dst),
+            ];
+        } else{
+            $mandatoryArgs = ['dst' => $dst ];
         }
-        if (!is_array($dst))
-        {
-            throw new PlivoValidationException("Destination parameter must be of the type array");
-        }        
         
-        $mandatoryArgs = [
-            'dst' => implode('<', $dst),
-        ];
 
         if (ArrayOperations::checkNull($mandatoryArgs)) {
             throw new PlivoValidationException(
