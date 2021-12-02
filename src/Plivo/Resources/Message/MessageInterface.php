@@ -144,7 +144,7 @@ class MessageInterface extends ResourceInterface
             $text = isset($optionalArgs['text']) ? $optionalArgs['text'] : $text;
             $powerpackUUID = isset($optionalArgs['powerpackUUID']) ? $optionalArgs['powerpackUUID'] : $powerpackUUID;
         }       
-        if (is_array($dst){
+        if (is_array($dst)){
             $mandatoryArgs = [
                 'dst' => implode('<', $dst),
             ];
