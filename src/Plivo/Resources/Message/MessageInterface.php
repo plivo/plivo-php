@@ -148,7 +148,8 @@ class MessageInterface extends ResourceInterface
             $mandatoryArgs = [
                 'dst' => implode('<', $dst),
             ];
-        } else{
+        } 
+        else {
             $mandatoryArgs = ['dst' => $dst ];
         }
         
