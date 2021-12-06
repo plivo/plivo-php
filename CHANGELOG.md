@@ -1,5 +1,9 @@
 # Change Log
 
+## [v4.24.1](https://github.com/plivo/plivo-php/releases/tag/v4.24.1) - 2021-12-06
+**Bug fix**
+- [Send SMS](https://www.plivo.com/docs/sms/api/message#send-a-message) to stop expecting optional/conitonal parameters when not passed in older messaging interface.
+
 ## [v4.24.0](https://github.com/plivo/plivo-php/releases/tag/v4.24.0) - 2021-11-11
 **Features - Messaging**
 - New 10DLC API:
