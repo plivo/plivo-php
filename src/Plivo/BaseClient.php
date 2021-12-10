@@ -21,9 +21,9 @@ class BaseClient
      * @const BASE API URL
      */
     const BASE_API_URL = 'https://api.plivo.com/';
-    const VOICE_BASE_API_URL = 'https://voice.plivo.com/';
-    const VOICE_BASE_API_FALLBACK_URL_1 = 'https://voice-usw1.plivo.com/';
-    const VOICE_BASE_API_FALLBACK_URL_2 = 'https://voice-use1.plivo.com/';
+    const VOICE_BASE_API_URL = 'https://api.plivo.com/';
+    const VOICE_BASE_API_FALLBACK_URL_1 = 'https://api.plivo.com/';
+    const VOICE_BASE_API_FALLBACK_URL_2 = 'https://api.plivo.com/';
     const LOOKUP_API_BASE_URL = 'https://lookup.plivo.com/';
     /**
      * @const Default timeout for request
