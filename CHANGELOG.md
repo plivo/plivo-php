@@ -1,6 +1,6 @@
 # Change Log
 
-## [4.25.0](https://github.com/plivo/plivo-java/tree/v4.25.0) (2021-12-13)
+## [4.25.0](https://github.com/plivo/plivo-php/tree/v4.25.0) (2021-12-15)
 **Features - Voice**
 - Routing SDK traffic through Akamai endpoints for all the [Voice APIs](https://www.plivo.com/docs/voice/api/overview/)
 
