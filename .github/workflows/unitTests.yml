@@ -19,8 +19,9 @@ jobs:
       - uses: actions/checkout@v2
       - uses: php-actions/composer@v6
       - name: PHPUnit Tests
-        uses: php-actions/phpunit@v3
+        uses: php-actions/phpunit@v2
         with:
           version: 1
           php_version: ${{ matrix.php-version }}
           configuration: tests/phpunit.xml
+          args: --coverage-text
