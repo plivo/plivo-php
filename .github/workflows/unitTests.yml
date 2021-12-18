@@ -17,8 +17,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Install dependencies
-        uses: php-actions/composer@v6
+      - uses: php-actions/composer@v6
+      - name: PHPUnit Tests
+        uses: php-actions/phpunit@v3
         with:
           version: 1
           php_version: ${{ matrix.php-version }}
