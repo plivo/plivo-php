@@ -1,26 +1,29 @@
-name: UnitTests
-
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-jobs:
-  build:
-
+--- 
+jobs: 
+  build: 
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        php-version: [7.3, 7.4]
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: php-actions/composer@v6
-      - name: PHPUnit Tests
+    steps: 
+      - 
+        uses: actions/checkout@v2
+      - 
+        uses: php-actions/composer@v6
+      - 
+        name: "PHPUnit Tests"
         uses: php-actions/phpunit@v3
-        with:
+        with: 
+          configuration: tests/phpunit.xml
           php_version: 7.3
           version: 1
-          configuration: tests/phpunit.xml
+    strategy: 
+      matrix: 
+        php-version: 
+          - 7.3
+          - 7.4
+name: UnitTests
+true: 
+  pull_request: 
+    branches: 
+      - master
+  push: 
+    branches: 
+      - master
