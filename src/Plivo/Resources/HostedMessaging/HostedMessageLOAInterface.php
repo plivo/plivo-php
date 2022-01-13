@@ -9,26 +9,35 @@ use Plivo\Resources\ResourceInterface;
 use Plivo\Resources\ResourceList;
 use Plivo\Util\ArrayOperations;
 
+/**
+ * Class HostedMessageLOAInterface
+ * @package Plivo\Resources\HostedMessaging
+ * @property ResourceList $list
+ * @method ResourceList list(array $optionalArgs)
+ */
 class HostedMessageLOAInterface extends ResourceInterface {
 
     public function __construct(BaseClient $plivoClient, $authId) {
         parent::__construct($plivoClient);
+        $this->pathParams = [
+            'authId' => $authId
+        ];
         $this->uri = "Account/".$authId."/HostedMessagingNumber/LOA/";
     }
 
     /**
      *
-     * TODO verify if correct
      * @param $alias
-     * @param $path
+     * @param $file
      * @return HostedMessageLOACreateResponse
      * @throws PlivoResponseException
      * @throws PlivoValidationException
      */
-    public function create($alias, $path): HostedMessageLOACreateResponse
+    public function create($alias, $file): HostedMessageLOACreateResponse
     {
         $mandatoryArgs = [
-            'alias' => $alias
+            'alias' => $alias,
+            'file' => $file
         ];
 
         if (ArrayOperations::checkNull($mandatoryArgs)) {
@@ -36,7 +45,7 @@ class HostedMessageLOAInterface extends ResourceInterface {
                 "Mandatory parameters cannot be null");
         }
 
-        $multipart = $this->constructLOAFilePayload($path);
+        $multipart = $this->constructLOAFilePayload($file);
         foreach ($mandatoryArgs as $key => $value) {
             $multipart[] = [
                 'name' => $key,
@@ -120,10 +129,10 @@ class HostedMessageLOAInterface extends ResourceInterface {
                 $newHmLOA = new HostedMessageLOA($this->client, $hmLOA, $this->pathParams['authId']);
                 $hostedMessageLOAs[] = $newHmLOA;
             }
-            return new ResourceList($this->client, $response->getContent()['meta'], $hostedMessageLOAs);
+            return new ResourceList($this->client, $response->getContent()['meta_response'], $hostedMessageLOAs);
         } else {
             throw new PlivoResponseException(
-                $response->getContent()['error'],
+                is_array($response->getContent()['error']) ? $response->getContent()['error']['message'] : $response->getContent()['error'],
                 0,
                 null,
                 $response->getContent(),
@@ -148,10 +157,10 @@ class HostedMessageLOAInterface extends ResourceInterface {
             $this->uri . $hostedMessageLOAId .'/',
             []
         );
-
-        if(array_key_exists("error", $response->getContent())) {
+        if (array_key_exists("error", $response->getContent()) &&
+        is_array($response->getContent()["error"]) ? count($response->getContent()["error"]) : strlen($response->getContent()["error"])) {
             throw new PlivoResponseException(
-                $response->getContent()['error'],
+                is_array($response->getContent()['error']) ? $response->getContent()['error']['message'] : $response->getContent()['error'],
                 0,
                 null,
                 $response->getContent(),

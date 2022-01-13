@@ -18,7 +18,6 @@ class HostedMessageLOA extends Resource {
             'resourceURI' => $response['resource_uri'],
             'linkedNumbers' => $response['linked_numbers'],
             'createdAt' => $response['created_at'],
-            'status' => $response['status']
         ];
 
         $this->pathParams = [

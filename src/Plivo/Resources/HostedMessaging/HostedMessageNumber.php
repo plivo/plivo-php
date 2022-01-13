@@ -12,7 +12,7 @@ class HostedMessageNumber extends Resource {
         parent::__construct($client);
 
         $this->properties = [
-            'orderId' => $response['order_id'],
+            'hostedMessagingNumberId' => $response['hosted_messaging_number_id'],
             'alias' => $response['alias'],
             'loaId' => $response['loa_id'],
             'application' => $response['application'],
