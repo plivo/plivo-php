@@ -9,8 +9,13 @@ use Plivo\Resources\ResourceInterface;
 use Plivo\Resources\ResourceList;
 use Plivo\Util\ArrayOperations;
 
+/**
+ * Class HostedMessageLOAInterface
+ * @package Plivo\Resources\HostedMessaging
+ * @property ResourceList $list
+ * @method ResourceList list(array $optionalArgs)
+ */
 class HostedMessagingNumberInterface extends ResourceInterface {
-
     public function __construct(BaseClient $plivoClient, $authId) {
         parent::__construct($plivoClient);
         $this->uri = "Account/".$authId."/HostedMessagingNumber/";
@@ -62,7 +67,7 @@ class HostedMessagingNumberInterface extends ResourceInterface {
             );
         }
         throw new PlivoResponseException(
-            "",
+            is_array($response->getContent()['error']) ? $response->getContent()['error']['message'] : $response->getContent()['error'],
             0,
             null,
             $response->getContent(),
@@ -88,10 +93,10 @@ class HostedMessagingNumberInterface extends ResourceInterface {
                 $newHmNumber = new HostedMessageNumber($this->client, $hmNumber, $this->pathParams['authId']);
                 $hostedMessageNumbers[] = $newHmNumber;
             }
-            return new ResourceList($this->client, $response->getContent()['meta'], $hostedMessageNumbers);
+            return new ResourceList($this->client, $response->getContent()['meta_response'], $hostedMessageNumbers);
         } else {
             throw new PlivoResponseException(
-                $response->getContent()['error'],
+                is_array($response->getContent()['error']) ? $response->getContent()['error']['message'] : $response->getContent()['error'],
                 0,
                 null,
                 $response->getContent(),
@@ -101,19 +106,19 @@ class HostedMessagingNumberInterface extends ResourceInterface {
     }
 
     /**
-     * @param $hostedMessageOrderId
+     * @param $hostedMessagingNumberId
      * @return HostedMessageNumber
      * @throws PlivoValidationException
      * @throws PlivoResponseException
      */
-    public function get($hostedMessageOrderId) {
-        if (ArrayOperations::checkNull([$hostedMessageOrderId])) {
+    public function get($hostedMessagingNumberId) {
+        if (ArrayOperations::checkNull([$hostedMessagingNumberId])) {
             throw
             new PlivoValidationException(
-                'hostedMessageOrderId is mandatory');
+                '$hostedMessagingNumberId is mandatory');
         }
         $response = $this->client->fetch(
-            $this->uri . $hostedMessageOrderId .'/',
+            $this->uri . $hostedMessagingNumberId .'/',
             []
         );
 
@@ -124,7 +129,7 @@ class HostedMessagingNumberInterface extends ResourceInterface {
             );
         }
         throw new PlivoResponseException(
-            $response->getContent()['error'],
+            is_array($response->getContent()['error']) ? $response->getContent()['error']['message'] : $response->getContent()['error'],
             0,
             null,
             $response->getContent(),

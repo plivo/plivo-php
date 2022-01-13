@@ -8,6 +8,8 @@ use Plivo\Resources\Application\ApplicationInterface;
 use Plivo\Resources\Call\CallInterface;
 use Plivo\Resources\Conference\ConferenceInterface;
 use Plivo\Resources\Endpoint\EndpointInterface;
+use Plivo\Resources\HostedMessaging\HostedMessageLOAInterface;
+use Plivo\Resources\HostedMessaging\HostedMessagingNumberInterface;
 use Plivo\Resources\Message\MessageInterface;
 use Plivo\Resources\Powerpack\PowerpackInterface;
 use Plivo\Resources\Media\MediaInterface;
@@ -50,6 +52,8 @@ use Plivo\Resources\MultiPartyCall\MultiPartyCallInterface;
  * @property ComplianceDocumentInterface complianceDocument Interface to handle all ComplianceDocument related api calls
  * @property ComplianceRequirementInterface complianceRequirement Interface to handle all ComplianceRequirement related api calls
  * @property ComplianceApplicationInterface complianceApplication Interface to handle all ComplianceApplication related api calls
+ * @property HostedMessageLOAInterface $hostedMessageLOA Interface to handle all HostedMessageLOA related api calls
+ * @property HostedMessagingNumberInterface $hostedMessagingNumber Interface to handle all HostedMessagingNumber related api calls
  *
  */
 class RestClient
@@ -170,6 +174,16 @@ class RestClient
      * @var ComplianceApplicationInterface
      */
     protected $_complianceApplication;
+
+    /**
+     * @var HostedMessageLOAInterface
+     */
+    protected $_hostedMessageLOA;
+
+    /**
+     * @var HostedMessagingNumberInterface
+     */
+    protected $_hostedMessagingNumber;
 
     /**
      * @var MultiPartyCallInterface
@@ -462,7 +476,28 @@ class RestClient
         return $this->_complianceApplication;
     }
 
-
+    /**
+     * @return HostedMessageLOAInterface
+     */
+    public function getHostedMessageLOA()
+    {
+        if (!$this->_hostedMessageLOA) {
+            $this->_hostedMessageLOA = new HostedMessageLOAInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_hostedMessageLOA;
+    }
+    
+    /**
+     * @return HostedMessagingNumberInterface
+     */
+    public function getHostedMessagingNumber()
+    {
+        if (!$this->_hostedMessagingNumber) {
+            $this->_hostedMessagingNumber = new HostedMessagingNumberInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_hostedMessagingNumber;
+    }
+    
     public function getMultiPartyCalls()
     {
         if(!$this->_multiPartyCall){
