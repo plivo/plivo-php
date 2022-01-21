@@ -448,14 +448,14 @@ class MultiPartyCallInterface extends ResourceInterface
         else{
             $optionalArgs['file_format'] = 'mp3';
         }
-        if(isset($optionalArgs['status_callback_url'])){
-            MPCUtils::validUrl('statusCallbackUrl', $optionalArgs['status_callback_url'], false);
+        if(isset($optionalArgs['recording_callback_url'])){
+            MPCUtils::validUrl('recordingCallbackUrl', $optionalArgs['recording_callback_url'], false);
         }
-        if(isset($optionalArgs['status_callback_method'])){
-            MPCUtils::validParam('statusCallbackMethod', strtoupper($optionalArgs['status_callback_method']), ['string'], false, ['GET', 'POST']);
+        if(isset($optionalArgs['recording_callback_method'])){
+            MPCUtils::validParam('recordingCallbackMethod', strtoupper($optionalArgs['recording_callback_method']), ['string'], false, ['GET', 'POST']);
         }
         else{
-            $optionalArgs['status_callback_method'] = 'POST';
+            $optionalArgs['recording_callback_method'] = 'POST';
         }
         $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->update(
@@ -560,14 +560,14 @@ class MultiPartyCallInterface extends ResourceInterface
         else{
             $optionalArgs['file_format'] = 'mp3';
         }
-        if(isset($optionalArgs['status_callback_url'])){
-            MPCUtils::validUrl('statusCallbackUrl', $optionalArgs['status_callback_url'], false);
+        if(isset($optionalArgs['recording_callback_url'])){
+            MPCUtils::validUrl('recordingCallbackUrl', $optionalArgs['recording_callback_url'], false);
         }
-        if(isset($optionalArgs['status_callback_method'])){
-            MPCUtils::validParam('statusCallbackMethod', strtoupper($optionalArgs['status_callback_method']), ['string'], false, ['GET', 'POST']);
+        if(isset($optionalArgs['recording_callback_method'])){
+            MPCUtils::validParam('recordingCallbackMethod', strtoupper($optionalArgs['recording_callback_method']), ['string'], false, ['GET', 'POST']);
         }
         else{
-            $optionalArgs['status_callback_method'] = 'POST';
+            $optionalArgs['recording_callback_method'] = 'POST';
         }
         $optionalArgs['isVoiceRequest'] = true;
         $response = $this->client->update(

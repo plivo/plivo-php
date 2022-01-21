@@ -120,15 +120,15 @@ class MultiPartyCallTest extends BaseTestCase{
             'POST',
             'Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/name_Voice/Record/',
             ['file_format'=> 'wav',
-                'status_callback_url'=> 'https://plivo.com/status',
-                'status_callback_method'=> 'POST']
+                'recording_callback_url'=> 'https://plivo.com/status',
+                'recording_callback_method'=> 'POST']
         );
         $body = file_get_contents(__DIR__ . '/../Mocks/multiPartyCallsStartRecordingResponse.json');
 
         $this->mock(new PlivoResponse($request,202, $body));
         $actual = $this->client->multiPartyCalls->startRecording(['friendly_name' => 'Voice', 'file_format' => 'wav',
-                'status_callback_url'=> 'https://plivo.com/status',
-                'status_callback_method'=> 'POST']
+                'recording_callback_url'=> 'https://plivo.com/status',
+                'recording_callback_method'=> 'POST']
         );
         $this->assertRequest($request);
         self::assertNotNull($actual);
@@ -232,16 +232,16 @@ class MultiPartyCallTest extends BaseTestCase{
             'POST',
             'Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_12345678-90123456/Participant/10/Record/',
             ['file_format'=> 'wav',
-                'status_callback_url'=> 'https://plivo.com/status',
-                'status_callback_method'=> 'POST']
+                'recording_callback_url'=> 'https://plivo.com/status',
+                'recording_callback_method'=> 'POST']
         );
         $body = file_get_contents(__DIR__ . '/../Mocks/multiPartyCallsStartParticipantRecordingResponse.json');
 
         $this->mock(new PlivoResponse($request,200));
         $actual = $this->client->multiPartyCalls->startParticipantRecording(10, ['uuid' => '12345678-90123456',
             'file_format'=> 'wav',
-            'status_callback_url'=> 'https://plivo.com/status',
-            'status_callback_method'=> 'POST']);
+            'recording_callback_url'=> 'https://plivo.com/status',
+            'recording_callback_method'=> 'POST']);
         $this->assertRequest($request);
         self::assertNotNull($actual);
     }
