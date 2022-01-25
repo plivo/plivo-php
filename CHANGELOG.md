@@ -1,8 +1,8 @@
 # Change Log
 
-## [v4.25.1](https://github.com/plivo/plivo-php/tree/v4.25.1) (2022-01-19)
-**Bug fix - send sms**
-- Default value set to null on send sms param
+## [v4.25.1](https://github.com/plivo/plivo-php/tree/v4.25.1) (2022-01-25)
+**Bug fix - Messaging**
+- Default value set to null for send sms attributes.
 
 ## [v4.25.0](https://github.com/plivo/plivo-php/tree/v4.25.0) (2021-12-15)
 **Features - Voice**
