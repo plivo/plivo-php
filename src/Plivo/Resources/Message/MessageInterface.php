@@ -139,10 +139,10 @@ class MessageInterface extends ResourceInterface
         if (is_array($src))
         {
             $optionalArgs = array_merge($src, $optionalArgs);
-            $src = isset($optionalArgs['src']) ? $optionalArgs['src'] : $src;
-            $dst = isset($optionalArgs['dst']) ? $optionalArgs['dst'] : $dst;
-            $text = isset($optionalArgs['text']) ? $optionalArgs['text'] : $text;
-            $powerpackUUID = isset($optionalArgs['powerpackUUID']) ? $optionalArgs['powerpackUUID'] : $powerpackUUID;
+            $src = isset($optionalArgs['src']) ? $optionalArgs['src'] : null;
+            $dst = isset($optionalArgs['dst']) ? $optionalArgs['dst'] : null;
+            $text = isset($optionalArgs['text']) ? $optionalArgs['text'] : null;
+            $powerpackUUID = isset($optionalArgs['powerpackUUID']) ? $optionalArgs['powerpackUUID'] : null;
         }       
         if (is_array($dst)){
             $mandatoryArgs = [
