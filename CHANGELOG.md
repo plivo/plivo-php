@@ -1,6 +1,6 @@
 # Change Log
 
-## [v4.25.2](https://github.com/plivo/plivo-php/tree/v4.25.2) (2022-01-27)
+## [v4.25.2](https://github.com/plivo/plivo-php/tree/v4.25.2) (2022-02-01)
 **Features - MPCCallRecording**
 - parameter name change from statusCallBack to recordingCallBack
 
