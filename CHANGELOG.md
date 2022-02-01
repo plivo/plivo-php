@@ -1,5 +1,9 @@
 # Change Log
 
+## [v4.25.2](https://github.com/plivo/plivo-php/tree/v4.25.2) (2022-02-01)
+**Features - MPCCallRecording**
+- parameter name change from statusCallBack to recordingCallBack
+
 ## [v4.25.1](https://github.com/plivo/plivo-php/tree/v4.25.1) (2022-01-25)
 **Bug fix - Messaging**
 - Default value set to null for send sms attributes.
