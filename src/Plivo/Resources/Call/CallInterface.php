@@ -241,7 +241,7 @@ class CallInterface extends ResourceInterface
         $calls = [];
 
         foreach ($response->getContent()['objects'] as $call) {
-            $newCall = new Call($this->client, $call, $this->pathParams['authId'], $call['call_uuid']);
+            $newCall = new Call($this->client, $call, $this->pathParams['authId']);
 
             array_push($calls, $newCall);
         }
@@ -249,7 +249,8 @@ class CallInterface extends ResourceInterface
             new CallList(
                 $this->client,
                 $response->getContent()['meta'],
-                $calls);
+                $calls,
+                $response->getStatusCode());
     }
 
     /**
