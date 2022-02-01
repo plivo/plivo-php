@@ -7,6 +7,7 @@ use Plivo\Exceptions\PlivoResponseException;
 use Plivo\BaseClient;
 use Plivo\Resources\ResourceInterface;
 use Plivo\Resources\ResourceList;
+use Plivo\Resources\ResponseDelete;
 
 use Plivo\Resources\ResponseUpdate;
 use Plivo\Util\ArrayOperations;
@@ -138,7 +139,8 @@ class CallInterface extends ResourceInterface
         return new Call(
             $this->client,
             $response->getContent(),
-            $this->pathParams['authId']);
+            $this->pathParams['authId'],
+            $response->getStatusCode());
     }
 
     /**
@@ -165,7 +167,8 @@ class CallInterface extends ResourceInterface
         return new CallLive(
             $this->client,
             $response->getContent(),
-            $this->pathParams['authId']);
+            $this->pathParams['authId'],
+            $response->getStatusCode());
     }
 
     /**
@@ -193,7 +196,8 @@ class CallInterface extends ResourceInterface
         return new CallQueued(
             $this->client,
             $response->getContent(),
-            $this->pathParams['authId']);
+            $this->pathParams['authId'],
+            $response->getStatusCode());
     }
 
     /**
@@ -294,10 +298,12 @@ class CallInterface extends ResourceInterface
     public function delete($callUuid = null)
     {
         $optionalArgs['isVoiceRequest'] = true;
-        $this->client->delete(
+        $response = $this->client->delete(
             $this->uri . $callUuid . '/',
             $optionalArgs
         );
+
+        return new ResponseDelete($response->getStatusCode());
     }
 
     /**
@@ -501,10 +507,11 @@ class CallInterface extends ResourceInterface
         }
         
         $params['isVoiceRequest'] = true;
-        $this->client->delete(
+        $response = $this->client->delete(
             $this->uri . $liveCallUuid . '/Record/',
             $params
         );
+        return new ResponseDelete($response->getStatusCode());
     }
     
     /**
@@ -590,10 +597,11 @@ class CallInterface extends ResourceInterface
         }
         $optionalArgs['isVoiceRequest'] = true;
 
-        $this->client->delete(
+        $response = $this->client->delete(
             $this->uri . $liveCallUuid . '/Play/',
             $optionalArgs
         );
+        return new ResponseDelete($response->getStatusCode());
     }
     
     /**
@@ -682,10 +690,11 @@ class CallInterface extends ResourceInterface
                 "Which call to stop speaking in? No callUuid given");
         }
         $optionalArgs['isVoiceRequest'] = true;
-        $this->client->delete(
+        $response = $this->client->delete(
             $this->uri . $liveCallUuid . '/Speak/',
             $optionalArgs
         );
+        return new ResponseDelete($response->getStatusCode());
     }
 
     /**
@@ -753,7 +762,7 @@ class CallInterface extends ResourceInterface
                 "Which call request to cancel? No requestUuid given");
         }
         $optionalArgs['isVoiceRequest'] = true;
-        $this->client->delete(
+        $response = $this->client->delete(
             "Account/".
             $this->pathParams['authId'].
             "/Request/".
@@ -761,5 +770,6 @@ class CallInterface extends ResourceInterface
             '/',
             $optionalArgs
         );
+        return new ResponseDelete($response->getStatusCode());
     }
 }

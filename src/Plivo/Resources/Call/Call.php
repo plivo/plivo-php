@@ -31,6 +31,8 @@ use Plivo\Resources\Resource;
  */
 class Call extends Resource
 {
+    public $statusCode;
+
     /**
      * Call constructor.
      * @param BaseClient $client
@@ -38,7 +40,7 @@ class Call extends Resource
      * @param $authId
      */
     function __construct(
-        BaseClient $client, $response, $authId)
+        BaseClient $client, $response, $authId, $statusCode=200)
     {
         parent::__construct($client);
 
@@ -72,6 +74,6 @@ class Call extends Resource
         ];
 
         $this->id = $response['call_uuid'];
-
+        $this->statusCode = $statusCode;
     }
 }
