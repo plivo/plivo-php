@@ -306,7 +306,7 @@ class CallTest extends BaseTestCase
 
         $this->assertRequest($request);
 
-        self::assertNull($actual);
+        self::assertNotNull($actual);
     }
 
     function testLiveCallSpeak()
@@ -374,7 +374,7 @@ class CallTest extends BaseTestCase
 
         $this->assertRequest($request);
 
-        self::assertNull($actual);
+        self::assertNotNull($actual);
     }
 
     function testLiveCallRecord()
@@ -435,7 +435,7 @@ class CallTest extends BaseTestCase
 
         $this->assertRequest($request);
 
-        self::assertNull($actual);
+        self::assertNotNull($actual);
     }
 
     function testExceptionLiveCallStartRecord()
@@ -511,7 +511,7 @@ class CallTest extends BaseTestCase
 
         $this->assertRequest($request);
 
-        self::assertNull($actual);
+        self::assertNotNull($actual);
     }
 
     function testExceptionLiveCallCancel()
