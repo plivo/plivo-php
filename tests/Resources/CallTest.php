@@ -129,7 +129,7 @@ class CallTest extends BaseTestCase
 
         self::assertGreaterThan(0, count($actual));
 
-        foreach ($actual as $actualCall) {
+        foreach ($actual['calls'] as $actualCall) {
             self::assertEquals(36, strlen($actualCall));
         }
     }
