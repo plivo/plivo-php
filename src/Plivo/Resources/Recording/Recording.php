@@ -23,15 +23,17 @@ use Plivo\Resources\Resource;
  */
 class Recording extends Resource
 {
+    public $statusCode;
     /**
      * Recording constructor.
      * @param BaseClient $client
      * @param array $response
      * @param $authId
      */
-    function __construct(BaseClient $client, array $response, $authId)
+    function __construct(BaseClient $client, array $response, $authId, $statusCode)
     {
         // parent::__construct($client);
+        $this->statusCode = $statusCode;
 
         $this->properties = [
             'addTime' => $response['add_time'],

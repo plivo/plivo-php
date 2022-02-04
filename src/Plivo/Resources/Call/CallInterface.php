@@ -241,7 +241,7 @@ class CallInterface extends ResourceInterface
         $calls = [];
 
         foreach ($response->getContent()['objects'] as $call) {
-            $newCall = new Call($this->client, $call, $this->pathParams['authId']);
+            $newCall = new Call($this->client, $call, $this->pathParams['authId'], null);
 
             array_push($calls, $newCall);
         }
@@ -269,7 +269,8 @@ class CallInterface extends ResourceInterface
 
         $liveCallUuids = $response->getContent()['calls'];
 
-        return $liveCallUuids;
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     /**
@@ -288,7 +289,8 @@ class CallInterface extends ResourceInterface
 
         $queuedCallUuids = $response->getContent()['calls'];
 
-        return $queuedCallUuids;
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     /**
@@ -303,8 +305,15 @@ class CallInterface extends ResourceInterface
             $this->uri . $callUuid . '/',
             $optionalArgs
         );
+        $responseContents = $response->getContent();
 
-        return new ResponseDelete($response->getStatusCode());
+        if(!array_key_exists("api_id", $responseContents)){
+            return new ResponseDelete($response->getStatusCode());
+        }
+        else{
+            return new ResponseDelete($response->getStatusCode(), "call not found",
+                $responseContents['api_id']);
+        }
     }
 
     /**
@@ -512,7 +521,15 @@ class CallInterface extends ResourceInterface
             $this->uri . $liveCallUuid . '/Record/',
             $params
         );
-        return new ResponseDelete($response->getStatusCode());
+        $responseContents = $response->getContent();
+
+        if(!array_key_exists("api_id", $responseContents)){
+            return new ResponseDelete($response->getStatusCode());
+        }
+        else{
+            return new ResponseDelete($response->getStatusCode(), "call not found",
+                $responseContents['api_id']);
+        }
     }
     
     /**
@@ -602,7 +619,15 @@ class CallInterface extends ResourceInterface
             $this->uri . $liveCallUuid . '/Play/',
             $optionalArgs
         );
-        return new ResponseDelete($response->getStatusCode());
+        $responseContents = $response->getContent();
+
+        if(!array_key_exists("api_id", $responseContents)){
+            return new ResponseDelete($response->getStatusCode());
+        }
+        else{
+            return new ResponseDelete($response->getStatusCode(), "call not found",
+                $responseContents['api_id']);
+        }
     }
     
     /**
@@ -695,7 +720,15 @@ class CallInterface extends ResourceInterface
             $this->uri . $liveCallUuid . '/Speak/',
             $optionalArgs
         );
-        return new ResponseDelete($response->getStatusCode());
+        $responseContents = $response->getContent();
+
+        if(!array_key_exists("api_id", $responseContents)){
+            return new ResponseDelete($response->getStatusCode());
+        }
+        else{
+            return new ResponseDelete($response->getStatusCode(), "call not found",
+                $responseContents['api_id']);
+        }
     }
 
     /**

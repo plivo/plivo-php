@@ -157,8 +157,15 @@ class ApplicationInterface extends ResourceInterface
             $this->uri . $appId . '/',
             $optionalArgs
         );
+        $responseContents = $response->getContent();
 
-        return new ResponseDelete($response->getStatusCode());
+        if(!array_key_exists("api_id", $responseContents)){
+            return new ResponseDelete($response->getStatusCode());
+        }
+        else{
+            return new ResponseDelete($response->getStatusCode(), "recording not found",
+                $responseContents['api_id']);
+        }
     }
 
     /**
@@ -183,7 +190,8 @@ class ApplicationInterface extends ResourceInterface
         return new Application(
             $this->client,
             $response->getContent(),
-            $this->pathParams['authId']);
+            $this->pathParams['authId'],
+            $response->getStatusCode());
     }
 
 
@@ -212,7 +220,7 @@ class ApplicationInterface extends ResourceInterface
             $newApplication = new Application(
                 $this->client,
                 $application,
-                $this->pathParams['authId']);
+                $this->pathParams['authId'], null);
 
             array_push($applications, $newApplication);
         }
@@ -220,6 +228,7 @@ class ApplicationInterface extends ResourceInterface
         return new ApplicationList(
             $this->client,
             $response->getContent()['meta'],
-            $applications);
+            $applications,
+            $response->getStatusCode());
     }
 }

@@ -16,15 +16,17 @@ class ResponseDelete
      */
     protected $message;
     protected $statusCode;
+    protected $apiId;
 
     /**
      * ResponseDelete constructor.
      * @param null $message
      */
-    function __construct($statusCode = 204, $message = null)
+    function __construct($statusCode = null, $message = null, $apiId = null)
     {
         $this->message = $message;
         $this->statusCode = $statusCode;
+        $this->apiId = $apiId;
     }
 
     /**

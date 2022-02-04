@@ -10,6 +10,7 @@ use Plivo\BaseClient;
 use Plivo\Resources\ResourceInterface;
 use Plivo\Resources\ResourceList;
 
+use Plivo\Resources\ResponseDelete;
 use Plivo\Resources\ResponseUpdate;
 use Plivo\Util\ArrayOperations;
 
@@ -111,7 +112,8 @@ class EndpointInterface extends ResourceInterface
 
         return new Endpoint(
             $this->client, $response->getContent(),
-            $this->pathParams['authId']);
+            $this->pathParams['authId'],
+            $response->getStatusCode());
     }
 
     /**
@@ -132,11 +134,11 @@ class EndpointInterface extends ResourceInterface
         $endpoints = [];
 
         foreach ($response->getContent()['objects'] as $endpoint) {
-            $newEndpoint = new Endpoint($this->client, $endpoint, $this->pathParams['authId']);
+            $newEndpoint = new Endpoint($this->client, $endpoint, $this->pathParams['authId'], null);
 
             array_push($endpoints, $newEndpoint);
         }
-        return new ResourceList($this->client, $response->getContent()['meta'], $endpoints);
+        return new EndpointList($this->client, $response->getContent()['meta'], $endpoints, $response->getStatusCode());
     }
 
     /**
@@ -194,9 +196,18 @@ class EndpointInterface extends ResourceInterface
                 'endpoint id is mandatory');
         }
         $optionalArgs['isVoiceRequest'] = true;
-        $this->client->delete(
+        $response = $this->client->delete(
             $this->uri . $endpointId . '/',
             $optionalArgs
         );
+        $responseContents = $response->getContent();
+
+        if(!array_key_exists("api_id", $responseContents)){
+            return new ResponseDelete($response->getStatusCode());
+        }
+        else{
+            return new ResponseDelete($response->getStatusCode(), "recording not found",
+                $responseContents['api_id']);
+        }
     }
 }

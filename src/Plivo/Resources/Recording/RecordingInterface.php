@@ -7,6 +7,7 @@ use Plivo\Exceptions\PlivoValidationException;
 use Plivo\BaseClient;
 use Plivo\Resources\ResourceInterface;
 use Plivo\Resources\ResourceList;
+use Plivo\Resources\ResponseDelete;
 use Plivo\Util\ArrayOperations;
 
 /**
@@ -59,11 +60,11 @@ class RecordingInterface extends ResourceInterface
         foreach ($response->getContent()['objects'] as $recording) {
             
             $newRecording = new Recording(
-                $this->client, $recording, $this->pathParams['authId']);
+                $this->client, $recording, $this->pathParams['authId'], null);
             array_push($recordings, $newRecording);
         }
-        return new ResourceList(
-            $this->client, $response->getContent()['meta'], $recordings);
+        return new RecordingList(
+            $this->client, $response->getContent()['meta'], $recordings, $response->getStatusCode());
     }
 
     /**
@@ -88,7 +89,8 @@ class RecordingInterface extends ResourceInterface
 
         return new Recording(
             $this->client, $response->getContent(),
-            $this->pathParams['authId']);
+            $this->pathParams['authId'],
+            $response->getStatusCode());
     }
     
     /**
@@ -105,9 +107,18 @@ class RecordingInterface extends ResourceInterface
                 'recording id is mandatory');
         }
         $optionalArgs['isVoiceRequest'] = true;
-        $this->client->delete(
+        $response = $this->client->delete(
             $this->uri . $recordingId . '/',
             $optionalArgs
         );
+        $responseContents = $response->getContent();
+
+        if(!array_key_exists("api_id", $responseContents)){
+            return new ResponseDelete($response->getStatusCode());
+        }
+        else{
+            return new ResponseDelete($response->getStatusCode(), "recording not found",
+                $responseContents['api_id']);
+        }
     }
 }

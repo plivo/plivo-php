@@ -40,7 +40,7 @@ class Call extends Resource
      * @param $authId
      */
     function __construct(
-        BaseClient $client, $response, $authId, $statusCode=200)
+        BaseClient $client, $response, $authId, $statusCode)
     {
         parent::__construct($client);
 

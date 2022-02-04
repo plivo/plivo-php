@@ -22,6 +22,8 @@ use Plivo\Resources\Resource;
  */
 class Conference extends Resource
 {
+    public $statusCode;
+
     /**
      * Conference constructor.
      * @param BaseClient $client
@@ -30,8 +32,9 @@ class Conference extends Resource
      * @param $conferenceName
      */
     public function __construct(
-        BaseClient $client, $response, $authId, $conferenceName)
+        BaseClient $client, $response, $authId, $conferenceName, $statusCode)
     {
+        $this->statusCode = $statusCode;
         parent::__construct($client);
 
         $this->properties = [

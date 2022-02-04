@@ -81,7 +81,8 @@ class MultiPartyCallInterface extends ResourceInterface
             $this->uri,
             $optionalArgs
         );
-        return $response->getContent();
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     public function get(array $optionalArgs = []){
@@ -105,7 +106,8 @@ class MultiPartyCallInterface extends ResourceInterface
             $this->uri. $mpcId. "/",
             $optionalArgs
         );
-        return $response->getContent();
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     public function addParticipant($role, array $optionalArgs = []){
@@ -377,7 +379,8 @@ class MultiPartyCallInterface extends ResourceInterface
             $this->uri. $mpcId. "/Participant/",
             array_merge($mandatoryArgs, $optionalArgs)
         );
-        return $response->getContent();
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     public function start(array $optionalArgs = []){
@@ -400,7 +403,8 @@ class MultiPartyCallInterface extends ResourceInterface
             $this->uri. $mpcId. "/",
             ['status' => 'active', 'isVoiceRequest' => true]
         );
-        return $response->getContent();
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     public function stop(array $optionalArgs = []){
@@ -423,7 +427,8 @@ class MultiPartyCallInterface extends ResourceInterface
         $response = $this->client->delete($this->uri. $mpcId. "/",
             $optionalArgs
         );
-        return $response->getContent();
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     public function startRecording(array $optionalArgs = []){
@@ -462,7 +467,8 @@ class MultiPartyCallInterface extends ResourceInterface
             $this->uri. $mpcId. '/Record/',
             $optionalArgs
         );
-        return $response->getContent();
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     public function stopRecording(array $optionalArgs = []){
@@ -486,7 +492,8 @@ class MultiPartyCallInterface extends ResourceInterface
             $this->uri. $mpcId. '/Record/',
             $optionalArgs
         );
-        return $response->getContent();
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     public function pauseRecording(array $optionalArgs = []){
@@ -510,7 +517,8 @@ class MultiPartyCallInterface extends ResourceInterface
             $this->uri. $mpcId. '/Record/Pause/',
             $optionalArgs
         );
-        return $response->getContent();
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     public function resumeRecording(array $optionalArgs = []){
@@ -534,7 +542,8 @@ class MultiPartyCallInterface extends ResourceInterface
             $this->uri. $mpcId. '/Record/Resume/',
             $optionalArgs
         );
-        return $response->getContent();
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     public function startParticipantRecording($participantId, array $optionalArgs = []){
@@ -574,7 +583,8 @@ class MultiPartyCallInterface extends ResourceInterface
             $this->uri. $mpcId. '/Participant/'. $participantId. '/Record/',
             $optionalArgs
         );
-        return $response->getContent();
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     public function stopParticipantRecording($participantId, array $optionalArgs = []){
@@ -599,7 +609,8 @@ class MultiPartyCallInterface extends ResourceInterface
             $this->uri. $mpcId. '/Participant/'. $participantId. '/Record/',
             $optionalArgs
         );
-        return $response->getContent();
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     public function pauseParticipantRecording($participantId, array $optionalArgs = []){
@@ -624,7 +635,8 @@ class MultiPartyCallInterface extends ResourceInterface
             $this->uri. $mpcId. '/Participant/'. $participantId. '/Record/Pause/',
             $optionalArgs
         );
-        return $response->getContent();
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     public function resumeParticipantRecording($participantId, array $optionalArgs = []){
@@ -649,7 +661,8 @@ class MultiPartyCallInterface extends ResourceInterface
             $this->uri. $mpcId. '/Participant/'. $participantId. '/Record/Resume/',
             $optionalArgs
         );
-        return $response->getContent();
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     public function listParticipants(array $optionalArgs = []){
@@ -676,7 +689,8 @@ class MultiPartyCallInterface extends ResourceInterface
             $this->uri. $mpcId. '/Participant/',
             $optionalArgs
         );
-        return $response->getContent();
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     public function updateParticipant($participantId, array $optionalArgs = []){
@@ -710,7 +724,8 @@ class MultiPartyCallInterface extends ResourceInterface
             $this->uri. $mpcId. '/Participant/'. $participantId. '/',
             $optionalArgs
         );
-        return $response->getContent();
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     public function kickParticipant($participantId, array $optionalArgs = []){
@@ -735,7 +750,8 @@ class MultiPartyCallInterface extends ResourceInterface
             $this->uri. $mpcId. '/Participant/'. $participantId. '/',
             $optionalArgs
         );
-        return $response->getContent();
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     public function getParticipant($participantId, array $optionalArgs = []){
@@ -760,7 +776,8 @@ class MultiPartyCallInterface extends ResourceInterface
             $this->uri. $mpcId. '/Participant/'. $participantId. '/',
             $optionalArgs
         );
-        return $response->getContent();
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     public function startPlayAudio($participantId, $url, array $optionalArgs = []){
@@ -787,7 +804,8 @@ class MultiPartyCallInterface extends ResourceInterface
             $this->uri. $mpcId. '/Member/'. $participantId. '/Play/',
             array_merge($mandatoryArgs, $optionalArgs)
         );
-        return $response->getContent();
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     public function stopPlayAudio($participantId, array $optionalArgs = []){
@@ -812,6 +830,7 @@ class MultiPartyCallInterface extends ResourceInterface
             $this->uri. $mpcId. '/Member/'. $participantId. '/Play/',
             $optionalArgs
         );
-        return $response->getContent();
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 }
