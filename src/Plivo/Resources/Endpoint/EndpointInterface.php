@@ -205,8 +205,12 @@ class EndpointInterface extends ResourceInterface
         if(!array_key_exists("api_id", $responseContents)){
             return new ResponseDelete($response->getStatusCode());
         }
+        elseif ($response->getStatusCode() == 400){
+            return new ResponseDelete($response->getStatusCode(), "endpoint_id parameter is missing or invalid.",
+                $responseContents['api_id']);
+        }
         else{
-            return new ResponseDelete($response->getStatusCode(), "recording not found",
+            return new ResponseDelete($response->getStatusCode(), "not found",
                 $responseContents['api_id']);
         }
     }

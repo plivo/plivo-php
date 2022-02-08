@@ -38,6 +38,7 @@ class Conference extends Resource
         parent::__construct($client);
 
         $this->properties = [
+            'apiId' => $response['api_id'],
             'conferenceName' => $response['conference_name'],
             'conferenceRunTime' => $response['conference_run_time'],
             'conferenceMemberCount' => $response['conference_member_count'],

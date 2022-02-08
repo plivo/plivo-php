@@ -302,6 +302,10 @@ class ConferenceInterface extends ResourceInterface
         if(!array_key_exists("api_id", $responseContents)){
             return new ResponseDelete($response->getStatusCode());
         }
+        elseif ($response->getStatusCode() == 400){
+            return new ResponseDelete($response->getStatusCode(), 'failed',
+                $responseContents['api_id']);
+        }
         else{
             return new ResponseDelete($response->getStatusCode(), 'conference not found',
                 $responseContents['api_id']);
@@ -370,6 +374,10 @@ class ConferenceInterface extends ResourceInterface
 
         if(!array_key_exists("api_id", $responseContents)){
             return new ResponseDelete($response->getStatusCode());
+        }
+        elseif ($response->getStatusCode() == 400){
+            return new ResponseDelete($response->getStatusCode(), 'failed',
+                $responseContents['api_id']);
         }
         else{
             return new ResponseDelete($response->getStatusCode(), 'conference not found',
