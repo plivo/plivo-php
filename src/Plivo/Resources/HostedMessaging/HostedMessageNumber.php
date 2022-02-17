@@ -20,7 +20,7 @@ class HostedMessageNumber extends Resource {
             'createdAt' => $response['created_at'],
             'hostedStatus' => $response['hosted_status'],
             'failureReason' => $response['failure_reason'],
-            'resourceURI' => $response['resource_uri']
+            'resourceUri' => $response['resource_uri']
         ];
 
         $this->pathParams = [
