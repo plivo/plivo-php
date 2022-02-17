@@ -35,6 +35,11 @@ class HostedMessageLOACreateResponse extends ResponseUpdate {
     /**
      * @var
      */
+    public $resourceUri;
+
+    /**
+     * @var
+     */
     public $createdAt;
 
     /**
@@ -45,9 +50,10 @@ class HostedMessageLOACreateResponse extends ResponseUpdate {
      * @param $file
      * @param $createdAt
      * @param $message
+     * @param $resourceUri
      * @param $statusCode
      */
-    public function __construct($loaId, $alias, $linkedNumbers, $apiId, $file, $createdAt, $message, $statusCode)
+    public function __construct($loaId, $alias, $linkedNumbers, $apiId, $file, $createdAt, $message,$resourceUri, $statusCode)
     {
         parent::__construct($apiId, $message, $statusCode);
         $this->loaId = $loaId;
@@ -55,6 +61,7 @@ class HostedMessageLOACreateResponse extends ResponseUpdate {
         $this->linkedNumbers = $linkedNumbers;
         $this->apiId = $apiId;
         $this->file = $file;
+        $this->resourceUri = $resourceUri;
         $this->createdAt = $createdAt;
     }
 
@@ -80,6 +87,14 @@ class HostedMessageLOACreateResponse extends ResponseUpdate {
     public function getLinkedNumbers()
     {
         return $this->linkedNumbers;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResourceUri()
+    {
+        return $this->resourceUri;
     }
 
     /**

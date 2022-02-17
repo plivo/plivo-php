@@ -49,7 +49,7 @@ class HostedMessageCreateResponse extends ResponseUpdate {
     /**
      * @var
      */
-    public $resourceURI;
+    public $resourceUri;
 
     /**
      * @param $orderId
@@ -76,7 +76,7 @@ class HostedMessageCreateResponse extends ResponseUpdate {
         $this->createdAt = $createdAt;
         $this->failureReason = $failureReason;
         $this->hostingStatus = $hostingStatus;
-        $this->resourceURI = $resourceURI;
+        $this->resourceUri = $resourceURI;
     }
 
     /**
@@ -146,8 +146,8 @@ class HostedMessageCreateResponse extends ResponseUpdate {
     /**
      * @return mixed
      */
-    public function getResourceURI()
+    public function getResourceUri()
     {
-        return $this->resourceURI;
+        return $this->resourceUri;
     }
 }

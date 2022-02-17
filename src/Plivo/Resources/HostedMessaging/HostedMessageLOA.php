@@ -17,6 +17,7 @@ class HostedMessageLOA extends Resource {
             'loaId' => $response['loa_id'],
             'resourceURI' => $response['resource_uri'],
             'linkedNumbers' => $response['linked_numbers'],
+            'resourceUri' => $response['resource_uri'],
             'createdAt' => $response['created_at'],
         ];
 

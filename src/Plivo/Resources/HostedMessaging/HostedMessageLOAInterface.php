@@ -66,6 +66,7 @@ class HostedMessageLOAInterface extends ResourceInterface {
                 $responseContents['file'],
                 $responseContents['created_at'],
                 $responseContents['message'],
+                $responseContents['resource_uri'],
                 $response->getStatusCode()
             );
         }
