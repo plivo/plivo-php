@@ -52,8 +52,8 @@ use Plivo\Resources\MultiPartyCall\MultiPartyCallInterface;
  * @property ComplianceDocumentInterface complianceDocument Interface to handle all ComplianceDocument related api calls
  * @property ComplianceRequirementInterface complianceRequirement Interface to handle all ComplianceRequirement related api calls
  * @property ComplianceApplicationInterface complianceApplication Interface to handle all ComplianceApplication related api calls
- * @property HostedMessageLOAInterface $hostedMessageLOA Interface to handle all HostedMessageLOA related api calls
- * @property HostedMessagingNumberInterface $hostedMessagingNumber Interface to handle all HostedMessagingNumber related api calls
+ * @property HostedMessageLOAInterface hostedMessageLOA Interface to handle all HostedMessageLOA related api calls
+ * @property HostedMessagingNumberInterface hostedMessagingNumber Interface to handle all HostedMessagingNumber related api calls
  *
  */
 class RestClient

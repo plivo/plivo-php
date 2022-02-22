@@ -9,7 +9,7 @@ class HostedMessageCreateResponse extends ResponseUpdate {
     /**
      * @var
      */
-    public $orderId;
+    public $hostedMessagingNumberId;
 
     /**
      * @var
@@ -24,7 +24,7 @@ class HostedMessageCreateResponse extends ResponseUpdate {
     /**
      * @var
      */
-    public $phoneNumber;
+    public $number;
 
     /**
      * @var
@@ -44,7 +44,7 @@ class HostedMessageCreateResponse extends ResponseUpdate {
     /**
      * @var
      */
-    public $hostingStatus;
+    public $hostedStatus;
 
     /**
      * @var
@@ -52,39 +52,39 @@ class HostedMessageCreateResponse extends ResponseUpdate {
     public $resourceUri;
 
     /**
-     * @param $orderId
+     * @param $hostedMessagingNumberId
      * @param $application
      * @param $loaId
-     * @param $phoneNumber
+     * @param $number
      * @param $alias
      * @param $createdAt
      * @param $failureReason
-     * @param $hostingStatus
+     * @param $hostedStatus
      * @param $resourceURI
      * @param $apiId
      * @param $message
      * @param $statusCode
      */
-    public function __construct($orderId, $application, $loaId, $phoneNumber, $alias, $createdAt, $failureReason, $hostingStatus, $resourceURI, $apiId, $message, $statusCode)
+    public function __construct($hostedMessagingNumberId, $application, $loaId, $number, $alias, $createdAt, $failureReason, $hostedStatus, $resourceURI, $apiId, $message, $statusCode)
     {
         parent::__construct($apiId, $message, $statusCode);
-        $this->orderId = $orderId;
+        $this->hostedMessagingNumberId = $hostedMessagingNumberId;
         $this->application = $application;
         $this->loaId = $loaId;
-        $this->phoneNumber = $phoneNumber;
+        $this->number = $number;
         $this->alias = $alias;
         $this->createdAt = $createdAt;
         $this->failureReason = $failureReason;
-        $this->hostingStatus = $hostingStatus;
+        $this->hostedStatus = $hostedStatus;
         $this->resourceUri = $resourceURI;
     }
 
     /**
      * @return mixed
      */
-    public function getOrderId()
+    public function getHostedMessagingNumberId()
     {
-        return $this->orderId;
+        return $this->hostedMessagingNumberId;
     }
 
     /**
@@ -106,9 +106,9 @@ class HostedMessageCreateResponse extends ResponseUpdate {
     /**
      * @return mixed
      */
-    public function getPhoneNumber()
+    public function getNumber()
     {
-        return $this->phoneNumber;
+        return $this->number;
     }
 
     /**
@@ -138,9 +138,9 @@ class HostedMessageCreateResponse extends ResponseUpdate {
     /**
      * @return mixed
      */
-    public function getHostingStatus()
+    public function getHostedStatus()
     {
-        return $this->hostingStatus;
+        return $this->hostedStatus;
     }
 
     /**
