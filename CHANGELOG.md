@@ -1,5 +1,9 @@
 # Change Log
 
+## [v4.26.0](https://github.com/plivo/plivo-php/tree/v4.26.0) (2022-02-25)
+**Features - Numbers: Hosted Messaging API**
+- Add support for Hosted Messaging APIs.
+
 ## [v4.25.2](https://github.com/plivo/plivo-php/tree/v4.25.2) (2022-02-01)
 **Features - MPCCallRecording**
 - parameter name change from statusCallBack to recordingCallBack
