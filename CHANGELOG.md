@@ -1,6 +1,6 @@
 # Change Log
 
-## [v4.26.0](https://github.com/plivo/plivo-php/tree/v4.26.0) (2022-02-24)
+## [v4.26.0](https://github.com/plivo/plivo-php/tree/v4.26.0) (2022-02-25)
 **Features - Numbers: Hosted Messaging API**
 - Add support for Hosted Messaging APIs.
 
