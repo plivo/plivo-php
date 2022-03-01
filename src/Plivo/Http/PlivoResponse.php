@@ -74,7 +74,7 @@ class PlivoResponse
         // make exception based on the status code
         $this->thrownException =
             new PlivoResponseException(
-                null, null, null,
+                '', 0, null,
                 $this->decodedContent, $this->statusCode);
 
         echo $this->thrownException->getMessage();
