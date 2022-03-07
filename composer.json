@@ -19,7 +19,7 @@
     "require": {
         "php": ">=7.1.0",
         "guzzlehttp/guzzle": "^6.3 || ^7.0",
-        "firebase/php-jwt": "^5.2"
+        "firebase/php-jwt": ">=5.2"
     },
     "autoload": {
         "classmap": ["src/", "tests/"],
