@@ -24,7 +24,8 @@ class XmlTest extends BaseTestCase
         $dial = $resp->addDial(
             [
                 'confirmSound' => "http://foo.com/sound/",
-                'confirmKey' => "3"
+                'confirmKey' => "3",
+                'confirmTimeout' => "120"
             ]);
         $dial->addNumber("18217654321",
             [
