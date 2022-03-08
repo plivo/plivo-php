@@ -42,7 +42,6 @@ class CallInterface extends ResourceInterface
      * @param string $from The phone number to be used as the caller id (with the country code).For e.g, a USA caller id number could be, 15677654321, with '1' for the country code.
      * @param array $to The regular number(s) or sip endpoint(s) to call. Regular number must be prefixed with country code but without the + sign). For e.g, to dial a number in the USA, the number could be, 15677654321, with '1' for the country code. Multiple numbers can be sent by using a delimiter. For e.g. 15677654321<12077657621<12047657621. Sip endpoints must be prefixed with sip: E.g., sip:john1234@phone.plivo.com. To make bulk calls, the delimiter < is used. For example, 15677654321<15673464321<sip:john1234@phone.plivo.com Yes, you can mix regular numbers and sip endpoints.
      * @param string $answerUrl The URL invoked by Plivo when the outbound call is answered.
-     * @param string $answerMethod The method used to call the answer_url.
      * @param array $optionalArgs
      *   + Valid arguments with their types
      *   + [string] answer_method - The method used to call the answer_url. Defaults to POST.
@@ -69,14 +68,13 @@ class CallInterface extends ResourceInterface
      * @return JSON output
      * @throws PlivoValidationException,PlivoResponseException
      */
-    public function create($from, array $to, $answerUrl, $answerMethod,
+    public function create($from, array $to, $answerUrl,
                            array $optionalArgs = [])
     {
         $mandatoryArgs = [
             'from' => $from,
             'to' => implode('<', $to),
-            'answer_url' => $answerUrl,
-            'answer_method' => $answerMethod
+            'answer_url' => $answerUrl
         ];
         $optionalArgs['isVoiceRequest'] = true;
 

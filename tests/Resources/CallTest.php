@@ -22,8 +22,7 @@ class CallTest extends BaseTestCase
             [
                 'from' => '919999999999',
                 'to' => '919999999999',
-                'answer_url' => '919999999999',
-                'answer_method' => 'POST',
+                'answer_url' => '919999999999'
             ]);
         $body = file_get_contents(__DIR__ . '/../Mocks/callCreateResponse.json');
 
@@ -49,8 +48,7 @@ class CallTest extends BaseTestCase
             [
                 'from' => '919999999999',
                 'to' => '919999999998',
-                'answer_url' => 'http://answer.url',
-                'answer_method' => 'POST',
+                'answer_url' => 'http://answer.url'
             ]);
         $body = file_get_contents(__DIR__ . '/../Mocks/callCreateResponse.json');
 
