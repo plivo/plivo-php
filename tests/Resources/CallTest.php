@@ -29,7 +29,7 @@ class CallTest extends BaseTestCase
         $this->mock(new PlivoResponse($request,201, $body));
 
         $actual = $this->client->calls->create(
-            '919999999999', ['919999999999'], '919999999999', 'POST');
+            '919999999999', ['919999999999'], '919999999999');
 
         $this->assertRequest($request);
 
@@ -55,7 +55,7 @@ class CallTest extends BaseTestCase
         $this->mock(new PlivoResponse($request,201, $body));
 
         $actual = $this->client->calls->create(
-            '919999999999', ['919999999998'], 'http://answer.url', 'POST');
+            '919999999999', ['919999999998'], 'http://answer.url');
 
         $this->assertRequest($request);
 
