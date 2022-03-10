@@ -1,6 +1,6 @@
 # Change Log
 
-## [v4.26.1](https://github.com/plivo/plivo-php/tree/v4.26.1) (2022-02-10)
+## [v4.26.1](https://github.com/plivo/plivo-php/tree/v4.26.1) (2022-03-10)
 **Add on - Dependancy library**
 - Do not anchor php-jwt version.
 
