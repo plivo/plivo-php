@@ -1,8 +1,12 @@
 # Change Log
 
-## [v4.26.1](https://github.com/plivo/plivo-php/tree/v4.26.1) (2022-03-08)
+## [v4.27.1](https://github.com/plivo/plivo-php/tree/v4.27.1) (2022-03-08)
 **Features - CallInterface params**
 - Attribute answer_method is set to optional for https://www.plivo.com/docs/voice/api/call#make-a-call
+
+## [v4.27.0](https://github.com/plivo/plivo-php/tree/v4.27.0) (2022-03-10)
+**Add on - Dependancy library**
+- Do not anchor php-jwt version.
 
 ## [v4.26.0](https://github.com/plivo/plivo-php/tree/v4.26.0) (2022-02-25)
 **Features - Numbers: Hosted Messaging API**
