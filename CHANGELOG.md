@@ -1,5 +1,9 @@
 # Change Log
 
+## [v4.27.1](https://github.com/plivo/plivo-php/tree/v4.27.1) (2022-03-08)
+**Bug fix - CallInterface params**
+- Attribute `answer_method` is set to optional for [Make a Call API](https://www.plivo.com/docs/voice/api/call#make-a-call)
+
 ## [v4.27.0](https://github.com/plivo/plivo-php/tree/v4.27.0) (2022-03-10)
 **Add on - Dependancy library**
 - Do not anchor php-jwt version.
