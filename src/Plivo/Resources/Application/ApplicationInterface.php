@@ -78,7 +78,7 @@ class ApplicationInterface extends ResourceInterface
             );
         } else {
             throw new PlivoResponseException(
-                $responseContents['error'],
+                json_encode($responseContents['error'], JSON_FORCE_OBJECT),
                 0,
                 null,
                 $response->getContent(),
