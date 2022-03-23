@@ -11,9 +11,9 @@ use Plivo\Resources\ResponseUpdate;
  */
 class PhoneNumberBuyResponse extends ResponseUpdate
 {
-    protected $number;
-    protected $numberStatus;
-    protected $status;
+    public $number;
+    public $numberStatus;
+    public $status;
 
     /**
      * PhoneNumberBuyResponse constructor.

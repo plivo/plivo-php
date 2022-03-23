@@ -1,5 +1,9 @@
 # Change Log
 
+## [v4.27.2](https://github.com/plivo/plivo-php/tree/v4.27.2) (2022-03-23)
+**Bug fix - PhoneNumberBuyResponse**
+- Addition of missing fields(Number, NumberStatus, and status) in PhoneNumberBuyResponse
+
 ## [v4.27.1](https://github.com/plivo/plivo-php/tree/v4.27.1) (2022-03-15)
 **Bug fix - CallInterface params**
 - Attribute `answer_method` is set to optional for [Make a Call API](https://www.plivo.com/docs/voice/api/call#make-a-call)
