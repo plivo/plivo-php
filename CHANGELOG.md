@@ -1,6 +1,6 @@
 # Change Log
 
-## [v4.27.2](https://github.com/plivo/plivo-php/tree/v4.27.2) (2022-03-22)
+## [v4.27.2](https://github.com/plivo/plivo-php/tree/v4.27.2) (2022-03-23)
 **Bug fix - PhoneNumberBuyResponse**
 - Addition of missing fields(Number, NumberStatus, and status) in PhoneNumberBuyResponse
 
