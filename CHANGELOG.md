@@ -1,8 +1,9 @@
 # Change Log
 
-## [v4.27.2](https://github.com/plivo/plivo-php/tree/v4.27.2) (2022-03-23)
-**Bug fix - PhoneNumberBuyResponse**
-- Addition of missing fields(Number, NumberStatus, and status) in PhoneNumberBuyResponse
+## [v4.27.2](https://github.com/plivo/plivo-php/tree/v4.27.2) (2022-03-24)
+**Bug fix - Buy Phone Number & Application Response**
+- Addition of missing fields(Number, NumberStatus, and status) in Buy [Phone number API](https://www.plivo.com/docs/numbers/api/phone-number#buy-a-phone-number).
+- Enhanced error response for [Create Application API](https://www.plivo.com/docs/account/api/application/create-an-application/)
 
 ## [v4.27.1](https://github.com/plivo/plivo-php/tree/v4.27.1) (2022-03-15)
 **Bug fix - CallInterface params**
