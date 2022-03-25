@@ -22,15 +22,14 @@ class CallTest extends BaseTestCase
             [
                 'from' => '919999999999',
                 'to' => '919999999999',
-                'answer_url' => '919999999999',
-                'answer_method' => 'POST',
+                'answer_url' => '919999999999'
             ]);
         $body = file_get_contents(__DIR__ . '/../Mocks/callCreateResponse.json');
 
         $this->mock(new PlivoResponse($request,201, $body));
 
         $actual = $this->client->calls->create(
-            '919999999999', ['919999999999'], '919999999999', 'POST');
+            '919999999999', ['919999999999'], '919999999999');
 
         $this->assertRequest($request);
 
@@ -49,15 +48,14 @@ class CallTest extends BaseTestCase
             [
                 'from' => '919999999999',
                 'to' => '919999999998',
-                'answer_url' => 'http://answer.url',
-                'answer_method' => 'POST',
+                'answer_url' => 'http://answer.url'
             ]);
         $body = file_get_contents(__DIR__ . '/../Mocks/callCreateResponse.json');
 
         $this->mock(new PlivoResponse($request,201, $body));
 
         $actual = $this->client->calls->create(
-            '919999999999', ['919999999998'], 'http://answer.url', 'POST');
+            '919999999999', ['919999999998'], 'http://answer.url');
 
         $this->assertRequest($request);
 

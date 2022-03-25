@@ -1,8 +1,21 @@
 # Change Log
 
-## [v4.26.1](https://github.com/plivo/plivo-php/tree/v4.26.1) (2022-03-03)
+## [v4.28.0](https://github.com/plivo/plivo-php/tree/v4.28.0) (2022-03-25)
 **Features - DialElement**
-- confirmTimeout parameter added in dial element
+- `confirmTimeout` parameter added to [The Dial element](https://www.plivo.com/docs/voice/xml/dial/)
+
+## [v4.27.2](https://github.com/plivo/plivo-php/tree/v4.27.2) (2022-03-24)
+**Bug fix - Buy Phone Number & Application Response**
+- Addition of missing fields(Number, NumberStatus, and status) in Buy [Phone number API](https://www.plivo.com/docs/numbers/api/phone-number#buy-a-phone-number).
+- Enhanced error response for [Create Application API](https://www.plivo.com/docs/account/api/application/create-an-application/)
+
+## [v4.27.1](https://github.com/plivo/plivo-php/tree/v4.27.1) (2022-03-15)
+**Bug fix - CallInterface params**
+- Attribute `answer_method` is set to optional for [Make a Call API](https://www.plivo.com/docs/voice/api/call#make-a-call)
+
+## [v4.27.0](https://github.com/plivo/plivo-php/tree/v4.27.0) (2022-03-10)
+**Add on - Dependancy library**
+- Do not anchor php-jwt version.
 
 ## [v4.26.0](https://github.com/plivo/plivo-php/tree/v4.26.0) (2022-02-25)
 **Features - Numbers: Hosted Messaging API**
