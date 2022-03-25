@@ -1,5 +1,9 @@
 # Change Log
 
+## [v4.28.0](https://github.com/plivo/plivo-php/tree/v4.28.0) (2022-03-25)
+**Features - DialElement**
+- `confirmTimeout` parameter added to [The Dial element](https://www.plivo.com/docs/voice/xml/dial/)
+
 ## [v4.27.2](https://github.com/plivo/plivo-php/tree/v4.27.2) (2022-03-24)
 **Bug fix - Buy Phone Number & Application Response**
 - Addition of missing fields(Number, NumberStatus, and status) in Buy [Phone number API](https://www.plivo.com/docs/numbers/api/phone-number#buy-a-phone-number).
