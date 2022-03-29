@@ -19,6 +19,7 @@ class Dial extends Element {
         'callerId',
         'callerName',
         'confirmSound',
+        'confirmTimeout',
         'dialMusic',
         'confirmKey',
         'redirect',
