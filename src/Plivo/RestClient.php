@@ -28,6 +28,7 @@ use Plivo\Resources\RegulatoryCompliance\ComplianceDocumentInterface;
 use Plivo\Resources\RegulatoryCompliance\ComplianceRequirementInterface;
 use Plivo\Resources\RegulatoryCompliance\ComplianceApplicationInterface;
 use Plivo\Resources\MultiPartyCall\MultiPartyCallInterface;
+use Plivo\Resources\Profile\ProfileInterface;
 
 /**
  * Class RestClient
@@ -40,6 +41,7 @@ use Plivo\Resources\MultiPartyCall\MultiPartyCallInterface;
  * @property MessageInterface message Interface to handle all Message related api calls
  * @property PowerpackInterface powerpack Interface to handle all Powerpack related api calls
  * @property MediaInterface media Interface to handle all upload mms media api
+ * @property ProfileInterface profile Interface to handle all 10dlc related profile api
  * @property LookupInterface lookup Interface to handle calls to the Lookup API
  * @property EndpointInterface endpoint Interface to handle all Endpoint related api calls
  * @property NumberInterface number Interface to handle all Number related api calls
@@ -97,6 +99,11 @@ class RestClient
      * @var MediaInterface
      */
     protected $_media;
+
+    /**
+     * @var ProfileInterface
+     */
+    protected $_profile;
 
      /**
      * @var LookupInterface
@@ -287,6 +294,18 @@ class RestClient
             $this->_campaign = new CampaignInterface($this->client, $this->client->getAuthId());
         }
         return $this->_campaign;
+    }
+
+    /**
+     * @return ProfileInterface
+     *
+     */
+    protected function getProfile()
+    {
+        if (!$this->_profile) {
+            $this->_profile = new ProfileInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_profile;
     }
 
     /**
