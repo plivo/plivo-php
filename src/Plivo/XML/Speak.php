@@ -27,6 +27,8 @@ class Speak extends Element {
     protected $valid_attributes = ['voice', 'language', 'loop'];
 
     protected $valid_voice_attribute_values = [
+        'man',
+        'woman',
         'MAN',
         'WOMAN',
         'Polly.Zeina', 'Polly.Zhiyu','Polly.Naja','Polly.Mads','Polly.Lotte',
