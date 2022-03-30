@@ -53,10 +53,7 @@ class ProfileInterface extends ResourceInterface
             $this->uri . 'Profile/'. $profileUUID .'/',
             []
         );
-        $responseContents = $response->getContent();
-        return new Profile(
-            $this->client, $responseContents,
-            $this->pathParams['authId'], $this->uri);
+        return $response->getContent();
     }
 
   
@@ -104,7 +101,7 @@ class ProfileInterface extends ResourceInterface
      * @param {string} country
      * @return profileResponse response output
      */
-    public function create($profile_alias,$profile_type,$customer_type,$entity_type, $company_name,$ein,$vertical,$ein_issuing_country,$stock_symbol,$stock_exchange,$website, $street, $city, $state, $postal_code, $country, $first_name, $last_name, $email, $title, $seniority)
+    public function create($profile_alias,$profile_type,$customer_type,$entity_type, $company_name,$ein,$vertical,$ein_issuing_country,$stock_symbol,$stock_exchange, $alt_business_id_type, $website, $address, $authorized_contact)
     {
         $mandaoryArgs = [
             'profile_alias' => $profile_alias,
@@ -118,12 +115,11 @@ class ProfileInterface extends ResourceInterface
             'stock_symbol' => $stock_symbol,
             'stock_exchange' => $stock_exchange,
             'website' => $website,
+            'alt_business_id_type' => $alt_business_id_type,
         ];
-        $optionalArgs = []
-        $authorized_contact = array("first_name"=>$first_name, "last_name"=>$last_name, "email"=>$email, "title"=>$title, "seniority"=>$seniority);
-        $address = array("street"=>$street, "city"=>$city, "state"=>$state, "postal_code"=>$postal_code, "country"=>$country);
-        $optionalArgs['address'] = json_encode($address)
-        $optionalArgs['authorized_contact'] = json_encode($authorized_contact)
+        $optionalArgs = [];
+        $optionalArgs['address'] = $address;
+        $optionalArgs['authorized_contact'] = $authorized_contact;
         $response = $this->client->update(
             $this->uri .'Profile/',
             array_merge($mandaoryArgs, $optionalArgs)
@@ -132,7 +128,7 @@ class ProfileInterface extends ResourceInterface
     }
 }
 
-/**
+   /**
      * update a new Profile
      *
      * @param {string} profile_uuid 
@@ -144,11 +140,11 @@ class ProfileInterface extends ResourceInterface
      * @param{string} website
      * @return profileResponse response output
      */
-    public function update($profile_uuid, $array $optionalArgs = [])
+    public function update($profile_uuid, array $optionalArgs = [])
     {
         $response = $this->client->update(
-            $this->uri .'Profile/'.$profile_uuid . '/',,
-            array_merge($mandaoryArgs, $optionalArgs)
+            $this->uri .'Profile/'.$profile_uuid . '/',
+            $optionalArgs
         );
         return $response->getContent();   
     }
@@ -158,11 +154,10 @@ class ProfileInterface extends ResourceInterface
      *
      * @param {string} profile_uuid 
      */
-    public function delete( $$profile_uuid)
+    public function delete($profile_uuid)
     {
         $response = $this->client->delete(
-            $this->uri . 'Profile/',
-            $profile_uuid .'/'
+            $this->uri . 'Profile/' . $profile_uuid .'/', []
         );
 
         return $response->getContent();
