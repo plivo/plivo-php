@@ -1,5 +1,9 @@
 # Change Log
 
+## [v4.28.1](https://github.com/plivo/plivo-php/tree/v4.28.1) (2022-03-30)
+**Bug - SpeakElementXML**
+- `voice` parameter is accepting lowercase as well as uppercase values [The Speak element](https://www.plivo.com/docs/voice/xml/speak/)
+
 ## [v4.28.0](https://github.com/plivo/plivo-php/tree/v4.28.0) (2022-03-25)
 **Features - DialElement**
 - `confirmTimeout` parameter added to [The Dial element](https://www.plivo.com/docs/voice/xml/dial/)

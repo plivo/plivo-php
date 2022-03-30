@@ -71,7 +71,7 @@ class Speak extends Element {
             $attributes = array('voice'=>'woman');
         } else {
             foreach ($attributes as $key => $value) {
-                if ($key ==='voice' && !in_array($value, $this->valid_voice_attribute_values)) {
+                if ($key ==='voice' && !in_array(strtolower($value), $this->valid_voice_attribute_values)) {
                     throw new PlivoXMLException(
                         "invalid attribute value ".$value." for ".$key." ".$this->name);
                 }
