@@ -19,12 +19,7 @@
     "require": {
         "php": ">=7.1.0",
         "guzzlehttp/guzzle": "^6.3 || ^7.0",
-<<<<<<< HEAD
-        "firebase/php-jwt": "^5.2",
-        "plivo/plivo-php": "^4.25"
-=======
         "firebase/php-jwt": ">=5.2"
->>>>>>> master
     },
     "autoload": {
         "classmap": ["src/", "tests/"],
