@@ -126,7 +126,7 @@ class ProfileInterface extends ResourceInterface
         );
         return $response->getContent();   
     }
-}
+
 
    /**
      * update a new Profile
