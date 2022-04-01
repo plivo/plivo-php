@@ -127,7 +127,7 @@ class CampaignInterface extends ResourceInterface
     public function getNumber($campaignId, $number)
     {
         $response = $this->client->fetch(
-            $this->uri . '10dlc/Campaign/'. $campaignId .'/'.'Number'.$number.'/',
+            $this->uri . '10dlc/Campaign/'. $campaignId .'/'.'Number/'.$number.'/',
             []
         );
         return $response->getContent();
@@ -144,8 +144,8 @@ class CampaignInterface extends ResourceInterface
 
     public function linkNumber($campaignId, $number)
     {
-        $optionalArgs = []
-        $optionalArgs['number'] = $number
+        $optionalArgs = [];
+        $optionalArgs['number'] = $number;
         $response = $this->client->update(
             $this->uri . '10dlc/Campaign/'. $campaignId .'/'.'Number/',
             $optionalArgs
@@ -156,7 +156,7 @@ class CampaignInterface extends ResourceInterface
     public function deleteNumber($campaignId, $number)
     {
         $response = $this->client->delete(
-            $this->uri . '10dlc/Campaign/'. $campaignId .'/'.'Number'.$number.'/',
+            $this->uri . '10dlc/Campaign/'. $campaignId .'/'.'Number/'.$number.'/',
             []
         );
         return $response->getContent();
