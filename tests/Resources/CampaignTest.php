@@ -102,7 +102,7 @@ class CampaignTest extends BaseTestCase {
 
         $this->mock(new PlivoResponse($request,200, $body));
 
-        $actual = $this->client->campaign->get($campaignID);
+        $actual = $this->client->campaign->getNumber($campaignID,$number);
         self::assertNotNull($actual);
         $this->assertRequest($request);
 
@@ -119,7 +119,7 @@ class CampaignTest extends BaseTestCase {
         
         $this->mock(new PlivoResponse($request,202, $body));
         
-        $actual = $this->client->campaign->list();
+        $actual = $this->client->campaign->listNumber($campaignID);
         
         $this->assertRequest($request);
         
