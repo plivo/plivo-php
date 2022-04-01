@@ -93,7 +93,7 @@ class CampaignTest extends BaseTestCase {
     function testCampaignGetNumber()
     {
         $campaignID = "CRIGC80";
-        $number = "14845007032"
+        $number = "14845007032";
         $request = new PlivoRequest(
             'GET',
             'Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/'.$campaignID.'/Number'.'/'. $number.'/',
