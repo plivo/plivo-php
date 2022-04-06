@@ -141,11 +141,11 @@ class CampaignInterface extends ResourceInterface
         );
         return $response->getContent();
     }
-
-    public function linkNumber($campaignId, $number)
+    // $numbers in array of number {"numbers": ["123"]}
+    public function linkNumber($campaignId, $numbers)
     {
         $optionalArgs = [];
-        $optionalArgs['number'] = $number;
+        $optionalArgs['number'] = $numbers;
         $response = $this->client->update(
             $this->uri . '10dlc/Campaign/'. $campaignId .'/'.'Number/',
             $optionalArgs
