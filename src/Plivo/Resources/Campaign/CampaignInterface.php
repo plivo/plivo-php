@@ -145,7 +145,7 @@ class CampaignInterface extends ResourceInterface
     public function linkNumber($campaignId, $numbers)
     {
         $optionalArgs = [];
-        $optionalArgs['number'] = $numbers;
+        $optionalArgs['numbers'] = $numbers;
         $response = $this->client->update(
             $this->uri . '10dlc/Campaign/'. $campaignId .'/'.'Number/',
             $optionalArgs
