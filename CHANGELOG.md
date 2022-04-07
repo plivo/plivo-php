@@ -1,5 +1,9 @@
 # Change Log
 
+## [v4.28.2](https://github.com/plivo/plivo-php/tree/v4.28.2) (2022-04-07)
+**Feature Added - Recording**
+- now customer can filter recording with `to_number` and `from_number` filter also [Recording](https://www.plivo.com/docs/voice/api/recording/)
+
 ## [v4.28.1](https://github.com/plivo/plivo-php/tree/v4.28.1) (2022-03-30)
 **Bug fix - SpeakElementXML**
 - `voice` parameter is accepting lowercase as well as uppercase values [The Speak element](https://www.plivo.com/docs/voice/xml/speak/)
