@@ -57,7 +57,7 @@ class RecordingInterface extends ResourceInterface
         $recordings = [];
 
         foreach ($response->getContent()['objects'] as $recording) {
-            
+
             $newRecording = new Recording(
                 $this->client, $recording, $this->pathParams['authId']);
             array_push($recordings, $newRecording);
@@ -70,29 +70,27 @@ class RecordingInterface extends ResourceInterface
      * Return a recording instance
      *
      * @param $recordingId
-     * @param array $optionalArgs
      * @return Recording
      * @throws PlivoValidationException
      */
-    public function get($recordingId, array $optionalArgs = [])
+    public function get($recordingId)
     {
-        //if recording id is empty then we are calling getList function
-        //because it will work same without recording_id
-        if(empty($recordingId)){
-            return $this->getList($optionalArgs);
-        } else {
-            $optionalArgs['isVoiceRequest'] = true;
-            $response = $this->client->fetch(
-                $this->uri . $recordingId .'/',
-                $optionalArgs
-            );
-            return new Recording(
-                $this->client,
-                $response->getContent(),
-                $this->pathParams['authId']);
+        if (ArrayOperations::checkNull([$recordingId])) {
+            throw
+            new PlivoValidationException(
+                'recording id is mandatory');
         }
+        $optionalArgs['isVoiceRequest'] = true;
+        $response = $this->client->fetch(
+            $this->uri . $recordingId .'/',
+            $optionalArgs
+        );
+
+        return new Recording(
+            $this->client, $response->getContent(),
+            $this->pathParams['authId']);
     }
-    
+
     /**
      * Delete a recording
      *
