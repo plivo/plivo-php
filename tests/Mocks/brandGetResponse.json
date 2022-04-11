@@ -1,14 +1,26 @@
 {
-    "api_id": "71aa47e0-3750-11ec-8e4c-0242ac110002",
+    "api_id": "4bac497c-b963-11ec-b7ca-0242ac110002",
     "brand": {
-        "brand_id": "BRPXS6E",
-        "company_name": "ABC Inc.",
-        "ein": "111111111",
-        "ein_issuing_country": "US",
-        "email": "johndoe@abc.com",
-        "entity_type": "PRIVATE_PROFIT",
+        "address": {
+            "city": "New York",
+            "country": "IN",
+            "postal_code": "10001",
+            "state": "NY",
+            "street": "123"
+        },
+        "authorized_contact": {
+            "email": "vishnu@plivo.com",
+            "first_name": "vishnu",
+            "last_name": "Doe",
+            "phone": "919742763781",
+            "seniority": "admin",
+            "title": "Doe"
+        },
+        "brand_id": "B1QSGGS",
+        "ein_issuing_country": "IN",
+        "entity_type": "SOLE_PROPRIETOR",
+        "profile_uuid": "3cf3e991-2f94-4910-9712-61442987a2d0",
         "registration_status": "COMPLETED",
-        "vertical": "RETAIL",
-        "website": "http://www.abcmobile.com"
+        "vertical": "ENTERTAINMENT"
     }
 }

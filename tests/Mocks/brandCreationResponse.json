@@ -1,23 +1,5 @@
 {
-    "api_id": "a52a5398-3751-11ec-8e4c-0242ac110002",
-    "brand": {
-        "alt_business_id_type": "GIIN",
-        "brand_id": "BVI0UQA",
-        "city": "New York",
-        "country": "US",
-        "ein_issuing_country": "US",
-        "email": "johndoe@abc.com",
-        "entity_type": "SOLE_PROPRIETOR",
-        "first_name": "John",
-        "last_name": "Doe",
-        "phone": "+11234567890",
-        "postal_code": "10001",
-        "registration_status": "PENDING",
-        "state": "NY",
-        "stock_exchange": "NASDAQ",
-        "stock_symbol": "ABC",
-        "street": "123",
-        "vertical": "RETAIL",
-        "website": "http://www.abcmobile.com"
-    }
+    "api_id": "ab2e4754-b951-11ec-b7ca-0242ac110002",
+    "brand_id": "B1QSGGS",
+    "message": "Request to create brand was received and is being processed."
 }

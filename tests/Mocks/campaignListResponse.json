@@ -1,6 +1,27 @@
 {
-    "api_id": "5e639fd0-374e-11ec-8e4c-0242ac110002",
+    "api_id": "5744537a-b967-11ec-b7ca-0242ac110002",
     "campaigns": [
+        {
+            "brand_id": "BBYQU0Z",
+            "campaign_id": "C1EDN4U",
+            "mno_metadata": {
+                "AT&T": {
+                    "tpm": 4500
+                },
+                "T-Mobile": {
+                    "brand_tier": "TOP"
+                },
+                "US Cellular": {
+                    "tpm": 4500
+                },
+                "Verizon Wireless": {
+                    "tpm": 4500
+                }
+            },
+            "registration_status": "PROCESSING",
+            "reseller_id": "",
+            "usecase": "MARKETING"
+        },
         {
             "brand_id": "BHYYNCK",
             "campaign_id": "CMPT4EP",
@@ -11,26 +32,17 @@
                 "T-Mobile": {
                     "brand_tier": "TOP"
                 },
-                "Verizon Wireless": {}
-            },
-            "reseller_id": "RPDPPUM",
-            "usecase": "ACCOUNT_NOTIFICATION"
-        },
-        {
-            "brand_id": "B8OD95Z",
-            "campaign_id": "CAIKXXT",
-            "mno_metadata": {
-                "AT&T": {
+                "US Cellular": {
                     "tpm": 4500
                 },
-                "T-Mobile": {
-                    "brand_tier": "TOP"
-                },
-                "US Cellular": {},
-                "Verizon Wireless": {}
+                "Verizon Wireless": {
+                    "tpm": 4500
+                }
             },
-            "reseller_id": "",
-            "usecase": "MIXED"
+            "registration_status": "PROCESSING",
+            "reseller_id": "RPDPPUM",
+            "sub_usecase": "2FA,ACCOUNT_NOTIFICATION",
+            "usecase": "ACCOUNT_NOTIFICATION"
         },
         {
             "brand_id": "BHYYNCK",
@@ -42,17 +54,104 @@
                 "T-Mobile": {
                     "brand_tier": "TOP"
                 },
-                "US Cellular": {},
-                "Verizon Wireless": {}
+                "US Cellular": {
+                    "tpm": 4500
+                },
+                "Verizon Wireless": {
+                    "tpm": 4500
+                }
             },
+            "registration_status": "ACTIVE",
             "reseller_id": "RPDPPUM",
+            "sub_usecase": "2FA,ACCOUNT_NOTIFICATION",
             "usecase": "ACCOUNT_NOTIFICATION"
         },
         {
-            "brand_id": "B8OD95Z",
-            "campaign_id": "CWOOIAT",
+            "brand_id": "BHYYNCK",
+            "campaign_id": "CLNHFVR",
+            "mno_metadata": {
+                "AT&T": {
+                    "tpm": 4500
+                },
+                "T-Mobile": {
+                    "brand_tier": "TOP"
+                },
+                "US Cellular": {
+                    "tpm": 4500
+                },
+                "Verizon Wireless": {
+                    "tpm": 4500
+                }
+            },
+            "registration_status": "PROCESSING",
+            "reseller_id": "RPDPPUM",
+            "sub_usecase": "2FA,ACCOUNT_NOTIFICATION",
+            "usecase": "ACCOUNT_NOTIFICATION"
+        },
+        {
+            "brand_id": "BJ6EHHH",
+            "campaign_id": "C64WUSS",
+            "mno_metadata": {
+                "AT&T": {
+                    "tpm": 15
+                },
+                "T-Mobile": {
+                    "brand_tier": "LOW"
+                },
+                "US Cellular": {
+                    "tpm": 15
+                },
+                "Verizon Wireless": {
+                    "tpm": 15
+                }
+            },
+            "registration_status": "PROCESSING",
+            "reseller_id": "",
+            "sub_usecase": "2FA,CUSTOMER_CARE,ACCOUNT_NOTIFICATION,DELIVERY_NOTIFICATION,MARKETING",
+            "usecase": "SOLE_PROPRIETOR"
+        },
+        {
+            "brand_id": "BMIORKY",
+            "campaign_id": "CAMMWAV",
+            "mno_metadata": {
+                "AT&T": {
+                    "tpm": 240
+                },
+                "T-Mobile": {
+                    "brand_tier": "LOW"
+                },
+                "US Cellular": {
+                    "tpm": 240
+                },
+                "Verizon Wireless": {
+                    "tpm": 240
+                }
+            },
+            "registration_status": "PROCESSING",
             "reseller_id": "",
             "usecase": "2FA"
+        },
+        {
+            "brand_id": "BFJRJUN",
+            "campaign_id": "CWDPZZX",
+            "mno_metadata": {
+                "AT&T": {
+                    "tpm": 4500
+                },
+                "T-Mobile": {
+                    "brand_tier": "TOP"
+                },
+                "US Cellular": {
+                    "tpm": 4500
+                },
+                "Verizon Wireless": {
+                    "tpm": 4500
+                }
+            },
+            "registration_status": "PROCESSING",
+            "reseller_id": "",
+            "sub_usecase": "CUSTOMER_CARE,2FA",
+            "usecase": "MIXED"
         },
         {
             "brand_id": "BHYYNCK",
@@ -65,16 +164,21 @@
                     "brand_tier": "TOP",
                     "tpm": 200
                 },
+                "US Cellular": {
+                    "tpm": 600
+                },
                 "Verizon Wireless": {
                     "tpm": 500
                 }
             },
+            "registration_status": "ACTIVE",
             "reseller_id": "",
+            "sub_usecase": "2FA,DELIVERY_NOTIFICATION",
             "usecase": "MIXED"
         },
         {
-            "brand_id": "BRPXS6E",
-            "campaign_id": "CFAPDR8",
+            "brand_id": "BHYYNCK",
+            "campaign_id": "CEEO7C3",
             "mno_metadata": {
                 "AT&T": {
                     "tpm": 4500
@@ -82,11 +186,43 @@
                 "T-Mobile": {
                     "brand_tier": "TOP"
                 },
-                "US Cellular": {},
-                "Verizon Wireless": {}
+                "US Cellular": {
+                    "tpm": 4500
+                },
+                "Verizon Wireless": {
+                    "tpm": 4500
+                }
             },
+            "registration_status": "PROCESSING",
             "reseller_id": "",
-            "usecase": "ACCOUNT_NOTIFICATION"
+            "sub_usecase": "2FA",
+            "usecase": "2FA"
+        },
+        {
+            "brand_id": "BHYYNCK",
+            "campaign_id": "CIUO9UP",
+            "mno_metadata": {
+                "AT&T": {
+                    "tpm": 4500
+                },
+                "T-Mobile": {
+                    "brand_tier": "TOP"
+                },
+                "US Cellular": {
+                    "tpm": 4500
+                },
+                "Verizon Wireless": {
+                    "tpm": 4500
+                }
+            },
+            "registration_status": "PROCESSING",
+            "reseller_id": "",
+            "usecase": "MARKETING"
         }
-    ]
+    ],
+    "meta": {
+        "limit": 10,
+        "next": "/v1/Account/MAODZKMDFJMJU3MTEYNG/10dlc/Campaign/?limit=10&offset=10",
+        "offset": 0
+    }
 }

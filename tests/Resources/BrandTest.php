@@ -22,32 +22,16 @@ class BrandTest extends BaseTestCase {
             'POST',
             'Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Brand/',
             [
-                'alt_business_id_type' => "GIIN",
-                'alt_business_id' => "111",
-                'city' => "New York",
-                'company_name' => "ABC Inc.",
-                'country' => "US",
-                'ein' => "111111111",
-                'ein_issuing_country' => "US",
-                'email' => "johndoe@abc.com",
-                'entity_type' => "PRIVATE_PROFIT",
-                'first_name' => "John",
-                'last_name' => "Doe",
-                'phone' => "+11234567890",
-                'postal_code' => "10001",
-                'registration_status' => "PENDING",
-                'state' => "NY",
-                'stock_exchange' => "NASDAQ",
-                'stock_symbol' => "ABC",
-                'street' => "123",
-                'vertical' => "RETAIL",
-                'website' => "http://www.abcmobile.com"
+                'brand_alias' => "vishnu128",
+                'profile_uuid' => "3cf3e991-2f94-4910-9712-61442987a2d0",
+                'brand_type' => "starter",
+                'secondary_vetting' => false
             ]);
         $body = file_get_contents(__DIR__ . '/../Mocks/brandCreationResponse.json');
 
         $this->mock(new PlivoResponse($request,200, $body));
 
-        $actual = $this->client->brand->create("New York", "ABC Inc.","US", "111111111", "US", "johndoe@abc.com", "PRIVATE_PROFIT","+11234567890","10001", "PENDING", "NY", "NASDAQ", "ABC", "123", "RETAIL");
+        $actual = $this->client->brand->create("vishnu128", "3cf3e991-2f94-4910-9712-61442987a2d0","starter", false);
 
         self::assertNotNull($actual);
     }
