@@ -101,11 +101,11 @@ class ProfileInterface extends ResourceInterface
      * @param {string} country
      * @return profileResponse response output
      */
-    public function create($profile_alias,$profile_type,$customer_type,$entity_type, $company_name,$ein,$vertical,$ein_issuing_country,$stock_symbol,$stock_exchange, $alt_business_id_type, $website, $address, $authorized_contact)
+    public function create($profile_alias,$plivo_subaccount,$customer_type,$entity_type, $company_name,$ein,$vertical,$ein_issuing_country,$stock_symbol,$stock_exchange, $alt_business_id_type, $website, $address, $authorized_contact)
     {
         $mandaoryArgs = [
             'profile_alias' => $profile_alias,
-            'profile_type' => $profile_type,
+            'plivo_subaccount' => $plivo_subaccount,
             'customer_type' => $customer_type,
             'entity_type' => $entity_type,
             'company_name' => $company_name,
