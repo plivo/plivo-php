@@ -1,0 +1,16 @@
+{
+    "api_id": "e50136b2-b168-11ec-80b6-0242ac110003",
+    "campaign_alias": "marketing messages",
+    "campaign_id": "CRIGC80",
+    "phone_numbers": [
+        {
+            "number": "14845007032",
+            "status": "PROCESSING"
+        },
+        {
+            "number": "14844963797",
+            "status": "COMPLETED"
+        }
+    ],
+    "usecase": "MIXED"
+}
