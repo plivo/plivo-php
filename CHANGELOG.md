@@ -1,5 +1,9 @@
 # Change Log
 
+## [v4.29.0](https://github.com/plivo/plivo-php/tree/v4.29.0) (2022-04-14)
+**Feature - Profile api**
+- Added profile support for 10dlc.
+
 ## [v4.28.1](https://github.com/plivo/plivo-php/tree/v4.28.1) (2022-03-30)
 **Bug fix - SpeakElementXML**
 - `voice` parameter is accepting lowercase as well as uppercase values [The Speak element](https://www.plivo.com/docs/voice/xml/speak/)
