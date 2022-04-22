@@ -52,6 +52,7 @@ class MultiPartyCallTest extends BaseTestCase{
                 'delay_dial'=> 0,
                 'max_duration'=> 14400,
                 'max_participants'=> 10,
+                'record_min_member_count'=> 1,
                 'wait_music_method'=> 'GET',
                 'agent_hold_music_method'=> 'GET',
                 'customer_hold_music_method'=> 'GET',
