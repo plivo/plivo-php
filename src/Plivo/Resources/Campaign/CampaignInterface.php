@@ -124,4 +124,41 @@ class CampaignInterface extends ResourceInterface
         return $response->getContent();   
     }
 
+    public function getNumber($campaignId, $number)
+    {
+        $response = $this->client->fetch(
+            $this->uri . '10dlc/Campaign/'. $campaignId .'/'.'Number/'.$number.'/',
+            []
+        );
+        return $response->getContent();
+    }
+
+    public function listNumber($campaignId)
+    {
+        $response = $this->client->fetch(
+            $this->uri . '10dlc/Campaign/'. $campaignId .'/'.'Number/',
+            []
+        );
+        return $response->getContent();
+    }
+    // $numbers in array of number {"numbers": ["123"]}
+    public function linkNumber($campaignId, $numbers)
+    {
+        $optionalArgs = [];
+        $optionalArgs['numbers'] = $numbers;
+        $response = $this->client->update(
+            $this->uri . '10dlc/Campaign/'. $campaignId .'/'.'Number/',
+            $optionalArgs
+        );
+        return $response->getContent();
+    }
+
+    public function deleteNumber($campaignId, $number)
+    {
+        $response = $this->client->delete(
+            $this->uri . '10dlc/Campaign/'. $campaignId .'/'.'Number/'.$number.'/',
+            []
+        );
+        return $response->getContent();
+    }
 }

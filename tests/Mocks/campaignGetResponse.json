@@ -1,5 +1,5 @@
 {
-    "api_id": "12ae5a32-3751-11ec-8e4c-0242ac110002",
+    "api_id": "36ea4d82-b967-11ec-b7ca-0242ac110002",
     "campaign": {
         "brand_id": "BHYYNCK",
         "campaign_id": "CMPT4EP",
@@ -10,9 +10,16 @@
             "T-Mobile": {
                 "brand_tier": "TOP"
             },
-            "Verizon Wireless": {}
+            "US Cellular": {
+                "tpm": 4500
+            },
+            "Verizon Wireless": {
+                "tpm": 4500
+            }
         },
+        "registration_status": "PROCESSING",
         "reseller_id": "RPDPPUM",
+        "sub_usecase": "2FA,ACCOUNT_NOTIFICATION",
         "usecase": "ACCOUNT_NOTIFICATION"
     }
 }

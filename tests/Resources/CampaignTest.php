@@ -90,4 +90,42 @@ class CampaignTest extends BaseTestCase {
         self::assertNotNull($actual);
     }
 
+    function testCampaignGetNumber()
+    {
+        $campaignID = "CRIGC80";
+        $number = "14845007032";
+        $request = new PlivoRequest(
+            'GET',
+            'Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/'.$campaignID.'/Number'.'/'. $number.'/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/campaignGetNumberResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->campaign->getNumber($campaignID,$number);
+        self::assertNotNull($actual);
+        $this->assertRequest($request);
+
+    }
+
+    function testCampaignListNumber()
+    {
+        $campaignID = "CRIGC80";
+        $request = new PlivoRequest(
+            'Get',
+            'Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/'.$campaignID.'/Number'. '/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/campaignListNumberResponse.json');
+        
+        $this->mock(new PlivoResponse($request,202, $body));
+        
+        $actual = $this->client->campaign->listNumber($campaignID);
+        
+        $this->assertRequest($request);
+        
+        self::assertNotNull($actual);
+
+    }
+
+
 }
