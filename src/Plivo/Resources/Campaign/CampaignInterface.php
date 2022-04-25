@@ -152,11 +152,11 @@ class CampaignInterface extends ResourceInterface
         return $response->getContent();
     }
 
-    public function deleteNumber($campaignId, $number)
+    public function deleteNumber($campaignId, $number, $optionalArgs = [])
     {
         $response = $this->client->delete(
             $this->uri . '10dlc/Campaign/'. $campaignId .'/'.'Number/'.$number.'/',
-            []
+            $optionalArgs
         );
         return $response->getContent();
     }
