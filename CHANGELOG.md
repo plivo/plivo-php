@@ -1,6 +1,6 @@
 # Change Log
 
-## [v4.29.1](https://github.com/plivo/plivo-php/tree/v4.29.1) (2022-04-18)
+## [v4.30.0](https://github.com/plivo/plivo-php/tree/v4.30.0) (2022-04-28)
 **Feature - 10DLC API callback**
 - Added callback support for campaign, brand, link number request.
 
