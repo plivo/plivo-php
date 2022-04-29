@@ -61,7 +61,7 @@ class MultiPartyCall extends Element {
             throw new PlivoXMLException('Invalid attribute value ' . $attributes['recordMinMemberCount']. ' for recordMinMemberCount');
         }
         elseif (!isset($attributes['recordMinMemberCount'])){
-            $attributes['record_min_member_count'] = 1;
+            $attributes['recordMinMemberCount'] = 1;
         }
         if(isset($attributes['waitMusicMethod']) and !in_array(strtoupper($attributes['waitMusicMethod']), $VALID_METHOD_VALUES, true)){
             throw new PlivoXMLException('Invalid attribute value ' . $attributes['waitMusicMethod']. ' for waitMusicMethod');
