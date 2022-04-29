@@ -22,7 +22,7 @@ class MultiPartyCall extends Element {
         'enterSound', 'enterSoundMethod', 'exitSound', 'exitSoundMethod',
         'onExitActionUrl', 'onExitActionMethod', 'relayDTMFInputs',
         'startRecordingAudio', 'startRecordingAudioMethod', 'stopRecordingAudio', 'stopRecordingAudioMethod',
-        'record_min_member_count'
+        'recordMinMemberCount'
     ];
 
     /**
@@ -57,10 +57,10 @@ class MultiPartyCall extends Element {
         elseif (!isset($attributes['maxParticipants'])){
             $attributes['maxParticipants'] = 10;
         }
-        if(isset($attributes['record_min_member_count']) and ($attributes['record_min_member_count'] < 1 or $attributes['record_min_member_count'] > 2)){
-            throw new PlivoXMLException('Invalid attribute value ' . $attributes['record_min_member_count']. ' for record_min_member_count');
+        if(isset($attributes['recordMinMemberCount']) and ($attributes['recordMinMemberCount'] < 1 or $attributes['recordMinMemberCount'] > 2)){
+            throw new PlivoXMLException('Invalid attribute value ' . $attributes['recordMinMemberCount']. ' for recordMinMemberCount');
         }
-        elseif (!isset($attributes['record_min_member_count'])){
+        elseif (!isset($attributes['recordMinMemberCount'])){
             $attributes['record_min_member_count'] = 1;
         }
         if(isset($attributes['waitMusicMethod']) and !in_array(strtoupper($attributes['waitMusicMethod']), $VALID_METHOD_VALUES, true)){
