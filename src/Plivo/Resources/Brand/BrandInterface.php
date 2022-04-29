@@ -84,9 +84,10 @@ class BrandInterface extends ResourceInterface
      * @param {string} profile_uuid
      * @param {string} brand_type
      * @param {string} secondary_vetting
+     * @param array optionalArgs contains callback, method
      * @return brandCreation response output
      */
-    public function create($brand_alias,$profile_uuid,$brand_type,$secondary_vetting)
+    public function create($brand_alias,$profile_uuid,$brand_type,$secondary_vetting, array $optionalArgs = [])
     {
         $mandaoryArgs = [
             'brand_alias' => $brand_alias,
@@ -94,7 +95,6 @@ class BrandInterface extends ResourceInterface
             'brand_type' => $brand_type,
             'esecondary_vettingin' => $secondary_vetting
         ];
-        $optionalArgs = [];
         $response = $this->client->update(
             $this->uri .'10dlc/Brand/',
             array_merge($mandaoryArgs, $optionalArgs)
