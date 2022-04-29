@@ -142,9 +142,8 @@ class CampaignInterface extends ResourceInterface
         return $response->getContent();
     }
     // $numbers in array of number {"numbers": ["123"]}
-    public function linkNumber($campaignId, $numbers)
+    public function linkNumber($campaignId, $numbers, array $optionalArgs = [])
     {
-        $optionalArgs = [];
         $optionalArgs['numbers'] = $numbers;
         $response = $this->client->update(
             $this->uri . '10dlc/Campaign/'. $campaignId .'/'.'Number/',
@@ -153,11 +152,11 @@ class CampaignInterface extends ResourceInterface
         return $response->getContent();
     }
 
-    public function deleteNumber($campaignId, $number)
+    public function deleteNumber($campaignId, $number, $optionalArgs = [])
     {
         $response = $this->client->delete(
             $this->uri . '10dlc/Campaign/'. $campaignId .'/'.'Number/'.$number.'/',
-            []
+            $optionalArgs
         );
         return $response->getContent();
     }
