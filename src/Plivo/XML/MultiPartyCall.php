@@ -21,7 +21,8 @@ class MultiPartyCall extends Element {
         'stayAlone', 'coachMode', 'mute', 'hold', 'startMpcOnEnter', 'endMpcOnExit',
         'enterSound', 'enterSoundMethod', 'exitSound', 'exitSoundMethod',
         'onExitActionUrl', 'onExitActionMethod', 'relayDTMFInputs',
-        'startRecordingAudio', 'startRecordingAudioMethod', 'stopRecordingAudio', 'stopRecordingAudioMethod'
+        'startRecordingAudio', 'startRecordingAudioMethod', 'stopRecordingAudio', 'stopRecordingAudioMethod',
+        'recordMinMemberCount'
     ];
 
     /**
@@ -55,6 +56,12 @@ class MultiPartyCall extends Element {
         }
         elseif (!isset($attributes['maxParticipants'])){
             $attributes['maxParticipants'] = 10;
+        }
+        if(isset($attributes['recordMinMemberCount']) and ($attributes['recordMinMemberCount'] < 1 or $attributes['recordMinMemberCount'] > 2)){
+            throw new PlivoXMLException('Invalid attribute value ' . $attributes['recordMinMemberCount']. ' for recordMinMemberCount');
+        }
+        elseif (!isset($attributes['recordMinMemberCount'])){
+            $attributes['recordMinMemberCount'] = 1;
         }
         if(isset($attributes['waitMusicMethod']) and !in_array(strtoupper($attributes['waitMusicMethod']), $VALID_METHOD_VALUES, true)){
             throw new PlivoXMLException('Invalid attribute value ' . $attributes['waitMusicMethod']. ' for waitMusicMethod');

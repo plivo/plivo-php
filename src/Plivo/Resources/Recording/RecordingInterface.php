@@ -34,8 +34,14 @@ class RecordingInterface extends ResourceInterface
     /**
      * @param array $optionalArgs
      *   + Valid arguments
-     *   + [string] subaccount - auth_id of the subaccount. Lists only those recordings of the main accounts which are tied to the specified subaccount.
-     *   + [string] call_uuid - Used to filter recordings for a specific call.
+     *   + [string] subaccount  - auth_id of the subaccount. Lists only those recordings of the main accounts which are tied to the specified subaccount.
+     *   + [string] call_uuid   - Used to filter recordings for a specific call.
+     *   + [string] to_number   - Used to filter recordings for a specific to_number.
+     *   + [string] from_number - Used to filter recordings for a specific from_number.
+     *   + [string] conference_name - Used to filter recordings for a specific conference_name.
+     *   + [string] mpc_name - Used to filter recordings for a specific mpc_name.
+     *   + [string] conference_uuid - Used to filter recordings for a specific conference_uuid.
+     *   + [string] mpc_uuid - Used to filter recordings for a specific mpc_uuid.
      *   + [string] add_time - Used to filter out recordings according to the time they were added.The add_time filter is a comparative filter that can be used in the following four forms:
      *                         <br /> add_time\__gt: gt stands for greater than. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. Eg:- To get all recordings that started after 2012-03-21 11:47, use add_time\__gt=2012-03-21 11:47
      *                         <br /> add_time\__gte: gte stands for greater than or equal. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. Eg:- To get all recordings that started after or exactly at 2012-03-21 11:47[:30], use add_time\__gte=2012-03-21 11:47[:30]
@@ -57,7 +63,7 @@ class RecordingInterface extends ResourceInterface
         $recordings = [];
 
         foreach ($response->getContent()['objects'] as $recording) {
-            
+
             $newRecording = new Recording(
                 $this->client, $recording, $this->pathParams['authId']);
             array_push($recordings, $newRecording);
@@ -90,7 +96,7 @@ class RecordingInterface extends ResourceInterface
             $this->client, $response->getContent(),
             $this->pathParams['authId']);
     }
-    
+
     /**
      * Delete a recording
      *

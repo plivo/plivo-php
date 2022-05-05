@@ -215,6 +215,12 @@ class MultiPartyCallInterface extends ResourceInterface
         else{
             $optionalArgs['max_participants'] = 10;
         }
+        if(isset($optionalArgs['record_min_member_count'])){
+            MPCUtils::validRange('recordMinMemberCount', $optionalArgs['record_min_member_count'], false, 1, 2);
+        }
+        else{
+            $optionalArgs['record_min_member_count'] = 1;
+        }
         if(isset($optionalArgs['wait_music_url'])){
             MPCUtils::validUrl('waitMusicUrl', $optionalArgs['wait_music_url'], false);
         }

@@ -20,6 +20,8 @@ use Plivo\Resources\Resource;
  * @property string $recordingUrl
  * @property string $recordingId
  * @property string $resourceUri
+ * @property string $fromNumber
+ * @property string $toNumber
  */
 class Recording extends Resource
 {
@@ -44,7 +46,9 @@ class Recording extends Resource
             'recordingType' => $response['recording_type'],
             'recordingUrl' => $response['recording_url'],
             'recordingId' => $response['recording_id'],
-            'resourceUri' => $response['resource_uri']
+            'resourceUri' => $response['resource_uri'],
+            'fromNumber' => $response['from_number'],
+            'toNumber' => $response['to_number']
         ];
 
         $this->pathParams = [
