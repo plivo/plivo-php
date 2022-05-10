@@ -38,6 +38,7 @@ class CampaignTest extends BaseTestCase {
                 'subscriber_optin' => True,
                 'subscriber_optout' => True,
                 'subscriber_help' => True,
+                'affiliate_marketing' => False,
                 'sample1' => "test 1",
                 'sample2' => "test 2"
                         ]);
