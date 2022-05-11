@@ -18,7 +18,8 @@
         },
         "brand_id": "B1QSGGS",
         "ein_issuing_country": "IN",
-        "entity_type": "SOLE_PROPRIETOR",
+        "entity_type": "INDIVIDUAL",
+        "brand_type": "STARTER",
         "profile_uuid": "3cf3e991-2f94-4910-9712-61442987a2d0",
         "registration_status": "COMPLETED",
         "vertical": "ENTERTAINMENT"

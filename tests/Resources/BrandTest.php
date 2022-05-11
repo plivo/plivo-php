@@ -60,7 +60,7 @@ class BrandTest extends BaseTestCase {
             'Get',
             'Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Brand/',
             []);
-        $body = file_get_contents(__DIR__ . '/../Mocks/campaignListResponse.json');
+        $body = file_get_contents(__DIR__ . '/../Mocks/brandListResponse.json');
         
         $this->mock(new PlivoResponse($request,202, $body));
         
