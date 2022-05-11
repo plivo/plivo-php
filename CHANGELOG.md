@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.32.0](https://github.com/plivo/plivo-php/tree/v4.32.0) (2022-05-10)
+- add `brand_type` field in brand get/list response
+
 ## [v4.31.0](https://github.com/plivo/plivo-php/tree/v4.31.0) (2022-05-05)
 **Feature Added - Recording**
 - now customer can filter recording with `to_number` and `from_number` filter also [Recording](https://www.plivo.com/docs/voice/api/recording/)
