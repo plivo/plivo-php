@@ -38,6 +38,7 @@ class CampaignTest extends BaseTestCase {
                 'subscriber_optin' => True,
                 'subscriber_optout' => True,
                 'subscriber_help' => True,
+                'affiliate_marketing' => False,
                 'sample1' => "test 1",
                 'sample2' => "test 2"
                         ]);
@@ -48,7 +49,7 @@ class CampaignTest extends BaseTestCase {
         $actual = $this->client->campaign->create("B8OD95Z", "campaign name sssample","INSURANCE", "MIXED", [
             "CUSTOMER_CARE",
             "2FA"
-        ], "sample description text", False, False, False, False, True, True, True, "test 1", "test 2");
+        ], "sample description text", False, False, False, False, True, True, True, False, "test 1", "test 2");
 
         $this->assertRequest($request);
 
