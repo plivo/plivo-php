@@ -72,7 +72,12 @@ class Number extends Resource
             'complianceApplicationId' => $response['compliance_application_id'],
             'complianceStatus' => $response['compliance_status']
         ];
-
+        if ($response['object_id']) {
+            $this->properties['objectId'] =  $response['object_id'];
+        }
+        if ($response['object_type']) {
+            $this->properties['objectType'] =  $response['object_type'];
+        }
         $this->pathParams = [
             'authId' => $authId,
             'number' => $response['number']
