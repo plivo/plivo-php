@@ -29,7 +29,9 @@
       "mms_enabled": true,
       "mms_rate": "0.00950",
       "compliance_application_id": "20372631212782797",
-      "compliance_status": "submitted"
+      "compliance_status": "submitted",
+      "object_id": "9565321542215",
+      "object_type": "trunk"
     },
     {
       "active": true,
@@ -52,7 +54,9 @@
       "mms_enabled": true,
       "mms_rate": "0.00750",
       "compliance_application_id": "20372631212782797",
-      "compliance_status": "submitted"
+      "compliance_status": "submitted",
+      "object_id": "9565321542215",
+      "object_type": "trunk"
     },
     {
       "active": true,
@@ -75,7 +79,9 @@
       "mms_enabled": true,
       "mms_rate": "0.00850",
       "compliance_application_id": "20372631212782799",
-      "compliance_status": "submitted"
+      "compliance_status": "submitted",
+      "object_id": "9565321542215",
+      "object_type": "trunk"
     }
   ]
 }
