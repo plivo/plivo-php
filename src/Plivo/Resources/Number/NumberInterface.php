@@ -59,15 +59,26 @@ class NumberInterface extends ResourceInterface
 
         $numbers = [];
 
-        foreach ($response->getContent()['objects'] as $number) {
-            $newNumber = new Number(
-                $this->client, $number, $this->pathParams['authId']);
+        $responseContents = $response->getContent();
+        if(!array_key_exists("error",$responseContents)){
+            foreach ($response->getContent()['objects'] as $number) {
+                $newNumber = new Number(
+                    $this->client, $number, $this->pathParams['authId']);
 
-            array_push($numbers, $newNumber);
+                array_push($numbers, $newNumber);
+            }
+            return new ResourceList(
+                $this->client, $response->getContent()['meta'], $numbers);
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+
+            );
         }
-        
-        return new ResourceList(
-            $this->client, $response->getContent()['meta'], $numbers);
     }
 
 
