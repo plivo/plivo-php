@@ -71,7 +71,7 @@ class NumberInterface extends ResourceInterface
                 $this->client, $response->getContent()['meta'], $numbers);
         } else {
             throw new PlivoResponseException(
-                "",
+                $responseContents['error'],
                 0,
                 null,
                 $response->getContent(),
