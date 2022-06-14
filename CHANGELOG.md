@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.33.0](https://github.com/plivo/plivo-php/tree/v4.33.0) (2022-06-14)
+- Private Beta release of Trunk to DID mapping
+
 ## [v4.32.0](https://github.com/plivo/plivo-php/tree/v4.32.0) (2022-05-10)
 - add `brand_type` field in brand get/list response
 
