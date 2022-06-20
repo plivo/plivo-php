@@ -29,6 +29,7 @@ use Plivo\Resources\RegulatoryCompliance\ComplianceRequirementInterface;
 use Plivo\Resources\RegulatoryCompliance\ComplianceApplicationInterface;
 use Plivo\Resources\MultiPartyCall\MultiPartyCallInterface;
 use Plivo\Resources\Profile\ProfileInterface;
+use Plivo\Resources\Zentrunk\ZentrunkInterface;
 
 /**
  * Class RestClient
@@ -56,7 +57,8 @@ use Plivo\Resources\Profile\ProfileInterface;
  * @property ComplianceApplicationInterface complianceApplication Interface to handle all ComplianceApplication related api calls
  * @property HostedMessageLOAInterface hostedMessageLOA Interface to handle all HostedMessageLOA related api calls
  * @property HostedMessagingNumberInterface hostedMessagingNumber Interface to handle all HostedMessagingNumber related api calls
- *
+ * @property ZentrunkInterface Zentrunk Interface to handle all Zentrunk Call related api
+ * 
  */
 class RestClient
 {
@@ -196,6 +198,11 @@ class RestClient
      * @var MultiPartyCallInterface
      */
     protected $_multiPartyCall;
+
+    /**
+     * @var ZentrunkInterface
+     */
+    protected $_zentrunkCall;
 
     /**
      * RestClient constructor.
@@ -523,5 +530,16 @@ class RestClient
             $this->_multiPartyCall = new MultiPartyCallInterface($this->client, $this->client->getAuthId());
         }
         return $this->_multiPartyCall;
+    }
+
+    /**
+     * @return ZentrunkInterface
+     */
+    public function getZentrunkCalls()
+    {
+        if (!$this->_zentrunkCall) {
+            $this->_zentrunkCall = new ZentrunkInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_zentrunkCall;
     }
 }
