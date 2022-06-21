@@ -12,7 +12,7 @@ use Plivo\Resources\Resource;
  * @property string $answerTime The time at which call was answered
  * @property string $billDuration The bill duration
  * @property string $callDirection The call direction
- * @property string $callDuration The call duration
+ * @property string $duration The call duration
  * @property string $callUuid The call UUID
  * @property string $endTime The time at which call ended
  * @property string $from The caller
@@ -50,7 +50,7 @@ class Zentrunk extends Resource
             'answerTime' => $response['answer_time'],
             'billDuration' => $response['bill_duration'],
             'callDirection' => $response['call_direction'],
-            'callDuration' => $response['duration'],
+            'duration' => $response['duration'],
             'callUuid' => $response['call_uuid'],
             'endTime' => $response['end_time'],
             'from' => $response['from_number'],
