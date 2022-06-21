@@ -24,7 +24,6 @@ use Plivo\Resources\Resource;
  * @property string $hangupCause Hangup Cause 
  * @property string $hangupCode Hangup Code
  * @property string $stirVerification Stir Verification
- * @property string $callId
  * @property string $trunkDomain
  * @property string $region
  * @property string $fromCountry
@@ -63,7 +62,6 @@ class Zentrunk extends Resource
             'hangupCause' => $response['hangup_cause'],
             'hangupCode' => $response['hangup_code'],
             'stirVerification' => $response['stir_verification'],
-            'callId' => $response['call_id'],
             'trunkDomain' => $response['trunk_domain'],
             'region' => $response['region'],
             'fromCountry' => $response['from_country'],
