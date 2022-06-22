@@ -1,0 +1,62 @@
+{
+    "api_id": "6fefbe46-3e96-4be1-9a1c-1306db347d9f",
+    "meta": {
+        "limit": 2,
+        "offset": 2,
+        "total_count": 2521,
+        "previous": true,
+        "next": true
+    },
+    "objects": [
+        {
+            "call_uuid": "0b2712c2-57f9-4652-bf00-a0f61aa8bb0a",
+            "from_number": "+14792020179",
+            "to_number": "+18326802467",
+            "call_direction": "outbound",
+            "duration": 20,
+            "bill_duration": 24,
+            "end_time": "2022-06-16 04:17:39",
+            "hangup_cause": "normal_hangup",
+            "hangup_initiator": "customer",
+            "rate": "0.00650",
+            "total_amount": "0.00260",
+            "initiation_time": "2022-06-16 04:17:13",
+            "answer_time": "2022-06-16 04:17:19",
+            "trunk_domain": "25737385224693277.us-east-1.zt.plivo.com",
+            "region": "us-east-1",
+            "from_country": "US",
+            "to_country": "US",
+            "transport_protocol": "udp",
+            "srtp": false,
+            "hangup_code": 3010,
+            "secure_trunking": false,
+            "secure_trunking_rate": "0.00000",
+            "stir_verification": "Not Verified"
+        },
+        {
+            "call_uuid": "471dcca0-f048-4f8c-8511-b1ba322a4321",
+            "from_number": "+14792020179",
+            "to_number": "+18326802467",
+            "call_direction": "outbound",
+            "duration": 0,
+            "bill_duration": 0,
+            "end_time": "2022-06-16 04:14:44",
+            "hangup_cause": "request_timeout_carrier",
+            "hangup_initiator": "carrier",
+            "rate": "0.00650",
+            "total_amount": "0.00000",
+            "initiation_time": "2022-06-16 04:14:34",
+            "answer_time": null,
+            "trunk_domain": "25737385224693277.us-east-1.zt.plivo.com",
+            "region": "us-east-1",
+            "from_country": "US",
+            "to_country": "US",
+            "transport_protocol": "udp",
+            "srtp": false,
+            "hangup_code": 4160,
+            "secure_trunking": false,
+            "secure_trunking_rate": "0.00000",
+            "stir_verification": "Not Verified"
+        }
+    ]
+}

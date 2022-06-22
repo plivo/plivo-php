@@ -1,4 +1,6 @@
 # Change Log
+## [v4.34.0](https://github.com/plivo/plivo-php/tree/v4.34.0) (2022-06-21)
+- Implemented new client for retrieving ZenTrunk CDRs
 
 ## [v4.33.0](https://github.com/plivo/plivo-php/tree/v4.33.0) (2022-06-14)
 - Private Beta release of Trunk to DID mapping
