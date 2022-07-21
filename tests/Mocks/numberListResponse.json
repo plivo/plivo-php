@@ -31,7 +31,9 @@
       "compliance_application_id": "20372631212782797",
       "compliance_status": "submitted",
       "object_id": "9565321542215",
-      "object_type": "trunk"
+      "object_type": "trunk",
+      "10dlc_campaign": "CWDPZZX",
+      "10dlc_registration_status": "UNREGISTERED"
     },
     {
       "active": true,
@@ -56,7 +58,9 @@
       "compliance_application_id": "20372631212782797",
       "compliance_status": "submitted",
       "object_id": "9565321542215",
-      "object_type": "trunk"
+      "object_type": "trunk",
+      "10dlc_campaign": "CWDPZZX",
+      "10dlc_registration_status": "UNREGISTERED"
     },
     {
       "active": true,
@@ -81,7 +85,9 @@
       "compliance_application_id": "20372631212782799",
       "compliance_status": "submitted",
       "object_id": "9565321542215",
-      "object_type": "trunk"
+      "object_type": "trunk",
+      "10dlc_campaign": "CWDPZZX",
+      "10dlc_registration_status": "UNREGISTERED"
     }
   ]
 }
