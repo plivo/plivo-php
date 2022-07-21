@@ -70,7 +70,9 @@ class Number extends Resource
             'voiceEnabled' => $response['voice_enabled'],
             'voiceRate' => $response['voice_rate'],
             'complianceApplicationId' => $response['compliance_application_id'],
-            'complianceStatus' => $response['compliance_status']
+            'complianceStatus' => $response['compliance_status'],
+            '10dlc_campaign' => $response['10dlc_campaign'],
+            '10dlc_registration_status' => $response['10dlc_registration_status']
         ];
         if ($response['object_id']) {
             $this->properties['objectId'] =  $response['object_id'];
