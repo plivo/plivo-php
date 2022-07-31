@@ -23,13 +23,14 @@ class TokenTest extends BaseTestCase
             'POST',
             'Account/MAXXXXXXXXXXXXXXXXXX/JWT/Token/',
             [
-                'iss'=> "iss"
+                'iss'=> "iss",
+                'sub'=> "kowshik"
             ]);
         $body = file_get_contents(__DIR__ . '/../Mocks/tokenCreateResponse.json');
 
         $this->mock(new PlivoResponse($request, 200, $body));
 
-        $actual = $this->client->token->create("MAXXXXXXXXXXXXXXXXXX", "kowshik", "starter", false);
+        $actual = $this->client->token->create("MAXXXXXXXXXXXXXXXXXX");
 
         self::assertNotNull($actual);
         self::assertEquals($actual->token, "eyJhbGciOiJIUzI1NiIsImN0eSI6InBsaXZvO3Y9MSIsInR5cCI6IkpXVCJ9.eyJhcHAiOiIiLCJleHAiOjE2NTg3ODU4ODUsImlzcyI6Ik1BTURWTFpKWTJaR1k1TVdVMVpKIiwibmJmIjoxNjU4Njk5NDg1LCJwZXIiOnsidm9pY2UiOnsiaW5jb21pbmdfYWxsb3ciOmZhbHNlLCJvdXRnb2luZ19hbGxvdyI6ZmFsc2V9fSwic3ViIjoiS293c2hpayJ9.iWwtfH9QNO7nIE_HK0GSJ3U81oRQR9gcUScrPixBK_s");

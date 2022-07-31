@@ -6,7 +6,7 @@ use Plivo\Resources\ResponseUpdate;
 
 
 /**
- * Class CallCreateResponse
+ * Class TokenCreateResponse
  * @package Plivo\Resources\Token
  */
 class TokenCreateResponse extends ResponseUpdate

@@ -7,7 +7,7 @@ use Plivo\Resources\Resource;
 
 
 /**
- * Class Call
+ * Class Token
  * @package Plivo\Resources\Token
  * @property string $iss The Auth_id
  * @property string $sub The Subject
