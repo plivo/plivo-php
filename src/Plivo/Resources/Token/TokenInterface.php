@@ -39,10 +39,13 @@ class TokenInterface extends ResourceInterface
      *   + Valid arguments with their types
      *   + [string] Sub - Subject
      *   + [Integer] nbf - Token Creation Time
-     *
+     *   + [Integer] exp - Token Expiration Time
+     *   + [Boolean] incoming_allow - Incoming Call Allowance
+     *   + [Boolean] outgoing_allow - Outgoing Call Allowance
+     *   + [string] app - Application ID
      * answer_method - The method used to call the answer_url. Defaults to POST.
      *  + contains sub, nbf, exp, incoming_allow, outgoing_allow, app
-     * @return TokenCreation response output
+     * @return Token response output
      * @throws PlivoValidationException
      */
     public function create(string $iss, array $optionalArgs = [])
@@ -55,15 +58,17 @@ class TokenInterface extends ResourceInterface
             throw new PlivoValidationException(
                 "Mandatory parameters cannot be null");
         }
-        if ($optionalArgs['incoming_allow'] && empty($optionalArgs['sub'])) {
-            throw new PlivoValidationException(
-                "sub is mandatory when incoming_allow is true");
+        if (!empty($optionalArgs['incoming_allow'])) {
+            $optionalArgs['per']['voice']['incoming_allow'] = $optionalArgs['incoming_allow'];
+            unset($optionalArgs['incoming_allow']);
         }
-
-
+        if (!empty($optionalArgs['outgoing_allow'])) {
+            $optionalArgs['per']['voice']['outgoing_allow'] = $optionalArgs['outgoing_allow'];
+            unset($optionalArgs['outgoing_allow']);
+        }
+        print_r($optionalArgs);
         $response = $this->client->update(
-            $this->uri .'JWT/Token/',
-            array_merge($mandatoryArgs, $optionalArgs)
+            $this->uri .'JWT/Token/',array_merge($mandatoryArgs, $optionalArgs)
         );
         return $response->getContent();
 

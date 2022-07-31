@@ -13,7 +13,8 @@ use Plivo\Resources\Resource;
  * @property string $sub The Subject
  * @property integer $nbf The creation time
  * @property integer $exp The expiration time
- * @property boolean @$outgoing_allow The outgoing_allow flag
+ * @property string $incoming_allow The incoming_allow
+ * @property boolean $outgoing_allow The outgoing_allow flag
  * @property string $app The app id
  */
 class Token extends Resource
