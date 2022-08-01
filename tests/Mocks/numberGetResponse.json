@@ -23,6 +23,6 @@
   "compliance_status": "submitted",
   "object_id": "9565321542215",
   "object_type": "trunk",
-  "10dlc_campaign": "CWDPZZX",
-  "10dlc_registration_status": "UNREGISTERED"
+  "tendlc_campaign_id": "CWDPZZX",
+  "tendlc_registration_status": "UNREGISTERED"
 }
