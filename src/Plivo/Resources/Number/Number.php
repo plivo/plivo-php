@@ -71,8 +71,8 @@ class Number extends Resource
             'voiceRate' => $response['voice_rate'],
             'complianceApplicationId' => $response['compliance_application_id'],
             'complianceStatus' => $response['compliance_status'],
-            'tendlc_campaign_id' => $response['tendlc_campaign_id'],
-            'tendlc_registration_status' => $response['tendlc_registration_status']
+            'tendlcCampaignId' => $response['tendlc_campaign_id'],
+            'tendlcRegistrationStatus' => $response['tendlc_registration_status']
         ];
         if ($response['object_id']) {
             $this->properties['objectId'] =  $response['object_id'];
