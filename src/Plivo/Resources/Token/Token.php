@@ -39,9 +39,5 @@ class Token extends Resource
             'outgoing_allow' => $response['outgoing_allow'],
             'app' => $response['app']
         ];
-
-        $this->pathParams = [
-            'authId' => $authId
-        ];
     }
 }
