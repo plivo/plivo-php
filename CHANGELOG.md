@@ -1,4 +1,7 @@
 # Change Log
+## [v4.35.0](https://github.com/plivo/plivo-php/tree/v4.35.0) (2022-08-01)
+- Added token creation
+
 ## [v4.34.0](https://github.com/plivo/plivo-php/tree/v4.34.0) (2022-06-21)
 - Implemented new client for retrieving ZenTrunk CDRs
 
