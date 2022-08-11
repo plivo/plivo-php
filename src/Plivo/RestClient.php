@@ -29,6 +29,7 @@ use Plivo\Resources\RegulatoryCompliance\ComplianceRequirementInterface;
 use Plivo\Resources\RegulatoryCompliance\ComplianceApplicationInterface;
 use Plivo\Resources\MultiPartyCall\MultiPartyCallInterface;
 use Plivo\Resources\Profile\ProfileInterface;
+use Plivo\Resources\Token\TokenInterface;
 use Plivo\Resources\Zentrunk\ZentrunkInterface;
 
 /**
@@ -36,6 +37,7 @@ use Plivo\Resources\Zentrunk\ZentrunkInterface;
  * @package Plivo
  *
  * @property CallInterface call Interface to handle all Call related api calls
+ * @property TokenInterface token Interface to handle all Token related api calls
  * @property SubAccountInterface subAccount Interface to handle all SubAccount related api calls
  * @property ApplicationInterface application Interface to handle all Application related api calls
  * @property AccountInterface account Interface to handle all Account related api calls
@@ -122,6 +124,10 @@ class RestClient
     protected $_subAccount;
     /**
      * @var CallInterface
+     */
+    protected $_token;
+    /**
+     * @var TokenInterface
      */
     protected $_call;
     /**
@@ -368,6 +374,16 @@ class RestClient
             $this->_call = new CallInterface($this->client, $this->client->getAuthId());
         }
         return $this->_call;
+    }
+    /**
+     * @return TokenInterface
+     */
+    protected function getToken()
+    {
+        if (!$this->_token) {
+            $this->_token = new TokenInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_token;
     }
 
     /**

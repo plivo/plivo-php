@@ -1,4 +1,7 @@
 # Change Log
+## [v4.35.0](https://github.com/plivo/plivo-php/tree/v4.35.0) (2022-08-01)
+-  `JWT Token Creation API` added functionality to create a new JWT token.
+
 ## [v4.34.0](https://github.com/plivo/plivo-php/tree/v4.34.0) (2022-06-21)
 - Implemented new client for retrieving ZenTrunk CDRs
 
