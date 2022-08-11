@@ -21,7 +21,7 @@ class TokenTest extends BaseTestCase
             [
                 "iss" => "MAXXXXXXXXXXXXXXXXXX"
             ]);
-        $body = file_get_contents(__DIR__ . '/../Mocks/tokenCreateResponse.json');
+        $body = file_get_contents(__DIR__ . '/../Mocks/tokenCreteResponse.json');
 
         $this->mock(new PlivoResponse($request,200, $body));
 
