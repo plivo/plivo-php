@@ -97,7 +97,7 @@ class CampaignInterface extends ResourceInterface
      * @param {string} sample2 
      * @return campaignCreation response output
      */
-    public function create($brand_id,$campaign_alias,$vertical,$usecase,array $sub_usecases,$description,$embedded_link,$embedded_phone,$age_gated,$direct_lending,$subscriber_optin,$subscriber_optout,$subscriber_help,$affiliate_marketing,$sample1,$sample2, $message_flow,$help_message,$optout_message, array $optionalArgs = [])
+    public function create($brand_id,$campaign_alias,$vertical,$usecase,array $sub_usecases,$description,$embedded_link,$embedded_phone,$age_gated,$direct_lending,$subscriber_optin,$subscriber_optout,$subscriber_help,$affiliate_marketing,$sample1,$sample2,$message_flow,$help_message,$optout_message,array $optionalArgs = [])
     {
         $mandaoryArgs = [
             'brand_id' => $brand_id,

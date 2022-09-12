@@ -41,11 +41,9 @@ class CampaignTest extends BaseTestCase {
                 'affiliate_marketing' => False,
                 'sample1' => "sample 1 should be 20 minimum character",
                 'sample2' => "sample 2 should be 20 minimum character",
-                'help_message' => "help_message should be 20 minimum character",
                 'message_flow' => "message_flow should be 20 minimum character",
-                'optout_message' => "optout_message should be 20 minimum character"
-
-                        ]);
+                'help_message' => "help_message should be 20 minimum character",
+                'optout_message' => "optout_message should be 20 minimum character"]);
         $body = file_get_contents(__DIR__ . '/../Mocks/campaignCreationResponse.json');
 
         $this->mock(new PlivoResponse($request,200, $body));
@@ -53,7 +51,7 @@ class CampaignTest extends BaseTestCase {
         $actual = $this->client->campaign->create("B8OD95Z", "campaign name sssample","INSURANCE", "MIXED", [
             "CUSTOMER_CARE",
             "2FA"
-        ], "sample description text should be minimum 40 character", False, False, False, False, True, True, True, False, "sample 1 should be 20 minimum character", "sample 2 should be 20 minimum character", "message_flow should be 20 minimum character", "help_message should be 20 minimum character","optout_message should be 20 minimum character");
+        ], "sample description text should be minimum 40 character", False, False, False, False, True, True, True, False, "sample 1 should be 20 minimum character", "sample 2 should be 20 minimum character", "message_flow should be 20 minimum character", "help_message should be 20 minimum character", "optout_message should be 20 minimum character");
 
         $this->assertRequest($request);
 
