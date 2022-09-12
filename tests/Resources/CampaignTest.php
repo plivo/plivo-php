@@ -43,7 +43,8 @@ class CampaignTest extends BaseTestCase {
                 'sample2' => "sample 2 should be 20 minimum character",
                 'message_flow' => "message_flow should be 20 minimum character",
                 'help_message' => "help_message should be 20 minimum character",
-                'optout_message' => "optout_message should be 20 minimum character"]);
+                'optout_message' => "optout_message should be 20 minimum character"
+            ]);
         $body = file_get_contents(__DIR__ . '/../Mocks/campaignCreationResponse.json');
 
         $this->mock(new PlivoResponse($request,200, $body));

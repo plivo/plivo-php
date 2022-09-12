@@ -1,4 +1,7 @@
 # Change Log
+## [v4.35.1](https://github.com/plivo/plivo-php/tree/v4.35.1) (2022-09-12)
+-  10DLC: Adding new attributes to campaign creation request
+
 ## [v4.35.0](https://github.com/plivo/plivo-php/tree/v4.35.0) (2022-08-01)
 -  `JWT Token Creation API` added functionality to create a new JWT token.
 
