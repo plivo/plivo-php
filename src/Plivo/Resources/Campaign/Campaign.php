@@ -25,11 +25,9 @@ class Campaign extends Resource
         parent::__construct($client);
 
         $this->properties = [
-            'campaign' => $response['campaign'],
-            'brand_id' => $response['brand_id'],
-            'campaigns' => $response['campaigns'],
+            'campaign_id' => $response['campaign_id'],
+            'registration_status' => $response['registration_status'],
             'api_id' => $response['api_id'],
-            'meta' => $response['meta'],
         ];
         $this->uri = $uri;
     }

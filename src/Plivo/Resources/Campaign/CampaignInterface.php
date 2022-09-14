@@ -37,7 +37,7 @@ class CampaignInterface extends ResourceInterface
     }
 
     /**
-     * @param $uuid
+     * @param $campaignId
      * @return Campaign
      * @throws PlivoValidationException
      */
@@ -73,8 +73,24 @@ class CampaignInterface extends ResourceInterface
             $optionalArgs
         );
 
-        return $response->getContent();
+        $campaigns = [];
+
+        foreach ($response->getContent()['campaigns'] as $campaign) {
+            $newCampaign = new Campaign(
+                $this->client,
+                $campaign,
+                $this->pathParams['authId'],
+                $this->uri);
+
+            array_push($campaigns, $newCampaign);
+        }
+
+        return new CampaignList(
+            $this->client,
+            $response->getContent()['meta'],
+            $campaigns);
     }
+    
 
     /**
      * Create a new Campaign
