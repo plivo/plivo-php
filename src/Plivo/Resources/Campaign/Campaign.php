@@ -7,19 +7,14 @@ use Plivo\BaseClient;
 use Plivo\Resources\Resource;
 
 /**
- * Class Media
- * @package Plivo\Resources\Media
- * @property string $content_type
- * @property string $file_name
- * @property string $media_id
- * @property int $size
- * @property string $upload_time
- * @property string $url
+ * Class Campaign
+ * @package Plivo\Resources\Campaign
+ 
  */
 class Campaign extends Resource
 {
     /**
-     * Media constructor.
+     * Campaign constructor.
      * @param BaseClient $client The Plivo API REST client
      * @param array $response
      * @param string $authId
@@ -30,7 +25,8 @@ class Campaign extends Resource
         parent::__construct($client);
 
         $this->properties = [
-            'campaign' => $response['campaign'],
+            // 'campaign' => $response['campaign'],
+            'brand_id' => $response['brand_id'],
             'api_id' => $response['api_id'],
         ];
         $this->uri = $uri;
