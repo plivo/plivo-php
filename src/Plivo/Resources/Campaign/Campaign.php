@@ -27,6 +27,15 @@ class Campaign extends Resource
         $this->properties = [
             'campaign_id' => $response['campaign_id'],
             'registration_status' => $response['registration_status'],
+            'reseller_id' => $response['reseller_id'],
+            'brand_id' => $response['brand_id'],
+            'usecase' => $response['usecase'],
+            'mno_metadata' => $response['mno_metadata'],
+            'sub_usecase' => $response['sub_usecase'],
+            'campaign_attributes' => $response['campaign_attributes'],
+            'description' => $response['description'],
+            'sample1' => $response['sample1'],
+            'sample2' => $response['sample2'],
             'api_id' => $response['api_id'],
         ];
         $this->uri = $uri;
