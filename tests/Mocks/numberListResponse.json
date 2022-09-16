@@ -33,7 +33,8 @@
       "object_id": "9565321542215",
       "object_type": "trunk",
       "tendlc_campaign_id": "CWDPZZX",
-      "tendlc_registration_status": "UNREGISTERED"
+      "tendlc_registration_status": "UNREGISTERED",
+      "toll_free_sms_verification": "unverified"
     },
     {
       "active": true,
@@ -60,7 +61,8 @@
       "object_id": "9565321542215",
       "object_type": "trunk",
       "tendlc_campaign_id": "CWDPZZX",
-      "tendlc_registration_status": "UNREGISTERED"
+      "tendlc_registration_status": "UNREGISTERED",
+      "toll_free_sms_verification": "unverified"
     },
     {
       "active": true,
@@ -87,7 +89,8 @@
       "object_id": "9565321542215",
       "object_type": "trunk",
       "tendlc_campaign_id": "CWDPZZX",
-      "tendlc_registration_status": "UNREGISTERED"
+      "tendlc_registration_status": "UNREGISTERED",
+      "toll_free_sms_verification": "unverified"
     }
   ]
 }

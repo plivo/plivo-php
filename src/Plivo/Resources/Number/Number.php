@@ -72,7 +72,8 @@ class Number extends Resource
             'complianceApplicationId' => $response['compliance_application_id'],
             'complianceStatus' => $response['compliance_status'],
             'tendlcCampaignId' => $response['tendlc_campaign_id'],
-            'tendlcRegistrationStatus' => $response['tendlc_registration_status']
+            'tendlcRegistrationStatus' => $response['tendlc_registration_status'],
+            'tollFreeSMSVerification' => $response['toll_free_sms_verification'],
         ];
         if ($response['object_id']) {
             $this->properties['objectId'] =  $response['object_id'];
