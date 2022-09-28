@@ -95,9 +95,12 @@ class CampaignInterface extends ResourceInterface
      * @param {boolean} affiliate_marketing
      * @param {string} sample1 
      * @param {string} sample2 
+     * @param {string} message_flow
+     * @param {string} help_message
+     * @param {string} optout_message
      * @return campaignCreation response output
      */
-    public function create($brand_id,$campaign_alias,$vertical,$usecase,array $sub_usecases,$description,$embedded_link,$embedded_phone,$age_gated,$direct_lending,$subscriber_optin,$subscriber_optout,$subscriber_help,$affiliate_marketing,$sample1,$sample2, array $optionalArgs = [])
+    public function create($brand_id,$campaign_alias,$vertical,$usecase,array $sub_usecases,$description,$embedded_link,$embedded_phone,$age_gated,$direct_lending,$subscriber_optin,$subscriber_optout,$subscriber_help,$affiliate_marketing,$sample1,$sample2,$message_flow,$help_message,$optout_message,array $optionalArgs = [])
     {
         $mandaoryArgs = [
             'brand_id' => $brand_id,
@@ -115,7 +118,10 @@ class CampaignInterface extends ResourceInterface
             'subscriber_help' => $subscriber_help,
             'affiliate_marketing' => $affiliate_marketing,
             'sample1' => $sample1,
-            'sample2' => $sample2
+            'sample2' => $sample2,
+            'message_flow' => $message_flow,
+            'help_message' => $help_message,
+            'optout_message' => $optout_message
         ];
 
         $response = $this->client->update(
