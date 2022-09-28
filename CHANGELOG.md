@@ -1,5 +1,5 @@
 # Change Log
-## [v4.35.1](https://github.com/plivo/plivo-php/tree/v4.35.1) (2022-09-12)
+## [v4.35.1](https://github.com/plivo/plivo-php/tree/v4.35.1) (2022-09-28)
 -  10DLC: Adding new attributes to campaign creation request
 
 ## [v4.35.0](https://github.com/plivo/plivo-php/tree/v4.35.0) (2022-08-01)
