@@ -504,6 +504,93 @@ class CallInterface extends ResourceInterface
             $params
         );
     }
+
+    /**
+     * Start stream on a live call
+     *
+     * @param string $liveCallUuid
+     * @param array $optionalArgs
+     *   + Valid arguments with their types
+     *   + [int] time_limit - Max recording duration in seconds. Defaults to 60.
+     *   + [string] file_format - The format of the recording. The valid formats are mp3 and wav formats. Defaults to mp3.
+     *   + [string] transcription_type - The type of transcription required. The following values are allowed:
+     *                                 <br /> auto - This is the default value. Transcription is completely automated; turnaround time is about 5 minutes.
+     *                                 <br /> hybrid - Transcription is a combination of automated and human verification processes; turnaround time is about 10-15 minutes.
+     *                                 <br /> *Our transcription service is primarily for the voicemail use case (limited to recorded files lasting for up to 2 minutes). Currently the service is available only in English and you will be charged for the usage. Please check out the price details.
+     *   + [string] transcription_url - The URL where the transcription is available.
+     *   + [string] transcription_method - The method used to invoke the transcription_url. Defaults to POST.
+     *   + [string] callback_url - The URL invoked by the API when the recording ends. The following parameters are sent to the callback_url:
+     *                           <br /> api_id - the same API ID returned by the call record API.
+     *                           <br /> record_url - the URL to access the recorded file.
+     *                           <br /> call_uuid - the call uuid of the recorded call.
+     *                           <br /> recording_id - the recording ID of the recorded call.
+     *                           <br /> recording_duration - duration in seconds of the recording.
+     *                           <br /> recording_duration_ms - duration in milliseconds of the recording.
+     *                           <br /> recording_start_ms - when the recording started (epoch time UTC) in milliseconds.
+     *                           <br /> recording_end_ms - when the recording ended (epoch time UTC) in milliseconds.
+     * @option options [String] :callback_method - The method which is used to invoke the callback_url URL. Defaults to POST.
+     * @return CallStream
+     * @throws PlivoValidationException
+     */
+    public function startStream($liveCallUuid, array $optionalArgs = []): CallStream
+    {
+        if (empty($liveCallUuid)) {
+            throw new PlivoValidationException(
+                "Which call to stream? No callUuid given");
+        }
+        $optionalArgs['isVoiceRequest'] = true;
+        $response = $this->client->update(
+            $this->uri . $liveCallUuid . '/Stream/',
+            $optionalArgs
+        );
+
+        $responseContents = $response->getContent();
+
+        if(!array_key_exists("error",$responseContents)){
+            return new CallStream(
+                $responseContents['api_id'],
+                $responseContents['message'],
+                $responseContents['stream_id'],
+                $response->getStatusCode()
+            );
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+
+            );
+        }
+    }
+
+    /**
+     * Stop stream on a live call
+     *
+     * @param string $liveCallUuid
+     * @param string|null $streamId - You can specify a record URL to stop only one record. By default all recordings are stopped.
+     * @throws PlivoValidationException
+     */
+    public function stopStream($liveCallUuid, $url = null)
+    {
+        if (empty($liveCallUuid)) {
+            throw new PlivoValidationException(
+                "Which call to stop streaming? No callUuid given");
+        }
+
+        $params = [];
+
+        if (!empty($url)) {
+            $params = ['URL' => $url];
+        }
+
+        $params['isVoiceRequest'] = true;
+        $this->client->delete(
+            $this->uri . $liveCallUuid . '/Stream/',
+            $params
+        );
+    }
     
     /**
      * Start playing audio in a live call

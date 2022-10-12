@@ -27,7 +27,7 @@ class Stream extends Element
      */
     function __construct($body, $attributes = [])
     {
-        if (!is_null($attributes['extraHeaders'])) {
+        if (array_key_exists("extraHeaders",$attributes)) {
             $attributes['extraHeaders'] = $this->processExtraHeaders($attributes['extraHeaders']);
         }
         parent::__construct($body, $attributes);
