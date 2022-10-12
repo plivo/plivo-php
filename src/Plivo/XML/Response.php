@@ -22,7 +22,8 @@ class Response extends Element {
         'Conference',
         'DTMF',
         'Message',
-        'MultiPartyCall'
+        'MultiPartyCall',
+        'Stream'
     ];
 
     /**
