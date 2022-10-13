@@ -638,7 +638,6 @@ class CallInterface extends ResourceInterface
         if(!array_key_exists("error",$responseContents)){
             return new CallStreamGetAllResponse(
                 $responseContents['api_id'],
-                $responseContents['message'],
                 $responseContents['meta'],
                 $responseContents['objects'],
                 $response->getStatusCode()
@@ -688,7 +687,6 @@ class CallInterface extends ResourceInterface
         if(!array_key_exists("error",$responseContents)){
             return new CallStreamGetSpecificResponse(
                 $responseContents['api_id'],
-                $responseContents['message'],
                 $responseContents['call_uuid'],
                 $responseContents['end_time'],
                 $responseContents['service_url'],

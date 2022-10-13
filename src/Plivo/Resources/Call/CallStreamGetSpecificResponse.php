@@ -22,7 +22,6 @@ class CallStreamGetSpecificResponse extends ResponseUpdate
     /**
      * CallStreamGetSpecificResponse constructor.
      * @param $apiID
-     * @param string $message
      * @param $callUuid
      * @param $endTime
      * @param $serviceUrl
@@ -32,9 +31,9 @@ class CallStreamGetSpecificResponse extends ResponseUpdate
      * @param $streamId
      * @param $statusCode
      */
-    public function __construct($apiID, $message, $callUuid, $endTime, $serviceUrl, $startTime, $status, $statusCallbackUrl, $streamId, $statusCode)
+    public function __construct($apiID, $callUuid, $endTime, $serviceUrl, $startTime, $status, $statusCallbackUrl, $streamId, $statusCode)
     {
-        parent::__construct($apiID, $message,$statusCode);
+        parent::__construct($apiID, '',$statusCode);
 
         $this->callUuid = $callUuid;
         $this->endTime = $endTime;
