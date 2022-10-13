@@ -11,6 +11,10 @@ use Plivo\Resources\ResourceList;
 use Plivo\Resources\ResponseUpdate;
 use Plivo\Util\ArrayOperations;
 
+require_once('CallStream.php');
+require_once('CallStreamGetAllResponse.php');
+require_once('CallStreamGetSpecificResponse.php');
+
 
 /**
  * Class CallInterface
@@ -511,24 +515,17 @@ class CallInterface extends ResourceInterface
      * @param string $liveCallUuid
      * @param array $optionalArgs
      *   + Valid arguments with their types
-     *   + [int] time_limit - Max recording duration in seconds. Defaults to 60.
-     *   + [string] file_format - The format of the recording. The valid formats are mp3 and wav formats. Defaults to mp3.
-     *   + [string] transcription_type - The type of transcription required. The following values are allowed:
-     *                                 <br /> auto - This is the default value. Transcription is completely automated; turnaround time is about 5 minutes.
-     *                                 <br /> hybrid - Transcription is a combination of automated and human verification processes; turnaround time is about 10-15 minutes.
-     *                                 <br /> *Our transcription service is primarily for the voicemail use case (limited to recorded files lasting for up to 2 minutes). Currently the service is available only in English and you will be charged for the usage. Please check out the price details.
-     *   + [string] transcription_url - The URL where the transcription is available.
-     *   + [string] transcription_method - The method used to invoke the transcription_url. Defaults to POST.
-     *   + [string] callback_url - The URL invoked by the API when the recording ends. The following parameters are sent to the callback_url:
-     *                           <br /> api_id - the same API ID returned by the call record API.
-     *                           <br /> record_url - the URL to access the recorded file.
-     *                           <br /> call_uuid - the call uuid of the recorded call.
-     *                           <br /> recording_id - the recording ID of the recorded call.
-     *                           <br /> recording_duration - duration in seconds of the recording.
-     *                           <br /> recording_duration_ms - duration in milliseconds of the recording.
-     *                           <br /> recording_start_ms - when the recording started (epoch time UTC) in milliseconds.
-     *                           <br /> recording_end_ms - when the recording ended (epoch time UTC) in milliseconds.
-     * @option options [String] :callback_method - The method which is used to invoke the callback_url URL. Defaults to POST.
+     *   + [string] service_url - Websockets url to which the audio stream needs to be initiated.
+     *   + [boolean] bidirectional - Specifies if the audio being streamed over websockets is oneway (read only for the wss service) only or bidirectional (the wss service can read as well as write audio back).
+     *   + [string] audio_track - The audio track (inbound or outbound) of the underlying call which Plivo will fork and stream to the wss service.
+     *   + [int] stream_timeout - Maximum duration, in seconds, for which audio will be streamed once streaming starts. At the end of the specified duration, streaming will stop. This will have no impact on the rest of the call flow. Needs to be positive integer if provided. Defaults to 86400 (24 hrs).
+     *   + [string] status_callback_url - URL that is notified by Plivo when one of the following events occur:
+     *                                   <br /> stream is connected and audio begins streaming (1st packet is sent)
+     *                                   <br /> stream is stopped intentionally or when stream timeout is reached
+     *                                   <br /> stream failed to connect or got disconnected due to any reason during an ongoing call
+     *   + [string] status_callback_method - Valid values: GET, POST [default]
+     *   + [string] content_type - Preferred audio codec and sampling rate. Valid values: audio/x-l16;rate=8000 [default], audio/x-l16;rate=16000, audio/x-mulaw;rate=8000
+     *   + [array] extra_headers - These are key value pairs which will be passed to the wss service along with your stream.
      * @return CallStream
      * @throws PlivoValidationException
      */
@@ -572,24 +569,145 @@ class CallInterface extends ResourceInterface
      * @param string|null $streamId - You can specify a record URL to stop only one record. By default all recordings are stopped.
      * @throws PlivoValidationException
      */
-    public function stopStream($liveCallUuid, $url = null)
+    public function stopStream($liveCallUuid)
     {
         if (empty($liveCallUuid)) {
             throw new PlivoValidationException(
-                "Which call to stop streaming? No callUuid given");
+                "Which call to stop streams on? No callUuid given");
         }
 
         $params = [];
-
-        if (!empty($url)) {
-            $params = ['URL' => $url];
-        }
 
         $params['isVoiceRequest'] = true;
         $this->client->delete(
             $this->uri . $liveCallUuid . '/Stream/',
             $params
         );
+    }
+
+    /**
+     * Stop a specific stream on a live call
+     *
+     * @param string $liveCallUuid
+     * @param string $streamId
+     * @throws PlivoValidationException
+     */
+    public function stopSpecificStream($liveCallUuid, ?string $streamId)
+    {
+        if (empty($liveCallUuid)) {
+            throw new PlivoValidationException(
+                "Which call to stop a stream on? No callUuid given");
+        }
+
+        if (empty($streamId)) {
+            throw new PlivoValidationException(
+                "Which stream to stop? No streamId given");
+        }
+
+        $params = [];
+
+        $params['isVoiceRequest'] = true;
+        $this->client->delete(
+            $this->uri . $liveCallUuid . '/Stream/',
+            $params
+        );
+    }
+
+    /**
+     * Get details of all streams on a live call
+     *
+     * @param string $liveCallUuid
+     * @param array $optionalArgs
+     * @return CallStreamGetAllResponse
+     * @throws PlivoValidationException
+     */
+    public function getAllStreams($liveCallUuid, array $optionalArgs = []): CallStreamGetAllResponse
+    {
+        if (empty($liveCallUuid)) {
+            throw new PlivoValidationException(
+                "Which call to get stream details from? No callUuid given");
+        }
+        $optionalArgs['isVoiceRequest'] = true;
+        $response = $this->client->fetch(
+            $this->uri . $liveCallUuid . '/Stream/',
+            $optionalArgs
+        );
+
+        $responseContents = $response->getContent();
+
+        if(!array_key_exists("error",$responseContents)){
+            return new CallStreamGetAllResponse(
+                $responseContents['api_id'],
+                $responseContents['message'],
+                $responseContents['meta'],
+                $responseContents['objects'],
+                $response->getStatusCode()
+            );
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+
+            );
+        }
+    }
+
+    /**
+     * Get details of a specific stream on a live call
+     *
+     * @param string $liveCallUuid
+     * @param string $streamId
+     * @param array $optionalArgs
+     * @option options [String] :callback_method - The method which is used to invoke the callback_url URL. Defaults to POST.
+     * @return CallStreamGetSpecificResponse
+     * @throws PlivoValidationException
+     */
+    public function getSpecificStream($liveCallUuid, $streamId, array $optionalArgs = []): CallStreamGetSpecificResponse
+    {
+        if (empty($liveCallUuid)) {
+            throw new PlivoValidationException(
+                "Which call to get stream details from? No callUuid given");
+        }
+
+        if (empty($streamId)) {
+            throw new PlivoValidationException(
+                "Which stream to get details of? No streamId given");
+        }
+
+        $optionalArgs['isVoiceRequest'] = true;
+        $response = $this->client->fetch(
+            $this->uri . $liveCallUuid . '/Stream/' . $streamId,
+            $optionalArgs
+        );
+
+        $responseContents = $response->getContent();
+
+        if(!array_key_exists("error",$responseContents)){
+            return new CallStreamGetSpecificResponse(
+                $responseContents['api_id'],
+                $responseContents['message'],
+                $responseContents['call_uuid'],
+                $responseContents['end_time'],
+                $responseContents['service_url'],
+                $responseContents['start_time'],
+                $responseContents['status'],
+                $responseContents['status_callback_url'],
+                $responseContents['stream_id'],
+                $response->getStatusCode()
+            );
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+
+            );
+        }
     }
     
     /**

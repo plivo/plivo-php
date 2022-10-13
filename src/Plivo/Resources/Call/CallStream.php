@@ -12,7 +12,6 @@ use Plivo\Resources\ResponseUpdate;
 class CallStream extends ResponseUpdate
 {
     protected $streamId;
-    protected $recordingId;
 
     /**
      * CallStream constructor.
