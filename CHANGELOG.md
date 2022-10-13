@@ -1,4 +1,9 @@
 # Change Log
+## [v4.36.0](https://github.com/plivo/plivo-php/tree/v4.36.0) (2022-09-28)
+**Audio Streaming**
+- API support for starting, deleting, getting streams on a live call
+- XML creation support for stream element
+
 ## [v4.35.1](https://github.com/plivo/plivo-php/tree/v4.35.1) (2022-09-28)
 -  10DLC: Adding new attributes to campaign creation request
 
