@@ -257,7 +257,7 @@ class PlivoRequest
             return $url;
         }
 
-        $getParams =  http_build_query($params, null, '&');
+        $getParams =  http_build_query($params, "", '&');
 
         return $url . '?' . $getParams;
     }
