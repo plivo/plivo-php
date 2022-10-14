@@ -1,4 +1,8 @@
 # Change Log
+## [v4.36.0](https://github.com/plivo/plivo-php/tree/v4.36.0) (2022-10-14)
+- added 3 new keys to AccountPhoneNumber object:`tendlc_registration_status`, `tendlc_campaign_id` and `toll_free_sms_verification` (https://www.plivo.com/docs/numbers/api/account-phone-number#the-accountphonenumber-object)
+- added 3 new filters to AccountPhoneNumber - list all my numbers API:`tendlc_registration_status`, `tendlc_campaign_id` and `toll_free_sms_verification` (https://www.plivo.com/docs/numbers/api/account-phone-number#list-all-my-numbers)
+
 ## [v4.35.1](https://github.com/plivo/plivo-php/tree/v4.35.1) (2022-09-28)
 -  10DLC: Adding new attributes to campaign creation request
 
