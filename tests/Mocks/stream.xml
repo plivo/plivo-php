@@ -1,4 +1,4 @@
 <?xml version="1.0"?>
 <Response>
-    <Stream bidirectional="true" extraHeaders="'abcX-PH':'def'">wss://mystream.ngrok.io/audiostream</Stream>
+    <Stream bidirectional="true" extraHeaders="'abc':'def'">wss://mystream.ngrok.io/audiostream</Stream>
 </Response>

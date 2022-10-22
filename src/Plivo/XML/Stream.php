@@ -27,7 +27,7 @@ class Stream extends Element
      */
     function __construct($body, $attributes = [])
     {
-        if (array_key_exists("extraHeaders",$attributes)) {
+        if (array_key_exists("extraHeaders", $attributes)) {
             $attributes['extraHeaders'] = $this->processExtraHeaders($attributes['extraHeaders']);
         }
         parent::__construct($body, $attributes);
@@ -39,20 +39,11 @@ class Stream extends Element
         foreach ($extraHeaders as $key => $value) {
             {
                 $processedExtraHeaders .= "'";
-                if ($this->endsWith($key,'X-PH')) {
-                    $processedExtraHeaders .= $key . "'";
-                } else {
-                    $processedExtraHeaders .= $key . "X-PH" . "'";
-                }
+                $processedExtraHeaders .= $key . "'";
                 $processedExtraHeaders .= ":" . "'" . $value . "'" . ",";
             }
         }
 
         return rtrim($processedExtraHeaders, ",");
-    }
-
-    function endsWith($haystack, $needle): bool
-    {
-        return substr_compare($haystack, $needle, -strlen($needle)) === 0;
     }
 }
