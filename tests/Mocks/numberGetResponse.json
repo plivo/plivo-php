@@ -22,5 +22,8 @@
   "compliance_application_id": "20372631212782797",
   "compliance_status": "submitted",
   "object_id": "9565321542215",
-  "object_type": "trunk"
+  "object_type": "trunk",
+  "tendlc_campaign_id": "CWDPZZX",
+  "tendlc_registration_status": "UNREGISTERED",
+  "toll_free_sms_verification": null
 }

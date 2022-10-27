@@ -31,7 +31,10 @@
       "compliance_application_id": "20372631212782797",
       "compliance_status": "submitted",
       "object_id": "9565321542215",
-      "object_type": "trunk"
+      "object_type": "trunk",
+      "tendlc_campaign_id": "CWDPZZX",
+      "tendlc_registration_status": "COMPLETED",
+      "toll_free_sms_verification": null
     },
     {
       "active": true,
@@ -56,7 +59,10 @@
       "compliance_application_id": "20372631212782797",
       "compliance_status": "submitted",
       "object_id": "9565321542215",
-      "object_type": "trunk"
+      "object_type": "trunk",
+      "tendlc_campaign_id": "CWDPZZX",
+      "tendlc_registration_status": "PROCESSING",
+      "toll_free_sms_verification": null
     },
     {
       "active": true,
@@ -67,8 +73,8 @@
       "city":"US",
       "country": "UNITED STATES",
       "monthly_rental_rate": "0.80000",
-      "number": "14152753408",
-      "number_type": "local",
+      "number": "18337811793",
+      "number_type": "tollfree",
       "region": "California, UNITED STATES",
       "resource_uri": "/v1/Account/MANWVLYTK4ZWU1YTY4ZT/Number/14152753408/",
       "sms_enabled": true,
@@ -81,7 +87,10 @@
       "compliance_application_id": "20372631212782799",
       "compliance_status": "submitted",
       "object_id": "9565321542215",
-      "object_type": "trunk"
+      "object_type": "trunk",
+      "tendlc_campaign_id": null,
+      "tendlc_registration_status": null,
+      "toll_free_sms_verification": "unverified"
     }
   ]
 }
