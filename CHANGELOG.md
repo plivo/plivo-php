@@ -1,4 +1,6 @@
 # Change Log
+## [v4.36.1](https://github.com/plivo/plivo-php/tree/v4.36.1) (2022-10-31)
+-  Support for PHP 8.1 version
 
 ## [v4.36.0](https://github.com/plivo/plivo-php/tree/v4.36.0) (2022-10-14)
 - Added 3 new keys to AccountPhoneNumber object:`tendlc_registration_status`, `tendlc_campaign_id` and `toll_free_sms_verification` (https://www.plivo.com/docs/numbers/api/account-phone-number#the-accountphonenumber-object)
