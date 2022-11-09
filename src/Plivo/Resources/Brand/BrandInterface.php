@@ -103,4 +103,28 @@ class BrandInterface extends ResourceInterface
         return $response->getContent();   
     }
 
+
+     /**
+     * @param $brandId
+     * @return BrandUsecases
+     * @throws PlivoValidationException
+     */
+    public function get_brand_usecases($brandId)
+    {
+        if (ArrayOperations::checkNull([$brandId])) {
+            throw
+            new PlivoValidationException(
+                'brand id is mandatory');
+        }
+
+        $response = $this->client->fetch(
+            $this->uri . '10dlc/Brand/'. $brandId .'/usecases' . '/',
+            []
+        );
+        $responseContents = $response->getContent();
+        return new BrandUsecase(
+            $this->client, $responseContents,
+            $this->pathParams['authId'], $this->uri);
+    }
+
 }
