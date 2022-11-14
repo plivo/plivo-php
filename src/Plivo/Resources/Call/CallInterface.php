@@ -525,7 +525,7 @@ class CallInterface extends ResourceInterface
      *                                   <br /> stream failed to connect or got disconnected due to any reason during an ongoing call
      *   + [string] status_callback_method - Valid values: GET, POST [default]
      *   + [string] content_type - Preferred audio codec and sampling rate. Valid values: audio/x-l16;rate=8000 [default], audio/x-l16;rate=16000, audio/x-mulaw;rate=8000
-     *   + [array] extra_headers - These are key value pairs which will be passed to the wss service along with your stream.
+     *   + [string] extra_headers - These are key value pairs which will be passed to the wss service along with your stream.
      * @return CallStream
      * @throws PlivoValidationException
      */

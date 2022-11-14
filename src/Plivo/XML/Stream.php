@@ -27,23 +27,6 @@ class Stream extends Element
      */
     function __construct($body, $attributes = [])
     {
-        if (array_key_exists("extraHeaders", $attributes)) {
-            $attributes['extraHeaders'] = $this->processExtraHeaders($attributes['extraHeaders']);
-        }
         parent::__construct($body, $attributes);
-    }
-
-    function processExtraHeaders($extraHeaders): string
-    {
-        $processedExtraHeaders = '';
-        foreach ($extraHeaders as $key => $value) {
-            {
-                $processedExtraHeaders .= "'";
-                $processedExtraHeaders .= $key . "'";
-                $processedExtraHeaders .= ":" . "'" . $value . "'" . ",";
-            }
-        }
-
-        return rtrim($processedExtraHeaders, ",");
     }
 }
