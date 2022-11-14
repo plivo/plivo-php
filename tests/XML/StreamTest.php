@@ -16,7 +16,7 @@ class StreamTest extends BaseTestCase
         $response = new Response();
         $params1 = array(
             'bidirectional' => true,
-            'extraHeaders' => array('abc'=>'def')
+            'extraHeaders' => "a=1,b=2"
         );
 
         $response->addStream("wss://mystream.ngrok.io/audiostream",$params1);
