@@ -11,8 +11,15 @@ use Plivo\Resources\ResponseUpdate;
  */
 class CallStreamGetSpecificResponse extends ResponseUpdate
 {
+    protected $audioTrack;
+    protected $bidirectional;
+    protected $billedAmount;
+    protected $billedDuration;
     protected $callUuid;
+    protected $createdAt;
     protected $endTime;
+    protected $plivoAuthId;
+    protected $resourceUri;
     protected $serviceUrl;
     protected $startTime;
     protected $status;
@@ -22,25 +29,40 @@ class CallStreamGetSpecificResponse extends ResponseUpdate
     /**
      * CallStreamGetSpecificResponse constructor.
      * @param $apiID
+     * @param $audioTrack
+     * @param $bidirectional
+     * @param $billedAmount
+     * @param $billedDuration
      * @param $callUuid
+     * @param $createdAt
      * @param $endTime
+     * @param $plivoAuthId
+     * @param $resourceUri
      * @param $serviceUrl
      * @param $startTime
      * @param $status
      * @param $statusCallbackUrl
-     * @param $streamId
      * @param $statusCode
+     * @param $streamId
      */
-    public function __construct($apiID, $callUuid, $endTime, $serviceUrl, $startTime, $status, $statusCallbackUrl, $streamId, $statusCode)
+    public function __construct($apiID, $audioTrack, $bidirectional, $billedAmount, $billedDuration, $callUuid, $createdAt, $endTime, $plivoAuthId, $resourceUri, $serviceUrl, $startTime, $status, $statusCallbackUrl, $streamId, $statusCode)
     {
         parent::__construct($apiID, '',$statusCode);
 
+        $this->audioTrack = $audioTrack;
+        $this->bidirectional = $bidirectional;
+        $this->billedAmount = $billedAmount;
+        $this->billedDuration = $billedDuration;
         $this->callUuid = $callUuid;
+        $this->createdAt = $createdAt;
         $this->endTime = $endTime;
+        $this->plivoAuthId = $plivoAuthId;
+        $this->resourceUri = $resourceUri;
         $this->serviceUrl = $serviceUrl;
         $this->startTime = $startTime;
         $this->status = $status;
         $this->statusCallbackUrl = $statusCallbackUrl;
+        $this->streamId = $streamId;
     }
 
     /**
@@ -49,6 +71,62 @@ class CallStreamGetSpecificResponse extends ResponseUpdate
     public function getCallUuid()
     {
         return $this->callUuid;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAudioTrack()
+    {
+        return $this->audioTrack;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBidirectional()
+    {
+        return $this->bidirectional;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBilledAmount()
+    {
+        return $this->billedAmount;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBilledDuration()
+    {
+        return $this->billedDuration;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlivoAuthId()
+    {
+        return $this->plivoAuthId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResourceUri()
+    {
+        return $this->resourceUri;
     }
 
     /**

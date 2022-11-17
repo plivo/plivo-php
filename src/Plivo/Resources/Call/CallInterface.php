@@ -649,7 +649,6 @@ class CallInterface extends ResourceInterface
                 null,
                 $response->getContent(),
                 $response->getStatusCode()
-
             );
         }
     }
@@ -687,8 +686,15 @@ class CallInterface extends ResourceInterface
         if(!array_key_exists("error",$responseContents)){
             return new CallStreamGetSpecificResponse(
                 $responseContents['api_id'],
+                $responseContents['audio_track'],
+                $responseContents['bidirectional'],
+                $responseContents['billed_amount'],
+                $responseContents['billed_duration'],
                 $responseContents['call_uuid'],
+                $responseContents['created_at'],
                 $responseContents['end_time'],
+                $responseContents['plivo_auth_id'],
+                $responseContents['resource_uri'],
                 $responseContents['service_url'],
                 $responseContents['start_time'],
                 $responseContents['status'],
