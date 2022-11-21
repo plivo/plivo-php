@@ -135,7 +135,7 @@ class CampaignTest extends BaseTestCase {
     {
         $campaignID = "CMPT4EP";
         $request = new PlivoRequest(
-            'GET',
+            'DELETE',
             'Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/'.$campaignID.'/',
             []);
         $body = file_get_contents(__DIR__ . '/../Mocks/campaignDeleteResponse.json');

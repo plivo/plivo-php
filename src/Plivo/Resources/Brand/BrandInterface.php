@@ -128,8 +128,8 @@ class BrandInterface extends ResourceInterface
     }
 
     /**
-     * @param $uuid
-     * @return Brand
+     * @param $brand_id
+     * @return Message
      * @throws PlivoValidationException
      */
     public function delete($brandId)

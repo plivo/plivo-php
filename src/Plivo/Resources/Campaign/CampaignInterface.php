@@ -170,8 +170,8 @@ class CampaignInterface extends ResourceInterface
     }
 
     /**
-     * @param $uuid
-     * @return Campaign
+     * @param $campaign_id
+     * @return Message
      * @throws PlivoValidationException
      */
     public function delete($campaignId)
