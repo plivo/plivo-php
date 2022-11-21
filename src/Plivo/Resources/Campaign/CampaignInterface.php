@@ -186,9 +186,6 @@ class CampaignInterface extends ResourceInterface
             $this->uri . '10dlc/Campaign/'. $campaignId .'/',
             []
         );
-        $responseContents = $response->getContent();
-        return new Campaign(
-            $this->client, $responseContents,
-            $this->pathParams['authId'], $this->uri);
+        return $response->getContent();   
     }
 }

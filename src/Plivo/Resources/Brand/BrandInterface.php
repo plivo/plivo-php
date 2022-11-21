@@ -144,10 +144,8 @@ class BrandInterface extends ResourceInterface
             $this->uri . '10dlc/Brand/'. $brandId .'/',
             []
         );
-        $responseContents = $response->getContent();
-        return new Brand(
-            $this->client, $responseContents,
-            $this->pathParams['authId'], $this->uri);
+        
+        return $response->getContent();
     }
 
 }
