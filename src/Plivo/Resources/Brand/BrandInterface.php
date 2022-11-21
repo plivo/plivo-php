@@ -127,4 +127,27 @@ class BrandInterface extends ResourceInterface
             $this->pathParams['authId'], $this->uri);
     }
 
+    /**
+     * @param $uuid
+     * @return Brand
+     * @throws PlivoValidationException
+     */
+    public function delete($brandId)
+    {
+        if (ArrayOperations::checkNull([$brandId])) {
+            throw
+            new PlivoValidationException(
+                'brand id is mandatory');
+        }
+
+        $response = $this->client->delete(
+            $this->uri . '10dlc/Brand/'. $brandId .'/',
+            []
+        );
+        $responseContents = $response->getContent();
+        return new Brand(
+            $this->client, $responseContents,
+            $this->pathParams['authId'], $this->uri);
+    }
+
 }
