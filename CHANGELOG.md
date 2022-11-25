@@ -1,7 +1,9 @@
 # Change Log
+## [v4.37.1](https://github.com/plivo/plivo-php/tree/v4.36.1) (2022-11-11)
+-  Support for PHP 8.1 version
+
 ## [v4.37.0](https://github.com/plivo/plivo-php/tree/v4.37.0) (2022-11-04)
 - Added Brand Usecase Request
-
 
 ## [v4.36.1](https://github.com/plivo/plivo-php/tree/v4.36.1) (2022-11-11)
 **Bug fix - StartRecording** 
