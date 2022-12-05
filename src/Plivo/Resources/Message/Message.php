@@ -57,6 +57,9 @@ class Message extends Resource
         if (!empty($response['error_code'])) {
             $this->properties['errorCode'] = $response['error_code'];
         }
+        if (!empty($response['message_expiry'])) {
+            $this->properties['messageExpiry'] = $response['message_expiry'];
+        }
 
         $this->pathParams = [
             'authId' => $authId,
