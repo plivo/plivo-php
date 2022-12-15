@@ -168,4 +168,24 @@ class CampaignInterface extends ResourceInterface
         );
         return $response->getContent();
     }
+
+    /**
+     * @param $campaign_id
+     * @return Message
+     * @throws PlivoValidationException
+     */
+    public function delete($campaignId)
+    {
+        if (ArrayOperations::checkNull([$campaignId])) {
+            throw
+            new PlivoValidationException(
+                'campaign id is mandatory');
+        }
+
+        $response = $this->client->delete(
+            $this->uri . '10dlc/Campaign/'. $campaignId .'/',
+            []
+        );
+        return $response->getContent();   
+    }
 }

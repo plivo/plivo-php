@@ -131,5 +131,22 @@ class CampaignTest extends BaseTestCase {
 
     }
 
+    public function testDeleteCampaign()
+    {
+        $campaignID = "CMPT4EP";
+        $request = new PlivoRequest(
+            'DELETE',
+            'Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/'.$campaignID.'/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/campaignDeleteResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->campaign->delete($campaignID);
+        self::assertNotNull($actual);
+        $this->assertRequest($request);
+
+    }
+
 
 }
