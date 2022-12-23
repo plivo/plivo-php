@@ -14,12 +14,13 @@ class CallStreamGetSpecificResponse extends ResponseUpdate
     protected $audioTrack;
     protected $bidirectional;
     protected $billedAmount;
-    protected $billedDuration;
+    protected $billDuration;
     protected $callUuid;
     protected $createdAt;
     protected $endTime;
     protected $plivoAuthId;
     protected $resourceUri;
+    protected $roundedBillDuration;
     protected $serviceUrl;
     protected $startTime;
     protected $status;
@@ -32,12 +33,13 @@ class CallStreamGetSpecificResponse extends ResponseUpdate
      * @param $audioTrack
      * @param $bidirectional
      * @param $billedAmount
-     * @param $billedDuration
+     * @param $billDuration
      * @param $callUuid
      * @param $createdAt
      * @param $endTime
      * @param $plivoAuthId
      * @param $resourceUri
+     * @param $roundedBillDuration
      * @param $serviceUrl
      * @param $startTime
      * @param $status
@@ -45,19 +47,20 @@ class CallStreamGetSpecificResponse extends ResponseUpdate
      * @param $statusCode
      * @param $streamId
      */
-    public function __construct($apiID, $audioTrack, $bidirectional, $billedAmount, $billedDuration, $callUuid, $createdAt, $endTime, $plivoAuthId, $resourceUri, $serviceUrl, $startTime, $status, $statusCallbackUrl, $streamId, $statusCode)
+    public function __construct($apiID, $audioTrack, $bidirectional, $billedAmount, $billDuration, $callUuid, $createdAt, $endTime, $plivoAuthId, $resourceUri, $roundedBillDuration, $serviceUrl, $startTime, $status, $statusCallbackUrl, $streamId, $statusCode)
     {
         parent::__construct($apiID, '',$statusCode);
 
         $this->audioTrack = $audioTrack;
         $this->bidirectional = $bidirectional;
         $this->billedAmount = $billedAmount;
-        $this->billedDuration = $billedDuration;
+        $this->billDuration = $billDuration;
         $this->callUuid = $callUuid;
         $this->createdAt = $createdAt;
         $this->endTime = $endTime;
         $this->plivoAuthId = $plivoAuthId;
         $this->resourceUri = $resourceUri;
+        $this->roundedBillDuration = $roundedBillDuration;
         $this->serviceUrl = $serviceUrl;
         $this->startTime = $startTime;
         $this->status = $status;
@@ -100,9 +103,18 @@ class CallStreamGetSpecificResponse extends ResponseUpdate
     /**
      * @return mixed
      */
-    public function getBilledDuration()
+    public function getBillDuration()
     {
-        return $this->billedDuration;
+        return $this->billDuration;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getRoundedBillDuration()
+    {
+        return $this->roundedBillDuration;
     }
 
     /**
