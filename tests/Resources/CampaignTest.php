@@ -75,6 +75,38 @@ class CampaignTest extends BaseTestCase {
         $this->assertRequest($request);
 
     }
+
+    public function testCampaignUpdate()
+    {
+        $campaignID = "CMPT4EP";
+        $request = new PlivoRequest(
+            'POST',
+            'Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/'.$campaignID.'/',
+            [
+                
+                'reseller_id' => "",
+                'description' => "",
+                'sample1' => "sample 1 should be 20 minimum character",
+                'sample2' => "",
+                'message_flow' => "",
+                'help_message' => "",
+                'optout_message' => "",
+                'optin_keywords' => "",
+                'optout_keywords' => "",
+                'optin_message' => "",
+                'help_keywords' => "",
+                
+            ]);
+        $body = file_get_contents(__DIR__ . '/../Mocks/campaignUpdateResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->campaign->update($campaignID, "","","sample 1 should be 20 minimum character","","","","","","","","");
+
+        $this->assertRequest($request);
+
+        self::assertNotNull($actual);
+    }
    
     
     function testCampaignList()

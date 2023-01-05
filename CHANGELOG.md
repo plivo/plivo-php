@@ -1,4 +1,7 @@
 # Change Log
+## [v4.39.0](https://github.com/plivo/plivo-php/tree/v4.39.0) (2022-12-16)
+-  Added update campaign API
+
 ## [v4.38.0](https://github.com/plivo/plivo-php/tree/v4.38.0) (2022-12-06)
 -  Added Delete campaign and brand API
 

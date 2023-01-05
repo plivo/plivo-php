@@ -132,6 +132,49 @@ class CampaignInterface extends ResourceInterface
         return $response->getContent();   
     }
 
+
+    /**
+     * Update Campaign
+     *
+     * @param {string} campaignId
+     * @param {string} description  
+     * @param {string} reseller_id  
+     * @param {string} sample1 
+     * @param {string} sample2 
+     * @param {string} message_flow
+     * @param {string} help_message
+     * @param {string} optin_keywords
+     * @param {string} optin_message
+     * @param {string} optout_keywords
+     * @param {string} optout_message
+     * @param {string} help_keywords
+     * @return Campaign
+     */
+    public function update($campaignId,$description,$reseller_id,$sample1,$sample2,$message_flow,$help_message,$optin_keywords,$optin_message,$optout_keywords,$optout_message,$help_keywords,array $optionalArgs = [])
+    {
+        $mandaoryArgs = [
+            'reseller_id' => $reseller_id,
+            'description' => $description,
+            'sample1' => $sample1,
+            'sample2' => $sample2,
+            'message_flow' => $message_flow,
+            'help_message' => $help_message,
+            'optout_message' => $optout_message,
+            'optin_keywords' => $optin_keywords,
+            'optout_keywords' => $optout_keywords,
+            'optin_message' => $optin_message,
+            'help_keywords' => $help_keywords,
+        ];
+
+        $response = $this->client->update(
+            $this->uri . '10dlc/Campaign/'. $campaignId .'/',
+            array_merge($mandaoryArgs, $optionalArgs)
+        );
+
+        $responseContents = $response->getContent();
+        return $responseContents;
+    }
+
     public function getNumber($campaignId, $number)
     {
         $response = $this->client->fetch(
