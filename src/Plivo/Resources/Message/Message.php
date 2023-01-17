@@ -47,7 +47,10 @@ class Message extends Resource
             'resourceUri' => $response['resource_uri'],
             'totalAmount' => $response['total_amount'],
             'totalRate' => $response['total_rate'],
-            'units' => $response['units']
+            'units' => $response['units'],
+            'tendlc_campaign_id' => $response['tendlc_campaign_id'],
+            'tendlc_registration_status' => $response['tendlc_registration_status'],
+            'destination_country_iso2' => $response['destination_country_iso2']
         ];
 
         // handled empty string and null case
@@ -56,6 +59,13 @@ class Message extends Resource
         }
         if (!empty($response['error_code'])) {
             $this->properties['errorCode'] = $response['error_code'];
+        }
+
+        if (!empty($response['tendlc_campaign_id'])) {
+            $this->properties['tendlc_campaign_id'] = $response['tendlc_campaign_id'];
+        }
+        if (!empty($response['tendlc_registration_status'])) {
+            $this->properties['tendlc_registration_status'] = $response['tendlc_registration_status'];
         }
 
         $this->pathParams = [
