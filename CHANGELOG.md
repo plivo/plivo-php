@@ -1,4 +1,7 @@
 # Change Log
+## [v4.40.0](https://github.com/plivo/plivo-php/tree/v4.39.0) (2023-01-23)
+-  Added new param - 'message_expiry' in Send Message API
+ 
 ## [v4.39.0](https://github.com/plivo/plivo-php/tree/v4.39.0) (2022-12-16)
 -  Added update campaign API
 
