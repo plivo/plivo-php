@@ -1,4 +1,13 @@
 # Change Log
+## [v4.40.0](https://github.com/plivo/plivo-php/tree/v4.40.0) (2023-01-18)
+-  Added new param(Message_expiry) in Send message API
+
+## [v4.39.0](https://github.com/plivo/plivo-php/tree/v4.39.0) (2022-12-16)
+-  Added update campaign API
+
+## [v4.38.0](https://github.com/plivo/plivo-php/tree/v4.38.0) (2022-12-06)
+-  Added Delete campaign and brand API
+
 ## [v4.37.1](https://github.com/plivo/plivo-php/tree/v4.37.1) (2022-11-15)
 -  Support for PHP 8.1 version
 
