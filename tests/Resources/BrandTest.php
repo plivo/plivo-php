@@ -88,4 +88,21 @@ class BrandTest extends BaseTestCase {
 
     }
 
+    public function testDeleteBrandUsecase()
+    {
+        $brandID = "BRPXS6E";
+        $request = new PlivoRequest(
+            'DELETE',
+            'Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Brand/'.$brandID.'/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/brandDeleteResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->brand->delete($brandID);
+        self::assertNotNull($actual);
+        $this->assertRequest($request);
+
+    }
+
 }
