@@ -5,3 +5,4 @@ generateDocs.sh
 composer.phar
 composer.lock
 vendor/
+php-sdk-test/

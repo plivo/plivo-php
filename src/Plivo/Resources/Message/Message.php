@@ -22,6 +22,7 @@ use Plivo\Resources\Resource;
  * @property string $units
  * @property ?string $errorCode
  * @property ?string $powerpackID
+ * @property ?string $requesterIP
  */
 class Message extends Resource
 {
@@ -59,6 +60,10 @@ class Message extends Resource
         }
         if (!empty($response['message_expiry'])) {
             $this->properties['messageExpiry'] = $response['message_expiry'];
+        }
+
+        if (!empty($response['requester_ip'])) {
+            $this->properties['requesterIP'] = $response['requester_ip'];
         }
 
         $this->pathParams = [

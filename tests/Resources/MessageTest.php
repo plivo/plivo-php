@@ -79,6 +79,7 @@ class MessageTest extends BaseTestCase {
     public function testMessageGet()
     {
         $messageUuid = "5b40a428-bfc7-4daf-9d06-726c558bf3b8";
+        $requesterIP = "192.168.1.1";
         $request = new PlivoRequest(
             'GET',
             'Account/MAXXXXXXXXXXXXXXXXXX/Message/'.$messageUuid.'/',
@@ -94,6 +95,7 @@ class MessageTest extends BaseTestCase {
         self::assertNotNull($actual);
 
         self::assertEquals($actual->messageUuid, $messageUuid);
+        self::assertEquals($actual->requesterIP, $requesterIP);
     }
 
     public function testMessageGetwithPowerpack()
@@ -139,6 +141,8 @@ class MessageTest extends BaseTestCase {
     
     function testMessageList()
     {
+        $requesterIP1 = "192.168.1.1";
+        $requesterIP2 = "192.168.1.20";
         $request = new PlivoRequest(
             'Get',
             'Account/MAXXXXXXXXXXXXXXXXXX/Message/',
@@ -152,6 +156,8 @@ class MessageTest extends BaseTestCase {
         $this->assertRequest($request);
         
         self::assertNotNull($actual);
+        self::assertEquals($actual->resources[0]->requesterIP, $requesterIP1);
+        self::assertEquals($actual->resources[19]->requesterIP, $requesterIP2);
     }
 
 }
