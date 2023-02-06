@@ -64,7 +64,7 @@ class Call extends Resource
             'hangupCauseName' => $response['hangup_cause_name'],
             'hangupSource' => $response['hangup_source'],
             'stirVerification' => $response['stir_verification'],
-            'voiceNetworkGroup' => $response['voice_network_group']
+            'voiceNetworkGroup' => $response['voice_network_group'],
             'sourceIp' => $response['source_ip']
         ];
 
