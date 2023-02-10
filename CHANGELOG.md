@@ -1,9 +1,31 @@
 # Change Log
 
-## [v4.37.0](https://github.com/plivo/plivo-php/tree/v4.37.0) (2022-10-27)
+## [v4.42.0](https://github.com/plivo/plivo-php/tree/v4.42.0) (2022-02-10)
 **Audio Streaming**
 - API support for starting, deleting, getting streams on a live call
 - XML creation support for stream element
+
+## [v4.41.0](https://github.com/plivo/plivo-php/tree/v4.41.0) (2023-01-25)
+- Add `requesterIP` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
+## [v4.40.0](https://github.com/plivo/plivo-php/tree/v4.40.0) (2023-01-18)
+-  Added new param(Message_expiry) in Send message API
+
+## [v4.39.0](https://github.com/plivo/plivo-php/tree/v4.39.0) (2022-12-16)
+-  Added update campaign API
+
+## [v4.38.0](https://github.com/plivo/plivo-php/tree/v4.38.0) (2022-12-06)
+-  Added Delete campaign and brand API
+
+## [v4.37.1](https://github.com/plivo/plivo-php/tree/v4.37.1) (2022-11-15)
+-  Support for PHP 8.1 version
+
+## [v4.37.0](https://github.com/plivo/plivo-php/tree/v4.37.0) (2022-11-04)
+- Added Brand Usecase Request
+
+## [v4.36.1](https://github.com/plivo/plivo-php/tree/v4.36.1) (2022-11-11)
+**Bug fix - StartRecording** 
+- SDK throws exception when `callback_url` is provided in the request
 
 ## [v4.36.0](https://github.com/plivo/plivo-php/tree/v4.36.0) (2022-10-14)
 - Added 3 new keys to AccountPhoneNumber object:`tendlc_registration_status`, `tendlc_campaign_id` and `toll_free_sms_verification` (https://www.plivo.com/docs/numbers/api/account-phone-number#the-accountphonenumber-object)

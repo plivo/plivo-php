@@ -71,4 +71,38 @@ class BrandTest extends BaseTestCase {
         self::assertNotNull($actual);
     }
 
+    public function testGetBrandUsecase()
+    {
+        $brandID = "BRPXS6E";
+        $request = new PlivoRequest(
+            'GET',
+            'Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Brand/'.$brandID.'/usecases' . '/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/brandGetUsecasesResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->brand->get_brand_usecases($brandID);
+        self::assertNotNull($actual);
+        $this->assertRequest($request);
+
+    }
+
+    public function testDeleteBrandUsecase()
+    {
+        $brandID = "BRPXS6E";
+        $request = new PlivoRequest(
+            'DELETE',
+            'Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Brand/'.$brandID.'/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/brandDeleteResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->brand->delete($brandID);
+        self::assertNotNull($actual);
+        $this->assertRequest($request);
+
+    }
+
 }

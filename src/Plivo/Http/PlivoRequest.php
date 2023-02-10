@@ -170,7 +170,7 @@ class PlivoRequest
     {
         $params = $this->getPostParams();
 
-        return http_build_query($params, null, '&');
+        return http_build_query($params, '', '&');
     }
 
     /**
@@ -257,7 +257,7 @@ class PlivoRequest
             return $url;
         }
 
-        $getParams =  http_build_query($params, null, '&');
+        $getParams =  http_build_query($params, '', '&');
 
         return $url . '?' . $getParams;
     }

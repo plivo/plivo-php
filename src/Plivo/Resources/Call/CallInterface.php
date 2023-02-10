@@ -462,9 +462,9 @@ class CallInterface extends ResourceInterface
 
         if(!array_key_exists("error",$responseContents)){
             return new CallRecording(
-                $responseContents['url'],
+                $responseContents['url'] ?? null,
                 $responseContents['api_id'],
-                $responseContents['recording_id'],
+                $responseContents['recording_id'] ?? null,
                 $responseContents['message'],
                 $response->getStatusCode()
             );
