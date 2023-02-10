@@ -1,4 +1,4 @@
-FROM php:7.3-alpine
+FROM php:8.1.5-fpm-alpine
 
 RUN apk update && apk add git vim bash curl
 
