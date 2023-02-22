@@ -23,6 +23,7 @@ use Plivo\Resources\Resource;
  * @property ?string $errorCode
  * @property ?string $powerpackID
  * @property ?string $requesterIP
+ * @property ?bool $isDomestic
  */
 class Message extends Resource
 {
@@ -72,6 +73,9 @@ class Message extends Resource
         }
         if (!empty($response['tendlc_registration_status'])) {
             $this->properties['tendlc_registration_status'] = $response['tendlc_registration_status'];
+            
+        if (isset($response['is_domestic'])){
+            $this->properties['isDomestic'] = $response['is_domestic'];
         }
 
         $this->pathParams = [
