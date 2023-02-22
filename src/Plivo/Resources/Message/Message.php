@@ -48,8 +48,6 @@ class Message extends Resource
             'totalAmount' => $response['total_amount'],
             'totalRate' => $response['total_rate'],
             'units' => $response['units'],
-            'tendlc_campaign_id' => $response['tendlc_campaign_id'],
-            'tendlc_registration_status' => $response['tendlc_registration_status'],
             'destination_country_iso2' => $response['destination_country_iso2']
         ];
 
