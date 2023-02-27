@@ -48,7 +48,10 @@ class Recording extends Resource
             'recordingId' => $response['recording_id'],
             'resourceUri' => $response['resource_uri'],
             'fromNumber' => $response['from_number'],
-            'toNumber' => $response['to_number']
+            'toNumber' => $response['to_number'],
+            'cost' => $response['cost'],
+            'roundedDuration' => $response['rounded_duration'],
+            'daysOfStorage' => $response['days_of_storage']
         ];
 
         $this->pathParams = [
