@@ -1,4 +1,7 @@
 # Change Log
+## [4.42.0](https://github.com/plivo/plivo-php/tree/v4.42.0) (2023-02-27)
+**Feature - Enhance MDR filtering capabilities **
+- Added new fields on MDR object response
 
 ## [v4.41.0](https://github.com/plivo/plivo-php/tree/v4.41.0) (2023-01-25)
 - Add `requesterIP` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
