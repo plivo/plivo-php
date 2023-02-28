@@ -236,7 +236,7 @@ class CallInterface extends ResourceInterface
         $calls = [];
 
         $responseContents = $response->getContent();
-        if ($response->getStatusCode() == 400){
+        if(array_key_exists("error",$responseContents)){
             throw new PlivoResponseException(
                 $responseContents['error'],
                 0,
