@@ -1,5 +1,5 @@
 # Change Log
-## [4.43.0](https://github.com/plivo/plivo-php/tree/v4.43.0) (2023-02-28)
+## [4.42.1](https://github.com/plivo/plivo-php/tree/v4.42.1) (2023-02-28)
 -Added Exception handling for Retrieve all Calls API [Retrieve details of all calls](https://www.plivo.com/docs/voice/api/call#retrieve-all-calls)
 
 ## [4.42.0](https://github.com/plivo/plivo-php/tree/v4.42.0) (2023-02-27)
