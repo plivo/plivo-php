@@ -1,6 +1,6 @@
 FROM php:7.3-alpine
 
-RUN apk update && apk add git vim bash curl
+RUN apk update && apk add git vim bash curl make
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php
