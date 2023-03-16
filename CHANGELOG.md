@@ -1,4 +1,8 @@
 # Change Log
+## [v4.43.1](https://github.com/plivo/plivo-php/tree/v4.43.1) (2023-03-16)
+**Feature - Added New Param 'cnam_lookup_number_config' in GetCall and ListCalls**
+- Add `cnam_lookup_number_config` to the response for the [retrieve a call details API](https://www.plivo.com/docs/voice/api/call#retrieve-a-call) and the [retreive all call details API](https://www.plivo.com/docs/voice/api/call#retrieve-all-calls)
+
 ## [v4.43.0](https://github.com/plivo/plivo-php/tree/v4.43.0) (2023-03-03)
 - Add `isDomestic` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
 
