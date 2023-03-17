@@ -1,4 +1,8 @@
 # Change Log
+
+## [4.44.0](https://github.com/plivo/plivo-php/tree/v4.44.0) (2023-24-03)
+- Added New Param `created_at` to the response of the [list all profiles API], [get profile API], [list all brands API], [get brand API], [list all campaigns API] and the [get campaign API]
+
 ## [v4.43.1](https://github.com/plivo/plivo-php/tree/v4.43.1) (2023-03-24)
 - Fix brand registration create api param
 
