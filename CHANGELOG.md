@@ -1,4 +1,8 @@
 # Change Log
+
+## [4.44.0](https://github.com/plivo/plivo-php/tree/v4.44.0) (2023-17-03)
+- Added New Param `created_at` to the response of the [list all profiles API], [get profile API], [list all brands API], [get brand API], [list all campaigns API] and the [get campaign API]
+
 ## [v4.43.0](https://github.com/plivo/plivo-php/tree/v4.43.0) (2023-03-03)
 - Add `isDomestic` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
 
