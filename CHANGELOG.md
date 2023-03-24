@@ -1,4 +1,7 @@
 # Change Log
+## [v4.43.1](https://github.com/plivo/plivo-php/tree/v4.43.1) (2023-03-24)
+- Fix brand registration create api param
+
 ## [v4.43.0](https://github.com/plivo/plivo-php/tree/v4.43.0) (2023-03-03)
 - Add `isDomestic` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
 
