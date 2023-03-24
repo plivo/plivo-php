@@ -20,7 +20,8 @@
             },
             "registration_status": "PROCESSING",
             "reseller_id": "",
-            "usecase": "MARKETING"
+            "usecase": "MARKETING",
+            "created_at": "2023-03-07T11:25:28.262701Z"
         },
         {
             "brand_id": "BHYYNCK",
@@ -42,7 +43,8 @@
             "registration_status": "PROCESSING",
             "reseller_id": "RPDPPUM",
             "sub_usecase": "2FA,ACCOUNT_NOTIFICATION",
-            "usecase": "ACCOUNT_NOTIFICATION"
+            "usecase": "ACCOUNT_NOTIFICATION",
+            "created_at": "2023-03-07T11:25:28.262701Z"
         },
         {
             "brand_id": "BHYYNCK",
@@ -64,7 +66,8 @@
             "registration_status": "ACTIVE",
             "reseller_id": "RPDPPUM",
             "sub_usecase": "2FA,ACCOUNT_NOTIFICATION",
-            "usecase": "ACCOUNT_NOTIFICATION"
+            "usecase": "ACCOUNT_NOTIFICATION",
+            "created_at": "2023-03-07T11:25:28.262701Z"
         },
         {
             "brand_id": "BHYYNCK",
@@ -86,7 +89,8 @@
             "registration_status": "PROCESSING",
             "reseller_id": "RPDPPUM",
             "sub_usecase": "2FA,ACCOUNT_NOTIFICATION",
-            "usecase": "ACCOUNT_NOTIFICATION"
+            "usecase": "ACCOUNT_NOTIFICATION",
+            "created_at": "2023-03-07T11:25:28.262701Z"
         },
         {
             "brand_id": "BJ6EHHH",
@@ -108,7 +112,8 @@
             "registration_status": "PROCESSING",
             "reseller_id": "",
             "sub_usecase": "2FA,CUSTOMER_CARE,ACCOUNT_NOTIFICATION,DELIVERY_NOTIFICATION,MARKETING",
-            "usecase": "SOLE_PROPRIETOR"
+            "usecase": "SOLE_PROPRIETOR",
+            "created_at": "2023-03-07T11:25:28.262701Z"
         },
         {
             "brand_id": "BMIORKY",
@@ -129,7 +134,8 @@
             },
             "registration_status": "PROCESSING",
             "reseller_id": "",
-            "usecase": "2FA"
+            "usecase": "2FA",
+            "created_at": "2023-03-07T11:25:28.262701Z"
         },
         {
             "brand_id": "BFJRJUN",
@@ -151,7 +157,8 @@
             "registration_status": "PROCESSING",
             "reseller_id": "",
             "sub_usecase": "CUSTOMER_CARE,2FA",
-            "usecase": "MIXED"
+            "usecase": "MIXED",
+            "created_at": "2023-03-07T11:25:28.262701Z"
         },
         {
             "brand_id": "BHYYNCK",
@@ -174,7 +181,8 @@
             "registration_status": "ACTIVE",
             "reseller_id": "",
             "sub_usecase": "2FA,DELIVERY_NOTIFICATION",
-            "usecase": "MIXED"
+            "usecase": "MIXED",
+            "created_at": "2023-03-07T11:25:28.262701Z"
         },
         {
             "brand_id": "BHYYNCK",
@@ -196,7 +204,8 @@
             "registration_status": "PROCESSING",
             "reseller_id": "",
             "sub_usecase": "2FA",
-            "usecase": "2FA"
+            "usecase": "2FA",
+            "created_at": "2023-03-07T11:25:28.262701Z"
         },
         {
             "brand_id": "BHYYNCK",
@@ -217,7 +226,8 @@
             },
             "registration_status": "PROCESSING",
             "reseller_id": "",
-            "usecase": "MARKETING"
+            "usecase": "MARKETING",
+            "created_at": "2023-03-07T11:25:28.262701Z"
         }
     ],
     "meta": {
