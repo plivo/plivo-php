@@ -28,7 +28,7 @@ use Plivo\Resources\Resource;
  * @property string $hangupSource Hangup Source
  * @property string $stirVerification Stir Verification
  * @property string $voiceNetworkGroup Voice Network Group
- * @property string $cnamLookupNumberConfig Cnam Lookup Number Config
+ * @property string $cnamLookup Cnam Lookup
  */
 class Call extends Resource
 {
@@ -65,7 +65,7 @@ class Call extends Resource
             'hangupSource' => $response['hangup_source'],
             'stirVerification' => $response['stir_verification'],
             'voiceNetworkGroup' => $response['voice_network_group'],
-            'cnamLookupNumberConfig' => $response['cnam_lookup_number_config']
+            'cnamLookup' => $response['cnam_lookup']
         ];
 
         $this->pathParams = [
