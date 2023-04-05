@@ -13,7 +13,8 @@
   "resource_uri": "/v1/Account/MANWVLYTK4ZWU1YTY4ZT/Recording/c2186400-1c8c-11e4-a664-0026b945b52x/",
   "from_number": "+919999323467",
   "to_number": "+919891865130",
-  "cost": "0.0004",
-  "rounded_duration": "120",
-  "days_of_storage": "209"
+  "monthly_recording_storage_amount": 0.0008,
+  "rounded_recording_duration": 120,
+  "recording_storage_duration": 209,
+  "recording_storage_rate": 0.0004
 }

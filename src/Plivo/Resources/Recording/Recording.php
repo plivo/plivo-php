@@ -22,6 +22,10 @@ use Plivo\Resources\Resource;
  * @property string $resourceUri
  * @property string $fromNumber
  * @property string $toNumber
+ * @property float $monthlyRecordingStorageAmount
+ * @property integer $roundedRecordingDuration
+ * @property integer $recordingStorageDuration
+ * @property float $recordingStorageRate
  */
 class Recording extends Resource
 {
@@ -49,9 +53,10 @@ class Recording extends Resource
             'resourceUri' => $response['resource_uri'],
             'fromNumber' => $response['from_number'],
             'toNumber' => $response['to_number'],
-            'cost' => $response['cost'],
-            'roundedDuration' => $response['rounded_duration'],
-            'daysOfStorage' => $response['days_of_storage']
+            'monthlyRecordingStorageAmount' => $response['monthly_recording_storage_amount'],
+            'roundedRecordingDuration' => $response['rounded_recording_duration'],
+            'recordingStorageDuration' => $response['recording_storage_duration'],
+            'recordingStorageRate' => $response['recording_storage_rate']
         ];
 
         $this->pathParams = [

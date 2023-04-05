@@ -48,6 +48,12 @@ class RecordingInterface extends ResourceInterface
      *                         <br /> add_time\__lt: lt stands for lesser than. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. Eg:- To get all recordings that started before 2012-03-21 11:47, use add_time\__lt=2012-03-21 11:47
      *                         <br /> add_time\__gte: lte stands for lesser than or equal. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. Eg:- To get all recordings that started before or exactly at 2012-03-21 11:47[:30], use add_time\__lte=2012-03-21 11:47[:30]
      *                         <br /> Note: The above filters can be combined to get recordings that started in a particular time range.
+     *   + [int] recording_storage_duration - Used to filter out recordings according to the number of days they have been stored in the DB.The recording_storage_duration filter is a comparative filter that can be used in the following four forms:
+     *                         <br /> recording_storage_duration\__gt: gt stands for greater than. The format expected is an integer value. Eg:- To get all recordings that are older than 100 days, use recording_storage_duration\__gt=100
+     *                         <br /> recording_storage_duration\__gte: gte stands for greater than or equal. The format expected is an integer value. Eg:- To get all recordings that are older than or equal to 100 days old, use recording_storage_duration\__gte=100
+     *                         <br /> recording_storage_duration\__lt: lt stands for lesser than. The format expected is an integer value. Eg:- To get all recordings that are newer than 100 days, use recording_storage_duration\__lt=100
+     *                         <br /> recording_storage_duration\__lte: lte stands for lesser than or equal. The format expected is an integer value. Eg:- To get all recordings that are newer than or equal to 100 days old, use recording_storage_duration\__lte=100
+     *                         <br /> Note: The above filters can be combined to get recordings that started in a particular time range.
      *   + [int] limit - Used to display the number of results per page. The maximum number of results that can be fetched is 20.
      *   + [int] offset - Denotes the number of value items by which the results should be offset. Eg:- If the result contains a 1000 values and limit is set to 10 and offset is set to 705, then values 706 through 715 are displayed in the results. This parameter is also used for pagination of the results.
      * @return ResourceList
