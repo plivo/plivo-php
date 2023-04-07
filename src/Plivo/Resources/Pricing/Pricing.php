@@ -47,8 +47,8 @@ class Pricing extends Resource
         );
 
         $this->properties['phoneNumbers'] = new PhoneNumbers(
-            new Local(isset($response['phone_numbers']['local']['rate'])),
-            new Tollfree(isset($response['phone_numbers']['tollfree']['rate']))
+            new Local($response['phone_numbers']['local']['rate']),
+            new Tollfree($response['phone_numbers']['tollfree']['rate'])
         );
 
         $this->properties['voice'] = new Voice(
