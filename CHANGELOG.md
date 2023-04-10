@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.44.2](https://github.com/plivo/plivo-php/tree/v4.44.2) (2023-10-04)
+- Fix "https://github.com/plivo/plivo-php/issues/308"
+
 ## [4.44.0](https://github.com/plivo/plivo-php/tree/v4.44.0) (2023-24-03)
 - Added New Param `created_at` to the response of the [list all profiles API], [get profile API], [list all brands API], [get brand API], [list all campaigns API] and the [get campaign API]
 
