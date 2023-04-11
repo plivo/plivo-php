@@ -75,10 +75,10 @@ class Number extends Resource
             'tendlcRegistrationStatus' => $response['tendlc_registration_status'],
             'tollFreeSMSVerification' => $response['toll_free_sms_verification'],
         ];
-        if ($response['object_id']) {
+        if (isset($response['object_id'])) {
             $this->properties['objectId'] =  $response['object_id'];
         }
-        if ($response['object_type']) {
+        if (isset($response['object_type'])) {
             $this->properties['objectType'] =  $response['object_type'];
         }
         $this->pathParams = [

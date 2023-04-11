@@ -1,8 +1,27 @@
 # Change Log
 
-## [v4.42.0](https://github.com/plivo/plivo-php/tree/v4.42.1) (2023-02-06)
+## [v4.45.0](https://github.com/plivo/plivo-php/tree/v4.45.1) (2023-04-11)
 **Feature - Added New Param 'source_ip' in GetCall and ListCalls**
 - Add `source_ip` to the response for the [retrieve a call details API](https://www.plivo.com/docs/voice/api/call#retrieve-a-call) and the [retreive all call details API](https://www.plivo.com/docs/voice/api/call#retrieve-all-calls)
+
+## [4.44.2](https://github.com/plivo/plivo-php/tree/v4.44.2) (2023-10-04)
+- Fix "https://github.com/plivo/plivo-php/issues/308"
+
+## [4.44.0](https://github.com/plivo/plivo-php/tree/v4.44.0) (2023-24-03)
+- Added New Param `created_at` to the response of the [list all profiles API], [get profile API], [list all brands API], [get brand API], [list all campaigns API] and the [get campaign API]
+
+## [v4.43.1](https://github.com/plivo/plivo-php/tree/v4.43.1) (2023-03-24)
+- Fix brand registration create api param
+
+## [v4.43.0](https://github.com/plivo/plivo-php/tree/v4.43.0) (2023-03-03)
+- Add `isDomestic` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
+## [4.42.1](https://github.com/plivo/plivo-php/tree/v4.42.1) (2023-02-28)
+-Added Exception handling for Retrieve all Calls API [Retrieve details of all calls](https://www.plivo.com/docs/voice/api/call#retrieve-all-calls)
+
+## [4.42.0](https://github.com/plivo/plivo-php/tree/v4.42.0) (2023-02-27)
+**Feature - Enhance MDR filtering capabilities **
+- Added new fields on MDR object response
 
 ## [v4.41.0](https://github.com/plivo/plivo-php/tree/v4.41.0) (2023-01-25)
 - Add `requesterIP` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
