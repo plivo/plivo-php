@@ -2,6 +2,7 @@
 
 ## [v4.46.0](https://github.com/plivo/plivo-php/tree/v4.46.0) (2023-04-25)
 - Add `replacedSender` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+- Add `apiId` to the responses for the list all messages API and the get message details API
 
 ## [v4.45.0](https://github.com/plivo/plivo-php/tree/v4.45.1) (2023-04-11)
 **Feature - Added New Param 'source_ip' in GetCall and ListCalls**

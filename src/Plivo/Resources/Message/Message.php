@@ -56,6 +56,9 @@ class Message extends Resource
         ];
 
         // handled empty string and null case
+        if (!empty($response['api_id'])) {
+            $this->properties['apiId'] = $response['api_id'];
+        }
         if (!empty($response['powerpack_id'])) {
             $this->properties['powerpackID'] = $response['powerpack_id'];
         }
