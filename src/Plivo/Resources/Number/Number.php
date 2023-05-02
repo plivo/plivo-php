@@ -74,7 +74,7 @@ class Number extends Resource
             'tendlcCampaignId' => $response['tendlc_campaign_id'],
             'tendlcRegistrationStatus' => $response['tendlc_registration_status'],
             'tollFreeSMSVerification' => $response['toll_free_sms_verification'],
-            'renewalDate' => $response['renewal_date']
+            'renewalDate' => $response['renewal_date'],
         ];
         if (isset($response['object_id'])) {
             $this->properties['objectId'] =  $response['object_id'];
