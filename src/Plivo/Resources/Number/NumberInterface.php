@@ -48,6 +48,11 @@ class NumberInterface extends ResourceInterface
      *                         <br /> sms - Returns a list of numbers that provide only 'sms' services.
      *   + [int] limit - Used to display the number of results per page. The maximum number of results that can be fetched is 20.
      *   + [int] offset - Denotes the number of value items by which the results should be offset. Eg:- If the result contains a 1000 values and limit is set to 10 and offset is set to 705, then values 706 through 715 are displayed in the results. This parameter is also used for pagination of the results.
+     *   + [string] renewal_date - Used to filter on the basis of this param. If this parameter is included in the request, all numbers of the particular renewal date are displayed.
+     *   + [string] renewal_date__gt - Used to filter on the basis of this param. If this parameter is included in the request, all numbers greater than renewal date are displayed.
+     *   + [string] renewal_date__gte - Used to filter on the basis of this param. If this parameter is included in the request, all numbers greater than equal renewal date are displayed.
+     *   + [string] renewal_date__lt - Used to filter on the basis of this param. If this parameter is included in the request, all numbers less than renewal date are displayed.
+     *   + [string] renewal_date__lte - Used to filter on the basis of this param. If this parameter is included in the request, all numbers less than equal renewal date are displayed.
      * @return ResourceList
      */
     public function getList($optionalArgs = [])
