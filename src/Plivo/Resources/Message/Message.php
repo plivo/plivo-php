@@ -20,6 +20,7 @@ use Plivo\Resources\Resource;
  * @property string $totalAmount
  * @property string $totalRate
  * @property string $units
+ * @property string $replacedSender
  * @property ?string $errorCode
  * @property ?string $powerpackID
  * @property ?string $requesterIP
@@ -50,10 +51,14 @@ class Message extends Resource
             'totalAmount' => $response['total_amount'],
             'totalRate' => $response['total_rate'],
             'units' => $response['units'],
-            'destination_country_iso2' => $response['destination_country_iso2']
+            'destination_country_iso2' => $response['destination_country_iso2'],
+            'replacedSender' => $response['replaced_sender']
         ];
 
         // handled empty string and null case
+        if (!empty($response['api_id'])) {
+            $this->properties['apiId'] = $response['api_id'];
+        }
         if (!empty($response['powerpack_id'])) {
             $this->properties['powerpackID'] = $response['powerpack_id'];
         }
