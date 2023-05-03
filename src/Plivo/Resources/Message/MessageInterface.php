@@ -96,7 +96,7 @@ class MessageInterface extends ResourceInterface
                 $newMessage = new Message($this->client, $message, $this->pathParams['authId'], $this->uri);
                 array_push($messages, $newMessage);
             }
-            return new MessageList($this->client, $response->getContent()['meta'], $messages);
+            return new MessageList($this->client, $response->getContent()['meta'], $messages, $response->getContent()["api_id"]);
         } else {
             throw new PlivoResponseException(
                 $response->getContent()['error'],
