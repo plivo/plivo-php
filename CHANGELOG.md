@@ -1,4 +1,6 @@
 # Change Log
+## [v4.46.1](https://github.com/plivo/plivo-php/tree/v4.46.1) (2023-05-04)
+- Fix send sms api failure on multiple destination number added on array param
 
 ## [v4.46.0](https://github.com/plivo/plivo-php/tree/v4.46.0) (2023-04-25)
 - Add `replacedSender` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)

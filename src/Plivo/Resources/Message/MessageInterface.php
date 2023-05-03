@@ -176,7 +176,7 @@ class MessageInterface extends ResourceInterface
 
         $response = $this->client->update(
             $this->uri,
-            array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID, 'text' => $text])
+            array_merge($mandatoryArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID, 'text' => $text], $optionalArgs)
         );
 
         $responseContents = $response->getContent();
