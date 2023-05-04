@@ -151,6 +151,9 @@ class MessageInterface extends ResourceInterface
             $mandatoryArgs = [
                 'dst' => implode('<', $dst),
             ];
+            if (isset($optionalArgs['dst'])){
+                unset($optionalArgs['dst']);
+            }
         } 
         else {
             $mandatoryArgs = ['dst' => $dst ];
@@ -176,7 +179,7 @@ class MessageInterface extends ResourceInterface
 
         $response = $this->client->update(
             $this->uri,
-            array_merge($mandatoryArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID, 'text' => $text], $optionalArgs)
+            array_merge($mandatoryArgs,  $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID, 'text' => $text])
         );
 
         $responseContents = $response->getContent();
