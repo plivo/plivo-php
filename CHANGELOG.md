@@ -1,5 +1,9 @@
 # Change Log
 
+## [v4.47.0](https://github.com/plivo/plivo-php/tree/v4.47.0) (2023-05-04)
+- Add New Param `renewalDate` to the response of the [list all numbers API], [list single number API]
+- Added 3 new filters to AccountPhoneNumber - list all my numbers API:`renewal_date`, `renewal_date__gt`, `renewal_date__gte`,`renewal_date__lt` and `renewal_date__lte` (https://www.plivo.com/docs/numbers/api/account-phone-number#list-all-my-numbers)
+
 ## [v4.46.0](https://github.com/plivo/plivo-php/tree/v4.46.0) (2023-04-25)
 - Add `replacedSender` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
 - Add `apiId` to the responses for the list all messages API and the get message details API
