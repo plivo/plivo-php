@@ -1,4 +1,6 @@
 # Change Log
+## [v4.46.1](https://github.com/plivo/plivo-php/tree/v4.46.1) (2023-05-04)
+- Fix send sms api failure on multiple destination number added on array param
 
 ## [v4.47.0](https://github.com/plivo/plivo-php/tree/v4.47.0) (2023-05-04)
 - Add New Param `renewalDate` to the response of the [list all numbers API], [list single number API]
