@@ -1,5 +1,5 @@
 # Change Log
-## [v4.46.1](https://github.com/plivo/plivo-php/tree/v4.46.1) (2023-05-04)
+## [v4.47.1](https://github.com/plivo/plivo-php/tree/v4.47.1) (2023-05-11)
 - Fix send sms api failure on multiple destination number added on array param
 
 ## [v4.47.0](https://github.com/plivo/plivo-php/tree/v4.47.0) (2023-05-04)
