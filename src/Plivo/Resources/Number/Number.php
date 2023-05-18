@@ -76,12 +76,6 @@ class Number extends Resource
             'tollFreeSMSVerification' => $response['toll_free_sms_verification'],
             'renewalDate' => $response['renewal_date'],
         ];
-        if (isset($response['object_id'])) {
-            $this->properties['objectId'] =  $response['object_id'];
-        }
-        if (isset($response['object_type'])) {
-            $this->properties['objectType'] =  $response['object_type'];
-        }
         $this->pathParams = [
             'authId' => $authId,
             'number' => $response['number']
