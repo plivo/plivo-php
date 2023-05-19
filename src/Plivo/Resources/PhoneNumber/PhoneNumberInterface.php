@@ -88,14 +88,17 @@ class PhoneNumberInterface extends ResourceInterface
      * Buy a phone number
      *
      * @param number $phoneNumber
-     * @param string|null $appId
+     * @param array $optionalArgs
+     *   + Valid arguments
+     *   + [string] cnam_lookup - cnam lookup enabled or disabled for the number.
+     *   + [string] app_id - The application id of the application that is to be linked.
      * @return PhoneNumberBuyResponse output
      */
-    public function buy($phoneNumber, $appId = null)
+    public function buy($phoneNumber, $optionalArgs = [])
     {
         $response = $this->client->update(
             $this->uri . $phoneNumber . '/',
-            ['app_id'=>$appId]
+            $optionalArgs
         );
 
         $responseContents = $response->getContent();
