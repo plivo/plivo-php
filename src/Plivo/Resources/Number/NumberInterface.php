@@ -118,6 +118,7 @@ class NumberInterface extends ResourceInterface
      * @param array $optionalArgs
      *   + Valid arguments
      *   + [string] alias - The textual name given to the number.
+     *   + [string] cnam_lookup - The textual name given to the number.
      *   + [string] app_id - The application id of the application that is to be linked.
      *   + [string] subaccount - The auth_id of the subaccount to which this number should be added. This can only be performed by a main account holder.
      * @return ResponseUpdate
