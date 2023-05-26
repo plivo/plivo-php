@@ -90,8 +90,8 @@ class PhoneNumberInterface extends ResourceInterface
      * @param number $phoneNumber
      * @param array $optionalArgs
      *   + Valid arguments
-     *   + [string] cnam_lookup - cnam lookup enabled or disabled for the number.
      *   + [string] app_id - The application id of the application that is to be linked.
+     *   + [string] cnam_lookup - The cnam lookup value for the number (Valid values : enabled, disabled).
      * @return PhoneNumberBuyResponse output
      */
     public function buy($phoneNumber, $optionalArgs = [])
