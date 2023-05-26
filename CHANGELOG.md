@@ -1,6 +1,6 @@
 # Change Log
 
-## [4.48.0](https://github.com/plivo/plivo-php/tree/v4.48.0) (2023-05-26)
+## [4.48.0](https://github.com/plivo/plivo-php/tree/v4.48.0) (2023-05-29)
 - Added `monthly_recording_storage_amount`, `recording_storage_rate`, `rounded_recording_duration`, and `recording_storage_duration` parameters to the response for [get single recording API](https://www.plivo.com/docs/voice/api/recording#retrieve-a-recording) and [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
 - Added `recording_storage_duration` parameter as a filter option for [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
 
