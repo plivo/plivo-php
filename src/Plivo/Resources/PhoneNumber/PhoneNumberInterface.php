@@ -113,7 +113,7 @@ class PhoneNumberInterface extends ResourceInterface
             );
         } else {
             throw new PlivoResponseException(
-                $responseContents['error'],
+                $responseContents['error_message'],
                 0,
                 null,
                 $response->getContent(),
