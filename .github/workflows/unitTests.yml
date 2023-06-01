@@ -23,3 +23,4 @@ jobs:
         with:
           php_version: ${{ matrix.php-version }}
           configuration: tests/phpunit.xml
+          version: 9.5.28

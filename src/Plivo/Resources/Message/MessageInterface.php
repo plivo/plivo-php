@@ -96,7 +96,7 @@ class MessageInterface extends ResourceInterface
                 $newMessage = new Message($this->client, $message, $this->pathParams['authId'], $this->uri);
                 array_push($messages, $newMessage);
             }
-            return new MessageList($this->client, $response->getContent()['meta'], $messages);
+            return new MessageList($this->client, $response->getContent()['meta'], $messages, $response->getContent()["api_id"]);
         } else {
             throw new PlivoResponseException(
                 $response->getContent()['error'],
@@ -151,6 +151,9 @@ class MessageInterface extends ResourceInterface
             $mandatoryArgs = [
                 'dst' => implode('<', $dst),
             ];
+            if (isset($optionalArgs['dst'])){
+                unset($optionalArgs['dst']);
+            }
         } 
         else {
             $mandatoryArgs = ['dst' => $dst ];
@@ -176,7 +179,7 @@ class MessageInterface extends ResourceInterface
 
         $response = $this->client->update(
             $this->uri,
-            array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID, 'text' => $text])
+            array_merge($mandatoryArgs,  $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID, 'text' => $text])
         );
 
         $responseContents = $response->getContent();

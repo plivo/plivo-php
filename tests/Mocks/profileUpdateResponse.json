@@ -19,6 +19,7 @@
         "profile_uuid": "1c41faed-a38e-42a3-a966-fe7df34b51b9",
         "stock_symbol": "ABC",
         "vertical": "PROFESSIONAL",
-        "website": "google.com"
+        "website": "google.com",
+        "created_at": "2023-03-07T11:25:28.262701Z"
     }
 }

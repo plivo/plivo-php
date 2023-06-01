@@ -14,6 +14,7 @@
         "profile_type": "SECONDARY",
         "profile_uuid": "06ecae31-4bf8-40b9-ac62-e902418e9935",
         "stock_symbol": "ABC",
-        "vertical": "ENERGY"
+        "vertical": "ENERGY",
+        "created_at": "2023-03-07T11:25:28.262701Z"
     }
 }

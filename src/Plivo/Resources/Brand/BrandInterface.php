@@ -93,7 +93,7 @@ class BrandInterface extends ResourceInterface
             'brand_alias' => $brand_alias,
             'profile_uuid' => $profile_uuid,
             'brand_type' => $brand_type,
-            'esecondary_vettingin' => $secondary_vetting
+            'secondary_vetting' => $secondary_vetting
         ];
         $response = $this->client->update(
             $this->uri .'10dlc/Brand/',
