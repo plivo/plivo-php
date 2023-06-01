@@ -1,5 +1,9 @@
 # Change Log
 
+## [v4.49.0](https://github.com/plivo/plivo-php/tree/v4.43.1) (2023-03-16)
+**Feature - Added New Param 'cnam_lookup_number_config' in GetCall and ListCalls**
+- Add `cnam_lookup_number_config` to the response for the [retrieve a call details API](https://www.plivo.com/docs/voice/api/call#retrieve-a-call) and the [retreive all call details API](https://www.plivo.com/docs/voice/api/call#retrieve-all-calls)
+
 ## [4.48.0](https://github.com/plivo/plivo-php/tree/v4.48.0) (2023-05-29)
 - Added `monthly_recording_storage_amount`, `recording_storage_rate`, `rounded_recording_duration`, and `recording_storage_duration` parameters to the response for [get single recording API](https://www.plivo.com/docs/voice/api/recording#retrieve-a-recording) and [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
 - Added `recording_storage_duration` parameter as a filter option for [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)

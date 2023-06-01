@@ -21,5 +21,6 @@
   "total_rate": "0.02770",
   "stir_verification": "Not Applicable",
   "voice_network_group": "India All Networks",
-  "source_ip": "127.0.0.1"
+  "source_ip": "127.0.0.1",
+  "cnam_lookup": "disabled"
 }

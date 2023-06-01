@@ -30,7 +30,8 @@
       "total_rate": "0.02770",
       "stir_verification": "Verified",
       "voice_network_group": "India All Networks",
-      "source_ip": "127.0.0.1"
+      "source_ip": "127.0.0.1",
+      "cnam_lookup": "disabled"
     },
     {
       "answer_time": null,
@@ -54,7 +55,8 @@
       "total_rate": "0.00000",
       "stir_verification": "Not Verified",
       "voice_network_group": "US All Networks",
-      "source_ip": "127.0.0.1"
+      "source_ip": "127.0.0.1",
+      "cnam_lookup": "disabled"
     }
   ]
 }
