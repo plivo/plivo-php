@@ -109,9 +109,18 @@ class PhoneNumberInterface extends ResourceInterface
                 $responseContents['status'],
                 $response->getStatusCode()
             );
+        } elseif (gettype($responseContents['error']) == "array") {
+            throw new PlivoResponseException(
+                $responseContents['error']['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+
+            );
         } else {
             throw new PlivoResponseException(
-                $responseContents['error_message'],
+                $responseContents['error'],
                 0,
                 null,
                 $response->getContent(),
