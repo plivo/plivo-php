@@ -108,9 +108,21 @@ class NumberInterface extends ResourceInterface
             []
         );
 
-        return new Number(
+        $responseContents = $response->getContent();
+        if(!array_key_exists("error",$responseContents)){
+            return new Number(
             $this->client, $response->getContent(),
             $this->pathParams['authId']);
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+
+            );
+        }
     }
 
     /**
