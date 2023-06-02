@@ -89,13 +89,14 @@ class PhoneNumberInterface extends ResourceInterface
      *
      * @param number $phoneNumber
      * @param string|null $appId
+     * @param string|null $cnamLookup
      * @return PhoneNumberBuyResponse output
      */
-    public function buy($phoneNumber, $appId = null)
+    public function buy($phoneNumber, $appId = null, $cnamLookup = null)
     {
         $response = $this->client->update(
             $this->uri . $phoneNumber . '/',
-            ['app_id'=>$appId]
+            ['app_id'=>$appId,'cnam_lookup'=>$cnamLookup]
         );
 
         $responseContents = $response->getContent();
@@ -106,6 +107,14 @@ class PhoneNumberInterface extends ResourceInterface
                 $responseContents['numbers'][0]['number'],
                 $responseContents['numbers'][0]['status'],
                 $responseContents['status'],
+                $response->getStatusCode()
+            );
+        } elseif (gettype($responseContents['error']) == "array" && array_key_exists("error",$responseContents['error'])) {
+            throw new PlivoResponseException(
+                $responseContents['error']['error'],
+                0,
+                null,
+                $response->getContent(),
                 $response->getStatusCode()
             );
         } else {
