@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.50.1](https://github.com/plivo/plivo-php/tree/v4.50.1) (2023-05-14)
+-  Fix warnings on [list all numbers API]
+
 ## [4.50.0](https://github.com/plivo/plivo-php/tree/v4.50.0) (2023-05-02)
 **Feature - CNAM Lookup**
 - Added New Param `cnam_lookup` in to the response of the [list all numbers API], [list single number API]
