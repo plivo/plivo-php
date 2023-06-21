@@ -32,8 +32,6 @@
       "compliance_application_id": "20372631212782797",
       "compliance_status": "submitted",
       "renewal_date": "2014-09-05",
-      "object_id": "9565321542215",
-      "object_type": "trunk",
       "tendlc_campaign_id": "CWDPZZX",
       "tendlc_registration_status": "COMPLETED",
       "toll_free_sms_verification": null
@@ -62,8 +60,6 @@
       "compliance_application_id": "20372631212782797",
       "compliance_status": "submitted",
       "renewal_date": "2013-02-01",
-      "object_id": "9565321542215",
-      "object_type": "trunk",
       "tendlc_campaign_id": "CWDPZZX",
       "tendlc_registration_status": "PROCESSING",
       "toll_free_sms_verification": null
@@ -92,8 +88,6 @@
       "compliance_application_id": "20372631212782799",
       "compliance_status": "submitted",
       "renewal_date": "2013-04-25",
-      "object_id": "9565321542215",
-      "object_type": "trunk",
       "tendlc_campaign_id": null,
       "tendlc_registration_status": null,
       "toll_free_sms_verification": "unverified"
