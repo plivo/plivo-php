@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.51.0](https://github.com/plivo/plivo-php/tree/v4.51.1) (2023-06-28)
+-  Removed object_id and object_type in parameter as well as resonse in [list all numbers API]
+
 ## [4.50.1](https://github.com/plivo/plivo-php/tree/v4.50.1) (2023-05-14)
 -  Fix warnings on [list all numbers API]
 

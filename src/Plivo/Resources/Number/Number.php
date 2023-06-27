@@ -77,12 +77,6 @@ class Number extends Resource
             'renewalDate' => $response['renewal_date'],
             'cnamLookup' => isset($response['cnam_lookup']) ? $response['cnam_lookup'] : null,
         ];
-        if (isset($response['object_id'])) {
-            $this->properties['objectId'] =  $response['object_id'];
-        }
-        if (isset($response['object_type'])) {
-            $this->properties['objectType'] =  $response['object_type'];
-        }
         $this->pathParams = [
             'authId' => $authId,
             'number' => $response['number']
