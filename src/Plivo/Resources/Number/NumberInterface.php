@@ -49,6 +49,7 @@ class NumberInterface extends ResourceInterface
      *   + [int] limit - Used to display the number of results per page. The maximum number of results that can be fetched is 20.
      *   + [int] offset - Denotes the number of value items by which the results should be offset. Eg:- If the result contains a 1000 values and limit is set to 10 and offset is set to 705, then values 706 through 715 are displayed in the results. This parameter is also used for pagination of the results.
      *   + [string] cnam_lookup - Used to filter on the basis of this param. If this parameter is included in the request, all numbers of the particular cnam lookup are displayed.
+     *   + [string] cnam - Used to filter on the basis of this param. If this parameter is included in the request, all numbers having particular cnam storage are displayed.
      *   + [string] renewal_date - Used to filter on the basis of this param. If this parameter is included in the request, all numbers of the particular renewal date are displayed.
      *   + [string] renewal_date__gt - Used to filter on the basis of this param. If this parameter is included in the request, all numbers greater than renewal date are displayed.
      *   + [string] renewal_date__gte - Used to filter on the basis of this param. If this parameter is included in the request, all numbers greater than equal renewal date are displayed.
@@ -134,6 +135,8 @@ class NumberInterface extends ResourceInterface
      *   + [string] app_id - The application id of the application that is to be linked.
      *   + [string] subaccount - The auth_id of the subaccount to which this number should be added. This can only be performed by a main account holder.
      *   + [string] cnam_lookup - The cnam lookup value for the number (Valid values : enabled, disabled).
+     *   + [string] cnam - The cnam storage value for the number (Valid values : as per cnam validity in api).
+
      * @return ResponseUpdate
      */
     public function update($number, $optionalArgs = [])

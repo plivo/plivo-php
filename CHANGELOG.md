@@ -1,5 +1,12 @@
 # Change Log
 
+## [4.52.0](https://github.com/plivo/plivo-php/tree/v4.52.0) (2023-06-28)
+**Feature - CNAM Storage**
+- Added New Param `cnam` in to the response of the [list all numbers API], [list single number API]
+- Added `cnam` filter to AccountPhoneNumber - list all my numbers API.
+- Added `cnam`, `callback_url`, `callback_method` parameter to buy number[Buy a Phone Number]  to configure CNAM storage while buying a US number
+- Added `cnam`, `callback_url`, `callback_method` parameter to update number[Update an account phone number] to configure CNAM storage while updating a US number
+
 ## [4.50.1](https://github.com/plivo/plivo-php/tree/v4.50.1) (2023-05-14)
 -  Fix warnings on [list all numbers API]
 
