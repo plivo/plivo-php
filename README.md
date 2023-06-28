@@ -243,5 +243,10 @@ export PLIVO_API_PROD_HOST=<plivoapi_public_endpoint>
 > To use the local code in the test file, import the sdk in test file using:   
 `require /usr/src/app/vendor/autoload.php`   
 (Local sdk code will be mounted at `/usr/src/app` inside the container and `vendor` directory will be created by setup script while installing dependencies).
-6. To run unit tests, run `make test CONTAINER=<cont_id>` in host, where `<cont_id>` is the docker container id created in 2.   
+6. To run test code, run `make run CONTAINER=<cont_id>` in host.
+7. To run unit tests, run `make test CONTAINER=<cont_id>` in host.
+> `<cont_id>` is the docker container id created in 2.
 (The docker container should be running)
+
+> Test code and unit tests can also be run within the container using
+`make run` and `make test` respectively. (`CONTAINER` argument should be omitted when running from the container)

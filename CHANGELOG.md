@@ -1,9 +1,61 @@
 # Change Log
 
-## [v4.42.0](https://github.com/plivo/plivo-php/tree/v4.42.0) (2022-02-10)
+## [v4.51.0](https://github.com/plivo/plivo-php/tree/v4.51.0) (2023-06-28)
 **Audio Streaming**
 - API support for starting, deleting, getting streams on a live call
 - XML creation support for stream element
+
+## [4.50.1](https://github.com/plivo/plivo-php/tree/v4.50.1) (2023-05-14)
+-  Fix warnings on [list all numbers API]
+
+## [4.50.0](https://github.com/plivo/plivo-php/tree/v4.50.0) (2023-05-02)
+**Feature - CNAM Lookup**
+- Added New Param `cnam_lookup` in to the response of the [list all numbers API], [list single number API]
+- Added `cnam_lookup` filter to AccountPhoneNumber - list all my numbers API.
+- Added `cnam_lookup` parameter to buy number[Buy a Phone Number]  to configure CNAM Lookup while buying a US number
+- Added `cnam_lookup` parameter to update number[Update an account phone number] to configure CNAM Lookup while buying a US number
+
+## [v4.49.0](https://github.com/plivo/plivo-php/tree/v4.43.1) (2023-03-16)
+**Feature - Added New Param 'cnam_lookup_number_config' in GetCall and ListCalls**
+- Add `cnam_lookup_number_config` to the response for the [retrieve a call details API](https://www.plivo.com/docs/voice/api/call#retrieve-a-call) and the [retreive all call details API](https://www.plivo.com/docs/voice/api/call#retrieve-all-calls)
+
+## [4.48.0](https://github.com/plivo/plivo-php/tree/v4.48.0) (2023-05-29)
+- Added `monthly_recording_storage_amount`, `recording_storage_rate`, `rounded_recording_duration`, and `recording_storage_duration` parameters to the response for [get single recording API](https://www.plivo.com/docs/voice/api/recording#retrieve-a-recording) and [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+- Added `recording_storage_duration` parameter as a filter option for [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+
+## [v4.47.1](https://github.com/plivo/plivo-php/tree/v4.47.1) (2023-05-11)
+- Fix send sms api failure on multiple destination number added on array param
+
+## [v4.47.0](https://github.com/plivo/plivo-php/tree/v4.47.0) (2023-05-04)
+- Add New Param `renewalDate` to the response of the [list all numbers API], [list single number API]
+- Added 3 new filters to AccountPhoneNumber - list all my numbers API:`renewal_date`, `renewal_date__gt`, `renewal_date__gte`,`renewal_date__lt` and `renewal_date__lte` (https://www.plivo.com/docs/numbers/api/account-phone-number#list-all-my-numbers)
+
+## [v4.46.0](https://github.com/plivo/plivo-php/tree/v4.46.0) (2023-04-25)
+- Add `replacedSender` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+- Add `apiId` to the responses for the list all messages API and the get message details API
+
+## [v4.45.0](https://github.com/plivo/plivo-php/tree/v4.45.1) (2023-04-11)
+**Feature - Added New Param 'source_ip' in GetCall and ListCalls**
+- Add `source_ip` to the response for the [retrieve a call details API](https://www.plivo.com/docs/voice/api/call#retrieve-a-call) and the [retreive all call details API](https://www.plivo.com/docs/voice/api/call#retrieve-all-calls)
+
+## [4.44.2](https://github.com/plivo/plivo-php/tree/v4.44.2) (2023-10-04)
+- Fix "https://github.com/plivo/plivo-php/issues/308"
+
+## [4.44.0](https://github.com/plivo/plivo-php/tree/v4.44.0) (2023-24-03)
+- Added New Param `created_at` to the response of the [list all profiles API], [get profile API], [list all brands API], [get brand API], [list all campaigns API] and the [get campaign API]
+
+## [v4.43.1](https://github.com/plivo/plivo-php/tree/v4.43.1) (2023-03-24)
+- Fix brand registration create api param
+
+## [v4.43.0](https://github.com/plivo/plivo-php/tree/v4.43.0) (2023-03-03)
+- Add `isDomestic` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
+## [4.42.1](https://github.com/plivo/plivo-php/tree/v4.42.1) (2023-02-28)
+-Added Exception handling for Retrieve all Calls API [Retrieve details of all calls](https://www.plivo.com/docs/voice/api/call#retrieve-all-calls)
+
+## [4.42.0](https://github.com/plivo/plivo-php/tree/v4.42.0) (2023-02-27)
+**Feature - Enhance MDR filtering capabilities **
+- Added new fields on MDR object response
 
 ## [v4.41.0](https://github.com/plivo/plivo-php/tree/v4.41.0) (2023-01-25)
 - Add `requesterIP` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)

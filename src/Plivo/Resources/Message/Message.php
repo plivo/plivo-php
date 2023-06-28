@@ -20,9 +20,11 @@ use Plivo\Resources\Resource;
  * @property string $totalAmount
  * @property string $totalRate
  * @property string $units
+ * @property string $replacedSender
  * @property ?string $errorCode
  * @property ?string $powerpackID
  * @property ?string $requesterIP
+ * @property ?bool $isDomestic
  */
 class Message extends Resource
 {
@@ -48,10 +50,15 @@ class Message extends Resource
             'resourceUri' => $response['resource_uri'],
             'totalAmount' => $response['total_amount'],
             'totalRate' => $response['total_rate'],
-            'units' => $response['units']
+            'units' => $response['units'],
+            'destination_country_iso2' => $response['destination_country_iso2'],
+            'replacedSender' => $response['replaced_sender']
         ];
 
         // handled empty string and null case
+        if (!empty($response['api_id'])) {
+            $this->properties['apiId'] = $response['api_id'];
+        }
         if (!empty($response['powerpack_id'])) {
             $this->properties['powerpackID'] = $response['powerpack_id'];
         }
@@ -64,6 +71,18 @@ class Message extends Resource
 
         if (!empty($response['requester_ip'])) {
             $this->properties['requesterIP'] = $response['requester_ip'];
+        }
+
+        if (!empty($response['tendlc_campaign_id'])) {
+            $this->properties['tendlc_campaign_id'] = $response['tendlc_campaign_id'];
+        }
+        
+        if (!empty($response['tendlc_registration_status'])) {
+            $this->properties['tendlc_registration_status'] = $response['tendlc_registration_status'];
+        }
+
+        if (isset($response['is_domestic'])){
+            $this->properties['isDomestic'] = $response['is_domestic'];
         }
 
         $this->pathParams = [

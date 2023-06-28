@@ -79,6 +79,9 @@ class MessageInterface extends ResourceInterface
      *   + [int] :offset Denotes the number of value items by which the results should be offset. Eg:- If the result contains a 1000 values and limit is set to 10 and offset is set to 705, then values 706 through 715 are displayed in the results. This parameter is also used for pagination of the results.
      *   + [string] :error_code Delivery Response code returned by the carrier attempting the delivery. See Supported error codes {https://www.plivo.com/docs/api/message/#standard-plivo-error-codes}.
      *   + [string] : powerpack_id - Filter the results by Powerpack ID.
+     *   + [string]:  tendlc_campaign_id - exact tendlc campaign id search
+     *   + [string]:destination_country_iso2 - valid 2 character country_iso2
+     *   + [string] : tendlc_registration_status - registered or unregistered enum allowed
      * @return MessageList
      */
     protected function getList($optionalArgs = [])
@@ -93,7 +96,7 @@ class MessageInterface extends ResourceInterface
                 $newMessage = new Message($this->client, $message, $this->pathParams['authId'], $this->uri);
                 array_push($messages, $newMessage);
             }
-            return new MessageList($this->client, $response->getContent()['meta'], $messages);
+            return new MessageList($this->client, $response->getContent()['meta'], $messages, $response->getContent()["api_id"]);
         } else {
             throw new PlivoResponseException(
                 $response->getContent()['error'],
@@ -148,6 +151,9 @@ class MessageInterface extends ResourceInterface
             $mandatoryArgs = [
                 'dst' => implode('<', $dst),
             ];
+            if (isset($optionalArgs['dst'])){
+                unset($optionalArgs['dst']);
+            }
         } 
         else {
             $mandatoryArgs = ['dst' => $dst ];
@@ -173,7 +179,7 @@ class MessageInterface extends ResourceInterface
 
         $response = $this->client->update(
             $this->uri,
-            array_merge($mandatoryArgs, $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID, 'text' => $text])
+            array_merge($mandatoryArgs,  $optionalArgs, ['src' => $src, 'powerpack_uuid' => $powerpackUUID, 'text' => $text])
         );
 
         $responseContents = $response->getContent();
