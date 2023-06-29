@@ -1,0 +1,21 @@
+{
+  "api_id": "8d1d27f0-24f8-11ed-8311-0242ac11000b",
+  "meta": {
+    "count": 1,
+    "limit": 20,
+    "next": null,
+    "offset": 0,
+    "previous": null
+  },
+  "objects": [
+    {
+      "call_uuid": "4f045f7a-b04a-4364-8523-74e6072f4f72",
+      "end_time": null,
+      "service_url": "ws://3ee3-106-51-87-58.ngrok.io",
+      "start_time": null,
+      "status": "initiated",
+      "status_callback_url": "",
+      "stream_id": "c436abf8-e8a1-4d96-9aa8-b9143f7f3517"
+    }
+  ]
+}

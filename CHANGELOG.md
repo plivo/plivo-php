@@ -1,5 +1,10 @@
 # Change Log
 
+## [v4.51.0](https://github.com/plivo/plivo-php/tree/v4.51.0) (2023-06-28)
+**Audio Streaming**
+- API support for starting, deleting, getting streams on a live call
+- XML creation support for stream element
+
 ## [4.50.1](https://github.com/plivo/plivo-php/tree/v4.50.1) (2023-05-14)
 -  Fix warnings on [list all numbers API]
 
