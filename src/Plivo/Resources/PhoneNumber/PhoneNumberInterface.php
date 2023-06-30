@@ -92,11 +92,11 @@ class PhoneNumberInterface extends ResourceInterface
      * @param string|null $cnamLookup
      * @return PhoneNumberBuyResponse output
      */
-    public function buy($phoneNumber, $appId = null, $cnamLookup = null)
+    public function buy($phoneNumber, $appId = null, $cnamLookup = null, $cnam = null)
     {
         $response = $this->client->update(
             $this->uri . $phoneNumber . '/',
-            ['app_id'=>$appId,'cnam_lookup'=>$cnamLookup]
+            ['app_id'=>$appId,'cnam_lookup'=>$cnamLookup, 'cnam'=>$cnam]
         );
 
         $responseContents = $response->getContent();
