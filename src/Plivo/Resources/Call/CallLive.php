@@ -98,6 +98,17 @@ class CallLive extends Resource
     }
 
     /**
+     * Start stream on this call
+     * @param $optionalArgs
+     * @return CallStream
+     */
+    public function startStream($optionalArgs)
+    {
+        return $this->proxyToInterface()->startStream(
+            $this->id, $optionalArgs);
+    }
+
+    /**
      * Start playing audio in this call
      *
      * @param $urls
