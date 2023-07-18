@@ -1,7 +1,7 @@
 # Change Log
 
 ## [4.52.0](https://github.com/plivo/plivo-php/tree/v4.52.0) (2023-07-18)
--  Removed object_id and object_type in parameter as well as resonse in [list all numbers API]
+-  Removed object_id and object_type in the parameter as well as response in [list all numbers API]
 
 ## [v4.51.0](https://github.com/plivo/plivo-php/tree/v4.51.0) (2023-06-28)
 **Audio Streaming**
