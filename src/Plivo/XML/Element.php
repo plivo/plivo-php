@@ -377,6 +377,16 @@ class Element {
     }
 
     /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addStream($body = null, $attributes = []) {
+        $this->add(new Stream($body, $attributes));
+        return $this;
+    }
+
+    /**
      * @return mixed
      */
     public function getName() {

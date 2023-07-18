@@ -11,6 +11,10 @@ use Plivo\Resources\ResourceList;
 use Plivo\Resources\ResponseUpdate;
 use Plivo\Util\ArrayOperations;
 
+require_once('CallStream.php');
+require_once('CallStreamGetAllResponse.php');
+require_once('CallStreamGetSpecificResponse.php');
+
 
 /**
  * Class CallInterface
@@ -515,6 +519,211 @@ class CallInterface extends ResourceInterface
             $this->uri . $liveCallUuid . '/Record/',
             $params
         );
+    }
+
+    /**
+     * Start stream on a live call
+     *
+     * @param string $liveCallUuid
+     * @param array $optionalArgs
+     *   + Valid arguments with their types
+     *   + [string] service_url - Websockets url to which the audio stream needs to be initiated.
+     *   + [boolean] bidirectional - Specifies if the audio being streamed over websockets is oneway (read only for the wss service) only or bidirectional (the wss service can read as well as write audio back).
+     *   + [string] audio_track - The audio track (inbound or outbound) of the underlying call which Plivo will fork and stream to the wss service.
+     *   + [int] stream_timeout - Maximum duration, in seconds, for which audio will be streamed once streaming starts. At the end of the specified duration, streaming will stop. This will have no impact on the rest of the call flow. Needs to be positive integer if provided. Defaults to 86400 (24 hrs).
+     *   + [string] status_callback_url - URL that is notified by Plivo when one of the following events occur:
+     *                                   <br /> stream is connected and audio begins streaming (1st packet is sent)
+     *                                   <br /> stream is stopped intentionally or when stream timeout is reached
+     *                                   <br /> stream failed to connect or got disconnected due to any reason during an ongoing call
+     *   + [string] status_callback_method - Valid values: GET, POST [default]
+     *   + [string] content_type - Preferred audio codec and sampling rate. Valid values: audio/x-l16;rate=8000 [default], audio/x-l16;rate=16000, audio/x-mulaw;rate=8000
+     *   + [string] extra_headers - These are key value pairs which will be passed to the wss service along with your stream.
+     * @return CallStream
+     * @throws PlivoValidationException
+     */
+    public function startStream($liveCallUuid, array $optionalArgs = []): CallStream
+    {
+        if (empty($liveCallUuid)) {
+            throw new PlivoValidationException(
+                "Which call to stream? No callUuid given");
+        }
+        $optionalArgs['isVoiceRequest'] = true;
+        $response = $this->client->update(
+            $this->uri . $liveCallUuid . '/Stream/',
+            $optionalArgs
+        );
+
+        $responseContents = $response->getContent();
+
+        if(!array_key_exists("error",$responseContents)){
+            return new CallStream(
+                $responseContents['api_id'],
+                $responseContents['message'],
+                $responseContents['stream_id'],
+                $response->getStatusCode()
+            );
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+
+            );
+        }
+    }
+
+    /**
+     * Stop stream on a live call
+     *
+     * @param string $liveCallUuid
+     * @param string|null $streamId - You can specify a record URL to stop only one record. By default all recordings are stopped.
+     * @throws PlivoValidationException
+     */
+    public function stopStream($liveCallUuid)
+    {
+        if (empty($liveCallUuid)) {
+            throw new PlivoValidationException(
+                "Which call to stop streams on? No callUuid given");
+        }
+
+        $params = [];
+
+        $params['isVoiceRequest'] = true;
+        $this->client->delete(
+            $this->uri . $liveCallUuid . '/Stream/',
+            $params
+        );
+    }
+
+    /**
+     * Stop a specific stream on a live call
+     *
+     * @param string $liveCallUuid
+     * @param string $streamId
+     * @throws PlivoValidationException
+     */
+    public function stopSpecificStream($liveCallUuid, ?string $streamId)
+    {
+        if (empty($liveCallUuid)) {
+            throw new PlivoValidationException(
+                "Which call to stop a stream on? No callUuid given");
+        }
+
+        if (empty($streamId)) {
+            throw new PlivoValidationException(
+                "Which stream to stop? No streamId given");
+        }
+
+        $params = [];
+
+        $params['isVoiceRequest'] = true;
+        $this->client->delete(
+            $this->uri . $liveCallUuid . '/Stream/',
+            $params
+        );
+    }
+
+    /**
+     * Get details of all streams on a live call
+     *
+     * @param string $liveCallUuid
+     * @param array $optionalArgs
+     * @return CallStreamGetAllResponse
+     * @throws PlivoValidationException
+     */
+    public function getAllStreams($liveCallUuid, array $optionalArgs = []): CallStreamGetAllResponse
+    {
+        if (empty($liveCallUuid)) {
+            throw new PlivoValidationException(
+                "Which call to get stream details from? No callUuid given");
+        }
+        $optionalArgs['isVoiceRequest'] = true;
+        $response = $this->client->fetch(
+            $this->uri . $liveCallUuid . '/Stream/',
+            $optionalArgs
+        );
+
+        $responseContents = $response->getContent();
+
+        if(!array_key_exists("error",$responseContents)){
+            return new CallStreamGetAllResponse(
+                $responseContents['api_id'],
+                $responseContents['meta'],
+                $responseContents['objects'],
+                $response->getStatusCode()
+            );
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+            );
+        }
+    }
+
+    /**
+     * Get details of a specific stream on a live call
+     *
+     * @param string $liveCallUuid
+     * @param string $streamId
+     * @param array $optionalArgs
+     * @option options [String] :callback_method - The method which is used to invoke the callback_url URL. Defaults to POST.
+     * @return CallStreamGetSpecificResponse
+     * @throws PlivoValidationException
+     */
+    public function getSpecificStream($liveCallUuid, $streamId, array $optionalArgs = []): CallStreamGetSpecificResponse
+    {
+        if (empty($liveCallUuid)) {
+            throw new PlivoValidationException(
+                "Which call to get stream details from? No callUuid given");
+        }
+
+        if (empty($streamId)) {
+            throw new PlivoValidationException(
+                "Which stream to get details of? No streamId given");
+        }
+
+        $optionalArgs['isVoiceRequest'] = true;
+        $response = $this->client->fetch(
+            $this->uri . $liveCallUuid . '/Stream/' . $streamId,
+            $optionalArgs
+        );
+
+        $responseContents = $response->getContent();
+
+        if(!array_key_exists("error",$responseContents)){
+            return new CallStreamGetSpecificResponse(
+                $responseContents['api_id'],
+                $responseContents['audio_track'],
+                $responseContents['bidirectional'],
+                $responseContents['billed_amount'],
+                $responseContents['billed_duration'],
+                $responseContents['call_uuid'],
+                $responseContents['created_at'],
+                $responseContents['end_time'],
+                $responseContents['plivo_auth_id'],
+                $responseContents['resource_uri'],
+                $responseContents['service_url'],
+                $responseContents['start_time'],
+                $responseContents['status'],
+                $responseContents['status_callback_url'],
+                $responseContents['stream_id'],
+                $response->getStatusCode()
+            );
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+
+            );
+        }
     }
     
     /**

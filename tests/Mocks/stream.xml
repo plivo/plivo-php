@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<Response>
+    <Stream bidirectional="true" extraHeaders="a=1,b=2">wss://mystream.ngrok.io/audiostream</Stream>
+</Response>
