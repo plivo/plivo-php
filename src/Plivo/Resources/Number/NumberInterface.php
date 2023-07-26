@@ -148,14 +148,14 @@ class NumberInterface extends ResourceInterface
 
         $responseContents = $response->getContent();
         $newCNAM = isset($responseContents['new_cnam']) ? $responseContents['new_cnam'] : null;
-        $CnamUpdateStatus = isset($responseContents['cnam_update_status']) ? $responseContents['cnam_update_status'] : null;
+        $cnamUpdateStatus = isset($responseContents['cnam_update_status']) ? $responseContents['cnam_update_status'] : null;
 
         if(!array_key_exists("error",$responseContents)){
             return new ResponseUpdate(
                 $responseContents['api_id'],
                 $responseContents['message'],
                 $newCNAM,
-                $CnamUpdateStatus,
+                $cnamUpdateStatus,
                 $response->getStatusCode()
             );
         } else {

@@ -107,7 +107,7 @@ class PhoneNumberInterface extends ResourceInterface
         if (array_key_exists("numbers", $responseContents)) {
             $numbers = $responseContents['numbers'][0];
             $newCNAM = isset($numbers['new_cnam']) ? $numbers['new_cnam'] : null;
-            $CnamUpdateStatus = isset($numbers['cnam_update_status']) ? $numbers['cnam_update_status'] : null;
+            $cnamUpdateStatus = isset($numbers['cnam_update_status']) ? $numbers['cnam_update_status'] : null;
         }
 
         if(!array_key_exists("error",$responseContents)){
@@ -116,7 +116,7 @@ class PhoneNumberInterface extends ResourceInterface
                 $responseContents['message'],
                 $responseContents['numbers'][0]['number'],
                 $newCNAM,
-                $CnamUpdateStatus,
+                $cnamUpdateStatus,
                 $responseContents['numbers'][0]['status'],
                 $responseContents['status'],
                 $response->getStatusCode()

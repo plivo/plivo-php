@@ -20,11 +20,11 @@ class PhoneNumberBuyResponse extends ResponseUpdate
      * @param $message
      * @param $number
      * @param $newCNAM
-     * @param $CnamUpdateStatus
+     * @param $cnamUpdateStatus
      * @param $numberStatus
      * @param $status
      */
-    public function __construct($apiID, $message, $number, $newCNAM, $CnamUpdateStatus, $numberStatus, $status, $statusCode)
+    public function __construct($apiID, $message, $number, $newCNAM, $cnamUpdateStatus, $numberStatus, $status, $statusCode)
     {
         parent::__construct($apiID, $message, $statusCode);
 
@@ -32,8 +32,8 @@ class PhoneNumberBuyResponse extends ResponseUpdate
         if ($newCNAM !== null){
             $this->newCNAM = $newCNAM;
         }
-        if ($CnamUpdateStatus !== null){
-            $this->CnamUpdateStatus = $CnamUpdateStatus;
+        if ($cnamUpdateStatus !== null){
+            $this->cnamUpdateStatus = $cnamUpdateStatus;
         }
         $this->numberStatus = $numberStatus;
         $this->status = $status;

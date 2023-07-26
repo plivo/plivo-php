@@ -29,9 +29,9 @@ class ResponseUpdate
      * ResponseUpdate constructor.
      * @param $message
      * @param $newCNAM
-     * @param $CnamUpdateStatus
+     * @param $cnamUpdateStatus
      */
-    public function __construct($apiId, $message, $newCNAM, $CnamUpdateStatus, $statusCode = 200)
+    public function __construct($apiId, $message, $newCNAM, $cnamUpdateStatus, $statusCode = 200)
     {
         $this->_message = $message;
         $this->apiId = $apiId;
@@ -39,8 +39,8 @@ class ResponseUpdate
         if ($newCNAM !== null){
             $this->newCNAM = $newCNAM;
         }
-        if ($CnamUpdateStatus !== null){
-            $this->CnamUpdateStatus = $CnamUpdateStatus;
+        if ($cnamUpdateStatus !== null){
+            $this->cnamUpdateStatus = $cnamUpdateStatus;
         }
     }
 
