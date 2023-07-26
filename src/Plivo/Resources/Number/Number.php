@@ -76,6 +76,7 @@ class Number extends Resource
             'tollFreeSMSVerification' => $response['toll_free_sms_verification'],
             'renewalDate' => $response['renewal_date'],
             'cnamLookup' => isset($response['cnam_lookup']) ? $response['cnam_lookup'] : null,
+            'cnam' => isset($response['cnam']) ? $response['cnam'],
         ];
         $this->pathParams = [
             'authId' => $authId,

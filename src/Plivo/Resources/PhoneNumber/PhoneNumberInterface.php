@@ -90,21 +90,33 @@ class PhoneNumberInterface extends ResourceInterface
      * @param number $phoneNumber
      * @param string|null $appId
      * @param string|null $cnamLookup
+     * @param string|null $cnam
+     * @param string|null $callbackMethod
+     * @param string|null callbackUrl
      * @return PhoneNumberBuyResponse output
      */
-    public function buy($phoneNumber, $appId = null, $cnamLookup = null)
+    public function buy($phoneNumber, $appId = null, $cnamLookup = null, $cnam = null, $callbackMethod = null, $callbackUrl = null)
     {
         $response = $this->client->update(
             $this->uri . $phoneNumber . '/',
-            ['app_id'=>$appId,'cnam_lookup'=>$cnamLookup]
+            ['app_id'=>$appId,'cnam_lookup'=>$cnamLookup, 'cnam'=>$cnam, 'callback_url' =>$callbackMethod, 'callback_method'=>$callbackMethod]
         );
 
         $responseContents = $response->getContent();
+
+        if (array_key_exists("numbers", $responseContents)) {
+            $numbers = $responseContents['numbers'][0];
+            $newCNAM = isset($numbers['new_cnam']) ? $numbers['new_cnam'] : null;
+            $CnamUpdateStatus = isset($numbers['cnam_update_status']) ? $numbers['cnam_update_status'] : null;
+        }
+
         if(!array_key_exists("error",$responseContents)){
             return new PhoneNumberBuyResponse(
                 $responseContents['api_id'],
                 $responseContents['message'],
                 $responseContents['numbers'][0]['number'],
+                $newCNAM,
+                $CnamUpdateStatus,
                 $responseContents['numbers'][0]['status'],
                 $responseContents['status'],
                 $response->getStatusCode()

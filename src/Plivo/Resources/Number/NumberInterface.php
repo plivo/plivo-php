@@ -134,6 +134,9 @@ class NumberInterface extends ResourceInterface
      *   + [string] app_id - The application id of the application that is to be linked.
      *   + [string] subaccount - The auth_id of the subaccount to which this number should be added. This can only be performed by a main account holder.
      *   + [string] cnam_lookup - The cnam lookup value for the number (Valid values : enabled, disabled).
+     *   + [string] cnam - The cnam attached to the number
+     *   + [string] callback_method - method ot attach the cnam
+     *   + [string] callback_url - url to call callback_method for attching cnam
      * @return ResponseUpdate
      */
     public function update($number, $optionalArgs = [])
@@ -144,11 +147,15 @@ class NumberInterface extends ResourceInterface
         );
 
         $responseContents = $response->getContent();
+        $newCNAM = isset($responseContents['new_cnam']) ? $responseContents['new_cnam'] : null;
+        $CnamUpdateStatus = isset($responseContents['cnam_update_status']) ? $responseContents['cnam_update_status'] : null;
 
         if(!array_key_exists("error",$responseContents)){
             return new ResponseUpdate(
                 $responseContents['api_id'],
                 $responseContents['message'],
+                $newCNAM,
+                $CnamUpdateStatus,
                 $response->getStatusCode()
             );
         } else {
