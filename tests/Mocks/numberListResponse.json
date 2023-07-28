@@ -57,7 +57,7 @@
       "voice_rate": "0.00850",
       "mms_enabled": true,
       "mms_rate": "0.00750",
-      "cnam": null,
+      "cnam": "",
       "cnam_lookup": "enabled",
       "compliance_application_id": "20372631212782797",
       "compliance_status": "submitted",
