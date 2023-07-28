@@ -137,7 +137,7 @@ class NumberInterface extends ResourceInterface
      *   + [string] cnam - The cnam attached to the number
      *   + [string] callback_method - method ot attach the cnam
      *   + [string] callback_url - url to call callback_method for attching cnam
-     * @return ResponseUpdate
+     * @return NumberUpdateResponse output
      */
     public function update($number, $optionalArgs = [])
     {
@@ -151,7 +151,7 @@ class NumberInterface extends ResourceInterface
         $cnamUpdateStatus = isset($responseContents['cnam_update_status']) ? $responseContents['cnam_update_status'] : null;
 
         if(!array_key_exists("error",$responseContents)){
-            return new ResponseUpdate(
+            return new NumberUpdateResponse(
                 $responseContents['api_id'],
                 $responseContents['message'],
                 $newCNAM,
