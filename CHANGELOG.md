@@ -1,4 +1,10 @@
 # Change Log
+## [4.53.0](https://github.com/plivo/plivo-php/tree/v4.53.0) (2023-08-02)
+**Feature - Verify**
+- Added Create Session API
+- Added Get Session API
+- Added List Session API
+- Added Validate Session API
 
 ## [4.52.0](https://github.com/plivo/plivo-php/tree/v4.52.0) (2023-07-18)
 -  Removed object_id and object_type in the parameter as well as response in [list all numbers API]

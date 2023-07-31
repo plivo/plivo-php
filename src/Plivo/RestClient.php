@@ -11,6 +11,7 @@ use Plivo\Resources\Endpoint\EndpointInterface;
 use Plivo\Resources\HostedMessaging\HostedMessageLOAInterface;
 use Plivo\Resources\HostedMessaging\HostedMessagingNumberInterface;
 use Plivo\Resources\Message\MessageInterface;
+use Plivo\Resources\Verify\VerifySessionInterface;
 use Plivo\Resources\Powerpack\PowerpackInterface;
 use Plivo\Resources\Media\MediaInterface;
 use Plivo\Resources\Brand\BrandInterface;
@@ -42,6 +43,7 @@ use Plivo\Resources\Zentrunk\ZentrunkInterface;
  * @property ApplicationInterface application Interface to handle all Application related api calls
  * @property AccountInterface account Interface to handle all Account related api calls
  * @property MessageInterface message Interface to handle all Message related api calls
+ * @property VerifySessionInterface verify session Interface to handle all Session related api calls
  * @property PowerpackInterface powerpack Interface to handle all Powerpack related api calls
  * @property MediaInterface media Interface to handle all upload mms media api
  * @property ProfileInterface profile Interface to handle all 10dlc related profile api
@@ -82,6 +84,11 @@ class RestClient
      * @var MessageInterface
      */
     protected $_message;
+
+    /**
+     * @var VerifySessionInterface
+     */
+    protected $_verifySession;
 
     /**
      * @var PowerpackInterface
@@ -274,6 +281,17 @@ class RestClient
             $this->_message = new MessageInterface($this->msgClient, $this->msgClient->getAuthId());
         }
         return $this->_message;
+    }
+
+    /**
+     * @return VerifySessionInterface
+     */
+    protected function getVerifySessions()
+    {
+        if (!$this->_verifySession) {
+            $this->_verifySession = new VerifySessionInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_verifySession;
     }
 
     /**
