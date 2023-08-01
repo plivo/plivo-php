@@ -40,7 +40,7 @@ class VerifySessionInterface extends ResourceInterface
     /**
      * @param string $sessionUuid
      * @return VerifySession
-     * @throws PlivoValidationException
+     * @throws PlivoValidationException,PlivoResponseException
      */
     public function get($sessionUuid)
     {
@@ -54,14 +54,28 @@ class VerifySessionInterface extends ResourceInterface
             $this->uri . 'Verify/Session/'. $sessionUuid .'/',
             []
         );
-
+       
         // return the object for chain method 
         if ($response->getStatusCode() == 200){
             return new VerifySession(
             $this->client, $response->getContent(),
             $this->pathParams['authId'], $this->uri);
         }
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        
+        $responseContents = $response->getContent();
+        if(array_key_exists("error",$responseContents)){
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+
+            );
+        } else {
+            return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+        }
+        
     }
 
   
