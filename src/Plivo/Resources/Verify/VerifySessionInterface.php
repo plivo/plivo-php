@@ -12,6 +12,7 @@ use Plivo\BaseClient;
 use Plivo\Resources\ResourceInterface;
 use Plivo\Exceptions\PlivoNotFoundException;
 use Plivo\Resources\ResourceList;
+use Plivo\Resources\ResponseUpdate;
 
 /**
  * Class VerifySessionInterface
@@ -43,10 +44,10 @@ class VerifySessionInterface extends ResourceInterface
      */
     public function get($sessionUuid)
     {
-        if (ArrayOperations::checkNull([$sessionUuid])) {
+        if (ArrayOperations::checkNull([$sessionUuid]) or empty($sessionUuid)) {
             throw
             new PlivoValidationException(
-                'session uuid is mandatory');
+                'session uuid is mandatory and cannot be empty');
         }
 
         $response = $this->client->fetch(
@@ -138,9 +139,9 @@ class VerifySessionInterface extends ResourceInterface
             'recipient' => $recipient,
         ];
 
-        if (ArrayOperations::checkNull($mandatoryArgs)) {
+        if (ArrayOperations::checkNull($mandatoryArgs) or empty($recipient)) {
             throw new PlivoValidationException(
-                "Mandatory parameters cannot be null");
+                "recipient is mandatory and cannot be empty");
         }
 
         $response = $this->client->update(
@@ -175,7 +176,7 @@ class VerifySessionInterface extends ResourceInterface
      *
      * @param string $sessionUuid
      * @param string $otp
-     * @return array
+     * @return ResponseUpdate
      */
     public function validate($sessionUuid, $otp)
     {
@@ -184,15 +185,15 @@ class VerifySessionInterface extends ResourceInterface
             'otp' => $otp,
         ];
 
-        if (ArrayOperations::checkNull([$sessionUuid])) {
+        if (ArrayOperations::checkNull([$sessionUuid]) or empty($sessionUuid)) {
             throw
             new PlivoValidationException(
-                'session uuid is mandatory');
+                'session uuid is mandatory and cannot be empty');
         }
        
-        if (ArrayOperations::checkNull($mandatoryArgs)) {
+        if (ArrayOperations::checkNull($mandatoryArgs) or empty($otp)) {
             throw new PlivoValidationException(
-                "Mandatory parameters cannot be null");
+                "otp is mandatory and cannot be empty");
         }
 
         $response = $this->client->update(
@@ -201,7 +202,22 @@ class VerifySessionInterface extends ResourceInterface
         );
 
         $responseContents = $response->getContent();
-        return $responseContents;
+        if(array_key_exists("error",$responseContents)){
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+
+            );
+        } else {
+            return new ResponseUpdate(
+                $responseContents['api_id'],
+                $responseContents['message'],
+                $response->getStatusCode()
+            );
+        }
     }
 
 
