@@ -39,7 +39,6 @@ class VerifySession extends Resource
         parent::__construct($client);
 
         $this->properties = [
-            'apiId' => $response['api_id'],
             'sessionUuid' => $response['session_uuid'],
             'appUuid' => $response['app_uuid'],
             'alias' => $response['alias'],
@@ -52,6 +51,10 @@ class VerifySession extends Resource
         ];
 
         // handled empty string and null case
+        if (!empty($response['api_id'])) {
+            $this->properties['apiId'] = $response['api_id'];
+        }
+
         if (!empty($response['requestor_ip'])) {
             $this->properties['requesterIP'] = $response['requestor_ip'];
         }

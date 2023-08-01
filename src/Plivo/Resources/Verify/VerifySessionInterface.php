@@ -12,6 +12,7 @@ use Plivo\BaseClient;
 use Plivo\Resources\ResourceInterface;
 use Plivo\Exceptions\PlivoNotFoundException;
 use Plivo\Resources\ResourceList;
+use Plivo\Resources\ResponseUpdate;
 
 /**
  * Class VerifySessionInterface
@@ -175,7 +176,7 @@ class VerifySessionInterface extends ResourceInterface
      *
      * @param string $sessionUuid
      * @param string $otp
-     * @return VerifySessionCreateResponse
+     * @return ResponseUpdate
      */
     public function validate($sessionUuid, $otp)
     {
@@ -212,10 +213,9 @@ class VerifySessionInterface extends ResourceInterface
 
             );
         } else {
-            return new VerifySessionCreateResponse(
-                $responseContents['message'],
-                "",
+            return new ResponseUpdate(
                 $responseContents['api_id'],
+                $responseContents['message'],
                 $response->getStatusCode()
             );
         }
