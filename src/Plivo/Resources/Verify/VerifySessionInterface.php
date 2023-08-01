@@ -69,13 +69,13 @@ class VerifySessionInterface extends ResourceInterface
      * Return a list of sessions
      * @param array $optionalArgs
      *   + Valid arguments
-     *   + [string] :session_time  - Filter out messages according to the time of completion. The filter can be used in the following five forms:
-     *                     <br /> session_time: The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. Eg:- To get all messages that were sent/received at 2012-03-21 11:47[:30], use session_time=2012-03-21 11:47[:30]
-     *                     <br /> session_time\__gt: gt stands for greater than. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. Eg:- To get all messages that were sent/received after 2012-03-21 11:47, use session_time\__gt=2012-03-21 11:47
-     *                     <br /> session_time\__gte: gte stands for greater than or equal. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. Eg:- To get all messages that were sent/received after or exactly at 2012-03-21 11:47[:30], use session_time\__gte=2012-03-21 11:47[:30]
-     *                     <br /> session_time\__lt: lt stands for lesser than. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. Eg:- To get all messages that were sent/received before 2012-03-21 11:47, use session_time\__lt=2012-03-21 11:47
-     *                     <br /> session_time\__lte: lte stands for lesser than or equal. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. Eg:- To get all messages that were sent/received before or exactly at 2012-03-21 11:47[:30], use session_time\__lte=2012-03-21 11:47[:30]
-     *                     <br /> Note: The above filters can be combined to get messages that were sent/received in a particular time range. The timestamps need to be UTC timestamps.
+     *   + [string] :session_time  - Filter out sessions according to the time of completion. The filter can be used in the following five forms:
+     *                     <br /> session_time: The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. Eg:- To get all sessions that were sent/received at 2012-03-21 11:47[:30], use session_time=2012-03-21 11:47[:30]
+     *                     <br /> session_time\__gt: gt stands for greater than. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. Eg:- To get all sessions that were sent/received after 2012-03-21 11:47, use session_time\__gt=2012-03-21 11:47
+     *                     <br /> session_time\__gte: gte stands for greater than or equal. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. Eg:- To get all sessions that were sent/received after or exactly at 2012-03-21 11:47[:30], use session_time\__gte=2012-03-21 11:47[:30]
+     *                     <br /> session_time\__lt: lt stands for lesser than. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. Eg:- To get all sessions that were sent/received before 2012-03-21 11:47, use session_time\__lt=2012-03-21 11:47
+     *                     <br /> session_time\__lte: lte stands for lesser than or equal. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. Eg:- To get all sessions that were sent/received before or exactly at 2012-03-21 11:47[:30], use session_time\__lte=2012-03-21 11:47[:30]
+     *                     <br /> Note: The above filters can be combined to get sessions that were sent/received in a particular time range. The timestamps need to be UTC timestamps.
      *   + [string] :status - Status value of the session, is one of "in-progress", "validated" or "expired".
      *   + [int] :limit - Used to display the number of results per page. The maximum number of results that can be fetched is 20.
      *   + [int] :offset - Denotes the number of value items by which the results should be offset. Eg:- If the result contains a 1000 values and limit is set to 10 and offset is set to 705, then values 706 through 715 are displayed in the results. This parameter is also used for pagination of the results.
