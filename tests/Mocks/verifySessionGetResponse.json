@@ -1,0 +1,21 @@
+{
+  "api_id": "a96ac4a7-81c5-401d-b388-023b0e5a6549",
+  "session_uuid": "4124e518-a8c9-4feb-8cff-d86636ba9234",
+  "app_uuid": "eff1854e-2682-4222-a5c0-b1a16d9bb4aa",
+  "alias": "Test-25",
+  "recipient": "918097480998",
+  "channel": "sms",
+  "status": "expired",
+  "count": 0,
+  "requestor_ip": "172.167.8.2",
+  "destination_country_iso2": "IN",
+  "destination_network": "AirTel",
+  "attempt_details": null,
+  "charges": {
+      "total_charge": "0.00000",
+      "validation_charge": "0.0000",
+      "attempt_charges": null
+  },
+  "created_at": "2023-06-30T12:12:03.187679+05:30",
+  "updated_at": "0001-01-01T05:53:28+05:53"
+}
