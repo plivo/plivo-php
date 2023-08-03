@@ -80,6 +80,9 @@ class MessageTest extends BaseTestCase {
     {
         $messageUuid = "5b40a428-bfc7-4daf-9d06-726c558bf3b8";
         $requesterIP = "192.168.1.1";
+        $dltEntityID = "1234";
+        $dltTemplateID = "5678";
+        $dltTemplateCategory = "service_implicit";
         $request = new PlivoRequest(
             'GET',
             'Account/MAXXXXXXXXXXXXXXXXXX/Message/'.$messageUuid.'/',
@@ -96,6 +99,9 @@ class MessageTest extends BaseTestCase {
 
         self::assertEquals($actual->messageUuid, $messageUuid);
         self::assertEquals($actual->requesterIP, $requesterIP);
+        self::assertEquals($actual->dltEntityID, $dltEntityID);
+        self::assertEquals($actual->dltTemplateID, $dltTemplateID);
+        self::assertEquals($actual->dltTemplateCategory, $dltTemplateCategory);
     }
 
     public function testMessageGetwithPowerpack()
@@ -143,6 +149,9 @@ class MessageTest extends BaseTestCase {
     {
         $requesterIP1 = "192.168.1.1";
         $requesterIP2 = "192.168.1.20";
+        $dltEntityID = "9876";
+        $dltTemplateID = "5432";
+        $dltTemplateCategory = "promotional";
         $request = new PlivoRequest(
             'Get',
             'Account/MAXXXXXXXXXXXXXXXXXX/Message/',
@@ -158,6 +167,13 @@ class MessageTest extends BaseTestCase {
         self::assertNotNull($actual);
         self::assertEquals($actual->resources[0]->requesterIP, $requesterIP1);
         self::assertEquals($actual->resources[19]->requesterIP, $requesterIP2);
+
+        self::assertEquals($actual->resources[0]->dltEntityID, $dltEntityID);
+        self::assertEquals($actual->resources[0]->dltTemplateID, $dltTemplateID);
+        self::assertEquals($actual->resources[0]->dltTemplateCategory, $dltTemplateCategory);
+        self::assertObjectNotHasAttribute('dltEntityID', $actual->resources[19]);
+        self::assertObjectNotHasAttribute('dltTemplateID', $actual->resources[19]);
+        self::assertObjectNotHasAttribute('dltTemplateCategory', $actual->resources[19]);
     }
 
 }

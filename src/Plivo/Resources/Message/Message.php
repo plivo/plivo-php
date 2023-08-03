@@ -70,6 +70,15 @@ class Message extends Resource
         if (!empty($response['message_expiry'])) {
             $this->properties['messageExpiry'] = $response['message_expiry'];
         }
+        if (!empty($response['dlt_entity_id'])) {
+            $this->properties['dltEntityID'] = $response['dlt_entity_id'];
+        }
+        if (!empty($response['dlt_template_id'])) {
+            $this->properties['dltTemplateID'] = $response['dlt_template_id'];
+        }
+        if (!empty($response['dlt_template_category'])) {
+            $this->properties['dltTemplateCategory'] = $response['dlt_template_category'];
+        }
 
         if (!empty($response['requester_ip'])) {
             $this->properties['requesterIP'] = $response['requester_ip'];
