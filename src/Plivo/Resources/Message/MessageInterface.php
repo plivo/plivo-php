@@ -153,8 +153,8 @@ class MessageInterface extends ResourceInterface
             $dst = isset($optionalArgs['dst']) ? $optionalArgs['dst'] : null;
             $text = isset($optionalArgs['text']) ? $optionalArgs['text'] : null;
             $powerpackUUID = isset($optionalArgs['powerpackUUID']) ? $optionalArgs['powerpackUUID'] : null;
-            $template = isset($optionalArgs['template']) ? $optionalArgs['template'] : null;
-        }       
+        }
+        $template = isset($optionalArgs['template']) ? $optionalArgs['template'] : null;       
         if (is_array($dst)){
             $mandatoryArgs = [
                 'dst' => implode('<', $dst),

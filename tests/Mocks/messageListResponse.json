@@ -27,7 +27,7 @@
       "dlt_entity_id": "9876",
       "dlt_template_id": "5432",
       "dlt_template_category": "promotional",
-      "conversation_id": "12345",
+      "conversation_id": "1234",
       "conversation_origin": "service",
       "conversation_expiration_timestamp": "2023-08-03 23:02:00+05:30"
     },
