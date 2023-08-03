@@ -26,7 +26,7 @@ use Plivo\Resources\Resource;
  * @property ?string $requesterIP
  * @property ?string $conversationID
  * @property ?string $conversationOrigin
- * @property ?string $conversationExpiry
+ * @property ?string $conversationExpirationTimestamp
  * @property ?bool $isDomestic
  */
 class Message extends Resource
@@ -100,7 +100,7 @@ class Message extends Resource
             $this->properties['conversationOrigin'] = $response['conversation_origin'];
         }
         if (!empty($response['conversation_expiration_timestamp'])) {
-            $this->properties['conversationExpiry'] = $response['conversation_expiration_timestamp'];
+            $this->properties['conversationExpirationTimestamp'] = $response['conversation_expiration_timestamp'];
         }
 
         if (isset($response['is_domestic'])){

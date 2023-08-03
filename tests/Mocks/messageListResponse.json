@@ -26,7 +26,10 @@
       "replaced_sender": "INSID",
       "dlt_entity_id": "9876",
       "dlt_template_id": "5432",
-      "dlt_template_category": "promotional"
+      "dlt_template_category": "promotional",
+      "conversation_id": "12345",
+      "conversation_origin": "service",
+      "conversation_expiration_timestamp": "2023-08-03 23:02:00+05:30"
     },
     {
       "error_code": null,
@@ -47,7 +50,10 @@
       "replaced_sender": "INSID",
       "dlt_entity_id": "",
       "dlt_template_id": "",
-      "dlt_template_category": ""
+      "dlt_template_category": "",
+      "conversation_id": "",
+      "conversation_origin": "",
+      "conversation_expiration_timestamp": ""
     },
     {
       "error_code": null,
@@ -68,7 +74,10 @@
       "replaced_sender": "INSID",
       "dlt_entity_id": "",
       "dlt_template_id": "",
-      "dlt_template_category": ""
+      "dlt_template_category": "",
+      "conversation_id": "",
+      "conversation_origin": "",
+      "conversation_expiration_timestamp": ""
     },
     {
       "error_code": null,
@@ -89,7 +98,10 @@
       "replaced_sender": "INSID",
       "dlt_entity_id": "",
       "dlt_template_id": "",
-      "dlt_template_category": ""
+      "dlt_template_category": "",
+      "conversation_id": "",
+      "conversation_origin": "",
+      "conversation_expiration_timestamp": ""
     },
     {
       "error_code": null,
@@ -110,7 +122,10 @@
       "replaced_sender": "INSID",
       "dlt_entity_id": "",
       "dlt_template_id": "",
-      "dlt_template_category": ""
+      "dlt_template_category": "",
+      "conversation_id": "",
+      "conversation_origin": "",
+      "conversation_expiration_timestamp": ""
     },
     {
       "error_code": null,
@@ -131,7 +146,10 @@
       "replaced_sender": "INSID",
       "dlt_entity_id": "",
       "dlt_template_id": "",
-      "dlt_template_category": ""
+      "dlt_template_category": "",
+      "conversation_id": "",
+      "conversation_origin": "",
+      "conversation_expiration_timestamp": ""
     },
     {
       "error_code": null,
@@ -152,7 +170,10 @@
       "replaced_sender": "INSID",
       "dlt_entity_id": "",
       "dlt_template_id": "",
-      "dlt_template_category": ""
+      "dlt_template_category": "",
+      "conversation_id": "",
+      "conversation_origin": "",
+      "conversation_expiration_timestamp": ""
     },
     {
       "error_code": null,
@@ -173,7 +194,10 @@
       "replaced_sender": "INSID",
       "dlt_entity_id": "",
       "dlt_template_id": "",
-      "dlt_template_category": ""
+      "dlt_template_category": "",
+      "conversation_id": "",
+      "conversation_origin": "",
+      "conversation_expiration_timestamp": ""
     },
     {
       "error_code": "000",
@@ -194,7 +218,10 @@
       "replaced_sender": "INSID",
       "dlt_entity_id": "",
       "dlt_template_id": "",
-      "dlt_template_category": ""
+      "dlt_template_category": "",
+      "conversation_id": "",
+      "conversation_origin": "",
+      "conversation_expiration_timestamp": ""
     },
     {
       "error_code": null,
@@ -215,7 +242,10 @@
       "replaced_sender": "INSID",
       "dlt_entity_id": "",
       "dlt_template_id": "",
-      "dlt_template_category": ""
+      "dlt_template_category": "",
+      "conversation_id": "",
+      "conversation_origin": "",
+      "conversation_expiration_timestamp": ""
     },
     {
       "error_code": "000",
@@ -236,7 +266,10 @@
       "replaced_sender": "INSID",
       "dlt_entity_id": "",
       "dlt_template_id": "",
-      "dlt_template_category": ""
+      "dlt_template_category": "",
+      "conversation_id": "",
+      "conversation_origin": "",
+      "conversation_expiration_timestamp": ""
     },
     {
       "error_code": null,
@@ -257,7 +290,10 @@
       "replaced_sender": "INSID",
       "dlt_entity_id": "",
       "dlt_template_id": "",
-      "dlt_template_category": ""
+      "dlt_template_category": "",
+      "conversation_id": "",
+      "conversation_origin": "",
+      "conversation_expiration_timestamp": ""
     },
     {
       "error_code": "000",
@@ -278,7 +314,10 @@
       "replaced_sender": "INSID",
       "dlt_entity_id": "",
       "dlt_template_id": "",
-      "dlt_template_category": ""
+      "dlt_template_category": "",
+      "conversation_id": "",
+      "conversation_origin": "",
+      "conversation_expiration_timestamp": ""
     },
     {
       "error_code": null,
@@ -299,7 +338,10 @@
       "replaced_sender": "INSID",
       "dlt_entity_id": "",
       "dlt_template_id": "",
-      "dlt_template_category": ""
+      "dlt_template_category": "",
+      "conversation_id": "",
+      "conversation_origin": "",
+      "conversation_expiration_timestamp": ""
     },
     {
       "error_code": "000",
@@ -320,7 +362,10 @@
       "replaced_sender": "INSID",
       "dlt_entity_id": "",
       "dlt_template_id": "",
-      "dlt_template_category": ""
+      "dlt_template_category": "",
+      "conversation_id": "",
+      "conversation_origin": "",
+      "conversation_expiration_timestamp": ""
     },
     {
       "error_code": null,
@@ -341,7 +386,10 @@
       "replaced_sender": "INSID",
       "dlt_entity_id": "",
       "dlt_template_id": "",
-      "dlt_template_category": ""
+      "dlt_template_category": "",
+      "conversation_id": "",
+      "conversation_origin": "",
+      "conversation_expiration_timestamp": ""
     },
     {
       "error_code": "000",
@@ -362,7 +410,10 @@
       "replaced_sender": "INSID",
       "dlt_entity_id": "",
       "dlt_template_id": "",
-      "dlt_template_category": ""
+      "dlt_template_category": "",
+      "conversation_id": "",
+      "conversation_origin": "",
+      "conversation_expiration_timestamp": ""
     },
     {
       "error_code": "000",
@@ -383,7 +434,10 @@
       "replaced_sender": "INSID",
       "dlt_entity_id": "",
       "dlt_template_id": "",
-      "dlt_template_category": ""
+      "dlt_template_category": "",
+      "conversation_id": "",
+      "conversation_origin": "",
+      "conversation_expiration_timestamp": ""
     },
     {
       "error_code": "000",
@@ -404,7 +458,10 @@
       "replaced_sender": "INSID",
       "dlt_entity_id": "",
       "dlt_template_id": "",
-      "dlt_template_category": ""
+      "dlt_template_category": "",
+      "conversation_id": "",
+      "conversation_origin": "",
+      "conversation_expiration_timestamp": ""
     },
     {
       "error_code": "000",
@@ -425,7 +482,10 @@
       "replaced_sender": "INSID",
       "dlt_entity_id": "",
       "dlt_template_id": "",
-      "dlt_template_category": ""
+      "dlt_template_category": "",
+      "conversation_id": "",
+      "conversation_origin": "",
+      "conversation_expiration_timestamp": ""
     }
   ]
 }
