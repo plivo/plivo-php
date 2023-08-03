@@ -52,6 +52,9 @@ class Message extends Resource
             'totalRate' => $response['total_rate'],
             'units' => $response['units'],
             'destination_country_iso2' => $response['destination_country_iso2'],
+            'destination_network' => $response['destination_network'],
+            'carrier_fees_rate' => $response['carrier_fees_rate'],
+            'carrier_fees' => $response['carrier_fees'],
             'replacedSender' => $response['replaced_sender']
         ];
 
