@@ -39,7 +39,7 @@ class DateTime {
     public function __construct(array $data)
     {
         // Validate the data
-        $this->fallback_value = isset($data['fallback_value']) && is_string($data['fallback_value']) ? $data['fallback_value'] : null;
+        $this->fallback_value = isset($data['fallback_value'])? $data['fallback_value'] : null;
         validateNotNullAndDataType($this->fallback_value, 'date_time', 'fallback_value', 'string', true);
     }
     
@@ -97,10 +97,10 @@ class Template {
     public function __construct(array $data)
     {
         // Validate the data
-        $this->name = isset($data['name']) && is_string($data['name']) ? $data['name'] : null;
-        $this->language = isset($data['language']) && is_string($data['language']) ? $data['language'] : null;
+        $this->name = isset($data['name'])? $data['name'] : null;
+        $this->language = isset($data['language'])? $data['language'] : null;
         $this->components = isset($data['components']) ? array_map(function($component) {return new Component($component);}, $data['components']): [];
-        validateNotNullAndDataType($this->name, 'template', 'type','string', true);
+        validateNotNullAndDataType($this->name, 'template', 'name','string', true);
         validateNotNullAndDataType($this->language, 'template', 'language', 'string', true);
     }
 
