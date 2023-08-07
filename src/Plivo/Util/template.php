@@ -88,7 +88,6 @@ class Component {
     
 }
 
-
 class Template {
     public $name;
     public $language;
