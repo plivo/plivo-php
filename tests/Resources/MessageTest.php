@@ -76,6 +76,31 @@ class MessageTest extends BaseTestCase {
         self::assertNotNull($actual);
     }
 
+    public function testwhatsappTemplateMessageCreate()
+    {
+        $request = new PlivoRequest(
+            'POST',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Message/',
+            [
+                "dst" => "+919012345678",
+                "text" => "Test",
+                "src" => "+919999999999"
+            ]);
+        $body = file_get_contents(__DIR__ . '/../Mocks/messageSendResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $template = '{
+            "name": "hello_world",
+            "language": "en_US",
+            "components": null
+          }';
+
+        $actual = $this->client->messages->create([ "src" => "+919999999999", "dst" => "+919012345678", "template"  =>$template]);
+
+        self::assertNotNull($actual);
+    }
+
     public function testMessageGet()
     {
         $messageUuid = "5b40a428-bfc7-4daf-9d06-726c558bf3b8";
@@ -83,6 +108,9 @@ class MessageTest extends BaseTestCase {
         $dltEntityID = "1234";
         $dltTemplateID = "5678";
         $dltTemplateCategory = "service_implicit";
+        $conversationID = "9876";
+        $conversationOrigin = "utility";
+        $conversationExpirationTimestamp = "2023-08-03 23:02:00+05:30";
         $request = new PlivoRequest(
             'GET',
             'Account/MAXXXXXXXXXXXXXXXXXX/Message/'.$messageUuid.'/',
@@ -102,6 +130,9 @@ class MessageTest extends BaseTestCase {
         self::assertEquals($actual->dltEntityID, $dltEntityID);
         self::assertEquals($actual->dltTemplateID, $dltTemplateID);
         self::assertEquals($actual->dltTemplateCategory, $dltTemplateCategory);
+        self::assertEquals($actual->conversationID, $conversationID);
+        self::assertEquals($actual->conversationOrigin, $conversationOrigin);
+        self::assertEquals($actual->conversationExpirationTimestamp, $conversationExpirationTimestamp);
     }
 
     public function testMessageGetwithPowerpack()
@@ -152,6 +183,9 @@ class MessageTest extends BaseTestCase {
         $dltEntityID = "9876";
         $dltTemplateID = "5432";
         $dltTemplateCategory = "promotional";
+        $conversationID = "1234";
+        $conversationOrigin = "service";
+        $conversationExpirationTimestamp = "2023-08-03 23:02:00+05:30";
         $request = new PlivoRequest(
             'Get',
             'Account/MAXXXXXXXXXXXXXXXXXX/Message/',
@@ -171,9 +205,19 @@ class MessageTest extends BaseTestCase {
         self::assertEquals($actual->resources[0]->dltEntityID, $dltEntityID);
         self::assertEquals($actual->resources[0]->dltTemplateID, $dltTemplateID);
         self::assertEquals($actual->resources[0]->dltTemplateCategory, $dltTemplateCategory);
+
+        self::assertEquals($actual->resources[0]->conversationID, $conversationID);
+        self::assertEquals($actual->resources[0]->conversationOrigin, $conversationOrigin);
+        self::assertEquals($actual->resources[0]->conversationExpirationTimestamp, $conversationExpirationTimestamp);
+        
         self::assertObjectNotHasAttribute('dltEntityID', $actual->resources[19]);
         self::assertObjectNotHasAttribute('dltTemplateID', $actual->resources[19]);
         self::assertObjectNotHasAttribute('dltTemplateCategory', $actual->resources[19]);
+
+        self::assertObjectNotHasAttribute('conversationID', $actual->resources[19]);
+        self::assertObjectNotHasAttribute('conversationOrigin', $actual->resources[19]);
+        self::assertObjectNotHasAttribute('conversationExpirationTimestamp', $actual->resources[19]);
+        
     }
 
 }
