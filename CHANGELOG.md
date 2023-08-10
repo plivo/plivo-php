@@ -1,4 +1,10 @@
 # Change Log
+## [4.55.0](https://github.com/plivo/plivo-php/tree/v4.55.0) (2023-08-10)
+**Feature - Verify**
+- Added Create Session API
+- Added Get Session API
+- Added List Session API
+- Added Validate Session API
 
 ## [4.54.0](https://github.com/plivo/plivo-php/tree/v7.33.0) (2023-08-07)
 **Feature - WhatsApp message support**
