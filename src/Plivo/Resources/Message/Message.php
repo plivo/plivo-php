@@ -24,6 +24,9 @@ use Plivo\Resources\Resource;
  * @property ?string $errorCode
  * @property ?string $powerpackID
  * @property ?string $requesterIP
+ * @property ?string $conversationID
+ * @property ?string $conversationOrigin
+ * @property ?string $conversationExpirationTimestamp
  * @property ?bool $isDomestic
  */
 class Message extends Resource
@@ -38,7 +41,6 @@ class Message extends Resource
         MessageClient $client, $response, $authId, $uri)
     {
         parent::__construct($client);
-
         $this->properties = [
             'from' => $response['from_number'],
             'to' => $response['to_number'],
@@ -68,6 +70,15 @@ class Message extends Resource
         if (!empty($response['message_expiry'])) {
             $this->properties['messageExpiry'] = $response['message_expiry'];
         }
+        if (!empty($response['dlt_entity_id'])) {
+            $this->properties['dltEntityID'] = $response['dlt_entity_id'];
+        }
+        if (!empty($response['dlt_template_id'])) {
+            $this->properties['dltTemplateID'] = $response['dlt_template_id'];
+        }
+        if (!empty($response['dlt_template_category'])) {
+            $this->properties['dltTemplateCategory'] = $response['dlt_template_category'];
+        }
 
         if (!empty($response['requester_ip'])) {
             $this->properties['requesterIP'] = $response['requester_ip'];
@@ -79,6 +90,17 @@ class Message extends Resource
         
         if (!empty($response['tendlc_registration_status'])) {
             $this->properties['tendlc_registration_status'] = $response['tendlc_registration_status'];
+        }
+
+        if (!empty($response['conversation_id'])) {
+            $this->properties['conversationID'] = $response['conversation_id'];
+        }
+
+        if (!empty($response['conversation_origin'])) {
+            $this->properties['conversationOrigin'] = $response['conversation_origin'];
+        }
+        if (!empty($response['conversation_expiration_timestamp'])) {
+            $this->properties['conversationExpirationTimestamp'] = $response['conversation_expiration_timestamp'];
         }
 
         if (isset($response['is_domestic'])){

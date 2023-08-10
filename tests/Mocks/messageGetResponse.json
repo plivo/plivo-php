@@ -16,5 +16,11 @@
   "requester_ip": "192.168.1.1",
   "is_domestic": false,
   "destination_country_iso2": "IN",
-  "replaced_sender": "INSID"
+  "replaced_sender": "INSID",
+  "dlt_entity_id": "1234",
+  "dlt_template_id": "5678",
+  "dlt_template_category": "service_implicit",
+  "conversation_id": "9876",
+  "conversation_origin": "utility",
+  "conversation_expiration_timestamp": "2023-08-03 23:02:00+05:30"
 }
