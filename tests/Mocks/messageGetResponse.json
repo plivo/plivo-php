@@ -22,5 +22,8 @@
   "dlt_template_category": "service_implicit",
   "conversation_id": "9876",
   "conversation_origin": "utility",
-  "conversation_expiration_timestamp": "2023-08-03 23:02:00+05:30"
+  "conversation_expiration_timestamp": "2023-08-03 23:02:00+05:30",
+  "destination_network": "Verizon",
+  "carrier_fees_rate": "0.420",
+  "carrier_fees": "0.001"
 }
