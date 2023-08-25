@@ -107,6 +107,17 @@ class Message extends Resource
             $this->properties['isDomestic'] = $response['is_domestic'];
         }
 
+        if (!empty($response['destination_network'])) {
+            $this->properties['destination_network'] = $response['destination_network'];
+        }
+
+        if (!empty($response['carrier_fees_rate'])) {
+            $this->properties['carrier_fees_rate'] = $response['carrier_fees_rate'];
+        }
+        if (!empty($response['carrier_fees'])) {
+            $this->properties['carrier_fees'] = $response['carrier_fees'];
+        }
+
         $this->pathParams = [
             'authId' => $authId,
             'messageUuid' => $response['message_uuid']
