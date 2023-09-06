@@ -59,7 +59,7 @@ class MaskingSession extends Resource
             'sessionUuid' => $response['response']['session_uuid']
         ];
 
-        $this->id = $response['session_uuid'];
+        $this->id = $response['response']['session_uuid'];
 
     }
 }
