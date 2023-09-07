@@ -6,6 +6,7 @@ use Plivo\Exceptions\PlivoRestException;
 use Plivo\Resources\Account\AccountInterface;
 use Plivo\Resources\Application\ApplicationInterface;
 use Plivo\Resources\Call\CallInterface;
+use Plivo\Resources\MaskingSession\MaskingSessionInterface;
 use Plivo\Resources\Conference\ConferenceInterface;
 use Plivo\Resources\Endpoint\EndpointInterface;
 use Plivo\Resources\HostedMessaging\HostedMessageLOAInterface;
@@ -62,6 +63,7 @@ use Plivo\Resources\Zentrunk\ZentrunkInterface;
  * @property HostedMessageLOAInterface hostedMessageLOA Interface to handle all HostedMessageLOA related api calls
  * @property HostedMessagingNumberInterface hostedMessagingNumber Interface to handle all HostedMessagingNumber related api calls
  * @property ZentrunkInterface Zentrunk Interface to handle all Zentrunk Call related api
+ * @property MaskingSessionInterface Masking session Interface to handle all session related api calls
  * 
  */
 class RestClient
@@ -216,6 +218,10 @@ class RestClient
      * @var ZentrunkInterface
      */
     protected $_zentrunkCall;
+    /**
+     * @var MaskingSessionInterface
+     */
+    protected $_maskingSession;
 
     /**
      * RestClient constructor.
@@ -392,6 +398,17 @@ class RestClient
             $this->_call = new CallInterface($this->client, $this->client->getAuthId());
         }
         return $this->_call;
+    }
+    
+    /**
+     * @return MaskingSessionInterface
+     */
+    protected function getMaskingSessions()
+    {
+        if (!$this->_maskingSession) {
+            $this->_maskingSession = new MaskingSessionInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_maskingSession;
     }
     /**
      * @return TokenInterface
