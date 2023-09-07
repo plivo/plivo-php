@@ -11,7 +11,7 @@ use Plivo\Tests\BaseTestCase;
  * Class MaskingSessionlTest
  * @package Resources
  */
-class MaskingSessionlTest extends BaseTestCase
+class MaskingSessionTest extends BaseTestCase
 {
     function testCreateMaskingSession()
     {
