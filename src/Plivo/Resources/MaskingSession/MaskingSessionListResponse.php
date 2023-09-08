@@ -10,21 +10,6 @@ use Plivo\Resources\ResponseUpdate;
  * Class MaskingSessionList
  * @package Plivo\Resources\Call
  */
-// class MaskingSessionListResponse extends ResourceList
-// {
-
-//     /**
-//      * MaskingSessionList constructor.
-//      * @param BaseClient $plivoClient
-//      * @param array $meta
-//      * @param array $resources
-//      */
-//     function __construct(BaseClient $plivoClient, $meta, array $resources)
-//     {
-//         parent::__construct($plivoClient, $meta, $resources);
-//     }
-
-// }
 
 class MaskingSessionListResponse extends ResponseUpdate
 {
