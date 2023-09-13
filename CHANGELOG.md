@@ -1,4 +1,8 @@
 # Change Log
+## [4.57.0](https://github.com/plivo/plivo-php/tree/v4.57.0) (2023-09-13)
+**Feature - Number Masking**
+- Added Create, Delete, Update, Get and List Masking Session API
+
 ## [4.56.0](https://github.com/plivo/plivo-php/tree/v4.56.0) (2023-08-25)
 **Feature - Added New Param 'carrier_fees', 'carrier_fees_rate', 'destination_network' in Get Message and List Message APIs**
 - Added new params on message get and list response
