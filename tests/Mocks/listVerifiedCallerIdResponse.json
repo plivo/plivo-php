@@ -1,0 +1,22 @@
+{
+  "api_id": "5449144c-ff78-4da3-b6a2-9b22abdb7bd4",
+  "meta": {
+    "limit": 20,
+    "next": null,
+    "offset": 0,
+    "previous": null,
+    "total_count": 1
+  },
+  "objects": [
+    {
+      "alias": "test",
+      "country": "IN",
+      "created_at": "2023-09-26T07:58:10.345732Z",
+      "modified_at": "2023-09-26T07:58:10.345732Z",
+      "phone_number": "+919999999999",
+      "resource_uri": "/v1/Account/authID/VerifiedCallerId/919999999999",
+      "subaccount": "subaccount",
+      "verification_uuid": "30fe8cc9-be93-4315-afa8-7fe26d05bb01"
+    }
+  ]
+}
