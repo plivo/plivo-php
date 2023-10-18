@@ -1,4 +1,8 @@
 # Change Log
+## [4.57.1](https://github.com/plivo/plivo-php/tree/v4.57.1) (2023-10-18)
+**Bug fix - Dial XML element**
+- Fixed constructor method signature for Dial XML element
+
 ## [4.57.0](https://github.com/plivo/plivo-php/tree/v4.57.0) (2023-09-13)
 **Feature - Number Masking**
 - Added Create, Delete, Update, Get and List Masking Session API
