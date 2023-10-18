@@ -29,7 +29,7 @@ class VerifyInterface extends ResourceInterface
     public function initiate($phoneNumber, array $optionalArgs = []){
 
          $mandatoryArgs = [
-            'phoneNumber' => $phoneNumber,
+            'phone_number' => $phoneNumber,
         ];
 
         if (ArrayOperations::checkNull($mandatoryArgs) or empty($phoneNumber)) {
@@ -104,7 +104,7 @@ class VerifyInterface extends ResourceInterface
                $responseContents['country'],
                $responseContents['created_at'],
                $responseContents['phone_number'],
-               $responseContents['subaccount'],
+               $responseContents['subaccount'] ?? null,
                $responseContents['verification_uuid'],
                $response->getStatusCode()
            );
@@ -207,7 +207,7 @@ class VerifyInterface extends ResourceInterface
                 $response->getStatusCode()
             );
         } else {
-            return new VerifySessionCreateResponse(
+            return new ListVerifiedCallerIdResponse(
                 $responseContents['api_id'],
                 $responseContents['meta'],
                 $responseContents['objects'],
