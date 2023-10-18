@@ -25,7 +25,8 @@ use Plivo\Tests\BaseTestCase;
         $body = file_get_contents(__DIR__ . '/../Mocks/initiateVerifyResponse.json');
 
         $this->mock(new PlivoResponse($request,200, $body));
-        $actual = $this->client->initiate("+919999999999");
+        $actual = $this->client->verifyCallerId->initiate("+919999999999");
+        $this->assertRequest($request);
         self::assertNotNull($actual);
     }
 
@@ -42,7 +43,7 @@ use Plivo\Tests\BaseTestCase;
         $body = file_get_contents(__DIR__ . '/../Mocks/verifyCallerIdResponse.json');
 
         $this->mock(new PlivoResponse($request,200, $body));
-        $actual = $this->client->verify($otp);
+        $actual = $this->client->verifyCallerId->verify($verificationUuid,$otp);
         self::assertNotNull($actual);
     }
 
@@ -58,7 +59,7 @@ use Plivo\Tests\BaseTestCase;
         $body = file_get_contents(__DIR__ . '/../Mocks/updateVerifiedCallerIdResponse.json');
 
         $this->mock(new PlivoResponse($request,200, $body));
-        $actual = $this->client->updateVerifiedCallerId($phoneNumber,"test-2");
+        $actual = $this->client->verifyCallerId->updateVerifiedCallerId($phoneNumber,["alias" => "test"]);
         self::assertNotNull($actual);
     }
 
@@ -67,14 +68,22 @@ use Plivo\Tests\BaseTestCase;
         $phoneNumber = "+919999999999";
         $request = new PlivoRequest(
             'GET',
-            'Account/MAXXXXXXXXXXXXXXXXXX/VerifiedCallerId/'.$phoneNumber.'/',
-            [
-                "phoneNumber" => "+919999999999"
-            ]);
+            'Account/MAXXXXXXXXXXXXXXXXXX/VerifiedCallerId/'.$phoneNumber.'/');
         $body = file_get_contents(__DIR__ . '/../Mocks/updateVerifiedCallerIdResponse.json');
-
         $this->mock(new PlivoResponse($request,200, $body));
-        $actual = $this->client->getVerifiedCallerId($phoneNumber);
+        $actual = $this->client->verifyCallerId->getVerifiedCallerId($phoneNumber);
+        self::assertNotNull($actual);
+    }
+
+    public function testListVerifiedCallerId()
+    {
+        $request = new PlivoRequest(
+            'GET',
+            'Account/MAXXXXXXXXXXXXXXXXXX/VerifiedCallerId/');
+        $body = file_get_contents(__DIR__ . '/../Mocks/listVerifiedCallerIdResponse.json');
+        $this->mock(new PlivoResponse($request,200, $body));
+        $actual = $this->client->verifyCallerId->listVerifiedCallerIds();
+        $this->assertRequest($request);
         self::assertNotNull($actual);
     }
  
