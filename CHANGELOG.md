@@ -1,4 +1,9 @@
 # Change Log
+
+## [4.58.0](https://github.com/plivo/plivo-php/tree/v4.58.0) (2023-10-18)
+**Feature - Verify Caller Id API support**
+-API support for verifying, updating, getting and deleting caller IDs.
+
 ## [4.57.0](https://github.com/plivo/plivo-php/tree/v4.57.0) (2023-09-13)
 **Feature - Number Masking**
 - Added Create, Delete, Update, Get and List Masking Session API
