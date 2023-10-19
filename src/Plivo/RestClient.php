@@ -33,6 +33,7 @@ use Plivo\Resources\MultiPartyCall\MultiPartyCallInterface;
 use Plivo\Resources\Profile\ProfileInterface;
 use Plivo\Resources\Token\TokenInterface;
 use Plivo\Resources\Zentrunk\ZentrunkInterface;
+use Plivo\Resources\VerifyCallerId\VerifyInterface;
 
 /**
  * Class RestClient
@@ -64,6 +65,7 @@ use Plivo\Resources\Zentrunk\ZentrunkInterface;
  * @property HostedMessagingNumberInterface hostedMessagingNumber Interface to handle all HostedMessagingNumber related api calls
  * @property ZentrunkInterface Zentrunk Interface to handle all Zentrunk Call related api
  * @property MaskingSessionInterface Masking session Interface to handle all session related api calls
+ * @property VerifyInterface verify Interface to handle all verify caller ID related api calls
  * 
  */
 class RestClient
@@ -222,6 +224,11 @@ class RestClient
      * @var MaskingSessionInterface
      */
     protected $_maskingSession;
+
+    /**
+     * @var VerifyInterface
+     */
+    protected $_verifyCallerID;
 
     /**
      * RestClient constructor.
@@ -592,5 +599,16 @@ class RestClient
             $this->_zentrunkCall = new ZentrunkInterface($this->client, $this->client->getAuthId());
         }
         return $this->_zentrunkCall;
+    }
+
+    /**
+     * @return VerifyInterface
+     */
+    protected function getVerifyCallerId()
+    {
+        if (!$this->_verifyCallerID) {
+            $this->_verifyCallerID = new VerifyInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_verifyCallerID;
     }
 }

@@ -1,4 +1,9 @@
 # Change Log
+
+## [4.58.0](https://github.com/plivo/plivo-php/tree/v4.58.0) (2023-10-18)
+**Feature - Verify Caller Id API support**
+-API support for verifying, updating, getting and deleting caller IDs.
+
 ## [4.57.1](https://github.com/plivo/plivo-php/tree/v4.57.1) (2023-10-18)
 **Bug fix - Dial XML element**
 - Fixed constructor method signature for Dial XML element
