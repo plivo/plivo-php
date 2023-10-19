@@ -241,8 +241,6 @@ class VerifyInterface extends ResourceInterface
                 $response->getStatusCode()
             );
         }
-        
-        return json_encode($response->getContent(), JSON_FORCE_OBJECT);
 
     }
 
