@@ -6,11 +6,17 @@ use Plivo\Exceptions\PlivoRestException;
 use Plivo\Resources\Account\AccountInterface;
 use Plivo\Resources\Application\ApplicationInterface;
 use Plivo\Resources\Call\CallInterface;
+use Plivo\Resources\MaskingSession\MaskingSessionInterface;
 use Plivo\Resources\Conference\ConferenceInterface;
 use Plivo\Resources\Endpoint\EndpointInterface;
+use Plivo\Resources\HostedMessaging\HostedMessageLOAInterface;
+use Plivo\Resources\HostedMessaging\HostedMessagingNumberInterface;
 use Plivo\Resources\Message\MessageInterface;
+use Plivo\Resources\Verify\VerifySessionInterface;
 use Plivo\Resources\Powerpack\PowerpackInterface;
 use Plivo\Resources\Media\MediaInterface;
+use Plivo\Resources\Brand\BrandInterface;
+use Plivo\Resources\Campaign\CampaignInterface;
 use Plivo\Resources\Lookup\LookupInterface;
 use Plivo\Resources\Number\NumberInterface;
 use Plivo\Resources\PhoneNumber\PhoneNumberInterface;
@@ -24,18 +30,25 @@ use Plivo\Resources\RegulatoryCompliance\ComplianceDocumentInterface;
 use Plivo\Resources\RegulatoryCompliance\ComplianceRequirementInterface;
 use Plivo\Resources\RegulatoryCompliance\ComplianceApplicationInterface;
 use Plivo\Resources\MultiPartyCall\MultiPartyCallInterface;
+use Plivo\Resources\Profile\ProfileInterface;
+use Plivo\Resources\Token\TokenInterface;
+use Plivo\Resources\Zentrunk\ZentrunkInterface;
+use Plivo\Resources\VerifyCallerId\VerifyInterface;
 
 /**
  * Class RestClient
  * @package Plivo
  *
  * @property CallInterface calls Interface to handle all Call related api calls
+ * @property TokenInterface token Interface to handle all Token related api calls
  * @property SubAccountInterface subAccounts Interface to handle all SubAccount related api calls
  * @property ApplicationInterface applications Interface to handle all Application related api calls
  * @property AccountInterface accounts Interface to handle all Account related api calls
  * @property MessageInterface messages Interface to handle all Message related api calls
+ * @property VerifySessionInterface verifySessions Interface to handle all Session related api calls
  * @property PowerpackInterface powerpacks Interface to handle all Powerpack related api calls
  * @property MediaInterface media Interface to handle all upload mms media api
+ * @property ProfileInterface profile Interface to handle all 10dlc related profile api
  * @property LookupInterface lookup Interface to handle calls to the Lookup API
  * @property EndpointInterface endpoints Interface to handle all Endpoint related api calls
  * @property NumberInterface numbers Interface to handle all Number related api calls
@@ -48,7 +61,12 @@ use Plivo\Resources\MultiPartyCall\MultiPartyCallInterface;
  * @property ComplianceDocumentInterface complianceDocument Interface to handle all ComplianceDocument related api calls
  * @property ComplianceRequirementInterface complianceRequirement Interface to handle all ComplianceRequirement related api calls
  * @property ComplianceApplicationInterface complianceApplication Interface to handle all ComplianceApplication related api calls
- *
+ * @property HostedMessageLOAInterface hostedMessageLOA Interface to handle all HostedMessageLOA related api calls
+ * @property HostedMessagingNumberInterface hostedMessagingNumber Interface to handle all HostedMessagingNumber related api calls
+ * @property ZentrunkInterface Zentrunk Interface to handle all Zentrunk Call related api
+ * @property MaskingSessionInterface Masking session Interface to handle all session related api calls
+ * @property VerifyInterface verify Interface to handle all verify caller ID related api calls
+ * 
  */
 class RestClient
 {
@@ -72,14 +90,35 @@ class RestClient
     protected $_message;
 
     /**
+     * @var VerifySessionInterface
+     */
+    protected $_verifySession;
+
+    /**
      * @var PowerpackInterface
      */
     protected $_powerpack;
 
+
+     /**
+     * @var BrandInterface
+     */
+    protected $_brand;
+
+
+     /**
+     * @var CampaignInterface
+     */
+    protected $_campaign;
      /**
      * @var MediaInterface
      */
     protected $_media;
+
+    /**
+     * @var ProfileInterface
+     */
+    protected $_profile;
 
      /**
      * @var LookupInterface
@@ -96,6 +135,10 @@ class RestClient
     protected $_subAccount;
     /**
      * @var CallInterface
+     */
+    protected $_token;
+    /**
+     * @var TokenInterface
      */
     protected $_call;
     /**
@@ -159,9 +202,33 @@ class RestClient
     protected $_complianceApplication;
 
     /**
+     * @var HostedMessageLOAInterface
+     */
+    protected $_hostedMessageLOA;
+
+    /**
+     * @var HostedMessagingNumberInterface
+     */
+    protected $_hostedMessagingNumber;
+
+    /**
      * @var MultiPartyCallInterface
      */
     protected $_multiPartyCall;
+
+    /**
+     * @var ZentrunkInterface
+     */
+    protected $_zentrunkCall;
+    /**
+     * @var MaskingSessionInterface
+     */
+    protected $_maskingSession;
+
+    /**
+     * @var VerifyInterface
+     */
+    protected $_verifyCallerID;
 
     /**
      * RestClient constructor.
@@ -230,6 +297,17 @@ class RestClient
     }
 
     /**
+     * @return VerifySessionInterface
+     */
+    protected function getVerifySessions()
+    {
+        if (!$this->_verifySession) {
+            $this->_verifySession = new VerifySessionInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_verifySession;
+    }
+
+    /**
      * @return PowerpackInterface
      */
     protected function getPowerpacks()
@@ -238,6 +316,40 @@ class RestClient
             $this->_powerpack = new PowerpackInterface($this->client, $this->client->getAuthId());
         }
         return $this->_powerpack;
+    }
+
+    /**
+     * @return BrandInterface
+     */
+    protected function getBrand()
+    {
+        if (!$this->_brand) {
+            $this->_brand = new BrandInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_brand;
+    }
+
+     /**
+     * @return CampaignInterface
+     */
+    protected function getCampaign()
+    {
+        if (!$this->_campaign) {
+            $this->_campaign = new CampaignInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_campaign;
+    }
+
+    /**
+     * @return ProfileInterface
+     *
+     */
+    protected function getProfile()
+    {
+        if (!$this->_profile) {
+            $this->_profile = new ProfileInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_profile;
     }
 
     /**
@@ -293,6 +405,27 @@ class RestClient
             $this->_call = new CallInterface($this->client, $this->client->getAuthId());
         }
         return $this->_call;
+    }
+    
+    /**
+     * @return MaskingSessionInterface
+     */
+    protected function getMaskingSessions()
+    {
+        if (!$this->_maskingSession) {
+            $this->_maskingSession = new MaskingSessionInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_maskingSession;
+    }
+    /**
+     * @return TokenInterface
+     */
+    protected function getToken()
+    {
+        if (!$this->_token) {
+            $this->_token = new TokenInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_token;
     }
 
     /**
@@ -427,12 +560,55 @@ class RestClient
         return $this->_complianceApplication;
     }
 
-
+    /**
+     * @return HostedMessageLOAInterface
+     */
+    public function getHostedMessageLOA()
+    {
+        if (!$this->_hostedMessageLOA) {
+            $this->_hostedMessageLOA = new HostedMessageLOAInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_hostedMessageLOA;
+    }
+    
+    /**
+     * @return HostedMessagingNumberInterface
+     */
+    public function getHostedMessagingNumber()
+    {
+        if (!$this->_hostedMessagingNumber) {
+            $this->_hostedMessagingNumber = new HostedMessagingNumberInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_hostedMessagingNumber;
+    }
+    
     public function getMultiPartyCalls()
     {
         if(!$this->_multiPartyCall){
             $this->_multiPartyCall = new MultiPartyCallInterface($this->client, $this->client->getAuthId());
         }
         return $this->_multiPartyCall;
+    }
+
+    /**
+     * @return ZentrunkInterface
+     */
+    public function getZentrunkCalls()
+    {
+        if (!$this->_zentrunkCall) {
+            $this->_zentrunkCall = new ZentrunkInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_zentrunkCall;
+    }
+
+    /**
+     * @return VerifyInterface
+     */
+    protected function getVerifyCallerId()
+    {
+        if (!$this->_verifyCallerID) {
+            $this->_verifyCallerID = new VerifyInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_verifyCallerID;
     }
 }

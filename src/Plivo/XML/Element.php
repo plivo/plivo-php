@@ -267,8 +267,8 @@ class Element {
      * @param array $attributes
      * @return mixed
      */
-    function addDial($body = null, $attributes = []) {
-        return $this->add(new Dial($body, $attributes));
+    function addDial($attributes = []) {
+        return $this->add(new Dial($attributes));
     }
 
     /**
@@ -374,6 +374,16 @@ class Element {
      */
     function addDTMF($body = null, $attributes = []) {
         return $this->add(new DTMF($body, $attributes));
+    }
+
+    /**
+     * @param string $body
+     * @param array $attributes
+     * @return mixed
+     */
+    function addStream($body = null, $attributes = []) {
+        $this->add(new Stream($body, $attributes));
+        return $this;
     }
 
     /**

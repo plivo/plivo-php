@@ -1,0 +1,32 @@
+{
+    "api_id": "b503c0b9-a419-406f-8e49-9856844600ab",
+    "response": {
+      "first_party": "917708772011",
+      "second_party": "919976106830",
+      "virtual_number": "916361728680",
+      "status": "active",
+      "initiate_call_to_first_party": false,
+      "session_uuid": "4d04c52e-cea3-4458-bbdb-0bfc314ee7cd5",
+      "callback_url": "http://plivobin.non-prod.plivops.com/w7mf5kw7",
+      "callback_method": "GET",
+      "created_time": "2023-07-05 10:25:40.877364 +0000 UTC",
+      "modified_time": "2023-07-05 10:25:40.877364 +0000 UTC",
+      "expiry_time": "2023-07-05 12:05:40.877364 +0000 UTC",
+      "duration": 6000,
+      "amount": 0,
+      "call_time_limit": 14400,
+      "ring_timeout": 120,
+      "first_party_play_url": "https://s3.amazonaws.com/plivosamplexml/play_url.xml",
+      "second_party_play_url": "https://plivobin-prod-usw.plivops.com/api/v1/speak.xml",
+      "record": false,
+      "record_file_format": "mp3",
+      "recording_callback_url": "https://plivobin-prod-usw.plivops.com/api/v1/speak.xml",
+      "recording_callback_method": "GET",
+      "interaction": null,
+      "total_call_amount": 0,
+      "total_call_count": 0,
+      "total_call_billed_duration": 0,
+      "total_session_amount": 0,
+      "last_interaction_time": ""
+    }
+  }

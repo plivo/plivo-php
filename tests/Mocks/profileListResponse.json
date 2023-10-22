@@ -1,0 +1,46 @@
+{
+    "api_id": "97a1c5ee-b019-11ec-88b1-0242ac110002",
+    "count": 10,
+    "limit": 2,
+    "offset": 0,
+    "profiles": [
+        {
+            "alt_business_id_type": "NONE",
+            "authorized_contact": {
+                "email": "johndoe.com",
+                "name": "John Doe",
+                "seniority": "admin",
+                "title": "Doe"
+            },
+            "company_name": "ABC Inc.",
+            "customer_type": "RESELLER",
+            "ein_issuing_country": "US",
+            "entity_type": "PUBLIC_PROFIT",
+            "profile_alias": "vishnu1",
+            "profile_type": "SECONDARY",
+            "profile_uuid": "1c41faed-a38e-42a3-a966-fe7df34b51b9",
+            "stock_symbol": "ABC",
+            "vertical": "ENERGY",
+            "created_at": "2023-03-07T11:25:28.262701Z"
+        },
+        {
+            "alt_business_id_type": "NONE",
+            "authorized_contact": {
+                "email": "johndoe.com",
+                "name": "John Doe",
+                "seniority": "admin",
+                "title": "Doe"
+            },
+            "company_name": "ABC Inc.",
+            "customer_type": "RESELLER",
+            "ein_issuing_country": "US",
+            "entity_type": "SOLE_PROPRIETOR",
+            "profile_alias": "vishnu1",
+            "profile_type": "SECONDARY",
+            "profile_uuid": "1d77a5fe-bca4-4a6d-a7c4-58b70e8cd7a2",
+            "stock_symbol": "ABC",
+            "vertical": "ENERGY",
+            "created_at": "2023-03-07T11:25:28.262701Z"
+        }
+    ]
+}

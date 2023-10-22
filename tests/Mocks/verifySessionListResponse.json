@@ -1,0 +1,165 @@
+{
+  "api_id": "c6caa05a-6085-4606-b287-ec3e1bb1cf2c",
+  "meta": {
+      "limit": 20,
+      "offset": 0,
+      "next": null,
+      "previous": null
+  },
+  "sessions": [
+      {
+          "session_uuid": "8ba0ec88-fe61-4999-9215-bac79e6be1a7",
+          "app_uuid": "854f110a-6244-4481-9d28-dddf58c7014b",
+          "alias": "default_app",
+          "recipient": "918097480999",
+          "channel": "sms",
+          "status": "verified",
+          "count": 1,
+          "requestor_ip": "110.226.182.196",
+          "destination_country_iso2": "IN",
+          "destination_network": "AirTel",
+          "attempt_details": [
+              {
+                  "channel": "sms",
+                  "attempt_uuid": "3ada0edc-849a-49f4-aae6-2de209955829",
+                  "status": "delivered",
+                  "time": "2023-07-28T17:20:39.278163+05:30"
+              }
+          ],
+          "charges": {
+              "total_charge": "0.13000",
+              "validation_charge": "0.05",
+              "attempt_charges": [
+                  {
+                      "attempt_uuid": "3ada0edc-849a-49f4-aae6-2de209955829",
+                      "channel": "sms",
+                      "charge": "0.08000"
+                  }
+              ]
+          },
+          "created_at": "2023-07-28T17:20:39.263819+05:30",
+          "updated_at": "2023-07-28T17:20:39.278163+05:30"
+      },
+      {
+          "session_uuid": "04500412-8377-454f-ab6c-52915bfb19d0",
+          "app_uuid": "854f110a-6244-4481-9d28-dddf58c7014b",
+          "alias": "default_app",
+          "recipient": "918097480999",
+          "channel": "sms",
+          "status": "verified",
+          "count": 2,
+          "requestor_ip": "110.226.182.196",
+          "destination_country_iso2": "IN",
+          "destination_network": "AirTel",
+          "attempt_details": [
+              {
+                  "channel": "voice",
+                  "attempt_uuid": "a16eff2f-d40e-467b-9cff-cd0127417f52",
+                  "status": "answer",
+                  "time": "2023-07-28T17:15:00.457475+05:30"
+              },
+              {
+                  "channel": "sms",
+                  "attempt_uuid": "cee2d4b7-ad1a-4bc3-8c94-3b38607366e0",
+                  "status": "delivered",
+                  "time": "2023-07-28T17:15:06.083284+05:30"
+              }
+          ],
+          "charges": {
+              "total_charge": "0.32300",
+              "validation_charge": "0.05",
+              "attempt_charges": [
+                  {
+                      "attempt_uuid": "a16eff2f-d40e-467b-9cff-cd0127417f52",
+                      "channel": "voice",
+                      "charge": "0.03300"
+                  },
+                  {
+                      "attempt_uuid": "cee2d4b7-ad1a-4bc3-8c94-3b38607366e0",
+                      "channel": "sms",
+                      "charge": "0.24000"
+                  }
+              ]
+          },
+          "created_at": "2023-07-28T17:15:00.4336+05:30",
+          "updated_at": "2023-07-28T17:15:06.083284+05:30"
+      },
+      {
+          "session_uuid": "b1c4807e-224d-4889-b094-dfb83f4535c9",
+          "app_uuid": "854f110a-6244-4481-9d28-dddf58c7014b",
+          "alias": "default_app",
+          "recipient": "918097480999",
+          "channel": "voice",
+          "status": "expired",
+          "count": 1,
+          "requestor_ip": "110.226.182.196",
+          "destination_country_iso2": "IN",
+          "destination_network": "AirTel",
+          "attempt_details": [
+              {
+                  "channel": "voice",
+                  "attempt_uuid": "cee6635a-4619-41ca-9433-d0799aae917a",
+                  "status": "answer",
+                  "time": "2023-07-28T17:10:45.823715+05:30"
+              }
+          ],
+          "charges": {
+              "total_charge": "0.03300",
+              "validation_charge": "0.0000",
+              "attempt_charges": [
+                  {
+                      "attempt_uuid": "cee6635a-4619-41ca-9433-d0799aae917a",
+                      "channel": "voice",
+                      "charge": "0.03300"
+                  }
+              ]
+          },
+          "created_at": "2023-07-28T17:10:45.809902+05:30",
+          "updated_at": "2023-07-28T17:10:45.823715+05:30"
+      },
+      {
+          "session_uuid": "91b05ed6-49ea-46e2-afa3-5c475e611699",
+          "app_uuid": "854f110a-6244-4481-9d28-dddf58c7014b",
+          "alias": "default_app",
+          "recipient": "918097480999",
+          "channel": "sms",
+          "status": "expired",
+          "count": 2,
+          "requestor_ip": "110.226.182.196",
+          "destination_country_iso2": "IN",
+          "destination_network": "AirTel",
+          "attempt_details": [
+              {
+                  "channel": "sms",
+                  "attempt_uuid": "c8f5830a-65d2-46db-9088-5001627e65a9",
+                  "status": "delivered",
+                  "time": "2023-07-28T17:07:02.280023+05:30"
+              },
+              {
+                  "channel": "sms",
+                  "attempt_uuid": "eb0ad429-f208-467d-8616-6e541e5fb3b7",
+                  "status": "delivered",
+                  "time": "2023-07-28T17:09:07.870717+05:30"
+              }
+          ],
+          "charges": {
+              "total_charge": "0.48000",
+              "validation_charge": "0.0000",
+              "attempt_charges": [
+                  {
+                      "attempt_uuid": "c8f5830a-65d2-46db-9088-5001627e65a9",
+                      "channel": "sms",
+                      "charge": "0.24000"
+                  },
+                  {
+                      "attempt_uuid": "eb0ad429-f208-467d-8616-6e541e5fb3b7",
+                      "channel": "sms",
+                      "charge": "0.24000"
+                  }
+              ]
+          },
+          "created_at": "2023-07-28T17:07:02.266907+05:30",
+          "updated_at": "2023-07-28T17:09:07.870717+05:30"
+      }
+  ]
+}

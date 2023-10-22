@@ -22,15 +22,14 @@ class CallTest extends BaseTestCase
             [
                 'from' => '919999999999',
                 'to' => '919999999999',
-                'answer_url' => '919999999999',
-                'answer_method' => 'POST',
+                'answer_url' => '919999999999'
             ]);
         $body = file_get_contents(__DIR__ . '/../Mocks/callCreateResponse.json');
 
         $this->mock(new PlivoResponse($request,201, $body));
 
         $actual = $this->client->calls->create(
-            '919999999999', ['919999999999'], '919999999999', 'POST');
+            '919999999999', ['919999999999'], '919999999999');
 
         $this->assertRequest($request);
 
@@ -49,15 +48,14 @@ class CallTest extends BaseTestCase
             [
                 'from' => '919999999999',
                 'to' => '919999999998',
-                'answer_url' => 'http://answer.url',
-                'answer_method' => 'POST',
+                'answer_url' => 'http://answer.url'
             ]);
         $body = file_get_contents(__DIR__ . '/../Mocks/callCreateResponse.json');
 
         $this->mock(new PlivoResponse($request,201, $body));
 
         $actual = $this->client->calls->create(
-            '919999999999', ['919999999998'], 'http://answer.url', 'POST');
+            '919999999999', ['919999999998'], 'http://answer.url');
 
         $this->assertRequest($request);
 
@@ -456,6 +454,62 @@ class CallTest extends BaseTestCase
         self::assertNotNull($actual);
 
         self::assertEquals($actual->message, "call recording started");
+    }
+
+    function testLiveCallStartStream()
+    {
+        $request = new PlivoRequest(
+            'POST',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Call/dfshjkasfhjkasfhjkashf/Stream/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/liveCallStreamCreateResponse.json');
+
+        $this->mock(new PlivoResponse($request,201, $body));
+
+        $actual = $this->client->calls->startStream("dfshjkasfhjkasfhjkashf");
+
+        $this->assertRequest($request);
+
+        self::assertNotNull($actual);
+
+        self::assertEquals($actual->message, "audio streaming started");
+        self::assertEquals($actual->streamId, "30852c23-ee79-4eb4-b7b9-cd360545965b");
+        self::assertEquals($actual->apiId, "ff09383e-246f-11ed-a1fe-0242ac110004");
+    }
+
+    function testLiveCallStopStream()
+    {
+        $request = new PlivoRequest(
+            'DELETE',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Call/dfshjkasfhjkasfhjkashf/Stream/',
+            []);
+        $body = '{}';
+
+        $this->mock(new PlivoResponse($request,204, $body));
+
+        $actual = $this->client->calls->stopStream("dfshjkasfhjkasfhjkashf");
+
+        $this->assertRequest($request);
+
+        self::assertNull($actual);
+    }
+
+    function testGetAllStreams()
+    {
+        $request = new PlivoRequest(
+            'GET',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Call/4d04c52e-cea3-4458-bbdb-0bfc314ee7cd/Stream',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/liveCallStreamGetAllResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->calls->getAllStreams("4d04c52e-cea3-4458-bbdb-0bfc314ee7cd");
+
+        self::assertNotNull($actual);
+
+        self::assertEquals($actual->meta, array('count'=>1, 'limit'=>20, 'next'=>null, 'offset'=>0, 'previous'=>null));
+        self::assertEquals($actual->objects, array(array('call_uuid'=>"4f045f7a-b04a-4364-8523-74e6072f4f72", 'end_time'=>null, 'service_url'=>"ws://3ee3-106-51-87-58.ngrok.io", 'start_time'=>null, 'status'=>"initiated", 'status_callback_url'=>"", 'stream_id'=>"c436abf8-e8a1-4d96-9aa8-b9143f7f3517")));
     }
 
     function testLiveCallDtmf()

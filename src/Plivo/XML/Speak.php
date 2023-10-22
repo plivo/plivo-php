@@ -29,6 +29,8 @@ class Speak extends Element {
     protected $valid_voice_attribute_values = [
         'man',
         'woman',
+        'MAN',
+        'WOMAN',
         'Polly.Zeina', 'Polly.Zhiyu','Polly.Naja','Polly.Mads','Polly.Lotte',
         'Polly.Ruben','Polly.Nicole','Polly.Russell','Polly.Amy',
         'Polly.Emma','Polly.Brian','Polly.Aditi','Polly.Raveena',

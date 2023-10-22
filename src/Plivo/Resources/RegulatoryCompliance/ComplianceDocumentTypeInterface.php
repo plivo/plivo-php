@@ -5,6 +5,7 @@ namespace Plivo\Resources\RegulatoryCompliance;
 
 use Plivo\Exceptions\PlivoValidationException;
 use Plivo\BaseClient;
+use Plivo\Exceptions\PlivoResponseException;
 
 use Plivo\Resources\ResourceInterface;
 use Plivo\Resources\ResourceList;

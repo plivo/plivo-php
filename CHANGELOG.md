@@ -1,5 +1,214 @@
 # Change Log
 
+## [4.58.0](https://github.com/plivo/plivo-php/tree/v4.58.0) (2023-10-18)
+**Feature - Verify Caller Id API support**
+-API support for verifying, updating, getting and deleting caller IDs.
+
+## [4.57.1](https://github.com/plivo/plivo-php/tree/v4.57.1) (2023-10-18)
+**Bug fix - Dial XML element**
+- Fixed constructor method signature for Dial XML element
+
+## [4.57.0](https://github.com/plivo/plivo-php/tree/v4.57.0) (2023-09-13)
+**Feature - Number Masking**
+- Added Create, Delete, Update, Get and List Masking Session API
+
+## [4.56.0](https://github.com/plivo/plivo-php/tree/v4.56.0) (2023-08-25)
+**Feature - Added New Param 'carrier_fees', 'carrier_fees_rate', 'destination_network' in Get Message and List Message APIs**
+- Added new params on message get and list response
+
+## [4.55.0](https://github.com/plivo/plivo-php/tree/v4.55.0) (2023-08-10)
+**Feature - Verify**
+- Added Create Session API
+- Added Get Session API
+- Added List Session API
+- Added Validate Session API
+
+## [4.54.0](https://github.com/plivo/plivo-php/tree/v7.33.0) (2023-08-07)
+**Feature - WhatsApp message support**
+- Added new param `template` and  new message_type `whatsapp` to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message)
+- Added  new  `message_states` (`read`)   `message_type`(`whatsapp`),`conversation_id`, `conversation_origin`, `conversation_expiry_timestamp` in [list all messages API](https://www.plivo.com/docs/sms/api/message#list-all-messages) and [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message) response
+
+## [4.53.0](https://github.com/plivo/plivo-php/tree/v4.53.0) (2023-08-03)
+**Feature - DLT parameters**
+- Added new params `DLTEntityID`, `DLTTemplateID`, `DLTTemplateCategory` to the [send message API](https://www.plivo.com/docs/sms/api/message/send-a-message/)
+- Added new params `DLTEntityID`, `DLTTemplateID`, `DLTTemplateCategory` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
+## [4.52.0](https://github.com/plivo/plivo-php/tree/v4.52.0) (2023-07-18)
+-  Removed object_id and object_type in the parameter as well as response in [list all numbers API]
+
+## [v4.51.0](https://github.com/plivo/plivo-php/tree/v4.51.0) (2023-06-28)
+**Audio Streaming**
+- API support for starting, deleting, getting streams on a live call
+- XML creation support for stream element
+
+## [4.50.1](https://github.com/plivo/plivo-php/tree/v4.50.1) (2023-05-14)
+-  Fix warnings on [list all numbers API]
+
+## [4.50.0](https://github.com/plivo/plivo-php/tree/v4.50.0) (2023-05-02)
+**Feature - CNAM Lookup**
+- Added New Param `cnam_lookup` in to the response of the [list all numbers API], [list single number API]
+- Added `cnam_lookup` filter to AccountPhoneNumber - list all my numbers API.
+- Added `cnam_lookup` parameter to buy number[Buy a Phone Number]  to configure CNAM Lookup while buying a US number
+- Added `cnam_lookup` parameter to update number[Update an account phone number] to configure CNAM Lookup while buying a US number
+
+## [v4.49.0](https://github.com/plivo/plivo-php/tree/v4.43.1) (2023-03-16)
+**Feature - Added New Param 'cnam_lookup_number_config' in GetCall and ListCalls**
+- Add `cnam_lookup_number_config` to the response for the [retrieve a call details API](https://www.plivo.com/docs/voice/api/call#retrieve-a-call) and the [retreive all call details API](https://www.plivo.com/docs/voice/api/call#retrieve-all-calls)
+
+## [4.48.0](https://github.com/plivo/plivo-php/tree/v4.48.0) (2023-05-29)
+- Added `monthly_recording_storage_amount`, `recording_storage_rate`, `rounded_recording_duration`, and `recording_storage_duration` parameters to the response for [get single recording API](https://www.plivo.com/docs/voice/api/recording#retrieve-a-recording) and [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+- Added `recording_storage_duration` parameter as a filter option for [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+
+## [v4.47.1](https://github.com/plivo/plivo-php/tree/v4.47.1) (2023-05-11)
+- Fix send sms api failure on multiple destination number added on array param
+
+## [v4.47.0](https://github.com/plivo/plivo-php/tree/v4.47.0) (2023-05-04)
+- Add New Param `renewalDate` to the response of the [list all numbers API], [list single number API]
+- Added 3 new filters to AccountPhoneNumber - list all my numbers API:`renewal_date`, `renewal_date__gt`, `renewal_date__gte`,`renewal_date__lt` and `renewal_date__lte` (https://www.plivo.com/docs/numbers/api/account-phone-number#list-all-my-numbers)
+
+## [v4.46.0](https://github.com/plivo/plivo-php/tree/v4.46.0) (2023-04-25)
+- Add `replacedSender` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+- Add `apiId` to the responses for the list all messages API and the get message details API
+
+## [v4.45.0](https://github.com/plivo/plivo-php/tree/v4.45.1) (2023-04-11)
+**Feature - Added New Param 'source_ip' in GetCall and ListCalls**
+- Add `source_ip` to the response for the [retrieve a call details API](https://www.plivo.com/docs/voice/api/call#retrieve-a-call) and the [retreive all call details API](https://www.plivo.com/docs/voice/api/call#retrieve-all-calls)
+
+## [4.44.2](https://github.com/plivo/plivo-php/tree/v4.44.2) (2023-10-04)
+- Fix "https://github.com/plivo/plivo-php/issues/308"
+
+## [4.44.0](https://github.com/plivo/plivo-php/tree/v4.44.0) (2023-24-03)
+- Added New Param `created_at` to the response of the [list all profiles API], [get profile API], [list all brands API], [get brand API], [list all campaigns API] and the [get campaign API]
+
+## [v4.43.1](https://github.com/plivo/plivo-php/tree/v4.43.1) (2023-03-24)
+- Fix brand registration create api param
+
+## [v4.43.0](https://github.com/plivo/plivo-php/tree/v4.43.0) (2023-03-03)
+- Add `isDomestic` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
+## [4.42.1](https://github.com/plivo/plivo-php/tree/v4.42.1) (2023-02-28)
+-Added Exception handling for Retrieve all Calls API [Retrieve details of all calls](https://www.plivo.com/docs/voice/api/call#retrieve-all-calls)
+
+## [4.42.0](https://github.com/plivo/plivo-php/tree/v4.42.0) (2023-02-27)
+**Feature - Enhance MDR filtering capabilities **
+- Added new fields on MDR object response
+
+## [v4.41.0](https://github.com/plivo/plivo-php/tree/v4.41.0) (2023-01-25)
+- Add `requesterIP` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
+## [v4.40.0](https://github.com/plivo/plivo-php/tree/v4.40.0) (2023-01-18)
+-  Added new param(Message_expiry) in Send message API
+
+## [v4.39.0](https://github.com/plivo/plivo-php/tree/v4.39.0) (2022-12-16)
+-  Added update campaign API
+
+## [v4.38.0](https://github.com/plivo/plivo-php/tree/v4.38.0) (2022-12-06)
+-  Added Delete campaign and brand API
+
+## [v4.37.1](https://github.com/plivo/plivo-php/tree/v4.37.1) (2022-11-15)
+-  Support for PHP 8.1 version
+
+## [v4.37.0](https://github.com/plivo/plivo-php/tree/v4.37.0) (2022-11-04)
+- Added Brand Usecase Request
+
+## [v4.36.1](https://github.com/plivo/plivo-php/tree/v4.36.1) (2022-11-11)
+**Bug fix - StartRecording** 
+- SDK throws exception when `callback_url` is provided in the request
+
+## [v4.36.0](https://github.com/plivo/plivo-php/tree/v4.36.0) (2022-10-14)
+- Added 3 new keys to AccountPhoneNumber object:`tendlc_registration_status`, `tendlc_campaign_id` and `toll_free_sms_verification` (https://www.plivo.com/docs/numbers/api/account-phone-number#the-accountphonenumber-object)
+- Added 3 new filters to AccountPhoneNumber - list all my numbers API:`tendlc_registration_status`, `tendlc_campaign_id` and `toll_free_sms_verification` (https://www.plivo.com/docs/numbers/api/account-phone-number#list-all-my-numbers)
+
+## [v4.35.1](https://github.com/plivo/plivo-php/tree/v4.35.1) (2022-09-28)
+-  10DLC: Adding new attributes to campaign creation request
+
+## [v4.35.0](https://github.com/plivo/plivo-php/tree/v4.35.0) (2022-08-01)
+-  `JWT Token Creation API` added functionality to create a new JWT token.
+
+## [v4.34.0](https://github.com/plivo/plivo-php/tree/v4.34.0) (2022-06-21)
+- Implemented new client for retrieving ZenTrunk CDRs
+
+## [v4.33.0](https://github.com/plivo/plivo-php/tree/v4.33.0) (2022-06-14)
+- Private Beta release of Trunk to DID mapping
+
+## [v4.32.0](https://github.com/plivo/plivo-php/tree/v4.32.0) (2022-05-10)
+- add `brand_type` field in brand get/list response
+
+## [v4.31.0](https://github.com/plivo/plivo-php/tree/v4.31.0) (2022-05-05)
+**Feature Added - Recording**
+- now customer can filter recording with `to_number` and `from_number` filter also [Recording](https://www.plivo.com/docs/voice/api/recording/)
+- `record_min_member_count` param added to [Add a participant to a multiparty call using API](https://www.plivo.com/docs/voice/api/multiparty-call/participants#add-a-participant)
+
+## [v4.30.0](https://github.com/plivo/plivo-php/tree/v4.30.0) (2022-04-28)
+**Feature - 10DLC API callback**
+- Added callback support for campaign, brand, link number request.
+
+## [v4.29.0](https://github.com/plivo/plivo-php/tree/v4.29.0) (2022-04-14)
+**Feature - Profile api**
+- Added profile support for 10dlc.
+
+## [v4.28.1](https://github.com/plivo/plivo-php/tree/v4.28.1) (2022-03-30)
+**Bug fix - SpeakElementXML**
+- `voice` parameter is accepting lowercase as well as uppercase values [The Speak element](https://www.plivo.com/docs/voice/xml/speak/)
+
+## [v4.28.0](https://github.com/plivo/plivo-php/tree/v4.28.0) (2022-03-25)
+**Features - DialElement**
+- `confirmTimeout` parameter added to [The Dial element](https://www.plivo.com/docs/voice/xml/dial/)
+
+## [v4.27.2](https://github.com/plivo/plivo-php/tree/v4.27.2) (2022-03-24)
+**Bug fix - Buy Phone Number & Application Response**
+- Addition of missing fields(Number, NumberStatus, and status) in Buy [Phone number API](https://www.plivo.com/docs/numbers/api/phone-number#buy-a-phone-number).
+- Enhanced error response for [Create Application API](https://www.plivo.com/docs/account/api/application/create-an-application/)
+
+## [v4.27.1](https://github.com/plivo/plivo-php/tree/v4.27.1) (2022-03-15)
+**Bug fix - CallInterface params**
+- Attribute `answer_method` is set to optional for [Make a Call API](https://www.plivo.com/docs/voice/api/call#make-a-call)
+
+## [v4.27.0](https://github.com/plivo/plivo-php/tree/v4.27.0) (2022-03-10)
+**Add on - Dependancy library**
+- Do not anchor php-jwt version.
+
+## [v4.26.0](https://github.com/plivo/plivo-php/tree/v4.26.0) (2022-02-25)
+**Features - Numbers: Hosted Messaging API**
+- Add support for Hosted Messaging APIs.
+
+## [v4.25.2](https://github.com/plivo/plivo-php/tree/v4.25.2) (2022-02-01)
+**Features - MPCCallRecording**
+- parameter name change from statusCallBack to recordingCallBack
+
+## [v4.25.1](https://github.com/plivo/plivo-php/tree/v4.25.1) (2022-01-25)
+**Bug fix - Messaging**
+- Default value set to null for send sms attributes.
+
+## [v4.25.0](https://github.com/plivo/plivo-php/tree/v4.25.0) (2021-12-15)
+**Features - Voice**
+- Routing SDK traffic through Akamai endpoints for all the [Voice APIs](https://www.plivo.com/docs/voice/api/overview/)
+
+## [v4.24.1](https://github.com/plivo/plivo-php/releases/tag/v4.24.1) - 2021-12-06
+**Bug fix**
+- [Send SMS](https://www.plivo.com/docs/sms/api/message#send-a-message) to stop expecting optional/conitonal parameters when not passed in older messaging interface.
+
+## [v4.24.0](https://github.com/plivo/plivo-php/releases/tag/v4.24.0) - 2021-11-11
+**Features - Messaging**
+- New 10DLC API:
+  - Brand API: `Create`, `Get`  and `List`.
+  - Campaign API: `Create`, `Get` and `List`.
+
+## [v4.23.0](https://github.com/plivo/plivo-php/releases/tag/v4.23.0) - 2021-11-08
+**Features - Messaging**
+- This version includes advancements to the Messaging Interface that deals with the [Send SMS/MMS](https://www.plivo.com/docs/sms/api/message#send-a-message) interface, Creating a standard structure for `request/input` arguments to make implementation easier and incorporating support for the older interface.
+
+ Example for [send SMS](https://github.com/plivo/plivo-php#send-a-message)
+
+## [v4.22.0](https://github.com/plivo/plivo-node/tree/v4.22.0) - (2021-11-03)
+- Added Voice MPC enhancements.
+
+## [v4.21.3](https://github.com/plivo/plivo-php/releases/tag/v4.21.3) - 2021-10-29
+- Fix `exception` returned by [Search phone number API](https://www.plivo.com/docs/numbers/api/phone-number/search-phone-numbers/) for successful request.
+
+## [v4.21.2](https://github.com/plivo/plivo-php/releases/tag/v4.21.2) - 2021-10-19
+- Fixing the `GET` request.
+
 ## [v4.21.1](https://github.com/plivo/plivo-php/releases/tag/v4.21.1) - 2021-07-27
 - Updated default HTTP client request timeout to 5 seconds.
 

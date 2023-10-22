@@ -1,0 +1,239 @@
+{
+    "api_id": "962b8fb2-b963-11ec-9bbb-0242ac110002",
+    "brands": [
+        {
+            "address": {
+                "city": "",
+                "country": "",
+                "postal_code": "",
+                "state": "",
+                "street": ""
+            },
+            "authorized_contact": {},
+            "brand_alias": "Ren_With_Vetting",
+            "brand_id": "BXZRASW",
+            "company_name": "Ren_With_Vetting",
+            "ein": "2342334534231",
+            "ein_issuing_country": "IN",
+            "entity_type": "NON_PROFIT",
+            "brand_type": "STANDARD",
+            "registration_status": "COMPLETED",
+            "vertical": "COMMUNICATION",
+            "vetting_score": 80,
+            "vetting_status": "ACTIVE",
+            "website": "www.renold.com",
+            "created_at": "2023-03-07T11:25:28.262701Z"
+        },
+        {
+            "address": {
+                "city": "",
+                "country": "",
+                "postal_code": "",
+                "state": "",
+                "street": ""
+            },
+            "authorized_contact": {},
+            "brand_alias": "CSP Testing 003",
+            "brand_id": "BMIORKY",
+            "company_name": "CSP Testing 003",
+            "ein": "234234234",
+            "ein_issuing_country": "IN",
+            "entity_type": "PUBLIC_PROFIT",
+            "brand_type": "STANDARD",
+            "registration_status": "COMPLETED",
+            "vertical": "COMMUNICATION",
+            "vetting_score": 80,
+            "vetting_status": "ACTIVE",
+            "website": "www.standard1.com",
+            "created_at": "2023-03-07T11:25:28.262701Z"
+        },
+        {
+            "address": {
+                "city": "",
+                "country": "",
+                "postal_code": "",
+                "state": "",
+                "street": ""
+            },
+            "authorized_contact": {},
+            "brand_alias": "Lead Junkies LLC",
+            "brand_id": "BJZGVD8",
+            "company_name": "Lead Junkies LLC",
+            "ein": "874007439",
+            "ein_issuing_country": "US",
+            "entity_type": "PRIVATE_PROFIT",
+            "brand_type": "STANDARD",
+            "registration_status": "COMPLETED",
+            "vertical": "ENERGY",
+            "vetting_score": 80,
+            "vetting_status": "ACTIVE",
+            "created_at": "2023-03-07T11:25:28.262701Z"
+        },
+        {
+            "address": {
+                "city": "",
+                "country": "",
+                "postal_code": "",
+                "state": "",
+                "street": ""
+            },
+            "authorized_contact": {},
+            "brand_alias": "John Doe",
+            "brand_id": "BPL3KN9",
+            "ein_issuing_country": "US",
+            "entity_type": "INDIVIDUAL",
+            "brand_type": "STARTER",
+            "registration_status": "COMPLETED",
+            "created_at": "2023-03-07T11:25:28.262701Z"
+        },
+        {
+            "address": {
+                "city": "",
+                "country": "",
+                "postal_code": "",
+                "state": "",
+                "street": ""
+            },
+            "authorized_contact": {},
+            "brand_alias": "test_005",
+            "brand_id": "BUQQM0K",
+            "company_name": "test_005",
+            "ein": "112135555",
+            "ein_issuing_country": "US",
+            "entity_type": "PRIVATE_PROFIT",
+            "brand_type": "STANDARD",
+            "registration_status": "COMPLETED",
+            "vertical": "ENTERTAINMENT",
+            "vetting_score": 80,
+            "vetting_status": "ACTIVE",
+            "website": "http://www.automation.com",
+            "created_at": "2023-03-07T11:25:28.262701Z"
+        },
+        {
+            "address": {
+                "city": "New York",
+                "country": "IN",
+                "postal_code": "10001",
+                "state": "NY",
+                "street": "123"
+            },
+            "authorized_contact": {
+                "email": "mallika@plivo.com",
+                "first_name": "John",
+                "last_name": "Doe",
+                "phone": "+918970604313",
+                "seniority": "admin",
+                "title": "Doe"
+            },
+            "brand_alias": "mallika_test_3",
+            "brand_id": "BPSQD2J",
+            "company_name": "bsnm Inc.",
+            "ein": "111111111",
+            "ein_issuing_country": "US",
+            "entity_type": "PRIVATE_PROFIT",
+            "brand_type": "STANDARD",
+            "profile_uuid": "09849948-656a-41a2-99da-8370251c804b",
+            "registration_status": "COMPLETED",
+            "vertical": "ENERGY",
+            "vetting_score": 80,
+            "vetting_status": "ACTIVE",
+            "created_at": "2023-03-07T11:25:28.262701Z"
+        },
+        {
+            "address": {
+                "city": "",
+                "country": "",
+                "postal_code": "",
+                "state": "",
+                "street": ""
+            },
+            "authorized_contact": {},
+            "brand_alias": "ABC Inc.",
+            "brand_id": "B88AGB0",
+            "company_name": "ABC Inc.",
+            "ein": "111111111",
+            "ein_issuing_country": "US",
+            "entity_type": "PRIVATE_PROFIT",
+            "brand_type": "STANDARD",
+            "registration_status": "COMPLETED",
+            "vertical": "RETAIL",
+            "vetting_score": 80,
+            "vetting_status": "ACTIVE",
+            "website": "http://www.abcmobile.com",
+            "created_at": "2023-03-07T11:25:28.262701Z"
+        },
+        {
+            "address": {
+                "city": "New York",
+                "country": "IN",
+                "postal_code": "10001",
+                "state": "NY",
+                "street": "123"
+            },
+            "authorized_contact": {
+                "email": "renold.thomas@plivo.com",
+                "first_name": "John",
+                "last_name": "Doe",
+                "phone": "919074079045",
+                "seniority": "admin",
+                "title": "Doe"
+            },
+            "brand_alias": "sole_prop_007",
+            "brand_id": "BA8D7XN",
+            "ein_issuing_country": "IN",
+            "entity_type": "INDIVIDUAL",
+            "brand_type": "STARTER",
+            "profile_uuid": "55515d72-2852-4016-9ed9-c64bd1c0c055",
+            "registration_status": "COMPLETED",
+            "vertical": "ENERGY",
+            "created_at": "2023-03-07T11:25:28.262701Z"
+        },
+        {
+            "address": {
+                "city": "",
+                "country": "",
+                "postal_code": "",
+                "state": "",
+                "street": ""
+            },
+            "authorized_contact": {},
+            "brand_alias": "ren_sp_01",
+            "brand_id": "B6AEUWW",
+            "ein_issuing_country": "IN",
+            "entity_type": "INDIVIDUAL",
+            "brand_type": "STARTER",
+            "profile_uuid": "3db43f63-270f-4d55-a591-27f7dc19b8e7",
+            "registration_status": "COMPLETED",
+            "vertical": "PROFESSIONAL",
+            "created_at": "2023-03-07T11:25:28.262701Z"
+        },
+        {
+            "address": {
+                "city": "",
+                "country": "",
+                "postal_code": "",
+                "state": "",
+                "street": ""
+            },
+            "authorized_contact": {},
+            "brand_alias": "somehitng",
+            "brand_id": "BQI0MEV",
+            "company_name": "ABC Inc.",
+            "ein": "111111111",
+            "ein_issuing_country": "US",
+            "entity_type": "PRIVATE_PROFIT",
+            "brand_type": "STANDARD",
+            "profile_uuid": "0ac18ad2-5086-4bde-84e5-275a2782cb40",
+            "registration_status": "COMPLETED",
+            "vertical": "PROFESSIONAL",
+            "vetting_score": 80,
+            "vetting_status": "ACTIVE",
+            "created_at": "2023-03-07T11:25:28.262701Z"
+        }
+    ],
+    "meta": {
+        "limit": 10,
+        "next": "/v1/Account/MAODZKMDFJMJU3MTEYNG/10dlc/Brand/?limit=10&offset=10",
+        "offset": 0
+    }
+}

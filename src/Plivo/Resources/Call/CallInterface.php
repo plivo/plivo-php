@@ -11,6 +11,10 @@ use Plivo\Resources\ResourceList;
 use Plivo\Resources\ResponseUpdate;
 use Plivo\Util\ArrayOperations;
 
+require_once('CallStream.php');
+require_once('CallStreamGetAllResponse.php');
+require_once('CallStreamGetSpecificResponse.php');
+
 
 /**
  * Class CallInterface
@@ -42,7 +46,6 @@ class CallInterface extends ResourceInterface
      * @param string $from The phone number to be used as the caller id (with the country code).For e.g, a USA caller id number could be, 15677654321, with '1' for the country code.
      * @param array $to The regular number(s) or sip endpoint(s) to call. Regular number must be prefixed with country code but without the + sign). For e.g, to dial a number in the USA, the number could be, 15677654321, with '1' for the country code. Multiple numbers can be sent by using a delimiter. For e.g. 15677654321<12077657621<12047657621. Sip endpoints must be prefixed with sip: E.g., sip:john1234@phone.plivo.com. To make bulk calls, the delimiter < is used. For example, 15677654321<15673464321<sip:john1234@phone.plivo.com Yes, you can mix regular numbers and sip endpoints.
      * @param string $answerUrl The URL invoked by Plivo when the outbound call is answered.
-     * @param string $answerMethod The method used to call the answer_url.
      * @param array $optionalArgs
      *   + Valid arguments with their types
      *   + [string] answer_method - The method used to call the answer_url. Defaults to POST.
@@ -69,14 +72,13 @@ class CallInterface extends ResourceInterface
      * @return JSON output
      * @throws PlivoValidationException,PlivoResponseException
      */
-    public function create($from, array $to, $answerUrl, $answerMethod,
+    public function create($from, array $to, $answerUrl,
                            array $optionalArgs = [])
     {
         $mandatoryArgs = [
             'from' => $from,
             'to' => implode('<', $to),
-            'answer_url' => $answerUrl,
-            'answer_method' => $answerMethod
+            'answer_url' => $answerUrl
         ];
         $optionalArgs['isVoiceRequest'] = true;
 
@@ -204,27 +206,28 @@ class CallInterface extends ResourceInterface
      *   + [string] subaccount - The id of the subaccount, if call details of the subaccount are needed.
      *   + [string] call_direction - Filter the results by call direction. The valid inputs are inbound and outbound.
      *   + [string] from_number - Filter the results by the number from where the call originated. For example:<br />
-    To filter out those numbers that contain a particular number sequence, use from_number={sequence}<br />
-    To filter out a number that matches an exact number, use from_number={exact_number}
+     * To filter out those numbers that contain a particular number sequence, use from_number={sequence}<br />
+     * To filter out a number that matches an exact number, use from_number={exact_number}
      *   + [string] to_number - Filter the results by the number to which the call was made. Tips to use this filter are:<br />
-    To filter out those numbers that contain a particular number sequence, use to_number={sequence}<br />
-    To filter out a number that matches an exact number, use to_number={exact_number}
+     * To filter out those numbers that contain a particular number sequence, use to_number={sequence}<br />
+     * To filter out a number that matches an exact number, use to_number={exact_number}
      *   + [string] bill_duration - Filter the results according to billed duration. The value of billed duration is in seconds. The filter can be used in one of the following five forms:<br />
-    bill_duration: Input the exact value. E.g., to filter out calls that were exactly three minutes long, use bill_duration=180<br />
-    bill_duration\__gt: gt stands for greater than. E.g., to filter out calls that were more than two hours in duration bill_duration\__gt=7200<br />
-    bill_duration\__gte: gte stands for greater than or equal to. E.g., to filter out calls that were two hours or more in duration bill_duration\__gte=7200<br />
-    bill_duration\__lt: lt stands for lesser than. E.g., to filter out calls that were less than seven minutes in duration bill_duration\__lt=420<br />
-    bill_duration\__lte: lte stands for lesser than or equal to. E.g., to filter out calls that were two hours or less in duration bill_duration\__lte=7200
+     * bill_duration: Input the exact value. E.g., to filter out calls that were exactly three minutes long, use bill_duration=180<br />
+     * bill_duration\__gt: gt stands for greater than. E.g., to filter out calls that were more than two hours in duration bill_duration\__gt=7200<br />
+     * bill_duration\__gte: gte stands for greater than or equal to. E.g., to filter out calls that were two hours or more in duration bill_duration\__gte=7200<br />
+     * bill_duration\__lt: lt stands for lesser than. E.g., to filter out calls that were less than seven minutes in duration bill_duration\__lt=420<br />
+     * bill_duration\__lte: lte stands for lesser than or equal to. E.g., to filter out calls that were two hours or less in duration bill_duration\__lte=7200
      *   + [string] end_time - Filter out calls according to the time of completion. The filter can be used in the following five forms:<br />
-    end_time: The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. E.g., To get all calls that ended at 2012-03-21 11:47[:30], use end_time=2012-03-21 11:47[:30]<br />
-    end_time\__gt: gt stands for greater than. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. E.g., To get all calls that ended after 2012-03-21 11:47, use end_time\__gt=2012-03-21 11:47<br />
-    end_time\__gte: gte stands for greater than or equal. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. E.g., To get all calls that ended after or exactly at 2012-03-21 11:47[:30], use end_time\__gte=2012-03-21 11:47[:30]<br />
-    end_time\__lt: lt stands for lesser than. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. E.g., To get all calls that ended before 2012-03-21 11:47, use end_time\__lt=2012-03-21 11:47<br />
-    end_time\__lte: lte stands for lesser than or equal. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. E.g., To get all calls that ended before or exactly at 2012-03-21 11:47[:30], use end_time\__lte=2012-03-21 11:47[:30]  
-    Note: The above filters can be combined to get calls that ended in a particular time range. The timestamps need to be UTC timestamps.
+     * end_time: The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. E.g., To get all calls that ended at 2012-03-21 11:47[:30], use end_time=2012-03-21 11:47[:30]<br />
+     * end_time\__gt: gt stands for greater than. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. E.g., To get all calls that ended after 2012-03-21 11:47, use end_time\__gt=2012-03-21 11:47<br />
+     * end_time\__gte: gte stands for greater than or equal. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. E.g., To get all calls that ended after or exactly at 2012-03-21 11:47[:30], use end_time\__gte=2012-03-21 11:47[:30]<br />
+     * end_time\__lt: lt stands for lesser than. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. E.g., To get all calls that ended before 2012-03-21 11:47, use end_time\__lt=2012-03-21 11:47<br />
+     * end_time\__lte: lte stands for lesser than or equal. The format expected is YYYY-MM-DD HH:MM[:ss[.uuuuuu]]. E.g., To get all calls that ended before or exactly at 2012-03-21 11:47[:30], use end_time\__lte=2012-03-21 11:47[:30]
+     * Note: The above filters can be combined to get calls that ended in a particular time range. The timestamps need to be UTC timestamps.
      *   + [int] limit - Used to display the number of results per page. The maximum number of results that can be fetched is 20.
      *   + [int] offset - Denotes the number of value items by which the results should be offset. E.g., If the result contains a 1000 values and limit is set to 10 and offset is set to 705, then values 706 through 715 are displayed in the results. This parameter is also used for pagination of the results.
      * @return CallList
+     * @throws PlivoResponseException
      */
     public function getList(array $optionalArgs = [])
     {
@@ -235,6 +238,17 @@ class CallInterface extends ResourceInterface
         );
 
         $calls = [];
+
+        $responseContents = $response->getContent();
+        if(array_key_exists("error",$responseContents)){
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+            );
+        }
 
         foreach ($response->getContent()['objects'] as $call) {
             $newCall = new Call($this->client, $call, $this->pathParams['authId'], $call['call_uuid']);
@@ -460,9 +474,9 @@ class CallInterface extends ResourceInterface
 
         if(!array_key_exists("error",$responseContents)){
             return new CallRecording(
-                $responseContents['url'],
+                $responseContents['url'] ?? null,
                 $responseContents['api_id'],
-                $responseContents['recording_id'],
+                $responseContents['recording_id'] ?? null,
                 $responseContents['message'],
                 $response->getStatusCode()
             );
@@ -505,6 +519,211 @@ class CallInterface extends ResourceInterface
             $this->uri . $liveCallUuid . '/Record/',
             $params
         );
+    }
+
+    /**
+     * Start stream on a live call
+     *
+     * @param string $liveCallUuid
+     * @param array $optionalArgs
+     *   + Valid arguments with their types
+     *   + [string] service_url - Websockets url to which the audio stream needs to be initiated.
+     *   + [boolean] bidirectional - Specifies if the audio being streamed over websockets is oneway (read only for the wss service) only or bidirectional (the wss service can read as well as write audio back).
+     *   + [string] audio_track - The audio track (inbound or outbound) of the underlying call which Plivo will fork and stream to the wss service.
+     *   + [int] stream_timeout - Maximum duration, in seconds, for which audio will be streamed once streaming starts. At the end of the specified duration, streaming will stop. This will have no impact on the rest of the call flow. Needs to be positive integer if provided. Defaults to 86400 (24 hrs).
+     *   + [string] status_callback_url - URL that is notified by Plivo when one of the following events occur:
+     *                                   <br /> stream is connected and audio begins streaming (1st packet is sent)
+     *                                   <br /> stream is stopped intentionally or when stream timeout is reached
+     *                                   <br /> stream failed to connect or got disconnected due to any reason during an ongoing call
+     *   + [string] status_callback_method - Valid values: GET, POST [default]
+     *   + [string] content_type - Preferred audio codec and sampling rate. Valid values: audio/x-l16;rate=8000 [default], audio/x-l16;rate=16000, audio/x-mulaw;rate=8000
+     *   + [string] extra_headers - These are key value pairs which will be passed to the wss service along with your stream.
+     * @return CallStream
+     * @throws PlivoValidationException
+     */
+    public function startStream($liveCallUuid, array $optionalArgs = []): CallStream
+    {
+        if (empty($liveCallUuid)) {
+            throw new PlivoValidationException(
+                "Which call to stream? No callUuid given");
+        }
+        $optionalArgs['isVoiceRequest'] = true;
+        $response = $this->client->update(
+            $this->uri . $liveCallUuid . '/Stream/',
+            $optionalArgs
+        );
+
+        $responseContents = $response->getContent();
+
+        if(!array_key_exists("error",$responseContents)){
+            return new CallStream(
+                $responseContents['api_id'],
+                $responseContents['message'],
+                $responseContents['stream_id'],
+                $response->getStatusCode()
+            );
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+
+            );
+        }
+    }
+
+    /**
+     * Stop stream on a live call
+     *
+     * @param string $liveCallUuid
+     * @param string|null $streamId - You can specify a record URL to stop only one record. By default all recordings are stopped.
+     * @throws PlivoValidationException
+     */
+    public function stopStream($liveCallUuid)
+    {
+        if (empty($liveCallUuid)) {
+            throw new PlivoValidationException(
+                "Which call to stop streams on? No callUuid given");
+        }
+
+        $params = [];
+
+        $params['isVoiceRequest'] = true;
+        $this->client->delete(
+            $this->uri . $liveCallUuid . '/Stream/',
+            $params
+        );
+    }
+
+    /**
+     * Stop a specific stream on a live call
+     *
+     * @param string $liveCallUuid
+     * @param string $streamId
+     * @throws PlivoValidationException
+     */
+    public function stopSpecificStream($liveCallUuid, ?string $streamId)
+    {
+        if (empty($liveCallUuid)) {
+            throw new PlivoValidationException(
+                "Which call to stop a stream on? No callUuid given");
+        }
+
+        if (empty($streamId)) {
+            throw new PlivoValidationException(
+                "Which stream to stop? No streamId given");
+        }
+
+        $params = [];
+
+        $params['isVoiceRequest'] = true;
+        $this->client->delete(
+            $this->uri . $liveCallUuid . '/Stream/',
+            $params
+        );
+    }
+
+    /**
+     * Get details of all streams on a live call
+     *
+     * @param string $liveCallUuid
+     * @param array $optionalArgs
+     * @return CallStreamGetAllResponse
+     * @throws PlivoValidationException
+     */
+    public function getAllStreams($liveCallUuid, array $optionalArgs = []): CallStreamGetAllResponse
+    {
+        if (empty($liveCallUuid)) {
+            throw new PlivoValidationException(
+                "Which call to get stream details from? No callUuid given");
+        }
+        $optionalArgs['isVoiceRequest'] = true;
+        $response = $this->client->fetch(
+            $this->uri . $liveCallUuid . '/Stream/',
+            $optionalArgs
+        );
+
+        $responseContents = $response->getContent();
+
+        if(!array_key_exists("error",$responseContents)){
+            return new CallStreamGetAllResponse(
+                $responseContents['api_id'],
+                $responseContents['meta'],
+                $responseContents['objects'],
+                $response->getStatusCode()
+            );
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+            );
+        }
+    }
+
+    /**
+     * Get details of a specific stream on a live call
+     *
+     * @param string $liveCallUuid
+     * @param string $streamId
+     * @param array $optionalArgs
+     * @option options [String] :callback_method - The method which is used to invoke the callback_url URL. Defaults to POST.
+     * @return CallStreamGetSpecificResponse
+     * @throws PlivoValidationException
+     */
+    public function getSpecificStream($liveCallUuid, $streamId, array $optionalArgs = []): CallStreamGetSpecificResponse
+    {
+        if (empty($liveCallUuid)) {
+            throw new PlivoValidationException(
+                "Which call to get stream details from? No callUuid given");
+        }
+
+        if (empty($streamId)) {
+            throw new PlivoValidationException(
+                "Which stream to get details of? No streamId given");
+        }
+
+        $optionalArgs['isVoiceRequest'] = true;
+        $response = $this->client->fetch(
+            $this->uri . $liveCallUuid . '/Stream/' . $streamId,
+            $optionalArgs
+        );
+
+        $responseContents = $response->getContent();
+
+        if(!array_key_exists("error",$responseContents)){
+            return new CallStreamGetSpecificResponse(
+                $responseContents['api_id'],
+                $responseContents['audio_track'],
+                $responseContents['bidirectional'],
+                $responseContents['billed_amount'],
+                $responseContents['billed_duration'],
+                $responseContents['call_uuid'],
+                $responseContents['created_at'],
+                $responseContents['end_time'],
+                $responseContents['plivo_auth_id'],
+                $responseContents['resource_uri'],
+                $responseContents['service_url'],
+                $responseContents['start_time'],
+                $responseContents['status'],
+                $responseContents['status_callback_url'],
+                $responseContents['stream_id'],
+                $response->getStatusCode()
+            );
+        } else {
+            throw new PlivoResponseException(
+                $responseContents['error'],
+                0,
+                null,
+                $response->getContent(),
+                $response->getStatusCode()
+
+            );
+        }
     }
     
     /**

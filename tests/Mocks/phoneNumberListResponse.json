@@ -9,6 +9,7 @@
   },
   "objects": [
     {
+      "city":"US",
       "country": "UNITED STATES",
       "lata": 722,
       "monthly_rental_rate": "0.80000",
@@ -24,9 +25,13 @@
       "sms_enabled": true,
       "sms_rate": "0.00800",
       "voice_enabled": true,
-      "voice_rate": "0.00500"
+      "voice_rate": "0.00500",
+      "mms_enabled": true,
+      "mms_rate": "0.00750",
+      "compliance_requirement": null
     },
     {
+      "city":"US",
       "country": "UNITED STATES",
       "lata": 722,
       "monthly_rental_rate": "0.80000",
@@ -42,7 +47,10 @@
       "sms_enabled": true,
       "sms_rate": "0.00800",
       "voice_enabled": true,
-      "voice_rate": "0.00500"
+      "voice_rate": "0.00500",
+      "mms_enabled": true,
+      "mms_rate": "0.00750",
+      "compliance_requirement": null
     }
   ]
 }

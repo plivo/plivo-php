@@ -1,0 +1,19 @@
+{
+    "api_id": "f9838860-3751-11ec-8e4c-0242ac110002",
+    "campaign": {
+        "brand_id": "B8OD95Z",
+        "campaign_id": "CJCNJQ3",
+        "mno_metadata": {
+            "AT&T": {
+                "tpm": 4500
+            },
+            "T-Mobile": {
+                "brand_tier": "TOP"
+            },
+            "US Cellular": {},
+            "Verizon Wireless": {}
+        },
+        "reseller_id": "",
+        "usecase": "MIXED"
+    }
+}

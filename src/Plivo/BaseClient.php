@@ -21,10 +21,11 @@ class BaseClient
      * @const BASE API URL
      */
     const BASE_API_URL = 'https://api.plivo.com/';
-    const VOICE_BASE_API_URL = 'https://voice.plivo.com/';
-    const VOICE_BASE_API_FALLBACK_URL_1 = 'https://voice-usw1.plivo.com/';
-    const VOICE_BASE_API_FALLBACK_URL_2 = 'https://voice-use1.plivo.com/';
+    const VOICE_BASE_API_URL = 'https://api.plivo.com/';
+    const VOICE_BASE_API_FALLBACK_URL_1 = 'https://api.plivo.com/';
+    const VOICE_BASE_API_FALLBACK_URL_2 = 'https://api.plivo.com/';
     const LOOKUP_API_BASE_URL = 'https://lookup.plivo.com/';
+    const ZENTRUNK_BASE_API_URL = "https://zt.plivo.com/";
     /**
      * @const Default timeout for request
      */
@@ -52,6 +53,8 @@ class BaseClient
     public static $isVoiceRequest = false;
 
     public static $isLookupRequest = false;
+
+    public static $isZentrunkRequest = false;
 
     /**
      * Instantiates a new BaseClient object.
@@ -180,6 +183,9 @@ class BaseClient
         if (static::$isLookupRequest) {
             $url = self::LOOKUP_API_BASE_URL . $request->getUrl();
         }
+        if (static::$isZentrunkRequest) {
+            $url = self::ZENTRUNK_BASE_API_URL . $request->getUrl();
+        }
         $timeout = $this->timeout ?: static::DEFAULT_REQUEST_TIMEOUT;
 
         $plivoResponse =
@@ -221,6 +227,10 @@ class BaseClient
         if (array_key_exists("isLookupRequest", $params)) {
             static::$isLookupRequest = true;
             unset($params['isLookupRequest']);
+        }
+        if (array_key_exists("isZentrunkRequest",$params)) {
+            static::$isZentrunkRequest = true;
+            unset($params['isZentrunkRequest']);
         }
         $request =
             new PlivoRequest(

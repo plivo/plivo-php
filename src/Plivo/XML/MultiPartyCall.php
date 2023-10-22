@@ -20,7 +20,9 @@ class MultiPartyCall extends Element {
         'statusCallbackEvents', 'statusCallbackUrl', 'statusCallbackMethod',
         'stayAlone', 'coachMode', 'mute', 'hold', 'startMpcOnEnter', 'endMpcOnExit',
         'enterSound', 'enterSoundMethod', 'exitSound', 'exitSoundMethod',
-        'onExitActionUrl', 'onExitActionMethod', 'relayDTMFInputs'
+        'onExitActionUrl', 'onExitActionMethod', 'relayDTMFInputs',
+        'startRecordingAudio', 'startRecordingAudioMethod', 'stopRecordingAudio', 'stopRecordingAudioMethod',
+        'recordMinMemberCount'
     ];
 
     /**
@@ -54,6 +56,12 @@ class MultiPartyCall extends Element {
         }
         elseif (!isset($attributes['maxParticipants'])){
             $attributes['maxParticipants'] = 10;
+        }
+        if(isset($attributes['recordMinMemberCount']) and ($attributes['recordMinMemberCount'] < 1 or $attributes['recordMinMemberCount'] > 2)){
+            throw new PlivoXMLException('Invalid attribute value ' . $attributes['recordMinMemberCount']. ' for recordMinMemberCount');
+        }
+        elseif (!isset($attributes['recordMinMemberCount'])){
+            $attributes['recordMinMemberCount'] = 1;
         }
         if(isset($attributes['waitMusicMethod']) and !in_array(strtoupper($attributes['waitMusicMethod']), $VALID_METHOD_VALUES, true)){
             throw new PlivoXMLException('Invalid attribute value ' . $attributes['waitMusicMethod']. ' for waitMusicMethod');
@@ -192,6 +200,24 @@ class MultiPartyCall extends Element {
         }
         if(isset($attributes['onExitActionUrl']) and !MPCUtils::validUrl('onExitActionUrl', $attributes['onExitActionUrl'], false)){
             throw new PlivoXMLException('Invalid attribute value ' . $attributes['onExitActionUrl']. ' for onExitActionUrl');
+        }
+        if(isset($attributes['startRecordingAudio']) and !MPCUtils::validUrl('startRecordingAudio', $attributes['startRecordingAudio'], false)){
+            throw new PlivoXMLException('Invalid attribute value ' . $attributes['startRecordingAudio']. ' for startRecordingAudio');
+        }
+        if(isset($attributes['stopRecordingAudio']) and !MPCUtils::validUrl('stopRecordingAudio', $attributes['stopRecordingAudio'], false)){
+            throw new PlivoXMLException('Invalid attribute value ' . $attributes['stopRecordingAudio']. ' for stopRecordingAudio');
+        }
+        if(isset($attributes['startRecordingAudioMethod']) and !in_array(strtoupper($attributes['startRecordingAudioMethod']), $VALID_METHOD_VALUES, true)){
+            throw new PlivoXMLException('Invalid attribute value ' . $attributes['startRecordingAudioMethod']. ' for startRecordingAudioMethod');
+        }
+        elseif (!isset($attributes['startRecordingAudioMethod'])){
+            $attributes['startRecordingAudioMethod'] = 'GET';
+        }
+        if(isset($attributes['stopRecordingAudioMethod']) and !in_array(strtoupper($attributes['stopRecordingAudioMethod']), $VALID_METHOD_VALUES, true)){
+            throw new PlivoXMLException('Invalid attribute value ' . $attributes['stopRecordingAudioMethod']. ' for stopRecordingAudioMethod');
+        }
+        elseif (!isset($attributes['stopRecordingAudioMethod'])){
+            $attributes['stopRecordingAudioMethod'] = 'GET';
         }
     }
 }

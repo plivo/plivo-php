@@ -7,6 +7,8 @@ use Plivo\BaseClient;
 use Plivo\Resources\Resource;
 use Plivo\Util\ArrayOperations;
 use Plivo\Exceptions\PlivoNotFoundException;
+use Plivo\Exceptions\PlivoValidationException;
+
 
 
 /**

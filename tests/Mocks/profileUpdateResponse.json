@@ -1,0 +1,25 @@
+{
+    "api_id": "15783daa-b01e-11ec-88b1-0242ac110002",
+    "profile": {
+        "address": "123 New York NY 10001 IN",
+        "alt_business_id_type": "NONE",
+        "authorized_contact": {
+            "email": "Doe",
+            "name": "Joh11n Doe",
+            "seniority": "admin",
+            "title": "Doe"
+        },
+        "company_name": "ABC Inc.",
+        "customer_type": "RESELLER",
+        "ein_issuing_country": "US",
+        "entity_type": "PRIVATE_PROFIT",
+        "primary_profile": "303edff6-8525-43e5-87e6-48c571ddca25",
+        "profile_alias": "vishnu1",
+        "profile_type": "SECONDARY",
+        "profile_uuid": "1c41faed-a38e-42a3-a966-fe7df34b51b9",
+        "stock_symbol": "ABC",
+        "vertical": "PROFESSIONAL",
+        "website": "google.com",
+        "created_at": "2023-03-07T11:25:28.262701Z"
+    }
+}

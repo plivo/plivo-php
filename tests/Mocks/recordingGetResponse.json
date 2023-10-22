@@ -10,5 +10,11 @@
   "recording_start_ms": "1407235163907.00000",
   "recording_type": "conference",
   "recording_url": "http://s3.amazonaws.com/recordings_2013/c2186400-1c8c-11e4-a664-0026b945b52x.mp3",
-  "resource_uri": "/v1/Account/MANWVLYTK4ZWU1YTY4ZT/Recording/c2186400-1c8c-11e4-a664-0026b945b52x/"
+  "resource_uri": "/v1/Account/MANWVLYTK4ZWU1YTY4ZT/Recording/c2186400-1c8c-11e4-a664-0026b945b52x/",
+  "from_number": "+919999323467",
+  "to_number": "+919891865130",
+  "monthly_recording_storage_amount": 0.0008,
+  "rounded_recording_duration": 120,
+  "recording_storage_duration": 209,
+  "recording_storage_rate": 0.0004
 }

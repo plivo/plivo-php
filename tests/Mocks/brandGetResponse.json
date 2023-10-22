@@ -1,0 +1,28 @@
+{
+    "api_id": "4bac497c-b963-11ec-b7ca-0242ac110002",
+    "brand": {
+        "address": {
+            "city": "New York",
+            "country": "IN",
+            "postal_code": "10001",
+            "state": "NY",
+            "street": "123"
+        },
+        "authorized_contact": {
+            "email": "vishnu@plivo.com",
+            "first_name": "vishnu",
+            "last_name": "Doe",
+            "phone": "919742763781",
+            "seniority": "admin",
+            "title": "Doe"
+        },
+        "brand_id": "B1QSGGS",
+        "ein_issuing_country": "IN",
+        "entity_type": "INDIVIDUAL",
+        "brand_type": "STARTER",
+        "profile_uuid": "3cf3e991-2f94-4910-9712-61442987a2d0",
+        "registration_status": "COMPLETED",
+        "vertical": "ENTERTAINMENT",
+        "created_at": "2023-03-07T11:25:28.262701Z"
+    }
+}

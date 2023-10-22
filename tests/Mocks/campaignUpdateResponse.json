@@ -1,0 +1,41 @@
+{
+    "api_id": "95e1df78-3f08-11e7-8bc8-065f6a74a84a",
+    "campaign": {
+        "campaign_id": "CMPT4EP",
+        "registration_status": "FAILED",
+        "reseller_id": "",
+        "brand_id": "BS2TTMI",
+        "usecase": "MARKETING",
+        "mno_metadata": {
+            "AT&T": {
+                "tpm": 4500
+            },
+            "T-Mobile": {
+                "brand_tier": "TOP"
+            },
+            "US Cellular": {
+                "tpm": 4500
+            },
+            "Verizon Wireless": {
+                "tpm": 4500
+            }
+        },
+        "sample1": "updated sample1 for plivo and tcr",
+        "sample2": "sample message 2",
+        "description": "campaign description",
+        "campaign_attributes": {
+            "embedded_link": false,
+            "embedded_phone": false,
+            "age_gated": false,
+            "direct_lending": false,
+            "subscriber_optin": false,
+            "subscriber_optout": false,
+            "subscriber_help": false,
+            "affiliate_marketing": false
+        },
+        "message_flow": "message flow",
+        "help_message": "help message",
+        "help_keywords": "HELP UPDATE",
+        "created_at": "2023-03-07T11:25:28.262701Z"
+    }
+}

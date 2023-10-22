@@ -1,0 +1,61 @@
+{
+    "use_cases": [
+        {
+            "name": "Account Notification",
+            "code": "ACCOUNT_NOTIFICATION",
+            "details": "Notification sent to account holders about changes in accounts"
+        },
+        {
+            "name": "Customer Care",
+            "code": "CUSTOMER_CARE",
+            "details": "Customer care interactions by the support and other customer-facing teams"
+        },
+        {
+            "name": "Delivery Notification",
+            "code": "DELIVERY_NOTIFICATION",
+            "details": "Updates about the delivery of products and services"
+        },
+        {
+            "name": "Fraud Alert",
+            "code": "FRAUD_ALERT",
+            "details": "Notifications of suspicious behavior identified the business"
+        },
+        {
+            "name": "Higher Education",
+            "code": "HIGHER_EDUCATION",
+            "details": "Messages sent by colleges, universities, and other educational institutions"
+        },
+        {
+            "name": "Low Volume",
+            "code": "LOW_VOLUME",
+            "details": "A combination of two to five standard usage cases - for low throughput requirements"
+        },
+        {
+            "name": "Marketing",
+            "code": "MARKETING",
+            "details": "Communications related to time-bound events and sales"
+        },
+        {
+            "name": "Mixed",
+            "code": "MIXED",
+            "details": "A combination of two to five standard usage cases"
+        },
+        {
+            "name": "Polling Voting",
+            "code": "POLLING_VOTING",
+            "details": "Surveys, polling, and voting campaigns used for non-political purposes"
+        },
+        {
+            "name": "Public Service Announcement",
+            "code": "PUBLIC_SERVICE_ANNOUNCEMENT",
+            "details": "Messages aimed at creating awareness about important topics"
+        },
+        {
+            "name": "Security Alert",
+            "code": "SECURITY_ALERT",
+            "details": "Notifications that alert users about a potential breach of systems"
+        }
+    ],
+    "brand_id": "BRPXS6E",
+    "api_id": "e1474046-0723-11ed-ab02-0242ac110004"
+}

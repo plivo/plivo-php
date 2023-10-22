@@ -1,10 +1,10 @@
 # plivo-php
 
-[![Build Status](https://travis-ci.org/plivo/plivo-php.svg?branch=master)](https://travis-ci.org/plivo/plivo-php)
+[![UnitTests](https://github.com/plivo/plivo-php/actions/workflows/unitTests.yml/badge.svg?branch=master&event=push)](https://github.com/plivo/plivo-php/actions/workflows/unitTests.yml)
 
 The Plivo PHP SDK makes it simpler to integrate communications into your PHP applications using the Plivo REST API. Using the SDK, you will be able to make voice calls, send SMS and generate Plivo XML to control your call flows.
 
-**Supported PHP Versions**: This SDK works with PHP 7.1.0+.
+**Supported PHP Versions**: This SDK works with PHP 7.3+.
 
 ## Installation
 
@@ -89,7 +89,7 @@ require 'vendor/autoload.php'
 
 ### Authentication
 
-To make the API requests, you need to create a `RestClient` and provide it with authentication credentials (which can be found at [https://manage.plivo.com/dashboard/](https://manage.plivo.com/dashboard/)).
+To make the API requests, you need to create a `RestClient` and provide it with authentication credentials (which can be found at [https://console.plivo.com/dashboard/](https://console.plivo.com/dashboard/)).
 
 We recommend that you store your credentials in the `PLIVO_AUTH_ID` and the `PLIVO_AUTH_TOKEN` environment variables, so as to avoid the possibility of accidentally committing them to source control. If you do this, you can initialise the client with no arguments and it will automatically fetch them from the environment variables:
 
@@ -108,7 +108,7 @@ Alternatively, you can specifiy the authentication credentials while initializin
 require 'vendor/autoload.php';
 use Plivo\RestClient;
 
-$client = new RestClient("your_auth_id", "your_auth_token");
+$client = new RestClient("<auth_id>", "<auth_token>");
 ```
 
 ## The Basics
@@ -144,11 +144,11 @@ require 'vendor/autoload.php';
 use Plivo\RestClient;
 
 $client = new RestClient();
-$message_created = $client->messages->create(
-    'the_source_number',
-    ['the_destination_number'],
-    'Hello, world!'
-);
+$message_created = $client->messages->create([ 
+        "src" => "+14156667778", 
+        "dst" => "+14156667777", 
+        "text"  =>"Hello, this is a sample text from Plivo"
+]);
 ```
 
 ### Make a call
@@ -160,8 +160,8 @@ use Plivo\RestClient;
 
 $client = new RestClient();
 $call_made = $client->calls->create(
-    'the_source_number',
-    ['the_destination_number'],
+    '+14156667778',
+    ['+14156667777'],
     'https://answer.url'
 );
 ```
@@ -173,7 +173,7 @@ $call_made = $client->calls->create(
 require 'vendor/autoload.php';
 use Plivo\RestClient;
 
-$client = new RestClient("AUTH_ID", "AUTH_TOKEN");
+$client = new RestClient("<auth_id>", "<auth_token>");
 $response = $client->lookup->get("<number-goes-here>");
 ```
 
@@ -208,8 +208,8 @@ This generates the following XML:
 require 'vendor/autoload.php';
 use Plivo\Resources\PHLO\PhloRestClient;
 use Plivo\Exceptions\PlivoRestException;
-$client = new PhloRestClient("YOUR_AUTH_ID", "YOUR_AUTH_TOKEN");
-$phlo = $client->phlo->get("YOUR_PHLO_ID");
+$client = new PhloRestClient("<auth_id>", "<auth_token>");
+$phlo = $client->phlo->get("<phlo_id>");
 try {
     $response = $phlo->run(["field1" => "value1", "field2" => "value2"]); // These are the fields entered in the PHLO console
     print_r($response);
@@ -220,7 +220,33 @@ try {
 ```
 
 ### More examples
-Refer to the [Plivo API Reference](https://api-reference.plivo.com/latest/php/introduction/overview) for more examples. Also refer to the [guide to setting up dev environment](https://developers.plivo.com/getting-started/setting-up-dev-environment/) on [Plivo Developers Portal](https://developers.plivo.com) to setup a simple PHP server & use it to test out your integration in under 5 minutes.
+More examples are available [here](https://github.com/plivo/plivo-examples-php). Also refer to the [guides for configuring the PHP laravel to run various scenarios](https://www.plivo.com/docs/sms/quickstart/php-laravel/) & use it to test out your integration in under 5 minutes.
 
 ## Reporting issues
 Report any feedback or problems with this version by [opening an issue on Github](https://github.com/plivo/plivo-php/issues).
+
+## Local Development
+> Note: Requires latest versions of Docker & Docker-Compose. If you're on MacOS, ensure Docker Desktop is running.
+1. Export the following environment variables in your host machine:
+```bash
+export PLIVO_AUTH_ID=<your_auth_id>
+export PLIVO_AUTH_TOKEN=<your_auth_token>
+export PLIVO_API_DEV_HOST=<plivoapi_dev_endpoint>
+export PLIVO_API_PROD_HOST=<plivoapi_public_endpoint>
+```
+2. Run `make build`. This will create a docker container in which the sdk will be setup and dependencies will be installed.
+> The entrypoint of the docker container will be the `setup_sdk.sh` script. The script will handle all the necessary changes required for local development.
+3. The above command will print the docker container id (and instructions to connect to it) to stdout.
+4. The testing code can be added to `<sdk_dir_path>/php-sdk-test/test.php` in host  
+ (or `/usr/src/app/php-sdk-test/test.php` in container)
+5. The sdk directory will be mounted as a volume in the container. So any changes in the sdk code will also be reflected inside the container.
+> To use the local code in the test file, import the sdk in test file using:   
+`require /usr/src/app/vendor/autoload.php`   
+(Local sdk code will be mounted at `/usr/src/app` inside the container and `vendor` directory will be created by setup script while installing dependencies).
+6. To run test code, run `make run CONTAINER=<cont_id>` in host.
+7. To run unit tests, run `make test CONTAINER=<cont_id>` in host.
+> `<cont_id>` is the docker container id created in 2.
+(The docker container should be running)
+
+> Test code and unit tests can also be run within the container using
+`make run` and `make test` respectively. (`CONTAINER` argument should be omitted when running from the container)

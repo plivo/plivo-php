@@ -1,0 +1,20 @@
+{
+    "api_id": "63287a98-b018-11ec-bc21-0242ac110002",
+    "profile": {
+        "alt_business_id_type": "NONE",
+        "authorized_contact": {
+            "name": " "
+        },
+        "company_name": "ABC Inc.",
+        "customer_type": "RESELLER",
+        "ein": "111111111",
+        "ein_issuing_country": "US",
+        "entity_type": "PUBLIC_PROFIT",
+        "profile_alias": "vishnu1",
+        "profile_type": "SECONDARY",
+        "profile_uuid": "06ecae31-4bf8-40b9-ac62-e902418e9935",
+        "stock_symbol": "ABC",
+        "vertical": "ENERGY",
+        "created_at": "2023-03-07T11:25:28.262701Z"
+    }
+}

@@ -1,0 +1,26 @@
+name: UnitTests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-20.04
+
+    strategy:
+      matrix:
+        php-version: [7.4, 8.1]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: php-actions/composer@v4
+      - name: PHPUnit Tests
+        uses: php-actions/phpunit@v3
+        with:
+          php_version: ${{ matrix.php-version }}
+          configuration: tests/phpunit.xml
+          version: 9.5.28
