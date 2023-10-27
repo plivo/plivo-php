@@ -18,7 +18,7 @@ $client->client->setTimeout(40);
 // Get TollfreeVerification by uuid
 echo "########## Get TollfreeVerification ###################\n";
 try {
-    $response = $client->complianceApplication->get(
+    $response = $client->tollfreeVerification->get(
         "7f4deae2-5d79-46ec-5088-218504abf664"
     );
 
