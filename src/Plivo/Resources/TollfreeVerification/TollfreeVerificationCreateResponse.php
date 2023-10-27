@@ -12,14 +12,6 @@ use Plivo\Resources\ResponseUpdate;
 class TollfreeVerificationCreateResponse extends ResponseUpdate
 {
     /**
-     * @var string The api_id of the Tollfree Verification
-     */
-    public api_id;
-    /**
-     * @var string The message of the Tollfree Verification
-     */
-    public $message;
-    /**
      * @var string The uuid of the Tollfree Verification
      */
     public $uuid;
@@ -28,9 +20,11 @@ class TollfreeVerificationCreateResponse extends ResponseUpdate
     /**
      * TollfreeVerificationCreateResponse constructor.
      * @param string $uuid
+     * @param string $apiID
+     * @param string $message
      */
 
-    public function __construct($uuid)
+    public function __construct($uuid, $message, $apiID, $statusCode)
     {
         parent::__construct($apiID, $message, $statusCode);
 

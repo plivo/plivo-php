@@ -9,7 +9,7 @@ use Plivo\Exceptions\PlivoRestException;
 
 
 $AUTH_ID = "MAYJLIZGQ5MWVKZWM4NZ";
-$AUTH_TOKEN = "MjFkZjQ3MzhiODFlZmY4MjIyODk2NTgxOGVmMD";
+$AUTH_TOKEN = "MjFkZjQ3MzhiODFlZmY4MjIyODk2NTgxOGVmMDdm";
 
 $client = new RestClient($AUTH_ID, $AUTH_TOKEN);
 $client->client->setTimeout(40);
@@ -19,7 +19,7 @@ $client->client->setTimeout(40);
 echo "########## Get TollfreeVerification ###################\n";
 try {
     $response = $client->tollfreeVerification->get(
-        "7f4deae2-5d79-46ec-5088-218504abf664"
+        "03420d77-4fa8-45e1-6aad-f37d41a2ee4a"
     );
 
     print_r($response->properties);
@@ -32,13 +32,50 @@ catch (PlivoRestException $ex) {
 // List TollfreeVerification
 echo "########## List TollfreeVerification ###################\n";
 try {
-    $params = array(
-            'limit' => 1
-        );
-    $response = $client->tollfreeVerification->getList($params);
+    $response = $client->tollfreeVerification->getList();
 
-    print_r($response->properties);
+    print_r($response);
 }
 catch (PlivoRestException $ex) {
     print_r($ex);
 }
+
+// // Create TollfreeVerification
+// echo "########## Create TollfreeVerification ###################\n";
+// try {
+//     $response = $client->tollfreeVerification->create(
+//     "18554950186",
+//          "2FA",
+//     "42f92135-6ec2-4110-8da4-71171f6aad44",
+//     "VERBAL",
+//      "100",
+//     "hbv",
+//      "message_sample",
+//      "http://google.com",
+//     "https://plivobin-prod-usw1.plivops.com/1pcfjrt1",
+//      "POST",
+//      "this is additional_information",
+//     "this is extra_data"
+//     );
+//
+//     print_r($response);
+// }
+// catch (PlivoRestException $ex) {
+//     print_r($ex);
+// }
+//
+//
+// // // Update TollfreeVerification by TollfreeVerification
+// // echo "########## Update TollfreeVerification ###################\n";
+// // try {
+// //     $response = $client->tollfreeVerification->update(
+// //         "81fc8b2d-1ab8-47c9-7245-e454227b7b7b",
+// //         ["3FA"]
+// //     );
+// //
+// //     print_r($response);
+// // }
+// // catch (PlivoRestException $ex) {
+// //     print_r($ex);
+// // }
+//

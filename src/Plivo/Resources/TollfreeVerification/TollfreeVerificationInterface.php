@@ -73,7 +73,7 @@ class TollfreeVerificationInterface extends ResourceInterface
 
         $response = $this->client->update(
             $this->uri,
-            array_merge($mandatoryArgs, ['callback_url' => $appID, 'callback_method' => $lastName,
+            array_merge($mandatoryArgs, ['callback_url' => $callback_url, 'callback_method' => $callback_method,
             'additional_information' => $additional_information, 'extra_data' => $extra_data])
         );
         $responseContents = $response->getContent();
@@ -137,18 +137,19 @@ class TollfreeVerificationInterface extends ResourceInterface
      */
     public function getList($optionalArgs = [])
     {
+//     print_r($this->uri);
         $response = $this->client->fetch(
             $this->uri,
             $optionalArgs
         );
 
         if(!array_key_exists("error", $response->getContent())){
-            $endUsers = [];
-            foreach ($response->getContent()['objects'] as $endUser) {
-                $newEndUser = new EndUser($this->client, $endUser, $this->pathParams['authId']);
-                array_push($endUsers, $newEndUser);
+            $tollfreeVericationObj = [];
+            foreach ($response->getContent()['objects'] as $tollfreeVerification) {
+                $newTfObj = new TollfreeVerification($this->client, $tollfreeVerification, $this->pathParams['authId']);
+                array_push($tollfreeVericationObj, $newTfObj);
             }
-            return new ResourceList($this->client, $response->getContent()['meta'], $endUsers);
+            return new ResourceList($this->client, $response->getContent()['meta'], $tollfreeVericationObj);
         } else {
             throw new PlivoResponseException(
                 $response->getContent()['error'],
