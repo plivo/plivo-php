@@ -27,3 +27,18 @@ try {
 catch (PlivoRestException $ex) {
     print_r($ex);
 }
+
+
+// List TollfreeVerification
+echo "########## List TollfreeVerification ###################\n";
+try {
+    $params = array(
+            'limit' => 1
+        );
+    $response = $client->tollfreeVerification->getList($params);
+
+    print_r($response->properties);
+}
+catch (PlivoRestException $ex) {
+    print_r($ex);
+}
