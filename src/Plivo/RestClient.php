@@ -626,6 +626,6 @@ class RestClient
         if (!$this->_tollfreeVerification) {
             $this->_tollfreeVerification = new TollfreeVerificationInterface($this->client, $this->client->getAuthId());
         }
-        return $this->_complianceApplication;
+        return $this->_tollfreeVerification;
     }
 }
