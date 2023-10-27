@@ -68,7 +68,7 @@ use Plivo\Resources\TollfreeVerification\TollfreeVerificationInterface;
  * @property ZentrunkInterface Zentrunk Interface to handle all Zentrunk Call related api
  * @property MaskingSessionInterface Masking session Interface to handle all session related api calls
  * @property VerifyInterface verify Interface to handle all verify caller ID related api calls
- * 
+ * @property TollfreeVerificationInterface verify Interface to handle all tollfree verification
  */
 class RestClient
 {
