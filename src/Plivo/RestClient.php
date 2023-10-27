@@ -29,6 +29,7 @@ use Plivo\Resources\RegulatoryCompliance\ComplianceDocumentTypeInterface;
 use Plivo\Resources\RegulatoryCompliance\ComplianceDocumentInterface;
 use Plivo\Resources\RegulatoryCompliance\ComplianceRequirementInterface;
 use Plivo\Resources\RegulatoryCompliance\ComplianceApplicationInterface;
+use Plivo\Resources\TollfreeVerification\TollfreeVerificationInterface;
 use Plivo\Resources\MultiPartyCall\MultiPartyCallInterface;
 use Plivo\Resources\Profile\ProfileInterface;
 use Plivo\Resources\Token\TokenInterface;
@@ -200,6 +201,11 @@ class RestClient
      * @var ComplianceApplicationInterface
      */
     protected $_complianceApplication;
+
+    /**
+     * @var TollfreeVerificationInterface
+     */
+    protected $_tollfreeVerification;
 
     /**
      * @var HostedMessageLOAInterface
@@ -610,5 +616,16 @@ class RestClient
             $this->_verifyCallerID = new VerifyInterface($this->client, $this->client->getAuthId());
         }
         return $this->_verifyCallerID;
+    }
+
+    /**
+     * @return TollfreeVerificationInterface
+     */
+    public function getTollfreeVerification()
+    {
+        if (!$this->_tollfreeVerification) {
+            $this->_tollfreeVerification = new TollfreeVerificationInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_complianceApplication;
     }
 }

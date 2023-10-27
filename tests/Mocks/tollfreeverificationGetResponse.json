@@ -1,0 +1,20 @@
+{
+    "additional_information": "this is additional_information",
+    "api_id": "88c394da-74ad-11ee-a860-0242ac110002",
+    "callback_method": "POST",
+    "callback_url": "https://plivobin-prod-usw1.plivops.com/1pcfjrt1",
+    "created_at": "2023-10-25T12:53:40.598379Z",
+    "extra_data": "this is extra_data",
+    "message_sample": "message_sample",
+    "number": "18554950186",
+    "optin_image_url": "http://google.com",
+    "optin_type": "VERBAL",
+    "profile_uuid": "42f92135-6ec2-4110-8da4-71171f6aad44",
+    "rejection_reason": "Number not provisioned to submitting org",
+    "status": "REJECTED",
+    "updated_at": "2023-10-25T12:53:44.56875Z",
+    "usecase": "2FA",
+    "usecase_summary": "hbv",
+    "uuid": "7f4deae2-5d79-46ec-5088-218504abf664",
+    "volume": "100"
+}
