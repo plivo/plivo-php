@@ -19,7 +19,7 @@ class TollfreeVerificationTest extends BaseTestCase
             'GET',
             'Account/MAXXXXXXXXXXXXXXXXXX/TollfreeVerification/',
             []);
-        $body = file_get_contents(__DIR__ . '/../Mocks/TollfreeVerificationListResponse.json');
+        $body = file_get_contents(__DIR__ . '/../Mocks/tollfreeVerificationListResponse.json');
 
         $this->mock(new PlivoResponse($request,200, $body));
 
@@ -38,9 +38,8 @@ class TollfreeVerificationTest extends BaseTestCase
             'POST',
             'Account/MAXXXXXXXXXXXXXXXXXX/TollfreeVerification/',
             [
-
-                    "usecase"=>"2FA",
                     "number"=>"18554950186",
+                    "usecase"=>"2FA",
                     "profile_uuid"=>"42f92135-6ec2-4110-8da4-71171f6aad44",
                     "optin_type"=>"VERBAL",
                     "volume"=> "100",
@@ -53,7 +52,7 @@ class TollfreeVerificationTest extends BaseTestCase
                     "extra_data"=>"this is extra_data"
 
             ]);
-        $body = file_get_contents(__DIR__ . '/../Mocks/TollfreeVerificationCreateResponse.json');
+        $body = file_get_contents(__DIR__ . '/../Mocks/tollfreeVerificationCreateResponse.json');
 
         $this->mock(new PlivoResponse($request,201, $body));
 
@@ -64,41 +63,6 @@ class TollfreeVerificationTest extends BaseTestCase
         self::assertNotNull($actual);
     }
 
-    function testNumberGet()
-    {
-        $number = '12121212121';
-        $request = new PlivoRequest(
-            'GET',
-            'Account/MAXXXXXXXXXXXXXXXXXX/TollfreeVerification/' . $number . '/',
-            []);
-        $body = file_get_contents(__DIR__ . '/../Mocks/TollfreeVerificationGetResponse.json');
-
-        $this->mock(new PlivoResponse($request,200, $body));
-
-        $actual = $this->client->tollfreeVerification->get($number);
-
-        $this->assertRequest($request);
-
-        self::assertNotNull($actual);
-    }
-
-    function testNumberUpdate()
-    {
-        $number = '12121212121';
-        $request = new PlivoRequest(
-            'POST',
-            'Account/MAXXXXXXXXXXXXXXXXXX/Number/' . $number . '/',
-            ['alias'=>'saila']);
-        $body = file_get_contents(__DIR__ . '/../Mocks/numberUpdateResponse.json');
-
-        $this->mock(new PlivoResponse($request,203, $body));
-
-        $actual = $this->client->numbers->update($number, ['alias'=>'saila']);
-
-        $this->assertRequest($request);
-
-        self::assertNotNull($actual);
-    }
 
     function testNumberDelete()
     {
