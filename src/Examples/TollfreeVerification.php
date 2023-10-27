@@ -8,8 +8,8 @@ use Plivo\Exceptions\PlivoRestException;
 
 
 
-$AUTH_ID = "MAYJLIZGQ5MWVKZWM4NZ";
-$AUTH_TOKEN = "MjFkZjQ3MzhiODFlZmY4MjIyODk2NTgxOGVmMDdm";
+$AUTH_ID = "authid";
+$AUTH_TOKEN = "authtoken";
 
 $client = new RestClient($AUTH_ID, $AUTH_TOKEN);
 $client->client->setTimeout(40);
