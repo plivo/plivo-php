@@ -29,12 +29,13 @@ use Plivo\Resources\RegulatoryCompliance\ComplianceDocumentTypeInterface;
 use Plivo\Resources\RegulatoryCompliance\ComplianceDocumentInterface;
 use Plivo\Resources\RegulatoryCompliance\ComplianceRequirementInterface;
 use Plivo\Resources\RegulatoryCompliance\ComplianceApplicationInterface;
-use Plivo\Resources\TollfreeVerification\TollfreeVerificationInterface;
 use Plivo\Resources\MultiPartyCall\MultiPartyCallInterface;
 use Plivo\Resources\Profile\ProfileInterface;
 use Plivo\Resources\Token\TokenInterface;
 use Plivo\Resources\Zentrunk\ZentrunkInterface;
 use Plivo\Resources\VerifyCallerId\VerifyInterface;
+use Plivo\Resources\TollfreeVerification\TollfreeVerificationInterface;
+
 
 /**
  * Class RestClient
