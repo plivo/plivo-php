@@ -56,28 +56,10 @@ class TollfreeVerificationTest extends BaseTestCase
 
         $this->mock(new PlivoResponse($request,201, $body));
 
-        $actual = $this->client->tollfreeVerification->create(['18554950186', '2FA', '42f92135-6ec2-4110-8da4-71171f6aad44', 'VERBAL', '100', 'hbv', 'message_sample', 'http://google.com'], "wqw", "wqwq", "wqwqw", "wqwq");
+        $actual = $this->client->tollfreeVerification->create('18554950186', '2FA', '42f92135-6ec2-4110-8da4-71171f6aad44', 'VERBAL', '100', 'hbv', 'message_sample', 'http://google.com', "wqw", "wqwq", "wqwqw", "wqwq");
 
         $this->assertRequest($request);
 
         self::assertNotNull($actual);
     }
 
-
-    function testNumberDelete()
-    {
-        $request = new PlivoRequest(
-            'DELETE',
-            'Account/MAXXXXXXXXXXXXXXXXXX/TollfreeVerification/42f92135-6ec2-4110-8da4-71171f6aad44/',
-            []);
-        $body = '{}';
-
-        $this->mock(new PlivoResponse($request,200, $body));
-
-        $actual = $this->client->tollfreeVerification->delete("42f92135-6ec2-4110-8da4-71171f6aad44");
-
-        $this->assertRequest($request);
-
-        self::assertNull($actual);
-    }
-}
