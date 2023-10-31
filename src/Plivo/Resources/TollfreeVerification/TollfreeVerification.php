@@ -35,9 +35,9 @@ class TollfreeVerification extends Resource
         parent::__construct($client);
 
         $this->properties = [
-            'createdAt' => $response['created_at'],
+            'created' => $response['created'],
             'number' => $response['number'],
-            'updatedAt' => $response['updated_at'],
+            'lastModified' => $response['last_modified'],
             'callbackMethod' => $response['callback_method'],
             'callbackUrl' => $response['callback_url'],
             'extraData' => $response['extra_data'],
@@ -46,10 +46,10 @@ class TollfreeVerification extends Resource
             'optinImageUrl' => $response['optin_image_url'],
             'optinType' => $response['optin_type'],
             'profileUuid' => $response['profile_uuid'],
-            'rejectionReason' => $response['rejection_reason'],
+            'errorMessage' => $response['error_message'],
             'status' => $response['status'],
             'usecase' => $response['usecase'],
-            'usecase_summary' => $response['usecase_summary'],
+            'usecaseSummary' => $response['usecase_summary'],
             'uuid' => $response['uuid'],
             'volume' => $response['volume'],
         ];
