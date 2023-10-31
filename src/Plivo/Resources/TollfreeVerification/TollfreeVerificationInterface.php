@@ -131,10 +131,20 @@ class TollfreeVerificationInterface extends ResourceInterface
     }
 
     /**
-     * This method lets you get details of all TollfreeVerification numbers.
-     * @param array $optionalArgs
-     * @return ResourceList
-     */
+    * This method lets you get details of all TollfreeVerification numbers.
+    * @param array $optionalArgs
+    *   + Valid arguments
+    *   + [string] number - The type of number you are filtering. You can filter by tollfree numbers.
+    *   + [string] profile_uuid - This is the uuid of the profile.
+    *   + [string] status - This is the status of verification number.
+    *   + [int] limit - Used to display the number of results per page. The maximum number of results that can be fetched is 20.
+    *   + [int] offset - Denotes the number of value items by which the results should be offset. Eg:- If the result contains a 1000 values and limit is set to 10 and offset is set to 705, then values 706 through 715 are displayed in the results. This parameter is also used for pagination of the results.
+    *   + [string] created__gt - Used to filter on the basis of this param. If this parameter is included in the request, all numbers greater than created date are displayed.
+    *   + [string] created__gte - Used to filter on the basis of this param. If this parameter is included in the request, all numbers greater than equal created date are displayed.
+    *   + [string] created__lt - Used to filter on the basis of this param. If this parameter is included in the request, all numbers less than created date are displayed.
+    *   + [string] created__lte - Used to filter on the basis of this param. If this parameter is included in the request, all numbers less than equal created date are displayed.
+    * @return ResourceList
+    */
     public function getList($optionalArgs = [])
     {
 //     print_r($this->uri);
