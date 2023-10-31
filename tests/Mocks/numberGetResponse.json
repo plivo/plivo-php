@@ -25,5 +25,7 @@
   "renewal_date": "2014-03-14",
   "tendlc_campaign_id": "CWDPZZX",
   "tendlc_registration_status": "UNREGISTERED",
-  "toll_free_sms_verification": null
+  "toll_free_sms_verification": null,
+  "toll_free_sms_verification_id": null,
+  "toll_free_sms_verification_order_status": null
 }
