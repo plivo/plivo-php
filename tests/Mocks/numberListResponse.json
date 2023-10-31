@@ -34,7 +34,9 @@
       "renewal_date": "2014-09-05",
       "tendlc_campaign_id": "CWDPZZX",
       "tendlc_registration_status": "COMPLETED",
-      "toll_free_sms_verification": null
+      "toll_free_sms_verification": null,
+      "toll_free_sms_verification_id": null,
+      "toll_free_sms_verification_order_status": null
     },
     {
       "active": true,
@@ -62,7 +64,9 @@
       "renewal_date": "2013-02-01",
       "tendlc_campaign_id": "CWDPZZX",
       "tendlc_registration_status": "PROCESSING",
-      "toll_free_sms_verification": null
+      "toll_free_sms_verification": null,
+      "toll_free_sms_verification_id": null,
+      "toll_free_sms_verification_order_status": null
     },
     {
       "active": true,
@@ -90,7 +94,9 @@
       "renewal_date": "2013-04-25",
       "tendlc_campaign_id": null,
       "tendlc_registration_status": null,
-      "toll_free_sms_verification": "unverified"
+      "toll_free_sms_verification": "unverified",
+      "toll_free_sms_verification_id": null,
+      "toll_free_sms_verification_order_status": null
     }
   ]
 }

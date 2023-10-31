@@ -34,6 +34,8 @@ use Plivo\Resources\Profile\ProfileInterface;
 use Plivo\Resources\Token\TokenInterface;
 use Plivo\Resources\Zentrunk\ZentrunkInterface;
 use Plivo\Resources\VerifyCallerId\VerifyInterface;
+use Plivo\Resources\TollfreeVerification\TollfreeVerificationInterface;
+
 
 /**
  * Class RestClient
@@ -66,8 +68,9 @@ use Plivo\Resources\VerifyCallerId\VerifyInterface;
  * @property ZentrunkInterface Zentrunk Interface to handle all Zentrunk Call related api
  * @property MaskingSessionInterface Masking session Interface to handle all session related api calls
  * @property VerifyInterface verify Interface to handle all verify caller ID related api calls
- * 
+ * @property TollfreeVerificationInterface verify Interface to handle all tollfree verification
  */
+
 class RestClient
 {
     /**
@@ -200,6 +203,11 @@ class RestClient
      * @var ComplianceApplicationInterface
      */
     protected $_complianceApplication;
+
+    /**
+     * @var TollfreeVerificationInterface
+     */
+    protected $_tollfreeVerification;
 
     /**
      * @var HostedMessageLOAInterface
@@ -610,5 +618,16 @@ class RestClient
             $this->_verifyCallerID = new VerifyInterface($this->client, $this->client->getAuthId());
         }
         return $this->_verifyCallerID;
+    }
+
+    /**
+     * @return TollfreeVerificationInterface
+     */
+    public function getTollfreeVerification()
+    {
+        if (!$this->_tollfreeVerification) {
+            $this->_tollfreeVerification = new TollfreeVerificationInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_tollfreeVerification;
     }
 }

@@ -74,6 +74,8 @@ class Number extends Resource
             'tendlcCampaignId' => $response['tendlc_campaign_id'],
             'tendlcRegistrationStatus' => $response['tendlc_registration_status'],
             'tollFreeSMSVerification' => $response['toll_free_sms_verification'],
+            'tollFreeSmsVerificationId' => $response['toll_free_sms_verification_id'],
+            'tollFreeSmsVerificationOrderStatus' => $response['toll_free_sms_verification_order_status'],
             'renewalDate' => $response['renewal_date'],
             'cnamLookup' => isset($response['cnam_lookup']) ? $response['cnam_lookup'] : null,
         ];
