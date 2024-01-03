@@ -1,8 +1,8 @@
 # Change Log
 
 ## [4.59.1](https://github.com/plivo/plivo-php/tree/v4.59.1) (2024-01-03)
-**Bug fix - Internal URL constructor**
-- Fixed an internal constructor which was failing when query parameters were not passed in the URL.
+**Bug fix - v3SignatureValidation URL constructor**
+- Fixed a URL constructor which was failing when URL did not contain query parameters.
 
 ## [4.59.0](https://github.com/plivo/plivo-php/tree/v4.59.0) (2023-10-31)
 **Feature - TollFree Verification API Support**
