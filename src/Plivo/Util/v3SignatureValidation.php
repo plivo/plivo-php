@@ -98,8 +98,10 @@ class v3SignatureValidation
         if (isset($parsedURI['path'])) {
             $baseURL .= $parsedURI['path'];
         }
-        $queryString = $parsedURI['query'];
-        $params = array_merge_recursive($params, self::getMapFromQuery($queryString));
+        if (isset($parsedURI['query'])) {
+            $queryString = $parsedURI['query'];
+            $params = array_merge_recursive($params, self::getMapFromQuery($queryString));
+        }
         $queryParams = self::getSortedQueryString($params);
         if (strlen($queryParams) > 0 or !$emptyPostParams)
         {
