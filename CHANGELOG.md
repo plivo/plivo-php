@@ -1,5 +1,9 @@
 # Change Log
 
+## [4.59.1](https://github.com/plivo/plivo-php/tree/v4.59.1) (2024-01-03)
+**Bug fix - Internal URL constructor**
+- Fixed an internal constructor which was failing when query parameters were not passed in the URL.
+
 ## [4.59.0](https://github.com/plivo/plivo-php/tree/v4.59.0) (2023-10-31)
 **Feature - TollFree Verification API Support**
 - API support for Create, Update, Get, Delete and List Tollfree Verification.
