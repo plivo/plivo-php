@@ -1,6 +1,6 @@
 # Change Log
 
-## [4.59.1](https://github.com/plivo/plivo-php/tree/v4.59.1) (2024-01-03)
+## [4.59.1](https://github.com/plivo/plivo-php/tree/v4.59.1) (2024-01-12)
 **Bug fix - Plivo Signature validation-V3 URL constructor**
 - Fixed the URL constructor for signature validation which was failing when the URL did not contain query parameters.
 
