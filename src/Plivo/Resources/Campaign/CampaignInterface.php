@@ -132,6 +132,28 @@ class CampaignInterface extends ResourceInterface
         return $response->getContent();   
     }
 
+    /**
+     * Import Campaign
+     *
+     * @param {string} campaignId
+     * @param {string} campaign_alias  
+     * @return CampaignImport
+     */ 
+    public function importcampaign($campaignId,$campaign_alias)
+    {
+        $mandatoryArgs = [
+            'campaign_id' => $campaignId,
+            'campaign_alias' => $campaign_alias
+        ];
+
+        $response = $this->client->importCamp(
+            $this->uri . '10dlc/Campaign/Import/',
+            $mandatoryArgs
+        );
+
+        return $response->getContent();  
+    }
+
 
     /**
      * Update Campaign

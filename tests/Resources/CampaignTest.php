@@ -76,6 +76,27 @@ class CampaignTest extends BaseTestCase {
 
     }
 
+    public function testCampaignImport()
+    {
+        $request = new PlivoRequest(
+            'POST',
+            'Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/Import/',
+            [
+                'campaignId' => "CNTQ0OD",
+                'campaign_alias' => "New Contact by vinay for ct",
+
+            ]);
+        $body = file_get_contents(__DIR__ . '/../Mocks/campaignImportResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->campaign->importcampaign("CNTQ0OD","New Contact by vinay for ct");
+
+        $this->assertRequest($request);
+
+        self::assertNotNull($actual);
+    }
+
     public function testCampaignUpdate()
     {
         $campaignID = "CMPT4EP";
