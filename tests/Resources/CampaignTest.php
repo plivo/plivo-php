@@ -82,7 +82,7 @@ class CampaignTest extends BaseTestCase {
             'POST',
             'Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/Import/',
             [
-                'campaignId' => "CNTQ0OD",
+                'campaign_id' => "CNTQ0OD",
                 'campaign_alias' => "New Contact by vinay for ct",
 
             ]);

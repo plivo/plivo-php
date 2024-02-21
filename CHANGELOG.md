@@ -1,5 +1,9 @@
 # Change Log
 
+## [4.60.0](https://github.com/plivo/plivo-php/tree/v4.60.0) (2024-02-21)
+**Feature - Import Campaign API**
+-  Added import campaign API
+
 ## [4.59.1](https://github.com/plivo/plivo-php/tree/v4.59.1) (2024-01-12)
 **Bug fix - Plivo Signature validation-V3 URL constructor**
 - Fixed the URL constructor for signature validation which was failing when the URL did not contain query parameters.
