@@ -28,6 +28,7 @@ use Plivo\Resources\Resource;
  * @property ?string $conversationOrigin
  * @property ?string $conversationExpirationTimestamp
  * @property ?bool $isDomestic
+ * @property ?string $log
  */
 class Message extends Resource
 {
@@ -116,6 +117,9 @@ class Message extends Resource
         }
         if (!empty($response['carrier_fees'])) {
             $this->properties['carrier_fees'] = $response['carrier_fees'];
+        }
+        if (!empty($response['log'])) {
+            $this->properties['log'] = $response['log'];
         }
 
         $this->pathParams = [
