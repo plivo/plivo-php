@@ -285,20 +285,6 @@ class BaseClient
     /**
      * @param $uri
      * @param $params
-     * @return PlivoResponse
-     */
-    public function importCamp($uri, $params)
-    {
-        $request =
-            new PlivoRequest(
-                'POST', $uri, ArrayOperations::removeNull($params));
-        return $this->sendRequest($request);
-    }
-
-
-    /**
-     * @param $uri
-     * @param $params
      * @param null $headers
      * @return PlivoResponse
      */
