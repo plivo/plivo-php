@@ -140,7 +140,7 @@ class CampaignInterface extends ResourceInterface
      * @param array $optionalArgs
      * @return CampaignImport
      */ 
-    public function importcampaign($campaignId, $campaign_alias, $optionalArgs = [])
+    public function import_campaign($campaignId, $campaign_alias, $optionalArgs = [])
     {
         $mandatoryArgs = [
             'campaign_id' => $campaignId,

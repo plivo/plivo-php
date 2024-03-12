@@ -90,7 +90,7 @@ class CampaignTest extends BaseTestCase {
 
         $this->mock(new PlivoResponse($request,200, $body));
 
-        $actual = $this->client->campaign->importcampaign("CNTQ0OD","New Contact by vinay for ct");
+        $actual = $this->client->campaign->import_campaign("CNTQ0OD","New Contact by vinay for ct");
 
         $this->assertRequest($request);
 
