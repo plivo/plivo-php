@@ -1,5 +1,9 @@
 # Change Log
 
+## [4.60.0](https://github.com/plivo/plivo-php/tree/v4.60.0) (2024-03-13)
+**Feature - Import Campaign API**
+-  Added import campaign API
+
 ## [4.59.2](https://github.com/plivo/plivo-php/tree/v4.59.2) (2024-01-29)
 **Feature - Log Redaction Enhancement**
 -  Added log attribute in GET and List MDR response
