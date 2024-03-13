@@ -24,14 +24,16 @@ use Plivo\Resources\Resource;
  */
 class Endpoint extends Resource
 {
+    public $statusCode;
     /**
      * Endpoint constructor.
      * @param BaseClient $client
      * @param array $response
      * @param string $authId
      */
-    function __construct(BaseClient $client, $response, $authId)
+    function __construct(BaseClient $client, $response, $authId, $statusCode)
     {
+        $this->statusCode = $statusCode;
         parent::__construct($client);
 
         if ($response['sip_registered'] === 'true') {
