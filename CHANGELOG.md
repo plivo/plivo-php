@@ -1,6 +1,6 @@
 # Change Log
 
-## [4.60.0](https://github.com/plivo/plivo-php/tree/v4.60.0) (2024-02-21)
+## [4.60.0](https://github.com/plivo/plivo-php/tree/v4.60.0) (2024-03-13)
 **Feature - Import Campaign API**
 -  Added import campaign API
 
