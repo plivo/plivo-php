@@ -49,6 +49,7 @@ class Parameter {
     public $type;
     public $text;
     public $media;
+    public $payload;
     public $currency;
     public $date_time;
 
@@ -58,6 +59,7 @@ class Parameter {
         $this->type = isset($data['type'])? $data['type'] : null;
         $this->text = isset($data['text'])? $data['text'] : null;
         $this->media = isset($data['media'])? $data['media'] : null;
+        $this->payload = isset($data['payload'])? $data['payload'] : null;
         $this->currency = isset($data['currency'])? new Currency($data['currency']) : null;
         $this->date_time = isset($data['date_time']) ? new DateTime($data['date_time']) : null;
         validateNotNullAndDataType($this->type, 'parameter', 'type', 'string', true);
