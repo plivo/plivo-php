@@ -1,8 +1,8 @@
 # Change Log
 
 ## [4.60.1](https://github.com/plivo/plivo-php/tree/v4.60.1) (2024-04-15)
-**Feature - Pin Based Authentication**
--  Pin Based Authentication Added in Create Session API
+**Feature - Pin Based Authentication, SubAccount and GeoMatch**
+-  Pin Based Authentication, SubAccount and GeoMatch Added in Masking APIs
 
 ## [4.60.0](https://github.com/plivo/plivo-php/tree/v4.60.0) (2024-03-13)
 **Feature - Import Campaign API**

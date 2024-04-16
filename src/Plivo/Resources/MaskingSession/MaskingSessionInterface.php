@@ -61,6 +61,8 @@ class MaskingSessionInterface extends ResourceInterface
      *   + [number] PinRetryWait - Wait between consecutive retry.
      *   + [string] IncorrectPinPlay - Sound url to play when wrong/invalid pin entered.
      *   + [string] UnknownCallerPlay - Sound url to play for unknown caller.
+     *   + [string] SubAccount - SubAccount to create session.
+     *   + [bool] GeoMatch - GeoMatch to filter no.
      
      * @return JSON output
      * @throws PlivoValidationException,PlivoResponseException
