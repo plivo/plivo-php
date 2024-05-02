@@ -51,6 +51,18 @@ class MaskingSessionInterface extends ResourceInterface
      *   + [string] firstPartyPlayUrl - The URL to play audio to the first party when the call is established.
      *   + [string] secondPartyPlayUrl - The URL to play audio to the second party when the call is established.
      *   + [string] recordingCallbackMethod - The HTTP method for the recording callback request.
+     *   + [boolean] IsPinAuthenticationRequired - Indicates we need to authenticate pin or not.
+     *   + [boolean] GeneratePin - Indicates we need to generate pin or not.
+     *   + [number] GeneratePinLength - Pin length, by default = 4.
+     *   + [string] FirstPartyPin - First Party Pin.
+     *   + [string] SecondPartyPin - Second Party Pin.
+     *   + [string] PinPromptPlay - Sound url to play during pin prompt.
+     *   + [number] PinRetry - No of times retry allowed for wrong/invalid pin.
+     *   + [number] PinRetryWait - Wait between consecutive retry.
+     *   + [string] IncorrectPinPlay - Sound url to play when wrong/invalid pin entered.
+     *   + [string] UnknownCallerPlay - Sound url to play for unknown caller.
+     *   + [string] SubAccount - SubAccount to create session.
+     *   + [bool] GeoMatch - GeoMatch to filter no.
      
      * @return JSON output
      * @throws PlivoValidationException,PlivoResponseException
