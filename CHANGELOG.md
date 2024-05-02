@@ -1,8 +1,12 @@
 # Change Log
 
-## [4.60.1](https://github.com/plivo/plivo-php/tree/v4.60.1) (2024-04-15)
+## [4.61.1](https://github.com/plivo/plivo-php/tree/v4.61.1) (2024-04-15)
 **Feature - Pin Based Authentication, SubAccount and GeoMatch**
 -  Pin Based Authentication, SubAccount and GeoMatch Added in Masking APIs
+
+## [4.61.0](https://github.com/plivo/plivo-php/tree/v4.61.0) (2024-04-18)
+**Feature - Support for dynamic button components when sending a templated WhatsApp message**
+- Added new param `payload` in templates to support dynamic payload in templates
 
 ## [4.60.0](https://github.com/plivo/plivo-php/tree/v4.60.0) (2024-03-13)
 **Feature - Import Campaign API**
