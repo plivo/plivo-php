@@ -1,5 +1,9 @@
 # Change Log
 
+## [4.63.0](https://github.com/plivo/plivo-php/tree/v4.63.0) (2024-05-07)
+**Feature - Adding support for interactive whatsapp messages**
+- Added new param `interactive` to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message) to support interactive `whatsapp` messages
+
 ## [4.62.0](https://github.com/plivo/plivo-php/tree/v4.62.0) (2024-05-02)
 **Feature - Pin Based Authentication, SubAccount and GeoMatch for Number Masking**
 -  Pin Based Authentication, SubAccount and GeoMatch added in Create Session API for Number Masking
