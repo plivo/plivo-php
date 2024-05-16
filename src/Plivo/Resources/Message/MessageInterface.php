@@ -197,21 +197,6 @@ class MessageInterface extends ResourceInterface
                 "src parameter not present"
             );
         }
-        if (isset($optionalArgs['type'])  && $optionalArgs['type'] != 'whatsapp' && !is_null($template)){
-            throw new PlivoValidationException(
-                'Template paramater is only applicable when message_type is whatsapp'
-            );
-        }
-        if (isset($optionalArgs['type'])  && $optionalArgs['type'] != 'whatsapp' && !is_null($interactive)){
-            throw new PlivoValidationException(
-                'Interactive paramater is only applicable when message_type is whatsapp'
-            );
-        }
-        if (isset($optionalArgs['type'])  && $optionalArgs['type'] != 'whatsapp' && !is_null($location)){
-            throw new PlivoValidationException(
-                'Location paramater is only applicable when message_type is whatsapp'
-            );
-        }
 
         if(!is_null($template)){
             $err = Template::validateTemplate($template);
