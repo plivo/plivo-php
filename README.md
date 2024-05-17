@@ -219,6 +219,337 @@ try {
 ?>
 ```
 
+## WhatsApp Messaging
+Plivo's WhatsApp API allows you to send different types of messages over WhatsApp, including templated messages, free form messages and interactive messages. Below are some examples on how to use the Plivo Go SDK to send these types of messages.
+
+### Templated Messages
+Templated messages are a crucial to your WhatsApp messaging experience, as businesses can only initiate WhatsApp conversation with their customers using templated messages.
+
+WhatsApp templates support 4 components:  `header` ,  `body`,  `footer`  and `button`. At the point of sending messages, the template object you see in the code acts as a way to pass the dynamic values within these components.  `header`  can accomodate `text` or `media` (images, video, documents) content.  `body`  can accomodate text content.  `button`  can support dynamic values in a `url` button or to specify a developer-defined payload which will be returned when the WhatsApp user clicks on the `quick_reply` button. `footer`  cannot have any dynamic variables.
+
+Example:
+```php
+<?php
+require 'vendor/autoload.php';
+use Plivo\RestClient;
+
+$client = new RestClient("<auth_id>","<auth_token>");
+
+$template = '{ 
+            "name": "template_name",
+            "language": "en_US",
+            "components": [
+                {
+                    "type": "header",
+                    "parameters": [
+                        {
+                            "type": "media",
+                            "media": "https://xyz.com/s3/img.jpg"
+                        }
+                    ]
+                },
+                {
+                    "type": "body",
+                    "parameters": [
+                        {
+                            "type": "text",
+                            "text": "WA-Text"
+                        }
+                    ]
+                }
+            ]
+          }';
+
+$response = $client->messages->create([  
+        "src" => "+14156667778",
+        "dst" => "+14156667777",
+        "type"=> "whatsapp",
+        "template"=> $template,
+        "url"=> "https://foo.com/wa_status/"
+]);
+print_r($response);
+?>
+```
+
+### Free Form Messages
+Non-templated or Free Form WhatsApp messages can be sent as a reply to a user-initiated conversation (Service conversation) or if there is an existing ongoing conversation created previously by sending a templated WhatsApp message.
+
+#### Free Form Text Message
+Example:
+```php
+<?php
+require 'vendor/autoload.php';
+use Plivo\RestClient;
+
+$client = new RestClient("<auth_id>","<auth_token>");
+$response = $client->messages->create([  
+        "src"=> "+14156667778",
+        "dst"=> "+14156667777",
+        "text"=> "Hello, this is sample text",
+        "type"=> "whatsapp",
+        "url"=> "https://foo.com/wa_status/"
+]);
+print_r($response);
+?>
+```
+
+#### Free Form Media Message
+Example:
+```php
+<?php
+require 'vendor/autoload.php';
+use Plivo\RestClient;
+
+$client = new RestClient("<auth_id>","<auth_token>");
+$response = $client->messages->create([  
+        "src"=> "+14156667778",
+        "dst"=> "+14156667777",
+        "text"=> "Hello, this is sample text",
+        "type"=> "whatsapp",
+        "media_urls"=> ["https://sample-videos.com/img/Sample-png-image-1mb.png"],
+        "url"=> "https://foo.com/wa_status/"
+]);
+print_r($response);
+?>
+```
+
+### Interactive Messages
+This guide shows how to send non-templated interactive messages to recipients using Plivo’s APIs.
+
+#### Quick Reply Buttons
+Quick reply buttons allow customers to quickly respond to your message with predefined options.
+
+Example:
+```php
+<?php
+require '/usr/src/app/vendor/autoload.php';
+use Plivo\RestClient;
+
+$client = new RestClient("<auth_id>","<auth_token>");
+
+$interactive = '{
+        "type": "button",
+        "header": {
+            "type": "media",
+            "media": "https://xyz.com/s3/img.jpg"
+        },
+        "body": {
+            "text": "Make your selection"
+        },
+        "action": {
+            "buttons": [
+                {
+                    "title": "Click here",
+                    "id": "bt1"
+                },
+                {
+                    "title": "Know More",
+                    "id": "bt2"
+                },
+                {
+                    "title": "Request Callback",
+                    "id": "bt3"
+                }
+            ]
+        }
+    }';
+
+$response = $client->messages->create([
+        "src"=> "+14156667778",
+        "dst"=> "+14156667777",
+        "type"=> "whatsapp",
+        "interactive"=> $interactive
+]);
+print_r($response);
+?>
+```
+
+#### Interactive Lists
+Interactive lists allow you to present customers with a list of options.
+
+Example:
+```php
+<?php
+require '/usr/src/app/vendor/autoload.php';
+use Plivo\RestClient;
+
+$client = new RestClient("<auth_id>","<auth_token>");
+
+$interactive = '{
+        "type": "list",
+        "header": {
+            "type": "text",
+            "text": "Welcome to Plivo"
+        },
+        "body": {
+            "text": "You can review the list of rewards we offer"
+        },
+        "footer": {
+            "text": "Yours Truly"
+        },
+        "action": {
+            "buttons": [{
+                "title": "Click here"
+            }],
+            "sections": [
+                {
+                    "title": "SECTION_1_TITLE",
+                    "rows": [
+                        {
+                            "id": "SECTION_1_ROW_1_ID",
+                            "title": "SECTION_1_ROW_1_TITLE",
+                            "description": "SECTION_1_ROW_1_DESCRIPTION"
+                        },
+                        {
+                            "id": "SECTION_1_ROW_2_ID",
+                            "title": "SECTION_1_ROW_2_TITLE",
+                            "description": "SECTION_1_ROW_2_DESCRIPTION"
+                        }
+                    ]
+                },
+                {
+                    "title": "SECTION_2_TITLE",
+                    "rows": [
+                        {
+                            "id": "SECTION_2_ROW_1_ID",
+                            "title": "SECTION_2_ROW_1_TITLE",
+                            "description": "SECTION_2_ROW_1_DESCRIPTION"
+                        },
+                        {
+                            "id": "SECTION_2_ROW_2_ID",
+                            "title": "SECTION_2_ROW_2_TITLE",
+                            "description": "SECTION_2_ROW_2_DESCRIPTION"
+                        }
+                    ]
+                }
+            ]
+        }
+    }';
+
+$response = $client->messages->create(
+        [
+                "src"=> "+14156667778",
+                "dst"=> "+14156667777",
+                "type"=> "whatsapp",
+                "interactive"=> $interactive
+        ]
+);
+print_r($response);
+?>
+```
+
+#### Interactive CTA URLs
+CTA URL messages allow you to send links and call-to-action buttons.
+
+Example:
+```php
+<?php
+require '/usr/src/app/vendor/autoload.php';
+use Plivo\RestClient;
+
+$client = new RestClient("<auth_id>","<auth_token>");
+
+$interactive = '{
+      "type": "cta_url",
+        "header": {
+            "type": "media",
+            "media": "https://xyz.com/s3/img.jpg"
+        },
+        "body": {
+            "text": "Know More"
+        },
+        "footer": {
+            "text": "Plivo"
+        },
+        "action": {
+            "buttons": [
+                {
+                    "title": "Click here",
+                    "cta_url": "https:plivo.com"
+                }
+            ]
+        }
+    }';
+
+$response = $client->messages->create([
+        "src"=> "+14156667778",
+        "dst"=> "+14156667777",
+        "type"=> "whatsapp",
+        "interactive"=> $interactive
+]);
+print_r($response);
+?>
+```
+
+### Location Messages
+This guide shows how to send templated and non-templated location messages to recipients using Plivo’s APIs.
+
+#### Templated Location Messages
+Example:
+```php
+<?php
+require '/usr/src/app/vendor/autoload.php';
+use Plivo\RestClient;
+
+$client = new RestClient("<auth_id>","<auth_token>");
+
+$template = '{
+        "name": "plivo_order_pickup",
+        "language": "en_US",
+        "components": [
+            {
+                "type": "header",
+                "parameters": [
+                    {
+                        "type": "location",
+                        "location": {
+                            "longitude": "122.148981",
+                            "latitude": "37.483307",
+                            "name": "Pablo Morales",
+                            "address": "1 Hacker Way, Menlo Park, CA 94025"
+                        }
+                    }
+                ]
+            }
+        ]
+    }';
+
+$response = $client->messages->create([
+        "src"=> "+14156667778",
+        "dst"=> "+14156667777",
+        "type"=> "whatsapp",
+        "template"=> $template
+]);
+print_r($response);
+?>
+```
+
+#### Non-Templated Location Messages
+Example:
+```php
+<?php
+require '/usr/src/app/vendor/autoload.php';
+use Plivo\RestClient;
+
+$client = new RestClient("<auth_id>","<auth_token>");
+
+$location = '{
+        "longitude": "122.148981",
+        "latitude": "37.483307",
+        "name": "Pablo Morales",
+        "address": "1 Hacker Way, Menlo Park, CA 94025"
+    }';
+
+$response = $client->messages->create([
+        "src"=> "+14156667778",
+        "dst"=> "+14156667777",
+        "type"=> "whatsapp",
+        "location"=> $location
+]);
+print_r($response);
+?>
+```
+
 ### More examples
 More examples are available [here](https://github.com/plivo/plivo-examples-php). Also refer to the [guides for configuring the PHP laravel to run various scenarios](https://www.plivo.com/docs/sms/quickstart/php-laravel/) & use it to test out your integration in under 5 minutes.
 
