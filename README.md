@@ -229,6 +229,46 @@ WhatsApp templates support 4 components:  `header` ,  `body`,  `footer`  and `bu
 
 Example:
 ```php
+<?php
+require 'vendor/autoload.php';
+use Plivo\RestClient;
+
+$client = new RestClient("<auth_id>","<auth_token>");
+
+$template = '{ 
+            "name": "template_name",
+            "language": "en_US",
+            "components": [
+                {
+                    "type": "header",
+                    "parameters": [
+                        {
+                            "type": "media",
+                            "media": "https://xyz.com/s3/img.jpg"
+                        }
+                    ]
+                },
+                {
+                    "type": "body",
+                    "parameters": [
+                        {
+                            "type": "text",
+                            "text": "WA-Text"
+                        }
+                    ]
+                }
+            ]
+          }';
+
+$response = $client->messages->create([  
+        "src" => "+14156667778",
+        "dst" => "+14156667777",
+        "type"=> "whatsapp",
+        "template"=> $template,
+        "url"=> "https://foo.com/wa_status/"
+]);
+print_r($response);
+?>
 ```
 
 ### Free Form Messages
@@ -237,11 +277,40 @@ Non-templated or Free Form WhatsApp messages can be sent as a reply to a user-in
 #### Free Form Text Message
 Example:
 ```php
+<?php
+require 'vendor/autoload.php';
+use Plivo\RestClient;
+
+$client = new RestClient("<auth_id>","<auth_token>");
+$response = $client->messages->create([  
+        "src"=> "+14156667778",
+        "dst"=> "+14156667777",
+        "text"=> "Hello, this is sample text",
+        "type"=> "whatsapp",
+        "url"=> "https://foo.com/wa_status/"
+]);
+print_r($response);
+?>
 ```
 
 #### Free Form Media Message
 Example:
 ```php
+<?php
+require 'vendor/autoload.php';
+use Plivo\RestClient;
+
+$client = new RestClient("<auth_id>","<auth_token>");
+$response = $client->messages->create([  
+        "src"=> "+14156667778",
+        "dst"=> "+14156667777",
+        "text"=> "Hello, this is sample text",
+        "type"=> "whatsapp",
+        "media_urls"=> ["https://sample-videos.com/img/Sample-png-image-1mb.png"],
+        "url"=> "https://foo.com/wa_status/"
+]);
+print_r($response);
+?>
 ```
 
 ### Interactive Messages
@@ -252,6 +321,47 @@ Quick reply buttons allow customers to quickly respond to your message with pred
 
 Example:
 ```php
+<?php
+require '/usr/src/app/vendor/autoload.php';
+use Plivo\RestClient;
+
+$client = new RestClient("<auth_id>","<auth_token>");
+
+$interactive = '{
+        "type": "button",
+        "header": {
+            "type": "media",
+            "media": "https://xyz.com/s3/img.jpg"
+        },
+        "body": {
+            "text": "Make your selection"
+        },
+        "action": {
+            "buttons": [
+                {
+                    "title": "Click here",
+                    "id": "bt1"
+                },
+                {
+                    "title": "Know More",
+                    "id": "bt2"
+                },
+                {
+                    "title": "Request Callback",
+                    "id": "bt3"
+                }
+            ]
+        }
+    }';
+
+$response = $client->messages->create([
+        "src"=> "+14156667778",
+        "dst"=> "+14156667777",
+        "type"=> "whatsapp",
+        "interactive"=> $interactive
+]);
+print_r($response);
+?>
 ```
 
 #### Interactive Lists
@@ -259,6 +369,73 @@ Interactive lists allow you to present customers with a list of options.
 
 Example:
 ```php
+<?php
+require '/usr/src/app/vendor/autoload.php';
+use Plivo\RestClient;
+
+$client = new RestClient("<auth_id>","<auth_token>");
+
+$interactive = '{
+        "type": "list",
+        "header": {
+            "type": "text",
+            "text": "Welcome to Plivo"
+        },
+        "body": {
+            "text": "You can review the list of rewards we offer"
+        },
+        "footer": {
+            "text": "Yours Truly"
+        },
+        "action": {
+            "buttons": [{
+                "title": "Click here"
+            }],
+            "sections": [
+                {
+                    "title": "SECTION_1_TITLE",
+                    "rows": [
+                        {
+                            "id": "SECTION_1_ROW_1_ID",
+                            "title": "SECTION_1_ROW_1_TITLE",
+                            "description": "SECTION_1_ROW_1_DESCRIPTION"
+                        },
+                        {
+                            "id": "SECTION_1_ROW_2_ID",
+                            "title": "SECTION_1_ROW_2_TITLE",
+                            "description": "SECTION_1_ROW_2_DESCRIPTION"
+                        }
+                    ]
+                },
+                {
+                    "title": "SECTION_2_TITLE",
+                    "rows": [
+                        {
+                            "id": "SECTION_2_ROW_1_ID",
+                            "title": "SECTION_2_ROW_1_TITLE",
+                            "description": "SECTION_2_ROW_1_DESCRIPTION"
+                        },
+                        {
+                            "id": "SECTION_2_ROW_2_ID",
+                            "title": "SECTION_2_ROW_2_TITLE",
+                            "description": "SECTION_2_ROW_2_DESCRIPTION"
+                        }
+                    ]
+                }
+            ]
+        }
+    }';
+
+$response = $client->messages->create(
+        [
+                "src"=> "+14156667778",
+                "dst"=> "+14156667777",
+                "type"=> "whatsapp",
+                "interactive"=> $interactive
+        ]
+);
+print_r($response);
+?>
 ```
 
 #### Interactive CTA URLs
@@ -266,6 +443,42 @@ CTA URL messages allow you to send links and call-to-action buttons.
 
 Example:
 ```php
+<?php
+require '/usr/src/app/vendor/autoload.php';
+use Plivo\RestClient;
+
+$client = new RestClient("<auth_id>","<auth_token>");
+
+$interactive = '{
+      "type": "cta_url",
+        "header": {
+            "type": "media",
+            "media": "https://xyz.com/s3/img.jpg"
+        },
+        "body": {
+            "text": "Know More"
+        },
+        "footer": {
+            "text": "Plivo"
+        },
+        "action": {
+            "buttons": [
+                {
+                    "title": "Click here",
+                    "cta_url": "https:plivo.com"
+                }
+            ]
+        }
+    }';
+
+$response = $client->messages->create([
+        "src"=> "+14156667778",
+        "dst"=> "+14156667777",
+        "type"=> "whatsapp",
+        "interactive"=> $interactive
+]);
+print_r($response);
+?>
 ```
 
 ### Location Messages
@@ -274,11 +487,67 @@ This guide shows how to send templated and non-templated location messages to re
 #### Templated Location Messages
 Example:
 ```php
+<?php
+require '/usr/src/app/vendor/autoload.php';
+use Plivo\RestClient;
+
+$client = new RestClient("<auth_id>","<auth_token>");
+
+$template = '{
+        "name": "plivo_order_pickup",
+        "language": "en_US",
+        "components": [
+            {
+                "type": "header",
+                "parameters": [
+                    {
+                        "type": "location",
+                        "location": {
+                            "longitude": "122.148981",
+                            "latitude": "37.483307",
+                            "name": "Pablo Morales",
+                            "address": "1 Hacker Way, Menlo Park, CA 94025"
+                        }
+                    }
+                ]
+            }
+        ]
+    }';
+
+$response = $client->messages->create([
+        "src"=> "+14156667778",
+        "dst"=> "+14156667777",
+        "type"=> "whatsapp",
+        "template"=> $template
+]);
+print_r($response);
+?>
 ```
 
 #### Non-Templated Location Messages
 Example:
 ```php
+<?php
+require '/usr/src/app/vendor/autoload.php';
+use Plivo\RestClient;
+
+$client = new RestClient("<auth_id>","<auth_token>");
+
+$location = '{
+        "longitude": "122.148981",
+        "latitude": "37.483307",
+        "name": "Pablo Morales",
+        "address": "1 Hacker Way, Menlo Park, CA 94025"
+    }';
+
+$response = $client->messages->create([
+        "src"=> "+14156667778",
+        "dst"=> "+14156667777",
+        "type"=> "whatsapp",
+        "location"=> $location
+]);
+print_r($response);
+?>
 ```
 
 ### More examples
