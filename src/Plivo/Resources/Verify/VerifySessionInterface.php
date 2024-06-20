@@ -143,6 +143,8 @@ class VerifySessionInterface extends ResourceInterface
      *                   <br /> ChannelErrorCode - Error code received from the channel if any error occurred.
      *                   <br /> AttemptSequence - The attempt number for which the session status is received. For e.g. is two attempted are made within a session, 1st via SMS and 2nd via Voice, then callbacks received for SMS would have AttemptSequence value as 1 and for Voice it would be 2.
      *                   <br /> SessionStatus - The status of the session(in-progress/validated/expired).
+     *                   <br /> Locale - The template text to be selected while sending sms.
+     *                   
      *   + [string] :method - The method used to call the url. Defaults to POST.
      * @return VerifySessionCreateResponse output
      * @throws PlivoValidationException,PlivoResponseException
