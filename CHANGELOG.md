@@ -2,8 +2,8 @@
 
 # Change Log
 ## [4.65.0](https://github.com/plivo/plivo-php/tree/v4.65.0)(2024-06-22)
-**Feature - Adding support for Locale param in Create Session**
-- Added new request param `locale` in create Session API
+**Feature - Adding support for Locale param in Create, Get and List Session**
+- Added new request param `locale` in create, get and List Session API
 
 ## [4.64.0](https://github.com/plivo/plivo-php/tree/v4.64.0) (2024-05-17)
 **Feature - Adding support for location whatsapp messages**
