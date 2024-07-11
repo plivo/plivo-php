@@ -1,7 +1,7 @@
 # Change Log
 
 # Change Log
-## [4.65.0](https://github.com/plivo/plivo-php/tree/v4.65.0)(2024-06-22)
+## [4.65.0](https://github.com/plivo/plivo-php/tree/v4.65.0)(2024-07-11)
 **Feature - Adding support for Locale param in Create, Get and List Session**
 - Added new request param `locale` in create Session API
 - Added support for `locale` param in get and list Session response
