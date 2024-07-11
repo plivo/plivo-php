@@ -15,6 +15,7 @@ use Plivo\Resources\Resource;
  * @property string $alias
  * @property string $recipient
  * @property string $channel
+ * @property string $locale
  * @property string $status
  * @property int $count
  * @property ?string $requestor_ip
@@ -44,6 +45,7 @@ class VerifySession extends Resource
             'alias' => $response['alias'],
             'recipient' => $response['recipient'],
             'channel' => $response['channel'],
+            'locale' => $response['locale'],
             'status' => $response['status'],
             'count' => $response['count'],
             'createdAt' => $response['created_at'],

@@ -7,6 +7,7 @@
   "channel": "sms",
   "status": "expired",
   "count": 0,
+  "locale":"en",
   "requestor_ip": "172.167.8.2",
   "destination_country_iso2": "IN",
   "destination_network": "AirTel",
