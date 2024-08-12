@@ -98,6 +98,8 @@ class VerifySessionInterface extends ResourceInterface
      *   + [string] : app_uuid - Filter the results by App UUID.
      *   + [string]: country -  Filter the results by country. For e.g. Filter results for India using 'IN' as the value.
      *   + [string]: alias - Filter the results using alias of verify application.
+     *   + [string]: brand_name - Filter the results using brand_name of sessions
+     *   + [string]: app_hash - Filter the results using app_hash of verify application.   
      * @return VerifySessionList output
      */
     public function list( $optionalArgs = [])
@@ -144,7 +146,8 @@ class VerifySessionInterface extends ResourceInterface
      *                   <br /> AttemptSequence - The attempt number for which the session status is received. For e.g. is two attempted are made within a session, 1st via SMS and 2nd via Voice, then callbacks received for SMS would have AttemptSequence value as 1 and for Voice it would be 2.
      *                   <br /> SessionStatus - The status of the session(in-progress/validated/expired).
      *                   <br /> Locale - The template text to be selected while sending sms.
-     *                   
+     *                   <br /> Brandname - The brand_name can be dynamically passed in request payload
+     *                   <br /> AppHash - The brand_name can be dynamically passed in request payload
      *   + [string] :method - The method used to call the url. Defaults to POST.
      * @return VerifySessionCreateResponse output
      * @throws PlivoValidationException,PlivoResponseException
