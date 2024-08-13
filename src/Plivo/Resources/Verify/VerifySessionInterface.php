@@ -147,6 +147,7 @@ class VerifySessionInterface extends ResourceInterface
      *                   <br /> SessionStatus - The status of the session(in-progress/validated/expired).
      *                   <br /> Locale - The template text to be selected while sending sms.
      *                   <br /> Brandname - The brand_name can be dynamically passed in request payload
+     *                    <br /> CodeLength - The otp length can be dynamically passed in request payload between 4 to 8
      *                   <br /> AppHash - The brand_name can be dynamically passed in request payload
      *   + [string] :method - The method used to call the url. Defaults to POST.
      * @return VerifySessionCreateResponse output
