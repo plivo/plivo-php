@@ -1,6 +1,10 @@
 # Change Log
 
 # Change Log
+## [4.65.1](https://github.com/plivo/plivo-php/tree/v4.65.1)(2024-09-03)
+**Feature - Adding new element for Audio Stream XML **
+- Added `keepCallAlive` element in Audio Stream XML
+
 ## [4.65.0](https://github.com/plivo/plivo-php/tree/v4.65.0)(2024-07-11)
 **Feature - Adding support for Locale param in Create, Get and List Session**
 - Added new request param `locale` in create Session API
