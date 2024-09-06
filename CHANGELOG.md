@@ -1,4 +1,8 @@
 # Change Log
+## [4.65.3](https://github.com/plivo/plivo-php/tree/v4.65.3)(2024-09-06)
+**Feature - Adding more attribute on mdr object**
+- Added `message_sent_time`, `message_updated_time` and `error-message` on get and list Message API
+
 ## [4.65.2](https://github.com/plivo/plivo-php/tree/v4.65.2)(2024-09-06)
 **Feature - Adding support for brand_name,app_hash ,code_length in Create,Get and List Session**
 - Added new request param `brand_name`, `code_length` and `app_hash` in create Session API
