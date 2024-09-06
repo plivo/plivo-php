@@ -3,6 +3,15 @@
 **Feature - Adding more attribute on mdr object**
 - Added `message_sent_time`, `message_updated_time` and `error-message` on get and list Message API
 
+## [4.65.2](https://github.com/plivo/plivo-php/tree/v4.65.2)(2024-09-06)
+**Feature - Adding support for brand_name,app_hash ,code_length in Create,Get and List Session**
+- Added new request param `brand_name`, `code_length` and `app_hash` in create Session API
+- Added support for `brand_name`,  `code_length` and `app_hash` param in get and list Session response
+- 
+## [4.65.1](https://github.com/plivo/plivo-php/tree/v4.65.1)(2024-09-03)
+**Feature - Adding new element for Audio Stream XML **
+- Added `keepCallAlive` element in Audio Stream XML
+
 ## [4.65.0](https://github.com/plivo/plivo-php/tree/v4.65.0)(2024-07-11)
 **Feature - Adding support for Locale param in Create, Get and List Session**
 - Added new request param `locale` in create Session API
