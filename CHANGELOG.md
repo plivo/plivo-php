@@ -1,10 +1,8 @@
 # Change Log
-
-# Change Log
-## [4.66.0](https://github.com/plivo/plivo-php/tree/v4.66.0)(2024-08-12)
-**Feature - Adding support for brand_name and app_hash in Create,Get and List Session**
-- Added new request param `brand_name` and `app_hash` in create Session API
-- Added support for `brand_name` and `app_hash` param in get and list Session response
+## [4.66.2](https://github.com/plivo/plivo-php/tree/v4.66.2)(2024-09-06)
+**Feature - Adding support for brand_name,app_hash ,code_length in Create,Get and List Session**
+- Added new request param `brand_name`, `code_length` and `app_hash` in create Session API
+- Added support for `brand_name`,  `code_length` and `app_hash` param in get and list Session response
 
 ## [4.65.0](https://github.com/plivo/plivo-php/tree/v4.65.0)(2024-07-11)
 **Feature - Adding support for Locale param in Create, Get and List Session**
