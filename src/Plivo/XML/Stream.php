@@ -18,7 +18,8 @@ class Stream extends Element
         'statusCallbackUrl',
         'statusCallbackMethod',
         'contentType',
-        'extraHeaders'
+        'extraHeaders',
+        'keepCallAlive'
     ];
 
     /**
