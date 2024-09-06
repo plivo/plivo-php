@@ -1,6 +1,8 @@
 # Change Log
+## [4.65.3](https://github.com/plivo/plivo-php/tree/v4.65.3)(2024-09-06)
+**Feature - Adding more attribute on mdr object**
+- Added `message_sent_time`, `message_updated_time` and `error-message` on get and list Message API
 
-# Change Log
 ## [4.65.0](https://github.com/plivo/plivo-php/tree/v4.65.0)(2024-07-11)
 **Feature - Adding support for Locale param in Create, Get and List Session**
 - Added new request param `locale` in create Session API
