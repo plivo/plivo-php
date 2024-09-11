@@ -1,4 +1,9 @@
 # Change Log
+## [4.65.4](https://github.com/plivo/plivo-php/tree/v4.65.4)(2024-09-11)
+**Feature - Adding few optional parameters to the existing machine detection params**
+- Added six new optional machine detection params `machine_detection_maximum_speech_length`,`machine_detection_initial_silence`,`machine_detection_maximum_words`,`machine_detection_initial_greeting`,`machine_detection_silence`,`machine_detection_answer_time`
+
+
 ## [4.65.3](https://github.com/plivo/plivo-php/tree/v4.65.3)(2024-09-06)
 **Feature - Adding more attribute on mdr object**
 - Added `message_sent_time`, `message_updated_time` and `error-message` on get and list Message API
