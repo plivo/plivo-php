@@ -68,7 +68,13 @@ class CallInterface extends ResourceInterface
      *   + [int] ring_timeout - Determines the time in seconds the call should ring. If the call is not answered within the ring_timeout value or the default value of 120s, it is canceled.
      *   + [string] parent_call_uuid - The call_uuid of the first leg in an ongoing conference call. It is recommended to use this parameter in scenarios where a member who is already present in the conference intends to add new members by initiating outbound API calls. This minimizes the delay in adding a new memeber to the conference.
      *   + [boolean] error_parent_not_found - if set to true and the parent_call_uuid cannot be found, the API request would return an error. If set to false, the outbound call API request will be executed even if the parent_call_uuid is not found. Defaults to false.
-
+     *   + [int] machine_detection_maximum_speech_length - Time in milliseconds used to measure the length of speech activity.. It should be an integer >= 1000 and <= 6000 and the unit is ms. The default value is 5000 ms.
+     *   + [int] machine_detection_initial_silence - The duration of initial silence when the call is answered. It should be an integer >= 2000 and <= 10000 and the unit is ms. The default value is 4500 ms.
+     *   + [int] machine_detection_maximum_words - The maximum number of sentences detected.. It should be an integer >= 2 and <= 10. The default value is 3.
+     *   + [int] machine_detection_initial_greeting - Indicates the maximum length of the initial greeting in milliseconds. It should be an integer >= 1000 and <= 5000 and the unit is ms. The default value is 1500 ms.
+     *   + [int] machine_detection_silence - The silence after the initial greeting, expressed in milliseconds. It should be an integer >= 500 and <= 5000 and the unit is ms. The default value is 800 ms.
+     *   + [int] machine_detection_answer_time - Time within which if the call is answered then the call has been considered as answered by a machine. It should be an integer >= 100 and <= 45000 and the unit is ms. The default value is 45000 ms.
+     
      * @return JSON output
      * @throws PlivoValidationException,PlivoResponseException
      */
