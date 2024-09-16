@@ -1,4 +1,8 @@
 # Change Log
+## [4.66.0](https://github.com/plivo/plivo-php/tree/v4.66.0)(2024-09-10)
+**Feature - Adding new param support for Number Masking session with single party **
+- Added `create_session_with_single_party`, `virtual_number_cooloff_period` and `force_pin_authentication` attributes in Masking Session
+
 ## [4.65.3](https://github.com/plivo/plivo-php/tree/v4.65.3)(2024-09-06)
 **Feature - Adding more attribute on mdr object**
 - Added `message_sent_time`, `message_updated_time` and `error-message` on get and list Message API
