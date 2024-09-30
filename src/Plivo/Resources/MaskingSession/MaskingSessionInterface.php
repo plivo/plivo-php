@@ -63,6 +63,9 @@ class MaskingSessionInterface extends ResourceInterface
      *   + [string] UnknownCallerPlay - Sound url to play for unknown caller.
      *   + [string] SubAccount - SubAccount to create session.
      *   + [bool] GeoMatch - GeoMatch to filter no.
+     *   + [boolean] ForcePinAuthentication - Specifies the cool-off period for reallocating the number to a new session. Must be a positive integer between 0 and 3600.
+     *   + [number] VirtualNumberCooloffPeriod - Indicates if PIN is needed, even from the registered mobile number.
+     *   + [boolean] CreateSessionWithSingleParty - Indicates if a session requires one party. Either first_party or second_party is mandatory.
      
      * @return JSON output
      * @throws PlivoValidationException,PlivoResponseException
