@@ -12,7 +12,7 @@
           "app_uuid": "854f110a-6244-4481-9d28-dddf58c7014b",
           "alias": "default_app",
           "recipient": "918097480999",
-          "channel": "sms",
+          "channel": "voice",
           "status": "verified",
           "locale":"en",
           "count": 1,
@@ -21,10 +21,11 @@
           "destination_network": "AirTel",
           "attempt_details": [
               {
-                  "channel": "sms",
+                  "channel": "voice",
                   "attempt_uuid": "3ada0edc-849a-49f4-aae6-2de209955829",
                   "status": "delivered",
-                  "time": "2023-07-28T17:20:39.278163+05:30"
+                  "time": "2023-07-28T17:20:39.278163+05:30",
+                  "dtmf": 4
               }
           ],
           "charges": {
