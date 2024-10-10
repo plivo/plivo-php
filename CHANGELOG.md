@@ -1,4 +1,9 @@
 # Change Log
+## [4.66.1](https://github.com/plivo/plivo-php/tree/v4.66.1)(2024-10-10)
+**Feature - Dtmf param in Create, Get and List Session**
+- Support for the `dtmf` parameter in voice verify session request
+- Added support for `dtmf` in GET and LIST verify session.
+- 
 ## [4.66.0](https://github.com/plivo/plivo-php/tree/v4.66.0)(2024-09-30)
 **Feature - Adding new param support for Number Masking session with single party **
 - Added `create_session_with_single_party`, `virtual_number_cooloff_period` and `force_pin_authentication` attributes in Masking Session
