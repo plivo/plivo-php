@@ -55,14 +55,16 @@ use Plivo\Resources\Resource;
  */
 class Application extends Resource
 {
+    public $statusCode;
     /**
      * Application constructor.
      * @param BaseClient $client
      * @param $response
      * @param $authId
      */
-    public function __construct(BaseClient $client, $response, $authId)
+    public function __construct(BaseClient $client, $response, $authId, $statusCode)
     {
+        $this->statusCode = $statusCode;
         parent::__construct($client);
 
         $this->properties = [
