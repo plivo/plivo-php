@@ -25,7 +25,7 @@ use Plivo\Resources\Resource;
  * @property ?string $charges
  * @property string $created_at
  * @property string $updated_at
- * @property ?string $dtmf
+ * @property ?int $dtmf
  */
 class VerifySession extends Resource
 {
