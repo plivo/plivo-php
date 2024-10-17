@@ -129,11 +129,17 @@
           "channel": "sms",
           "status": "expired",
           "locale":"en",
-          "count": 2,
+          "count": 3,
           "requestor_ip": "110.226.182.196",
           "destination_country_iso2": "IN",
           "destination_network": "AirTel",
           "attempt_details": [
+              {
+                "channel": "sms",
+                "attemp_uuid": "c8f5830a-65d2-46db-9088-5001627e65a8",
+                "status": "failed",
+                "time": "2023-07-28T17:07:02.280023+05:30"
+              },
               {
                   "channel": "sms",
                   "attempt_uuid": "c8f5830a-65d2-46db-9088-5001627e65a9",
@@ -151,6 +157,11 @@
               "total_charge": "0.48000",
               "validation_charge": "0.0000",
               "attempt_charges": [
+                  {
+                    "attempt_uuid": "c8f5830a-65d2-46db-9088-5001627e65a8",
+                    "channel": "sms",
+                    "charge": "0.000000"
+                  },
                   {
                       "attempt_uuid": "c8f5830a-65d2-46db-9088-5001627e65a9",
                       "channel": "sms",
