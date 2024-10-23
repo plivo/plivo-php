@@ -26,6 +26,7 @@ use Plivo\Resources\Resource;
  * @property string $created_at
  * @property string $updated_at
  * @property ?int $dtmf
+ * @property ?string $fraud_check
  */
 class VerifySession extends Resource
 {
