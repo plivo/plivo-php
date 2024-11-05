@@ -1,4 +1,8 @@
 # Change Log
+## [4.67.0](https://github.com/plivo/plivo-php/tree/v4.67.0)(2024-11-06)
+**Feature - Adding few optional parameters to the existing machine detection params**
+- Added six new optional machine detection params `machine_detection_maximum_speech_length`,`machine_detection_initial_silence`,`machine_detection_maximum_words`,`machine_detection_initial_greeting`,`machine_detection_silence`,`machine_detection_answer_time`
+
 ## [4.66.2](https://github.com/plivo/plivo-php/tree/v4.66.2) (2024-10-23)
 **Feature - FraudCheck param in Create, Get and List Session**
 - Support for the `fraud_check` parameter in sms verify session request
