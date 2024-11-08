@@ -194,6 +194,8 @@ class BaseClient
 
         static::$requestCount++;
 
+        static::$isLookupRequest = false;
+        static::$isZentrunkRequest = false;
         if (!$plivoResponse->ok() && !static::$isVoiceRequest) {
             return $plivoResponse;
         }
@@ -228,9 +230,6 @@ class BaseClient
             static::$isLookupRequest = true;
             unset($params['isLookupRequest']);
         }
-        else{
-            static::$isLookupRequest = false;
-        }
         if (array_key_exists("isZentrunkRequest",$params)) {
             static::$isZentrunkRequest = true;
             unset($params['isZentrunkRequest']);
@@ -250,7 +249,6 @@ class BaseClient
     public function update($uri, $params)
     {
         $url = NULL;
-        static::$isLookupRequest = false;  // Safe to set false as lookup never uses POST
         $isCallInsightsRequest = FALSE;
         if (array_key_exists("isCallInsightsRequest", $params)) {
             $isCallInsightsRequest = TRUE;
@@ -323,7 +321,6 @@ class BaseClient
      */
     public function delete($uri, $params)
     {
-        static::$isLookupRequest = false;  // Safe to set false as lookup never uses DELETE
         if (array_key_exists("isVoiceRequest", $params)) {
             static::$isVoiceRequest = true;
             unset($params['isVoiceRequest']);
