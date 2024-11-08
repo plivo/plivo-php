@@ -193,7 +193,10 @@ class BaseClient
                 $url, $method, $body, $headers, $timeout, $request);
 
         static::$requestCount++;
-
+        
+        static::$isLookupRequest = false;
+        static::$isZentrunkRequest = false;
+        
         if (!$plivoResponse->ok() && !static::$isVoiceRequest) {
             return $plivoResponse;
         }
