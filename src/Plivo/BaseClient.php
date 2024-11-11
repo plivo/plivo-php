@@ -194,6 +194,8 @@ class BaseClient
 
         static::$requestCount++;
 
+        static::$isLookupRequest = false;
+        static::$isZentrunkRequest = false;
         if (!$plivoResponse->ok() && !static::$isVoiceRequest) {
             return $plivoResponse;
         }
