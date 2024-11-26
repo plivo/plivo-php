@@ -13,17 +13,19 @@ class MessageCreateResponse extends ResponseUpdate
 {
     protected $messageUuid = [];
 
+    protected $invalidNumbers = [];
+
     /**
      * MessageCreateResponse constructor.
      * @param $message
      * @param array $messageUuid
      */
-    public function __construct($message, array $messageUuid, $apiId,$statusCode, $invalid_number)
+    public function __construct($message, array $messageUuid, $apiId,$statusCode, $invalid_numbers)
     {
         parent::__construct($apiId, $message,$statusCode);
         $this->messageUuid = $messageUuid;
-        if($invalid_number != []){
-            $this->invalid_number = $invalid_number;
+        if($invalid_numbers != []){
+            $this->invalidNumbers = $invalid_numbers;
         }
     }
 
@@ -34,6 +36,15 @@ class MessageCreateResponse extends ResponseUpdate
     public function getMessageUuid()
     {
         return $this->messageUuid;
+    }
+
+    /**
+     * Get the invalid numbers
+     * @return array
+     */
+    public function getInvalidNumbers()
+    {
+        return $this->invalidNumbers;
     }
 
 
