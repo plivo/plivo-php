@@ -11,8 +11,8 @@ use Plivo\Resources\ResponseUpdate;
  */
 class MessageCreateErrorResponse extends ResponseUpdate
 {
-    protected $apiId = "";
-    protected $error = "";
+    public $apiId = "";
+    public $error = "";
     /**
      * MessageCreateErrorResponse constructor.
      * @param $error
@@ -21,8 +21,8 @@ class MessageCreateErrorResponse extends ResponseUpdate
     public function __construct($error, $apiId,$statusCode)
     {
         parent::__construct($apiId, $error, $statusCode);
-        $this->apiID = $apiID;
         $this->error = $error;
+        $this->apiId = $apiId;
     }
 
     /**
