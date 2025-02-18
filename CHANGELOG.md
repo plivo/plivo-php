@@ -1,4 +1,8 @@
 # Change Log
+## [4.66.4](https://github.com/plivo/plivo-php/tree/v4.66.4) (2025-02-18)
+**Enhancement**
+-Handle the error response from the send sms api
+
 ## [4.66.3](https://github.com/plivo/plivo-php/tree/v4.66.3) (2024-11-08)
 **Bug fix**
 -Fix subsquent requests to other services after a lookup request

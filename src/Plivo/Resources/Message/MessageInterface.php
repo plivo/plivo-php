@@ -258,6 +258,13 @@ class MessageInterface extends ResourceInterface
                 );
             }
         } else {
+            if ($response->getStatusCode() > 399 && $response->getStatusCode() < 499) {
+                return new MessageCreateErrorResponse(
+                    $responseContents['error'],
+                    $responseContents['api_id'],
+                    $response->getStatusCode()
+                );
+            }
             throw new PlivoResponseException(
                 $responseContents['error'],
                 0,
