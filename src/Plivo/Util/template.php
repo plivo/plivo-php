@@ -54,6 +54,7 @@ class Parameter {
     public $currency;
     public $date_time;
     public $location;
+    public $parameter_name;
 
     public function __construct(array $data)
     {
@@ -65,6 +66,7 @@ class Parameter {
         $this->currency = isset($data['currency'])? new Currency($data['currency']) : null;
         $this->date_time = isset($data['date_time']) ? new DateTime($data['date_time']) : null;
         $this->location = isset($data['location']) ? new Location($data['location']) : null;
+        $this->parameter_name = isset($data['parameter_name'])? $data['parameter_name'] : null;
         validateNotNullAndDataType($this->type, 'parameter', 'type', 'string', true);
         validateNotNullAndDataType($this->text, 'parameter', 'text', 'string');
         validateNotNullAndDataType($this->media, 'parameter', 'media', 'string');

@@ -271,6 +271,55 @@ print_r($response);
 ?>
 ```
 
+### Templated WhatsApp Messages With Named Parameter
+This guide shows how to send templated WhatsApp messages with named parameters.
+
+Example:
+```php
+<?php
+require 'vendor/autoload.php';
+use Plivo\RestClient;
+
+$client = new RestClient("<auth_id>","<auth_token>");
+
+$template = '{ 
+            "name": "template_name",
+            "language": "en_US",
+            "components": [
+                {
+                    "type": "header",
+                    "parameters": [
+                        {
+                            "type": "text",
+                            "parameter_name": "header_title",
+                            "text": "WA-header"
+                        }
+                    ]
+                },
+                {
+                    "type": "body",
+                    "parameters": [
+                        {
+                            "type": "text",
+                            "parameter_name": "user_name",
+                            "text": "Saurabh"
+                        }
+                    ]
+                }
+            ]
+          }';
+
+$response = $client->messages->create([  
+        "src" => "+14156667778",
+        "dst" => "+14156667777",
+        "type"=> "whatsapp",
+        "template"=> $template,
+        "url"=> "https://foo.com/wa_status/"
+]);
+print_r($response);
+?>
+```
+
 ### Free Form Messages
 Non-templated or Free Form WhatsApp messages can be sent as a reply to a user-initiated conversation (Service conversation) or if there is an existing ongoing conversation created previously by sending a templated WhatsApp message.
 
