@@ -1,4 +1,9 @@
 # Change Log
+
+## [4.66.5](https://github.com/plivo/plivo-php/tree/v4.66.5) (2025-02-25)
+**Enhancement - Supporting parameter_name in WhatsApp Template .**
+- Supporting `parameter_name` in WhatsApp Template .
+
 ## [4.66.4](https://github.com/plivo/plivo-php/tree/v4.66.4) (2025-02-18)
 **Enhancement**
 -Handle the error response from the send sms api
