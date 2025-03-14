@@ -1,5 +1,9 @@
 # Change Log
 
+## [4.66.6](https://github.com/plivo/plivo-php/tree/v4.66.6) (2025-03-14)
+**Enhancement - Fix implicit nullable warning .**
+- Fix warnings related to implicit nullable declaration from PHP 8.4.
+
 ## [4.66.5](https://github.com/plivo/plivo-php/tree/v4.66.5) (2025-02-25)
 **Enhancement - Supporting parameter_name in WhatsApp Template .**
 - Supporting `parameter_name` in WhatsApp Template .

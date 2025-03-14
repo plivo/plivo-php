@@ -44,8 +44,8 @@ class PlivoGuzzleHttpClient implements PlivoHttpClientInterface
      * @internal param Client|null $Handler .
      */
     public function __construct(
-        Client $guzzleClient = null,
-        BasicAuth $basicAuth = null,
+        ?Client $guzzleClient = null,
+        ?BasicAuth $basicAuth = null,
         $proxyHost = null,
         $proxyPort = null,
         $proxyUsername = null,

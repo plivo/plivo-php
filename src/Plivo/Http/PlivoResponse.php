@@ -53,7 +53,7 @@ class PlivoResponse
      * @param array|null      $headers The headers of the response
      */
     public function __construct(
-        PlivoRequest $request = null,
+        ?PlivoRequest $request = null,
         $httpStatusCode = null,
         $content = null,
         array $headers = [])
