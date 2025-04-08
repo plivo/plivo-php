@@ -1,5 +1,9 @@
 # Change Log
 
+## [4.66.7](https://github.com/plivo/plivo-php/tree/v4.66.7) (2025-04-08)
+**Bug fix - Handle empty message_uuid array for async api**
+- Handle empty message_uuid array for async send sms api
+
 ## [4.66.6](https://github.com/plivo/plivo-php/tree/v4.66.6) (2025-03-14)
 **Enhancement - Fix implicit nullable warning .**
 - Fix warnings related to implicit nullable declaration from PHP 8.4.
