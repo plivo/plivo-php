@@ -422,6 +422,7 @@ class CallInterface extends ResourceInterface
      *                           <br /> recording_duration_ms - duration in milliseconds of the recording.
      *                           <br /> recording_start_ms - when the recording started (epoch time UTC) in milliseconds.
      *                           <br /> recording_end_ms - when the recording ended (epoch time UTC) in milliseconds.
+     *   + [string] record_channel_type - The type of channel for the recording (e.g., mono, stereo). Defaults to stereo.
      * @option options [String] :callback_method - The method which is used to invoke the callback_url URL. Defaults to POST.
      * @return CallRecording
      */
@@ -454,6 +455,7 @@ class CallInterface extends ResourceInterface
      *                           <br /> recording_duration_ms - duration in milliseconds of the recording.
      *                           <br /> recording_start_ms - when the recording started (epoch time UTC) in milliseconds.
      *                           <br /> recording_end_ms - when the recording ended (epoch time UTC) in milliseconds.
+     *   + [string] record_channel_type - The type of channel for the recording (e.g., mono, stereo). Defaults to stereo.
      * @option options [String] :callback_method - The method which is used to invoke the callback_url URL. Defaults to POST.
      * @return CallRecording
      * @throws PlivoValidationException

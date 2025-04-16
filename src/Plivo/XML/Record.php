@@ -25,7 +25,8 @@ class Record extends Element {
         'callbackMethod',
         'transcriptionType',
         'transcriptionUrl',
-        'transcriptionMethod'
+        'transcriptionMethod',
+        'recordChannelType'
     ];
 
     /**
