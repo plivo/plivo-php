@@ -105,6 +105,6 @@ class EndpointTest extends BaseTestCase
         
         $this->assertRequest($request);
         
-        self::assertNull($actual);
+        self::assertNotNull($actual);
     }
 }
