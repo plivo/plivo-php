@@ -1,6 +1,6 @@
 # Change Log
 
-## [4.67.0](https://github.com/plivo/plivo-php/tree/v4.67.0) (2025-04-21)
+## [4.67.0](https://github.com/plivo/plivo-php/tree/v4.67.0) (2025-04-30)
 **Feature - New Param added for Start Recording API.**
 - Support `record_channel_type` in Start Recording API and `recordChannelType` in Record XML.
 
