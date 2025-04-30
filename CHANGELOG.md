@@ -1,5 +1,9 @@
 # Change Log
 
+## [4.67.0](https://github.com/plivo/plivo-php/tree/v4.67.0) (2025-04-30)
+**Feature - New Param added for Start Recording API.**
+- Support `record_channel_type` in Start Recording API and `recordChannelType` in Record XML.
+
 ## [4.66.7](https://github.com/plivo/plivo-php/tree/v4.66.7) (2025-04-08)
 **Bug fix - Handle empty message_uuid array for async api**
 - Handle empty message_uuid array for async send sms api
