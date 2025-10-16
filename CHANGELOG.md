@@ -1,6 +1,6 @@
 # Change Log
 
-## [4.68.0](https://github.com/plivo/plivo-php/tree/v4.68.0) (2025-01-XX)
+## [4.68.0](https://github.com/plivo/plivo-php/tree/v4.68.0) (2025-10-16)
 **Feature - Added rejection_reason field to Regulatory Compliance APIs**
 - Added `rejection_reason` field to ComplianceApplication, ComplianceDocument, and EndUser resources
 - Added support for `rejection_reason` in GET and LIST operations for regulatory compliance APIs
