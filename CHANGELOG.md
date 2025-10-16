@@ -1,5 +1,10 @@
 # Change Log
 
+## [4.68.0](https://github.com/plivo/plivo-php/tree/v4.68.0) (2025-01-XX)
+**Feature - Added rejection_reason field to Regulatory Compliance APIs**
+- Added `rejection_reason` field to ComplianceApplication, ComplianceDocument, and EndUser resources
+- Added support for `rejection_reason` in GET and LIST operations for regulatory compliance APIs
+
 ## [4.67.0](https://github.com/plivo/plivo-php/tree/v4.67.0) (2025-04-30)
 **Feature - New Param added for Start Recording API.**
 - Support `record_channel_type` in Start Recording API and `recordChannelType` in Record XML.
