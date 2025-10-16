@@ -14,6 +14,7 @@ use Plivo\Resources\Resource;
  * @property string $name
  * @property string $lastName
  * @property string $endUserType
+ * @property string $rejectionReason
  */
 class EndUser extends Resource
 {
@@ -26,7 +27,8 @@ class EndUser extends Resource
             'createdAt' => $response['created_at'],
             'name' => $response['name'],
             'lastName' => $response['last_name'],
-            'endUserType' => $response['end_user_type']
+            'endUserType' => $response['end_user_type'],
+            'rejectionReason' => $response['rejection_reason']
         ];
 
         $this->pathParams = [

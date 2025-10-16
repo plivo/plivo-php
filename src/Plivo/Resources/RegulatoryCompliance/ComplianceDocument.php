@@ -16,6 +16,7 @@ use Plivo\Resources\Resource;
  * @property string $alias
  * @property string $fileName
  * @property string $metaInformation
+ * @property string $rejectionReason
  */
 class ComplianceDocument extends Resource
 {
@@ -45,7 +46,8 @@ class ComplianceDocument extends Resource
             'endUserId' => $response['end_user_id'],
             'createdAt' => $response['created_at'],
             'alias' => $response['alias'],
-            'metaInformation' => $response['meta_information']
+            'metaInformation' => $response['meta_information'],
+            'rejectionReason' => $response['rejection_reason']
         ];
 
         $this->pathParams = [
