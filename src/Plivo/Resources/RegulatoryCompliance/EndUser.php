@@ -27,9 +27,12 @@ class EndUser extends Resource
             'createdAt' => $response['created_at'],
             'name' => $response['name'],
             'lastName' => $response['last_name'],
-            'endUserType' => $response['end_user_type'],
-            'rejectionReason' => $response['rejection_reason']
+            'endUserType' => $response['end_user_type']
         ];
+
+        if (isset($response['rejection_reason'])) {
+            $this->properties['rejectionReason'] = $response['rejection_reason'];
+        }
 
         $this->pathParams = [
             'authId' => $authId,

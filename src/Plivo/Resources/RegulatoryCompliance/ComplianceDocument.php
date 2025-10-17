@@ -46,9 +46,12 @@ class ComplianceDocument extends Resource
             'endUserId' => $response['end_user_id'],
             'createdAt' => $response['created_at'],
             'alias' => $response['alias'],
-            'metaInformation' => $response['meta_information'],
-            'rejectionReason' => $response['rejection_reason']
+            'metaInformation' => $response['meta_information']
         ];
+
+        if (isset($response['rejection_reason'])) {
+            $this->properties['rejectionReason'] = $response['rejection_reason'];
+        }
 
         $this->pathParams = [
             'authId' => $authId,

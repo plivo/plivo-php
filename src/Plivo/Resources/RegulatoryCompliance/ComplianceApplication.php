@@ -37,9 +37,12 @@ class ComplianceApplication extends Resource
             'documents' => $response['documents'],
             'endUserType' => $response['end_user_type'],
             'numberType' => $response['number_type'],
-            'status' => $response['status'],
-            'rejectionReason' => $response['rejection_reason']
+            'status' => $response['status']
         ];
+
+        if (isset($response['rejection_reason'])) {
+            $this->properties['rejectionReason'] = $response['rejection_reason'];
+        }
 
         $this->pathParams = [
             'authId' => $authId,
