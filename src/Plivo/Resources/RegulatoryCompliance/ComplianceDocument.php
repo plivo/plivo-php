@@ -49,10 +49,6 @@ class ComplianceDocument extends Resource
             'metaInformation' => $response['meta_information']
         ];
 
-        if (isset($response['rejection_reason'])) {
-            $this->properties['rejectionReason'] = $response['rejection_reason'];
-        }
-
         $this->pathParams = [
             'authId' => $authId,
             'complianceDocumentId' => $complianceDocumentId
