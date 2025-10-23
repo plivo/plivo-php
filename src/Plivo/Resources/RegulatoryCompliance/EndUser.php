@@ -14,7 +14,6 @@ use Plivo\Resources\Resource;
  * @property string $name
  * @property string $lastName
  * @property string $endUserType
- * @property string $rejectionReason
  */
 class EndUser extends Resource
 {

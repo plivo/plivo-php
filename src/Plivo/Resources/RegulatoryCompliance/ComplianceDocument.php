@@ -16,7 +16,6 @@ use Plivo\Resources\Resource;
  * @property string $alias
  * @property string $fileName
  * @property string $metaInformation
- * @property string $rejectionReason
  */
 class ComplianceDocument extends Resource
 {
