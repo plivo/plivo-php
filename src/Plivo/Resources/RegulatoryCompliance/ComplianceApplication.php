@@ -19,6 +19,7 @@ use Plivo\Resources\Resource;
  * @property array $documents
  * @property string $numberType
  * @property string $status
+ * @property string $rejectionReason
  */
 class ComplianceApplication extends Resource
 {
@@ -38,6 +39,10 @@ class ComplianceApplication extends Resource
             'numberType' => $response['number_type'],
             'status' => $response['status']
         ];
+
+        if (isset($response['rejection_reason'])) {
+            $this->properties['rejectionReason'] = $response['rejection_reason'];
+        }
 
         $this->pathParams = [
             'authId' => $authId,
