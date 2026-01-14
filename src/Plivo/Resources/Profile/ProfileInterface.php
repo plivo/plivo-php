@@ -99,9 +99,10 @@ class ProfileInterface extends ResourceInterface
      * @param {string} state 
      * @param {string} postalcode
      * @param {string} country
+     * @param {string} business_contact_email
      * @return profileResponse response output
      */
-    public function create($profile_alias,$plivo_subaccount,$customer_type,$entity_type, $company_name,$ein,$vertical,$ein_issuing_country,$stock_symbol,$stock_exchange, $alt_business_id_type, $website, $address, $authorized_contact, $optionalArgs = [])
+    public function create($profile_alias,$plivo_subaccount,$customer_type,$entity_type, $company_name,$ein,$vertical,$ein_issuing_country,$stock_symbol,$stock_exchange, $alt_business_id_type, $website, $address, $authorized_contact, $business_contact_email = '', $optionalArgs = [])
     {
         $mandaoryArgs = [
             'profile_alias' => $profile_alias,
@@ -117,6 +118,7 @@ class ProfileInterface extends ResourceInterface
             'website' => $website,
             'alt_business_id_type' => $alt_business_id_type,
         ];
+        $optionalArgs['business_contact_email'] = $business_contact_email;
         $optionalArgs['address'] = $address;
         $optionalArgs['authorized_contact'] = $authorized_contact;
         $response = $this->client->update(
@@ -137,6 +139,7 @@ class ProfileInterface extends ResourceInterface
      * @param{string} vertical
      * @param{string} company_name
      * @param{string} website
+     * @param{string} business_contact_email
      * @return profileResponse response output
      */
     public function update($profile_uuid, array $optionalArgs = [])

@@ -1,5 +1,9 @@
 # Change Log
 
+## [4.68.1](https://github.com/plivo/plivo-php/tree/v4.68.1) (2026-01-14)
+**Feature - Profile API business_contact_email support**
+- Added `business_contact_email` parameter support to Profile `create` and `update` methods for PUBLIC entity types
+
 ## [4.68.0](https://github.com/plivo/plivo-php/tree/v4.68.0) (2025-10-24)
 **Feature - Added rejection_reason field to Regulatory Compliance APIs**
 - Added `rejection_reason` field to ComplianceApplication
