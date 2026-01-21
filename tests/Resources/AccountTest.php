@@ -27,7 +27,7 @@ class AccountTest extends BaseTestCase
 
         $this->mock(new PlivoResponse($request,200, $body));
 
-        $actual = $this->client->accounts->get();
+        $actual = $this->client->account->get();
 
         $this->assertRequest($request);
 
@@ -50,7 +50,7 @@ class AccountTest extends BaseTestCase
 
         $this->mock(new PlivoResponse($request,200, $body));
 
-        $actual = $this->client->accounts->update("name", "city", "address");
+        $actual = $this->client->account->update("name", "city", "address");
 
         $this->assertRequest($request);
 
