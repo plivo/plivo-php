@@ -145,3 +145,4 @@ class Application extends Resource
         return $this->proxyToInterface()->delete($this->pathParams['appId']);
     }
 }
+
