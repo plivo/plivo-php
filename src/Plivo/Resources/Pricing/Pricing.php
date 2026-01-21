@@ -46,9 +46,12 @@ class Pricing extends Resource
             $outboundNetworksList
         );
 
+        $toll_free = isset($response['phone_numbers']['tollfree']['rate']) ? $response['phone_numbers']['tollfree']['rate']: null;
+        $local     = isset($response['phone_numbers']['local']['rate']) ? $response['phone_numbers']['local']['rate']: null;
+
         $this->properties['phoneNumbers'] = new PhoneNumbers(
-            new Local($response['phone_numbers']['local']['rate']),
-            new Tollfree($response['phone_numbers']['tollfree']['rate'])
+            new Local($local),
+            new Tollfree($toll_free)
         );
 
         $this->properties['voice'] = new Voice(
