@@ -90,13 +90,18 @@ class PhoneNumberInterface extends ResourceInterface
      * @param number $phoneNumber
      * @param string|null $appId
      * @param string|null $cnamLookup
+     * @param bool|null $haEnabled
      * @return PhoneNumberBuyResponse output
      */
-    public function buy($phoneNumber, $appId = null, $cnamLookup = null)
+    public function buy($phoneNumber, $appId = null, $cnamLookup = null, $haEnabled = null)
     {
+        $data = ['app_id'=>$appId,'cnam_lookup'=>$cnamLookup];
+        if (!is_null($haEnabled)) {
+            $data['ha_enabled'] = $haEnabled;
+        }
         $response = $this->client->update(
             $this->uri . $phoneNumber . '/',
-            ['app_id'=>$appId,'cnam_lookup'=>$cnamLookup]
+            $data
         );
 
         $responseContents = $response->getContent();
@@ -107,7 +112,8 @@ class PhoneNumberInterface extends ResourceInterface
                 $responseContents['numbers'][0]['number'],
                 $responseContents['numbers'][0]['status'],
                 $responseContents['status'],
-                $response->getStatusCode()
+                $response->getStatusCode(),
+                $responseContents['numbers'][0]['fallback_number'] ?? null
             );
         } elseif (gettype($responseContents['error']) == "array" && array_key_exists("error",$responseContents['error'])) {
             throw new PlivoResponseException(

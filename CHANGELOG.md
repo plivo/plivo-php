@@ -1,5 +1,10 @@
 # Change Log
 
+## [4.68.2](https://github.com/plivo/plivo-php/tree/v4.68.2) (2026-01-21)
+**Feature - HA Number support**
+- Added `ha_enabled` parameter to PhoneNumber `buy` method
+- Added `fallback_number` field in PhoneNumber buy response
+
 ## [4.68.1](https://github.com/plivo/plivo-php/tree/v4.68.1) (2026-01-14)
 **Feature - Profile API business_contact_email support**
 - Added `business_contact_email` parameter support to Profile `create` and `update` methods for PUBLIC entity types
