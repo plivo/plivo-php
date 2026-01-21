@@ -90,24 +90,34 @@ class PhoneNumberInterface extends ResourceInterface
      * @param number $phoneNumber
      * @param string|null $appId
      * @param string|null $cnamLookup
+     * @param bool|null $haEnable
      * @return PhoneNumberBuyResponse output
      */
-    public function buy($phoneNumber, $appId = null, $cnamLookup = null)
+    public function buy($phoneNumber, $appId = null, $cnamLookup = null, $haEnable = null)
     {
+        $data = ['app_id'=>$appId,'cnam_lookup'=>$cnamLookup];
+        if (!is_null($haEnable)) {
+            $data['ha_enable'] = $haEnable;
+        }
         $response = $this->client->update(
             $this->uri . $phoneNumber . '/',
-            ['app_id'=>$appId,'cnam_lookup'=>$cnamLookup]
+            $data
         );
 
         $responseContents = $response->getContent();
         if(!array_key_exists("error",$responseContents)){
+            $fallbackNumber = null;
+            if (isset($responseContents['numbers'][0]['fallback_number'])) {
+                $fallbackNumber = $responseContents['numbers'][0]['fallback_number'];
+            }
             return new PhoneNumberBuyResponse(
                 $responseContents['api_id'],
                 $responseContents['message'],
                 $responseContents['numbers'][0]['number'],
                 $responseContents['numbers'][0]['status'],
                 $responseContents['status'],
-                $response->getStatusCode()
+                $response->getStatusCode(),
+                $fallbackNumber
             );
         } elseif (gettype($responseContents['error']) == "array" && array_key_exists("error",$responseContents['error'])) {
             throw new PlivoResponseException(
