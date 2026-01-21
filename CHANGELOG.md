@@ -2,7 +2,7 @@
 
 ## [4.68.2](https://github.com/plivo/plivo-php/tree/v4.68.2) (2026-01-21)
 **Feature - HA Number support**
-- Added `ha_enabled` parameter to PhoneNumber `buy` method
+- Added `ha_enable` parameter to PhoneNumber `buy` method
 - Added `fallback_number` field in PhoneNumber buy response
 
 ## [4.68.1](https://github.com/plivo/plivo-php/tree/v4.68.1) (2026-01-14)
