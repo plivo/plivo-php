@@ -14,7 +14,6 @@ class PhoneNumberBuyResponse extends ResponseUpdate
     public $number;
     public $numberStatus;
     public $status;
-    public $fallbackNumber;
 
     /**
      * PhoneNumberBuyResponse constructor.
@@ -33,7 +32,9 @@ class PhoneNumberBuyResponse extends ResponseUpdate
         $this->number = $number;
         $this->numberStatus = $numberStatus;
         $this->status = $status;
-        $this->fallbackNumber = $fallbackNumber;
+        if ($fallbackNumber !== null) {
+            $this->fallbackNumber = $fallbackNumber;
+        }
     }
 
 
