@@ -79,28 +79,33 @@ class CampaignInterface extends ResourceInterface
     /**
      * Create a new Campaign
      *
-     * @param {string} brand_id 
-     * @param {string} campaign_alias 
-     * @param {string} vertical 
-     * @param {string} usecase 
-     * @param {list} sub_usecases 
-     * @param {string} description  
-     * @param {boolean} embedded_link 
-     * @param {boolean} embedded_phone 
-     * @param {boolean} age_gated 
-     * @param {boolean} direct_lending 
-     * @param {boolean} subscriber_optin 
-     * @param {boolean} subscriber_optout 
-     * @param {boolean} subscriber_help 
+     * @param {string} brand_id
+     * @param {string} campaign_alias
+     * @param {string} vertical
+     * @param {string} usecase
+     * @param {list} sub_usecases
+     * @param {string} description
+     * @param {boolean} embedded_link
+     * @param {boolean} embedded_phone
+     * @param {boolean} age_gated
+     * @param {boolean} direct_lending
+     * @param {boolean} subscriber_optin
+     * @param {boolean} subscriber_optout
+     * @param {boolean} subscriber_help
      * @param {boolean} affiliate_marketing
-     * @param {string} sample1 
-     * @param {string} sample2 
+     * @param {string} sample1
+     * @param {string} sample2
+     * @param {string} sample3
+     * @param {string} sample4
+     * @param {string} sample5
      * @param {string} message_flow
      * @param {string} help_message
      * @param {string} optout_message
+     * @param {string} terms_and_conditions_link
+     * @param {string} privacy_policy_link
      * @return campaignCreation response output
      */
-    public function create($brand_id,$campaign_alias,$vertical,$usecase,array $sub_usecases,$description,$embedded_link,$embedded_phone,$age_gated,$direct_lending,$subscriber_optin,$subscriber_optout,$subscriber_help,$affiliate_marketing,$sample1,$sample2,$message_flow,$help_message,$optout_message,array $optionalArgs = [])
+    public function create($brand_id,$campaign_alias,$vertical,$usecase,array $sub_usecases,$description,$embedded_link,$embedded_phone,$age_gated,$direct_lending,$subscriber_optin,$subscriber_optout,$subscriber_help,$affiliate_marketing,$sample1,$sample2,$sample3,$sample4,$sample5,$message_flow,$help_message,$optout_message,$terms_and_conditions_link,$privacy_policy_link,array $optionalArgs = [])
     {
         $mandaoryArgs = [
             'brand_id' => $brand_id,
@@ -119,9 +124,14 @@ class CampaignInterface extends ResourceInterface
             'affiliate_marketing' => $affiliate_marketing,
             'sample1' => $sample1,
             'sample2' => $sample2,
+            'sample3' => $sample3,
+            'sample4' => $sample4,
+            'sample5' => $sample5,
             'message_flow' => $message_flow,
             'help_message' => $help_message,
-            'optout_message' => $optout_message
+            'optout_message' => $optout_message,
+            'terms_and_conditions_link' => $terms_and_conditions_link,
+            'privacy_policy_link' => $privacy_policy_link
         ];
 
         $response = $this->client->update(
@@ -161,10 +171,13 @@ class CampaignInterface extends ResourceInterface
      * Update Campaign
      *
      * @param {string} campaignId
-     * @param {string} description  
-     * @param {string} reseller_id  
-     * @param {string} sample1 
-     * @param {string} sample2 
+     * @param {string} description
+     * @param {string} reseller_id
+     * @param {string} sample1
+     * @param {string} sample2
+     * @param {string} sample3
+     * @param {string} sample4
+     * @param {string} sample5
      * @param {string} message_flow
      * @param {string} help_message
      * @param {string} optin_keywords
@@ -172,15 +185,20 @@ class CampaignInterface extends ResourceInterface
      * @param {string} optout_keywords
      * @param {string} optout_message
      * @param {string} help_keywords
+     * @param {string} terms_and_conditions_link
+     * @param {string} privacy_policy_link
      * @return Campaign
      */
-    public function update($campaignId,$description,$reseller_id,$sample1,$sample2,$message_flow,$help_message,$optin_keywords,$optin_message,$optout_keywords,$optout_message,$help_keywords,array $optionalArgs = [])
+    public function update($campaignId,$description,$reseller_id,$sample1,$sample2,$sample3,$sample4,$sample5,$message_flow,$help_message,$optin_keywords,$optin_message,$optout_keywords,$optout_message,$help_keywords,$terms_and_conditions_link,$privacy_policy_link,array $optionalArgs = [])
     {
         $mandaoryArgs = [
             'reseller_id' => $reseller_id,
             'description' => $description,
             'sample1' => $sample1,
             'sample2' => $sample2,
+            'sample3' => $sample3,
+            'sample4' => $sample4,
+            'sample5' => $sample5,
             'message_flow' => $message_flow,
             'help_message' => $help_message,
             'optout_message' => $optout_message,
@@ -188,6 +206,8 @@ class CampaignInterface extends ResourceInterface
             'optout_keywords' => $optout_keywords,
             'optin_message' => $optin_message,
             'help_keywords' => $help_keywords,
+            'terms_and_conditions_link' => $terms_and_conditions_link,
+            'privacy_policy_link' => $privacy_policy_link
         ];
 
         $response = $this->client->update(
