@@ -261,7 +261,7 @@ class MessageInterface extends ResourceInterface
             if ($response->getStatusCode() > 399 && $response->getStatusCode() < 499) {
                 return new MessageCreateErrorResponse(
                     $responseContents['error'],
-                    $responseContents['api_id'],
+                    $responseContents['api_id'] ?? null,
                     $response->getStatusCode()
                 );
             }
