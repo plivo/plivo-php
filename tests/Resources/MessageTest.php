@@ -7,6 +7,7 @@ namespace Plivo\Tests\Resources;
 
 use Plivo\Http\PlivoRequest;
 use Plivo\Http\PlivoResponse;
+use Plivo\Resources\Message\MessageCreateErrorResponse;
 use Plivo\Tests\BaseTestCase;
 
 
@@ -176,6 +177,28 @@ class MessageTest extends BaseTestCase {
 
     }
     
+    public function testMessageCreate401WithoutApiId()
+    {
+        $request = new PlivoRequest(
+            'POST',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Message/',
+            [
+                "dst" => "+919012345678",
+                "text" => "Test",
+                "src" => "+919999999999"
+            ]);
+        $body = file_get_contents(__DIR__ . '/../Mocks/messageCreate401Response.json');
+
+        $this->mock(new PlivoResponse($request, 401, $body));
+
+        $actual = $this->client->messages->create("+919999999999", ["+919012345678"], "Test", [], null);
+
+        self::assertInstanceOf(MessageCreateErrorResponse::class, $actual);
+        self::assertEquals(401, $actual->getStatusCode());
+        self::assertNull($actual->getApiId());
+        self::assertEquals("authentication credentials were not provided", $actual->getMessage());
+    }
+
     function testMessageList()
     {
         $requesterIP1 = "192.168.1.1";

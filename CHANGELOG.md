@@ -1,5 +1,9 @@
 # Change Log
 
+## [4.68.4](https://github.com/plivo/plivo-php/tree/v4.68.4) (2026-04-06)
+**Bug fix - Handle missing api_id in 401 error responses**
+- Fixed handling of missing `api_id` field in 401 error responses for message create API
+
 ## [4.68.3](https://github.com/plivo/plivo-php/tree/v4.68.3) (2026-02-18)
 **Feature - Campaign API optional fields support**
 - Added `sample3`, `sample4`, `sample5` optional sample message fields to Campaign `create` and `update` methods
