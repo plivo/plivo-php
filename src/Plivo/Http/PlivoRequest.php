@@ -111,7 +111,7 @@ class PlivoRequest
             throw new PlivoRequestException('HTTP method not specified.');
         }
 
-        if (!in_array($this->method, ['GET', 'POST', 'DELETE'])) {
+        if (!in_array($this->method, ['GET', 'POST', 'DELETE', 'PATCH'])) {
             throw new PlivoRequestException('Invalid HTTP method specified.');
         }
     }
@@ -206,7 +206,7 @@ class PlivoRequest
      */
     public function getPostParams()
     {
-        if ($this->getMethod() === 'POST') {
+        if (in_array($this->getMethod(), ['POST', 'PATCH'])) {
             return $this->getParams();
         }
 
@@ -237,7 +237,7 @@ class PlivoRequest
 
         $url = $apiVersion . $endpoint;
 
-        if ($this->getMethod() !== 'POST') {
+        if (!in_array($this->getMethod(), ['POST', 'PATCH'])) {
             $params = $this->getParams();
             $url = static::appendParamsToUrl($url, $params);
         }
