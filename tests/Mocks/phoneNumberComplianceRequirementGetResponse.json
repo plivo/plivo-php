@@ -1,0 +1,32 @@
+{
+  "api_id": "a83657dc-31a5-11f1-ab48-d2d6f5435dea",
+  "requirement_id": "1b592b77-d072-4298-b193-370ba887f94a",
+  "country_iso": "IN",
+  "number_type": "local",
+  "user_type": "business",
+  "document_types": [
+    {
+      "document_type_id": "525a6b3a-2050-4556-8e2c-367cf30cd6ca",
+      "name": "Registration Certificate",
+      "description": "Certificate Registration",
+      "proof_required": true,
+      "required_fields": [
+        {
+          "field_name": "business_name",
+          "friendly_name": "Legal Name",
+          "field_type": "string",
+          "required": true,
+          "min_length": 1,
+          "max_length": 50
+        }
+      ]
+    },
+    {
+      "document_type_id": "8a048d56-d8cb-4148-a764-49f1326aa161",
+      "name": "GST certificate",
+      "description": "GST certificate",
+      "proof_required": true,
+      "required_fields": []
+    }
+  ]
+}
