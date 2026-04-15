@@ -314,6 +314,21 @@ class BaseClient
     }
 
     /**
+     * Patch method
+     * @param string $uri
+     * @param array $params
+     * @return PlivoResponse
+     */
+    public function patch($uri, $params)
+    {
+        $request =
+            new PlivoRequest(
+                'PATCH', $uri, ArrayOperations::removeNull($params));
+
+        return $this->sendRequest($request);
+    }
+
+    /**
      * Delete method
      * @param string $uri
      * @param array $params

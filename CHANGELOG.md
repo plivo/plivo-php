@@ -1,5 +1,13 @@
 # Change Log
 
+## [4.69.0](https://github.com/plivo/plivo-php/tree/v4.69.0) (2026-04-08)
+**Feature - PhoneNumber Compliance API support**
+- Added `phoneNumberComplianceRequirement` resource for discovering compliance requirements by country, number type, and user type
+- Added `phoneNumberCompliance` resource with full CRUD support (create, get, getList, update, delete) for compliance applications
+- Added `phoneNumberComplianceLink` resource for bulk linking phone numbers to accepted compliance applications
+- Added PATCH HTTP method support to `PlivoRequest` and `BaseClient`
+- Create and update operations support multipart file uploads for compliance documents
+
 ## [4.68.4](https://github.com/plivo/plivo-php/tree/v4.68.4) (2026-04-06)
 **Bug fix - Handle missing api_id in 401 error responses**
 - Fixed handling of missing `api_id` field in 401 error responses for message create API

@@ -35,6 +35,9 @@ use Plivo\Resources\Token\TokenInterface;
 use Plivo\Resources\Zentrunk\ZentrunkInterface;
 use Plivo\Resources\VerifyCallerId\VerifyInterface;
 use Plivo\Resources\TollfreeVerification\TollfreeVerificationInterface;
+use Plivo\Resources\PhoneNumberCompliance\PhoneNumberComplianceRequirementInterface;
+use Plivo\Resources\PhoneNumberCompliance\PhoneNumberComplianceInterface;
+use Plivo\Resources\PhoneNumberCompliance\PhoneNumberComplianceLinkInterface;
 
 
 /**
@@ -69,6 +72,9 @@ use Plivo\Resources\TollfreeVerification\TollfreeVerificationInterface;
  * @property MaskingSessionInterface Masking session Interface to handle all session related api calls
  * @property VerifyInterface verify Interface to handle all verify caller ID related api calls
  * @property TollfreeVerificationInterface verify Interface to handle all tollfree verification
+ * @property PhoneNumberComplianceRequirementInterface phoneNumberComplianceRequirement Interface to handle all PhoneNumberComplianceRequirement related api calls
+ * @property PhoneNumberComplianceInterface phoneNumberCompliance Interface to handle all PhoneNumberCompliance related api calls
+ * @property PhoneNumberComplianceLinkInterface phoneNumberComplianceLink Interface to handle all PhoneNumberComplianceLink related api calls
  */
 
 class RestClient
@@ -237,6 +243,21 @@ class RestClient
      * @var VerifyInterface
      */
     protected $_verifyCallerID;
+
+    /**
+     * @var PhoneNumberComplianceRequirementInterface
+     */
+    protected $_phoneNumberComplianceRequirement;
+
+    /**
+     * @var PhoneNumberComplianceInterface
+     */
+    protected $_phoneNumberCompliance;
+
+    /**
+     * @var PhoneNumberComplianceLinkInterface
+     */
+    protected $_phoneNumberComplianceLink;
 
     /**
      * RestClient constructor.
@@ -629,5 +650,38 @@ class RestClient
             $this->_tollfreeVerification = new TollfreeVerificationInterface($this->client, $this->client->getAuthId());
         }
         return $this->_tollfreeVerification;
+    }
+
+    /**
+     * @return PhoneNumberComplianceRequirementInterface
+     */
+    public function getPhoneNumberComplianceRequirement()
+    {
+        if (!$this->_phoneNumberComplianceRequirement) {
+            $this->_phoneNumberComplianceRequirement = new PhoneNumberComplianceRequirementInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_phoneNumberComplianceRequirement;
+    }
+
+    /**
+     * @return PhoneNumberComplianceInterface
+     */
+    public function getPhoneNumberCompliance()
+    {
+        if (!$this->_phoneNumberCompliance) {
+            $this->_phoneNumberCompliance = new PhoneNumberComplianceInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_phoneNumberCompliance;
+    }
+
+    /**
+     * @return PhoneNumberComplianceLinkInterface
+     */
+    public function getPhoneNumberComplianceLink()
+    {
+        if (!$this->_phoneNumberComplianceLink) {
+            $this->_phoneNumberComplianceLink = new PhoneNumberComplianceLinkInterface($this->client, $this->client->getAuthId());
+        }
+        return $this->_phoneNumberComplianceLink;
     }
 }

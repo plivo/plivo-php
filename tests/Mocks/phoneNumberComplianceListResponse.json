@@ -1,0 +1,32 @@
+{
+  "api_id": "acd86b7c-31aa-11f1-ab48-d2d6f5435dea",
+  "meta": {
+    "limit": 20,
+    "offset": 0,
+    "total_count": 2,
+    "next": "/v1/Account/MAXXXXXXXXXXXXXXXXXX/PhoneNumber/Compliance/?limit=20&offset=20",
+    "previous": null
+  },
+  "compliances": [
+    {
+      "compliance_id": "074d687f-5630-483d-8349-5b9d7686d673",
+      "alias": "My India Compliance",
+      "status": "accepted",
+      "country_iso": "IN",
+      "number_type": "local",
+      "user_type": "business",
+      "created_at": "2026-04-06T08:09:17.533053Z",
+      "updated_at": "2026-04-06T08:09:20.755358Z"
+    },
+    {
+      "compliance_id": "767bc62c-2332-4a34-959c-1f6416186254",
+      "alias": "TestBiz-100ac06f",
+      "status": "submitted",
+      "country_iso": "IN",
+      "number_type": "local",
+      "user_type": "business",
+      "created_at": "2026-04-06T10:44:17.899379Z",
+      "updated_at": "2026-04-06T10:44:17.911632Z"
+    }
+  ]
+}
