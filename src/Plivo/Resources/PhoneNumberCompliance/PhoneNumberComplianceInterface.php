@@ -51,9 +51,13 @@ class PhoneNumberComplianceInterface extends ResourceInterface
         ];
 
         foreach ($documentPaths as $index => $path) {
+            $handle = fopen($path, 'r');
+            if ($handle === false) {
+                throw new PlivoValidationException("File not found: " . $path);
+            }
             $multipart[] = [
-                'name' => 'file_' . $index,
-                'contents' => file_get_contents($path),
+                'name' => 'documents[' . $index . '].file',
+                'contents' => $handle,
                 'filename' => basename($path),
             ];
         }
@@ -89,10 +93,10 @@ class PhoneNumberComplianceInterface extends ResourceInterface
             );
         } else {
             throw new PlivoResponseException(
-                "",
+                $responseContents['error'] ?? "",
                 0,
                 null,
-                $response->getContent(),
+                $responseContents,
                 $response->getStatusCode()
             );
         }
@@ -217,10 +221,10 @@ class PhoneNumberComplianceInterface extends ResourceInterface
             );
         } else {
             throw new PlivoResponseException(
-                "",
+                $responseContents['error'] ?? "",
                 0,
                 null,
-                $response->getContent(),
+                $responseContents,
                 $response->getStatusCode()
             );
         }

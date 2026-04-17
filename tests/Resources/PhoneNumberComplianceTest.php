@@ -443,8 +443,8 @@ class PhoneNumberComplianceTest extends BaseTestCase
         $this->assertRequest($request);
 
         self::assertNotNull($actual);
-        self::assertEquals('Numbers linked successfully.', $actual->getMessage());
-        self::assertEquals('afd51000-31aa-11f1-ab48-d2d6f5435dea', $actual->getApiId());
+        self::assertEquals('Numbers linked successfully.', $actual['message']);
+        self::assertEquals('afd51000-31aa-11f1-ab48-d2d6f5435dea', $actual['api_id']);
     }
 
     function testLinkEmptyReport()
@@ -467,7 +467,7 @@ class PhoneNumberComplianceTest extends BaseTestCase
         $this->assertRequest($request);
 
         self::assertNotNull($actual);
-        self::assertEquals('No numbers were linked.', $actual->getMessage());
+        self::assertEquals('No numbers were linked.', $actual['message']);
     }
 
     function testLinkRequestBodyStructure()
