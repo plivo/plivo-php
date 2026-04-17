@@ -8,7 +8,6 @@ use Plivo\Exceptions\PlivoResponseException;
 use Plivo\BaseClient;
 
 use Plivo\Resources\ResourceInterface;
-use Plivo\Resources\ResponseUpdate;
 use Plivo\Util\ArrayOperations;
 
 /**
@@ -34,7 +33,7 @@ class PhoneNumberComplianceLinkInterface extends ResourceInterface
     /**
      * Link numbers to a compliance
      * @param array $numbers
-     * @return ResponseUpdate
+     * @return array
      * @throws PlivoValidationException
      * @throws PlivoResponseException
      */
@@ -47,25 +46,21 @@ class PhoneNumberComplianceLinkInterface extends ResourceInterface
 
         $response = $this->client->update(
             $this->uri,
-            $numbers
+            ['numbers' => $numbers]
         );
 
         $responseContents = $response->getContent();
 
-        if(!array_key_exists("error", $responseContents)){
-            return new ResponseUpdate(
-                $responseContents['api_id'],
-                $responseContents['message'],
-                $response->getStatusCode()
-            );
-        } else {
+        if(array_key_exists("error", $responseContents)){
             throw new PlivoResponseException(
                 "",
                 0,
                 null,
-                $response->getContent(),
+                $responseContents,
                 $response->getStatusCode()
             );
         }
+
+        return $responseContents;
     }
 }

@@ -1,5 +1,10 @@
 # Change Log
 
+## [4.69.1](https://github.com/plivo/plivo-php/tree/v4.69.1) (2026-04-17)
+**Bug Fix - PhoneNumber Compliance API**
+- Fixed Link response to return `total_count`, `updated_count`, and `report` fields instead of generic `ResponseUpdate`
+- Fixed Requirements params and multipart handling for create/update
+
 ## [4.69.0](https://github.com/plivo/plivo-php/tree/v4.69.0) (2026-04-08)
 **Feature - PhoneNumber Compliance API support**
 - Added `phoneNumberComplianceRequirement` resource for discovering compliance requirements by country, number type, and user type
