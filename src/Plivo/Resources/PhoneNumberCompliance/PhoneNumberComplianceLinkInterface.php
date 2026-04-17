@@ -46,14 +46,14 @@ class PhoneNumberComplianceLinkInterface extends ResourceInterface
 
         $response = $this->client->update(
             $this->uri,
-            ['numbers' => $numbers]
+            $numbers
         );
 
         $responseContents = $response->getContent();
 
         if(array_key_exists("error", $responseContents)){
             throw new PlivoResponseException(
-                "",
+                $responseContents['error'] ?? "",
                 0,
                 null,
                 $responseContents,
