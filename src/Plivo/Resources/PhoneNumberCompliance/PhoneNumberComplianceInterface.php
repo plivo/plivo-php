@@ -52,8 +52,8 @@ class PhoneNumberComplianceInterface extends ResourceInterface
 
         foreach ($documentPaths as $index => $path) {
             $multipart[] = [
-                'name' => 'file_' . $index,
-                'contents' => file_get_contents($path),
+                'name' => 'documents[' . $index . '].file',
+                'contents' => fopen($path, 'r'),
                 'filename' => basename($path),
             ];
         }

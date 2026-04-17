@@ -1,5 +1,9 @@
 # Change Log
 
+## [4.69.2](https://github.com/plivo/plivo-php/tree/v4.69.2) (2026-04-15)
+**Bug Fix - PhoneNumber Compliance multipart file field naming**
+- Fixed multipart file upload field names from `file_N` to `documents[N].file` to match the API's expected format
+
 ## [4.69.1](https://github.com/plivo/plivo-php/tree/v4.69.1) (2026-04-17)
 **Bug Fix - PhoneNumber Compliance API**
 - Fixed Link response to return `total_count`, `updated_count`, and `report` fields instead of generic `ResponseUpdate`
