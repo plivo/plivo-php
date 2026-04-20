@@ -22,11 +22,15 @@
         "firebase/php-jwt": ">=5.2"
     },
     "autoload": {
-        "classmap": ["src/", "tests/"],
+        "classmap": ["src/"],
         "exclude-from-classmap": []
     },
     "require-dev": {
         "phpunit/phpunit": "^8.1.5",
         "justinrainbow/json-schema": "^5.2"
+    },
+    "autoload-dev": {
+        "classmap": ["tests/"],
+        "exclude-from-classmap": []
     }
 }
