@@ -98,7 +98,8 @@ class ProfileTest extends BaseTestCase {
                     'email' => 'test@example.com',
                     'title' => 'CEO',
                     'seniority' => 'C_LEVEL'
-                ]
+                ],
+                'dba' => 'Test DBA'
             ]);
         $body = file_get_contents(__DIR__ . '/../Mocks/profileCreateResponse.json');
 
@@ -132,7 +133,8 @@ class ProfileTest extends BaseTestCase {
                 'title' => 'CEO',
                 'seniority' => 'C_LEVEL'
             ],
-            'employee@company.com'
+            'employee@company.com',
+            'Test DBA'
         );
 
         $this->assertRequest($request);
