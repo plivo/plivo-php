@@ -7,7 +7,7 @@
         },
         "company_name": "ABC Inc.",
         "customer_type": "RESELLER",
-        "dba": "ABC DBA",
+        "doing_business_as": "ABC DBA",
         "ein": "111111111",
         "ein_issuing_country": "US",
         "entity_type": "PUBLIC_PROFIT",

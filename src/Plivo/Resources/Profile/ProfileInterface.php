@@ -100,10 +100,10 @@ class ProfileInterface extends ResourceInterface
      * @param {string} postalcode
      * @param {string} country
      * @param {string} business_contact_email
-     * @param {string} dba Doing Business As (customer-facing name, optional)
+     * @param {string} doing_business_as Doing Business As (customer-facing name, optional)
      * @return profileResponse response output
      */
-    public function create($profile_alias,$plivo_subaccount,$customer_type,$entity_type, $company_name,$ein,$vertical,$ein_issuing_country,$stock_symbol,$stock_exchange, $alt_business_id_type, $website, $address, $authorized_contact, $business_contact_email = '', $dba = '', $optionalArgs = [])
+    public function create($profile_alias,$plivo_subaccount,$customer_type,$entity_type, $company_name,$ein,$vertical,$ein_issuing_country,$stock_symbol,$stock_exchange, $alt_business_id_type, $website, $address, $authorized_contact, $business_contact_email = '', $doing_business_as = '', $optionalArgs = [])
     {
         $mandaoryArgs = [
             'profile_alias' => $profile_alias,
@@ -122,8 +122,8 @@ class ProfileInterface extends ResourceInterface
         $optionalArgs['business_contact_email'] = $business_contact_email;
         $optionalArgs['address'] = $address;
         $optionalArgs['authorized_contact'] = $authorized_contact;
-        if ($dba !== '') {
-            $optionalArgs['dba'] = $dba;
+        if ($doing_business_as !== '') {
+            $optionalArgs['doing_business_as'] = $doing_business_as;
         }
         $response = $this->client->update(
             $this->uri .'Profile/',
@@ -144,7 +144,7 @@ class ProfileInterface extends ResourceInterface
      * @param{string} company_name
      * @param{string} website
      * @param{string} business_contact_email
-     * @param{string} dba Doing Business As (customer-facing name, optional)
+     * @param{string} doing_business_as Doing Business As (customer-facing name, optional)
      * @return profileResponse response output
      */
     public function update($profile_uuid, array $optionalArgs = [])

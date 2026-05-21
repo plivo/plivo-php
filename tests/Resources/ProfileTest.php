@@ -99,7 +99,7 @@ class ProfileTest extends BaseTestCase {
                     'title' => 'CEO',
                     'seniority' => 'C_LEVEL'
                 ],
-                'dba' => 'Test DBA'
+                'doing_business_as' => 'Test DBA'
             ]);
         $body = file_get_contents(__DIR__ . '/../Mocks/profileCreateResponse.json');
 
