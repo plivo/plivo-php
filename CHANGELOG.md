@@ -1,5 +1,9 @@
 # Change Log
 
+## [4.70.0](https://github.com/plivo/plivo-php/tree/v4.70.0) (2026-05-25)
+**Feature - Profile API DBA field support**
+- Added Doing Business As (DBA) field support to Profile API
+
 ## [4.69.1](https://github.com/plivo/plivo-php/tree/v4.69.1) (2026-04-17)
 **Bug Fix - PhoneNumber Compliance API**
 - Fixed Link response to return `total_count`, `updated_count`, and `report` fields instead of generic `ResponseUpdate`
