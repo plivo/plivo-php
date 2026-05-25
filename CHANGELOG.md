@@ -1,5 +1,9 @@
 # Change Log
 
+## [4.69.2](https://github.com/plivo/plivo-php/tree/v4.69.2) (2026-05-25)
+**Feature - Expose sub_account_name on Number resource**
+- Added `subAccountName` property to the `Number` resource, surfacing the subaccount's name alongside the existing `subAccount` (auth_id) on rented number listing and get APIs
+
 ## [4.69.1](https://github.com/plivo/plivo-php/tree/v4.69.1) (2026-04-17)
 **Bug Fix - PhoneNumber Compliance API**
 - Fixed Link response to return `total_count`, `updated_count`, and `report` fields instead of generic `ResponseUpdate`
