@@ -12,13 +12,15 @@ use Plivo\Resources\Resource;
  */
 class CallLive extends Resource
 {
+    public $statusCode;
+
     /**
      * CallLive constructor.
      * @param BaseClient $client The Plivo API REST client
      * @param array $response
      * @param string $authId
      */
-    function __construct(BaseClient $client, $response, $authId)
+    function __construct(BaseClient $client, $response, $authId, $statusCode)
     {
         parent::__construct($client);
 
@@ -39,6 +41,7 @@ class CallLive extends Resource
         ];
 
         $this->id = $response['call_uuid'];
+        $this->statusCode = $statusCode;
     }
 
     /**

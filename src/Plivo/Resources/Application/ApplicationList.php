@@ -11,14 +11,16 @@ use Plivo\Resources\ResourceList;
  */
 class ApplicationList extends ResourceList
 {
+    public $statusCode;
     /**
      * ApplicationList constructor.
      * @param BaseClient $plivoClient
      * @param $meta
      * @param array $resources
      */
-    function __construct(BaseClient $plivoClient, $meta, array $resources)
+    function __construct(BaseClient $plivoClient, $meta, array $resources, $statusCode)
     {
+        $this->statusCode = $statusCode;
         parent::__construct($plivoClient, $meta, $resources);
     }
 }

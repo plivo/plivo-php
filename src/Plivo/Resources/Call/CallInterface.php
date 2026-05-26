@@ -7,6 +7,7 @@ use Plivo\Exceptions\PlivoResponseException;
 use Plivo\BaseClient;
 use Plivo\Resources\ResourceInterface;
 use Plivo\Resources\ResourceList;
+use Plivo\Resources\ResponseDelete;
 
 use Plivo\Resources\ResponseUpdate;
 use Plivo\Util\ArrayOperations;
@@ -140,7 +141,8 @@ class CallInterface extends ResourceInterface
         return new Call(
             $this->client,
             $response->getContent(),
-            $this->pathParams['authId']);
+            $this->pathParams['authId'],
+            $response->getStatusCode());
     }
 
     /**
@@ -167,7 +169,8 @@ class CallInterface extends ResourceInterface
         return new CallLive(
             $this->client,
             $response->getContent(),
-            $this->pathParams['authId']);
+            $this->pathParams['authId'],
+            $response->getStatusCode());
     }
 
     /**
@@ -195,7 +198,8 @@ class CallInterface extends ResourceInterface
         return new CallQueued(
             $this->client,
             $response->getContent(),
-            $this->pathParams['authId']);
+            $this->pathParams['authId'],
+            $response->getStatusCode());
     }
 
     /**
@@ -251,7 +255,7 @@ class CallInterface extends ResourceInterface
         }
 
         foreach ($response->getContent()['objects'] as $call) {
-            $newCall = new Call($this->client, $call, $this->pathParams['authId'], $call['call_uuid']);
+            $newCall = new Call($this->client, $call, $this->pathParams['authId'], null);
 
             array_push($calls, $newCall);
         }
@@ -259,7 +263,8 @@ class CallInterface extends ResourceInterface
             new CallList(
                 $this->client,
                 $response->getContent()['meta'],
-                $calls);
+                $calls,
+                $response->getStatusCode());
     }
 
     /**
@@ -278,7 +283,8 @@ class CallInterface extends ResourceInterface
 
         $liveCallUuids = $response->getContent()['calls'];
 
-        return $liveCallUuids;
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     /**
@@ -297,7 +303,8 @@ class CallInterface extends ResourceInterface
 
         $queuedCallUuids = $response->getContent()['calls'];
 
-        return $queuedCallUuids;
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     /**
@@ -308,10 +315,19 @@ class CallInterface extends ResourceInterface
     public function delete($callUuid = null)
     {
         $optionalArgs['isVoiceRequest'] = true;
-        $this->client->delete(
+        $response = $this->client->delete(
             $this->uri . $callUuid . '/',
             $optionalArgs
         );
+        $responseContents = $response->getContent();
+
+        if(!array_key_exists("api_id", $responseContents)){
+            return new ResponseDelete($response->getStatusCode());
+        }
+        else{
+            return new ResponseDelete($response->getStatusCode(), "call not found",
+                $responseContents['api_id']);
+        }
     }
 
     /**
@@ -517,10 +533,19 @@ class CallInterface extends ResourceInterface
         }
         
         $params['isVoiceRequest'] = true;
-        $this->client->delete(
+        $response = $this->client->delete(
             $this->uri . $liveCallUuid . '/Record/',
             $params
         );
+        $responseContents = $response->getContent();
+
+        if(!array_key_exists("api_id", $responseContents)){
+            return new ResponseDelete($response->getStatusCode());
+        }
+        else{
+            return new ResponseDelete($response->getStatusCode(), "call not found",
+                $responseContents['api_id']);
+        }
     }
 
     /**
@@ -811,10 +836,19 @@ class CallInterface extends ResourceInterface
         }
         $optionalArgs['isVoiceRequest'] = true;
 
-        $this->client->delete(
+        $response = $this->client->delete(
             $this->uri . $liveCallUuid . '/Play/',
             $optionalArgs
         );
+        $responseContents = $response->getContent();
+
+        if(!array_key_exists("api_id", $responseContents)){
+            return new ResponseDelete($response->getStatusCode());
+        }
+        else{
+            return new ResponseDelete($response->getStatusCode(), "call not found",
+                $responseContents['api_id']);
+        }
     }
     
     /**
@@ -903,10 +937,19 @@ class CallInterface extends ResourceInterface
                 "Which call to stop speaking in? No callUuid given");
         }
         $optionalArgs['isVoiceRequest'] = true;
-        $this->client->delete(
+        $response = $this->client->delete(
             $this->uri . $liveCallUuid . '/Speak/',
             $optionalArgs
         );
+        $responseContents = $response->getContent();
+
+        if(!array_key_exists("api_id", $responseContents)){
+            return new ResponseDelete($response->getStatusCode());
+        }
+        else{
+            return new ResponseDelete($response->getStatusCode(), "call not found",
+                $responseContents['api_id']);
+        }
     }
 
     /**
@@ -974,7 +1017,7 @@ class CallInterface extends ResourceInterface
                 "Which call request to cancel? No requestUuid given");
         }
         $optionalArgs['isVoiceRequest'] = true;
-        $this->client->delete(
+        $response = $this->client->delete(
             "Account/".
             $this->pathParams['authId'].
             "/Request/".
@@ -982,5 +1025,6 @@ class CallInterface extends ResourceInterface
             '/',
             $optionalArgs
         );
+        return new ResponseDelete($response->getStatusCode());
     }
 }

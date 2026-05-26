@@ -67,7 +67,8 @@ class ConferenceInterface extends ResourceInterface
             $this->client,
             $response->getContent(),
             $this->pathParams['authId'],
-            $conferenceName);
+            $conferenceName,
+            $response->getStatusCode());
     }
 
     /**
@@ -83,7 +84,8 @@ class ConferenceInterface extends ResourceInterface
 
         $conferenceNames = $response->getContent()['conferences'];
 
-        return $conferenceNames;
+        $resp['statusCode'] = $response->getStatusCode();
+        return array_merge($response->getContent(), $resp);
     }
 
     /**
@@ -97,8 +99,15 @@ class ConferenceInterface extends ResourceInterface
             $this->uri . $conferenceName . '/',
             $optionalArgs
         );
+        $responseContents = $response->getContent();
 
-        return new ResponseDelete();
+        if(!array_key_exists("api_id", $responseContents)){
+            return new ResponseDelete($response->getStatusCode());
+        }
+        else{
+            return new ResponseDelete($response->getStatusCode(), 'conference not found',
+                $responseContents['api_id']);
+        }
     }
 
     /**
@@ -112,7 +121,7 @@ class ConferenceInterface extends ResourceInterface
             $optionalArgs
         );
 
-        return new ResponseDelete();
+        return new ResponseDelete($response->getStatusCode());
     }
 
     /**
@@ -127,8 +136,7 @@ class ConferenceInterface extends ResourceInterface
             $this->uri . $conferenceName . '/Member/' . $memberId . '/',
             $optionalArgs
         );
-
-        return new ResponseDelete();
+        return new ResponseDelete($response->getStatusCode());
     }
 
     /**
@@ -223,8 +231,15 @@ class ConferenceInterface extends ResourceInterface
             '/Mute/',
             $optionalArgs
         );
+        $responseContents = $response->getContent();
 
-        return new ResponseDelete();
+        if(!array_key_exists("api_id", $responseContents)){
+            return new ResponseDelete($response->getStatusCode());
+        }
+        else{
+            return new ResponseDelete($response->getStatusCode(), $responseContents['error'],
+                $responseContents['api_id']);
+        }
     }
 
     /**
@@ -282,7 +297,19 @@ class ConferenceInterface extends ResourceInterface
             $optionalArgs
         );
 
-        return new ResponseDelete();
+        $responseContents = $response->getContent();
+
+        if(!array_key_exists("api_id", $responseContents)){
+            return new ResponseDelete($response->getStatusCode());
+        }
+        elseif ($response->getStatusCode() == 400){
+            return new ResponseDelete($response->getStatusCode(), 'failed',
+                $responseContents['api_id']);
+        }
+        else{
+            return new ResponseDelete($response->getStatusCode(), 'conference not found',
+                $responseContents['api_id']);
+        }
     }
 
     /**
@@ -343,7 +370,19 @@ class ConferenceInterface extends ResourceInterface
             $optionalArgs
         );
 
-        return new ResponseDelete();
+        $responseContents = $response->getContent();
+
+        if(!array_key_exists("api_id", $responseContents)){
+            return new ResponseDelete($response->getStatusCode());
+        }
+        elseif ($response->getStatusCode() == 400){
+            return new ResponseDelete($response->getStatusCode(), 'failed',
+                $responseContents['api_id']);
+        }
+        else{
+            return new ResponseDelete($response->getStatusCode(), 'conference not found',
+                $responseContents['api_id']);
+        }
     }
 
     /**
@@ -398,8 +437,15 @@ class ConferenceInterface extends ResourceInterface
             '/Deaf/',
             $optionalArgs
         );
+        $responseContents = $response->getContent();
 
-        return new ResponseDelete();
+        if(!array_key_exists("api_id", $responseContents)){
+            return new ResponseDelete($response->getStatusCode());
+        }
+        else{
+            return new ResponseDelete($response->getStatusCode(), $responseContents['error'],
+                $responseContents['api_id']);
+        }
     }
 
     /**
@@ -472,8 +518,15 @@ class ConferenceInterface extends ResourceInterface
             '/Record/',
             $optionalArgs
         );
+        $responseContents = $response->getContent();
 
-        return new ResponseDelete();
+        if(!array_key_exists("api_id", $responseContents)){
+            return new ResponseDelete($response->getStatusCode());
+        }
+        else{
+            return new ResponseDelete($response->getStatusCode(), $responseContents['error'],
+                $responseContents['api_id']);
+        }
     }
 
 }
