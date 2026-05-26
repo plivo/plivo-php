@@ -1,8 +1,11 @@
 # Change Log
 
-## [4.70.0](https://github.com/plivo/plivo-php/tree/v4.70.0) (2026-05-25)
+## [4.69.2](https://github.com/plivo/plivo-php/tree/v4.69.2) (2026-05-26)
 **Feature - Profile API DBA field support**
 - Added Doing Business As (DBA) field support to Profile API
+
+**Feature - Expose sub_account_name on Number resource**
+- Added `subAccountName` property to the `Number` resource, surfacing the subaccount's name alongside the existing `subAccount` (auth_id) on rented number listing and get APIs
 
 ## [4.69.1](https://github.com/plivo/plivo-php/tree/v4.69.1) (2026-04-17)
 **Bug Fix - PhoneNumber Compliance API**

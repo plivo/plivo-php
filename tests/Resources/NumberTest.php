@@ -30,6 +30,10 @@ class NumberTest extends BaseTestCase
         self::assertNotNull($actual);
 
         self::assertGreaterThan(0, count($actual->get()));
+
+        $numbers = $actual->get();
+        self::assertEquals('SAXXXXXXXXXXXXXXXXXX', $numbers[0]->subAccount);
+        self::assertEquals('Marketing', $numbers[0]->subAccountName);
     }
 
     function testNumberCreate()

@@ -36,6 +36,8 @@ use Plivo\Resources\Resource;
  * @property string $complianceStatus The status of the compliance application associated with this number.
  * @property string $subAccount The subaccount associated with the number. If the number belongs to the main parent
  * account, this value will be null.
+ * @property string $subAccountName The name of the subaccount associated with the number. Null if the number belongs
+ * to the main parent account or the subaccount has no name set.
  */
 class Number extends Resource
 {
@@ -67,6 +69,7 @@ class Number extends Resource
             'mmsEnabled' => isset($response['mms_enabled']) ? $response['mms_enabled'] : null,
             'mmsRate' => isset($response['mms_rate']) ? $response['mms_rate'] : null,
             'subAccount' => $response['sub_account'],
+            'subAccountName' => isset($response['sub_account_name']) ? $response['sub_account_name'] : null,
             'voiceEnabled' => $response['voice_enabled'],
             'voiceRate' => $response['voice_rate'],
             'complianceApplicationId' => isset($response['compliance_application_id']) ? $response['compliance_application_id'] : null,
