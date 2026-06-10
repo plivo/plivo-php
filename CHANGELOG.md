@@ -1,5 +1,9 @@
 # Change Log
 
+## [4.69.3](https://github.com/plivo/plivo-php/tree/v4.69.3) (2026-06-10)
+**Feature - Profile API number of employees field support**
+- Added Number of Employees field support to Profile API
+
 ## [4.69.2](https://github.com/plivo/plivo-php/tree/v4.69.2) (2026-05-26)
 **Feature - Profile API DBA field support**
 - Added Doing Business As (DBA) field support to Profile API

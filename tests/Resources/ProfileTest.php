@@ -99,7 +99,8 @@ class ProfileTest extends BaseTestCase {
                     'title' => 'CEO',
                     'seniority' => 'C_LEVEL'
                 ],
-                'doing_business_as' => 'Test DBA'
+                'doing_business_as' => 'Test DBA',
+                'number_of_employees' => 'BETWEEN_51_AND_200'
             ]);
         $body = file_get_contents(__DIR__ . '/../Mocks/profileCreateResponse.json');
 
@@ -134,7 +135,8 @@ class ProfileTest extends BaseTestCase {
                 'seniority' => 'C_LEVEL'
             ],
             'employee@company.com',
-            'Test DBA'
+            'Test DBA',
+            'BETWEEN_51_AND_200'
         );
 
         $this->assertRequest($request);

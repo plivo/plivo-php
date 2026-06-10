@@ -101,9 +101,10 @@ class ProfileInterface extends ResourceInterface
      * @param {string} country
      * @param {string} business_contact_email
      * @param {string} doing_business_as Doing Business As (customer-facing name, optional)
+     * @param {string} number_of_employees Number of employees (optional). Allowed values: BETWEEN_1_AND_10, BETWEEN_11_AND_50, BETWEEN_51_AND_200, BETWEEN_201_AND_500, BETWEEN_501_AND_2000, BETWEEN_2001_AND_10000, MORE_THAN_10001
      * @return profileResponse response output
      */
-    public function create($profile_alias,$plivo_subaccount,$customer_type,$entity_type, $company_name,$ein,$vertical,$ein_issuing_country,$stock_symbol,$stock_exchange, $alt_business_id_type, $website, $address, $authorized_contact, $business_contact_email = '', $doing_business_as = '', $optionalArgs = [])
+    public function create($profile_alias,$plivo_subaccount,$customer_type,$entity_type, $company_name,$ein,$vertical,$ein_issuing_country,$stock_symbol,$stock_exchange, $alt_business_id_type, $website, $address, $authorized_contact, $business_contact_email = '', $doing_business_as = '', $number_of_employees = '', $optionalArgs = [])
     {
         $mandaoryArgs = [
             'profile_alias' => $profile_alias,
@@ -125,6 +126,9 @@ class ProfileInterface extends ResourceInterface
         if ($doing_business_as !== '') {
             $optionalArgs['doing_business_as'] = $doing_business_as;
         }
+        if ($number_of_employees !== '') {
+            $optionalArgs['number_of_employees'] = $number_of_employees;
+        }
         $response = $this->client->update(
             $this->uri .'Profile/',
             array_merge($mandaoryArgs, $optionalArgs)
@@ -145,6 +149,7 @@ class ProfileInterface extends ResourceInterface
      * @param{string} website
      * @param{string} business_contact_email
      * @param{string} doing_business_as Doing Business As (customer-facing name, optional)
+     * @param{string} number_of_employees Number of employees (optional). Allowed values: BETWEEN_1_AND_10, BETWEEN_11_AND_50, BETWEEN_51_AND_200, BETWEEN_201_AND_500, BETWEEN_501_AND_2000, BETWEEN_2001_AND_10000, MORE_THAN_10001
      * @return profileResponse response output
      */
     public function update($profile_uuid, array $optionalArgs = [])
