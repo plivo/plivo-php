@@ -58,7 +58,7 @@ class PlivoResponseException extends PlivoRestException
     /**
      * Returns an exceptions with a message based on the status code
      * @param string $message
-     * @return PlivoAuthenticationException|PlivoNotFoundException|PlivoRequestException|PlivoRestException|PlivoServerException|PlivoValidationException
+     * @return PlivoAuthenticationException|PlivoNotFoundException|PlivoRequestException|PlivoRestException|PlivoServerException|PlivoValidationException|PlivoTooManyRequestsException
      */
     public function getException($message)
     {
@@ -92,6 +92,13 @@ class PlivoResponseException extends PlivoRestException
                         new PlivoRequestException($message):
                         new PlivoRequestException(
                         "HTTP method used is not allowed to access resource");
+                break;
+            case 429:
+                return
+                    $message?
+                        new PlivoTooManyRequestsException($message):
+                        new PlivoTooManyRequestsException(
+                            "Too many requests");
                 break;
             case 500:
                 return
