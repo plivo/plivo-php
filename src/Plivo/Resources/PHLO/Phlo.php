@@ -63,12 +63,15 @@ class Phlo
      * @param null $id
      * @param null $baseUrl
      */
-    public function __construct($client = null, $id = null, $baseUrl = null)
+    
+    public function __construct($client = null, $id = null, $baseUrl = null, $runId = null)
     {
         $this->phloId = $id;
+        $this->runId = $runId;
         $this->client = $client;
         $this->baseUrl = $baseUrl;
         $this->phloUrl =  $this->baseUrl . "/phlo/" . $this->phloId;
+        $this->phlorunnerUrl =  $this->baseUrl . "/phlo/" . $this->phloId. "/runs/" . $this->runId;
     }
 
     /**
@@ -90,6 +93,20 @@ class Phlo
         $response = $phlo->client->getPhlorunner($phlo->phloUrl, []);
         return $response->getContent();
         // return json_encode($response->getContent(), JSON_FORCE_OBJECT);
+    }
+
+    /**
+     * @param $id
+     * @param $runId
+     * @return mixed
+     */
+
+    public function get_runner($id,$runId)
+    {        
+        $phlo = new self($this->client, $id, $this->baseUrl, $runId); 
+        $response = $phlo->client->getPhlorunner($phlo->phlorunnerUrl, []);
+        return $response->getContent();
+        //return json_encode($response->getContent(), JSON_FORCE_OBJECT);
     }
 
     /**
