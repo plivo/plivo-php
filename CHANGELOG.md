@@ -1,5 +1,9 @@
 # Change Log
 
+## [4.70.0](https://github.com/plivo/plivo-php/tree/v4.70.0) (2026-06-11)
+**Feature - PhoneNumber Buy compliance application support**
+- Added optional `complianceApplicationId` parameter to the `phoneNumbers->buy` method, serialized as `compliance_application_id` on the request. This allows linking a regulatory compliance application to a number at purchase time (required for regulated numbers, e.g. India).
+
 ## [4.69.2](https://github.com/plivo/plivo-php/tree/v4.69.2) (2026-05-26)
 **Feature - Profile API DBA field support**
 - Added Doing Business As (DBA) field support to Profile API

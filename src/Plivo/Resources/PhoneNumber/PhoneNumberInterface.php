@@ -91,13 +91,17 @@ class PhoneNumberInterface extends ResourceInterface
      * @param string|null $appId
      * @param string|null $cnamLookup
      * @param bool|null $haEnable
+     * @param string|null $complianceApplicationId - The ID of the regulatory compliance application to link to the number at purchase time. Required for regulated numbers (e.g. India).
      * @return PhoneNumberBuyResponse output
      */
-    public function buy($phoneNumber, $appId = null, $cnamLookup = null, $haEnable = null)
+    public function buy($phoneNumber, $appId = null, $cnamLookup = null, $haEnable = null, $complianceApplicationId = null)
     {
         $data = ['app_id'=>$appId,'cnam_lookup'=>$cnamLookup];
         if (!is_null($haEnable)) {
             $data['ha_enable'] = $haEnable;
+        }
+        if (!is_null($complianceApplicationId)) {
+            $data['compliance_application_id'] = $complianceApplicationId;
         }
         $response = $this->client->update(
             $this->uri . $phoneNumber . '/',

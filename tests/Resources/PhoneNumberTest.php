@@ -47,4 +47,23 @@ class PhoneNumberTest extends BaseTestCase
 
         self::assertNotNull($actual);
     }
+
+    function testPhoneNumberBuyWithComplianceApplicationId()
+    {
+        $number = 'sadasdasd';
+        $complianceApplicationId = 'COMPLIANCE123456789';
+        $request = new PlivoRequest(
+            'POST',
+            'Account/MAXXXXXXXXXXXXXXXXXX/PhoneNumber/' . $number . '/',
+            ['compliance_application_id' => $complianceApplicationId]);
+        $body = file_get_contents(__DIR__ . '/../Mocks/phoneNumberCreateResponse.json');
+
+        $this->mock(new PlivoResponse($request,201, $body));
+
+        $actual = $this->client->phoneNumbers->buy($number, null, null, null, $complianceApplicationId);
+
+        $this->assertRequest($request);
+
+        self::assertNotNull($actual);
+    }
 }
