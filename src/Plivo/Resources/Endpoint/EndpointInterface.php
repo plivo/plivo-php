@@ -42,10 +42,11 @@ class EndpointInterface extends ResourceInterface
      * @param string $password
      * @param string $alias
      * @param null|string $appId
+     * @param null|bool $internal - When true, marks the endpoint as internal so it is hidden from the default endpoint list API. Used by Plivo CX (Contacto) for auto-created browser-SDK endpoints.
      * @return JSON output
      * @throws PlivoValidationException
      */
-    public function create($username, $password, $alias, $appId = null)
+    public function create($username, $password, $alias, $appId = null, $internal = null)
     {
         $mandatoryArgs = [
             'username' => $username,
@@ -58,9 +59,14 @@ class EndpointInterface extends ResourceInterface
                 "Mandatory parameters cannot be null");
         }
 
+        $data = array_merge($mandatoryArgs, ['app_id' => $appId, 'isVoiceRequest' => true]);
+        if (!is_null($internal)) {
+            $data['internal'] = $internal;
+        }
+
         $response = $this->client->update(
             $this->uri,
-            array_merge($mandatoryArgs, ['app_id' => $appId, 'isVoiceRequest' => true])
+            $data
         );
         $responseContents = $response->getContent();
         if(!array_key_exists("error",$responseContents)){
