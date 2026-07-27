@@ -1,5 +1,9 @@
 # Change Log
 
+## [4.71.1](https://github.com/plivo/plivo-php/tree/v4.71.1) (2026-07-27)
+**Feature - Endpoint internal flag support**
+- Added optional `internal` parameter to the `endpoints->create` method, serialized as `internal` on the request. When set to `true`, the endpoint is marked as internal and hidden from the default Endpoints list API. Used by Plivo CX (Contacto) to tag auto-created browser-SDK endpoints (VT-9534).
+
 ## [4.70.0](https://github.com/plivo/plivo-php/tree/v4.70.0) (2026-06-11)
 **Feature - PhoneNumber Buy compliance application support**
 - Added optional `complianceApplicationId` parameter to the `phoneNumbers->buy` method, serialized as `compliance_application_id` on the request. This allows linking a regulatory compliance application to a number at purchase time (required for regulated numbers, e.g. India).
