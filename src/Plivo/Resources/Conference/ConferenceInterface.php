@@ -61,7 +61,9 @@ class ConferenceInterface extends ResourceInterface
             $optionalArgs
         );
 
-
+        if($response->getThrownException() != null) {
+            throw $response->getThrownException();
+        }
 
         return new Conference(
             $this->client,
@@ -82,6 +84,9 @@ class ConferenceInterface extends ResourceInterface
         );
 
         $conferenceNames = $response->getContent()['conferences'];
+        if($response->getThrownException() != null) {
+            throw $response->getThrownException();
+        }
 
         return $conferenceNames;
     }
