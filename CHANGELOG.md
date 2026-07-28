@@ -1,5 +1,9 @@
 # Change Log
 
+## [4.71.0](https://github.com/plivo/plivo-php/tree/v4.71.0) (2026-07-28)
+**Feature - Toll-free verification terms, privacy, opt-in and help fields**
+- Added optional `terms_and_conditions_link`, `privacy_policy_link`, `optin_message` and `help_message` parameters to the toll-free verification create and update methods
+
 ## [4.70.0](https://github.com/plivo/plivo-php/tree/v4.70.0) (2026-06-11)
 **Feature - PhoneNumber Buy compliance application support**
 - Added optional `complianceApplicationId` parameter to the `phoneNumbers->buy` method, serialized as `compliance_application_id` on the request. This allows linking a regulatory compliance application to a number at purchase time (required for regulated numbers, e.g. India).

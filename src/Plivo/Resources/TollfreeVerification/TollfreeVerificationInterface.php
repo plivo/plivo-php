@@ -50,10 +50,14 @@ class TollfreeVerificationInterface extends ResourceInterface
      * @param null|string $callback_method
      * @param null|string $additional_information
      * @param null|string $extra_data
+     * @param null|string $terms_and_conditions_link
+     * @param null|string $privacy_policy_link
+     * @param null|string $optin_message
+     * @param null|string $help_message
      * @return JSON output
      * @throws PlivoValidationException
      */
-    public function create($number, $usecase, $profile_uuid, $optin_type, $volume, $usecase_summary, $message_sample, $optin_image_url, $callback_url = null, $callback_method = null, $additional_information = null, $extra_data = null)
+    public function create($number, $usecase, $profile_uuid, $optin_type, $volume, $usecase_summary, $message_sample, $optin_image_url, $callback_url = null, $callback_method = null, $additional_information = null, $extra_data = null, $terms_and_conditions_link = null, $privacy_policy_link = null, $optin_message = null, $help_message = null)
     {
         $mandatoryArgs = [
             'number' => $number,
@@ -74,7 +78,9 @@ class TollfreeVerificationInterface extends ResourceInterface
         $response = $this->client->update(
             $this->uri,
             array_merge($mandatoryArgs, ['callback_url' => $callback_url, 'callback_method' => $callback_method,
-            'additional_information' => $additional_information, 'extra_data' => $extra_data])
+            'additional_information' => $additional_information, 'extra_data' => $extra_data,
+            'terms_and_conditions_link' => $terms_and_conditions_link, 'privacy_policy_link' => $privacy_policy_link,
+            'optin_message' => $optin_message, 'help_message' => $help_message])
         );
         $responseContents = $response->getContent();
         if(!array_key_exists("error", $responseContents)){
@@ -188,6 +194,10 @@ class TollfreeVerificationInterface extends ResourceInterface
      *   + [string] extra_data - The extra data of the TollfreeVerification.
      *   + [string] callback_url - The callback url of the TollfreeVerification.
      *   + [string] callback_method - The callback method of the TollfreeVerification.
+     *   + [string] terms_and_conditions_link - The terms and conditions link of the TollfreeVerification.
+     *   + [string] privacy_policy_link - The privacy policy link of the TollfreeVerification.
+     *   + [string] optin_message - The optin message of the TollfreeVerification.
+     *   + [string] help_message - The help message of the TollfreeVerification.
      * @return ResponseUpdate
      */
     public function update($uuid, array $optionalArgs = [])
