@@ -1,6 +1,6 @@
 # Change Log
 
-## [4.71.0](https://github.com/plivo/plivo-php/tree/v4.71.0) (2026-07-27)
+## [4.71.0](https://github.com/plivo/plivo-php/tree/v4.71.0) (2026-07-28)
 **Feature - Toll-free verification terms, privacy, opt-in and help fields**
 - Added optional `terms_and_conditions_link`, `privacy_policy_link`, `optin_message` and `help_message` parameters to the toll-free verification create and update methods
 
