@@ -12,6 +12,7 @@ use Plivo\Resources\ResourceList;
  */
 class CallList extends ResourceList
 {
+    public $statusCode;
 
     /**
      * CallList constructor.
@@ -19,9 +20,10 @@ class CallList extends ResourceList
      * @param array $meta
      * @param array $resources
      */
-    function __construct(BaseClient $plivoClient, $meta, array $resources)
+    function __construct(BaseClient $plivoClient, $meta, array $resources, $statusCode)
     {
         parent::__construct($plivoClient, $meta, $resources);
+        $this->statusCode = $statusCode;
     }
 
 }
