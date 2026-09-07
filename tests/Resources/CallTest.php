@@ -68,6 +68,32 @@ class CallTest extends BaseTestCase
         self::assertEquals($actual->apiId, "97ceeb52-58b6-11e1-86da-77300b68f8bb");
     }
 
+    function testCallCreateWithRetryOn()
+    {
+        $request = new PlivoRequest(
+            'POST',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Call/',
+            [
+                'from' => '919999999999',
+                'to' => '919999999998',
+                'answer_url' => 'http://answer.url',
+                'retry_on' => 'busy_line,no_answer'
+            ]);
+        $body = file_get_contents(__DIR__ . '/../Mocks/callCreateResponse.json');
+
+        $this->mock(new PlivoResponse($request,201, $body));
+
+        $actual = $this->client->calls->create(
+            '919999999999', ['919999999998'], 'http://answer.url',
+            ['retry_on' => 'busy_line,no_answer']);
+
+        $this->assertRequest($request);
+
+        self::assertNotNull($actual);
+
+        self::assertEquals($actual->message, "call fired");
+    }
+
     function testCallList()
     {
         $request = new PlivoRequest(
