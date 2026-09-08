@@ -68,6 +68,7 @@ class CallInterface extends ResourceInterface
      *   + [int] ring_timeout - Determines the time in seconds the call should ring. If the call is not answered within the ring_timeout value or the default value of 120s, it is canceled.
      *   + [string] parent_call_uuid - The call_uuid of the first leg in an ongoing conference call. It is recommended to use this parameter in scenarios where a member who is already present in the conference intends to add new members by initiating outbound API calls. This minimizes the delay in adding a new memeber to the conference.
      *   + [boolean] error_parent_not_found - if set to true and the parent_call_uuid cannot be found, the API request would return an error. If set to false, the outbound call API request will be executed even if the parent_call_uuid is not found. Defaults to false.
+     *   + [string] retry_on - Comma-separated list of failure reasons that should trigger the HA Secondary-Number Retry for this call. Valid values are busy_line, no_answer, rejected and ring_timeout. When set, it overrides the account-level retry reasons configuration.
 
      * @return JSON output
      * @throws PlivoValidationException,PlivoResponseException
