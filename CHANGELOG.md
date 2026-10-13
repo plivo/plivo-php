@@ -1,5 +1,10 @@
 # Change Log
 
+## Unreleased
+**Feature - Webhook signature validation for scoped API tokens**
+- Added `v3SignatureValidation::validateV3SignatureScoped` to validate `X-Plivo-Signature-V3` on webhooks caused by scoped-token API calls
+- Added `v3SignatureValidation::deriveSigningKey` (HKDF-SHA256) exposing the scoped-token webhook signing key
+
 ## [4.69.2](https://github.com/plivo/plivo-php/tree/v4.69.2) (2026-05-26)
 **Feature - Profile API DBA field support**
 - Added Doing Business As (DBA) field support to Profile API

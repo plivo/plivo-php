@@ -143,8 +143,14 @@ class v3SignatureValidation
     public static function validateV3Signature($method, $uri, $nonce, $auth_token, $v3_signature, $params=[])
     {
         $auth_token = utf8_encode($auth_token);
-        $nonce = utf8_encode($nonce);
         $v3_signature = utf8_encode($v3_signature);
+        $signature = self::computeV3Signature($method, $uri, $nonce, $auth_token, $params);
+        return in_array($signature, explode(',', $v3_signature));
+    }
+
+    private static function computeV3Signature($method, $uri, $nonce, $key, $params)
+    {
+        $nonce = utf8_encode($nonce);
         $uri = utf8_encode($uri);
         $params = self::stringifyParams($params);
         if ($method == 'GET')
@@ -159,7 +165,41 @@ class v3SignatureValidation
         {
             throw new PlivoValidationException('method not allowed for signature validation');
         }
-        $signature = self::getSignatureV3($auth_token, $base_url, $nonce);
-        return in_array($signature, explode(',', $v3_signature));
+        return self::getSignatureV3($key, $base_url, $nonce);
+    }
+
+    /**
+     * Derive the raw 32-byte webhook signing key for a scoped API token (HKDF-SHA256, RFC 5869)
+     *
+     * @param string $scoped_token
+     * @return string binary key
+     */
+    public static function deriveSigningKey($scoped_token)
+    {
+        $prk = hash_hmac('sha256', $scoped_token, 'plivo-scoped-token-v1', true);
+        return hash_hmac('sha256', "plivo-webhook-signing-v1\x01", $prk, true);
+    }
+
+    /**
+     * Validate X-Plivo-Signature-V3 on a webhook caused by a scoped API token
+     *
+     * @param string $method
+     * @param string $uri
+     * @param string $nonce
+     * @param string $scoped_token
+     * @param string $v3_signature
+     * @param array $params
+     * @return boolean
+     * @throws PlivoValidationException
+     */
+    public static function validateV3SignatureScoped($method, $uri, $nonce, $scoped_token, $v3_signature, $params=[])
+    {
+        $signature = self::computeV3Signature($method, $uri, $nonce, self::deriveSigningKey($scoped_token), $params);
+        $valid = false;
+        foreach (explode(',', $v3_signature) as $candidate)
+        {
+            $valid = hash_equals($signature, trim($candidate)) || $valid;
+        }
+        return $valid;
     }
 }

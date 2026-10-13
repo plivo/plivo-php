@@ -599,6 +599,25 @@ print_r($response);
 ?>
 ```
 
+### Validating webhooks for scoped API tokens
+Webhooks triggered by an API call made with a scoped API token are signed (`X-Plivo-Signature-V3`) with a key derived from that token. Validate them with `validateV3SignatureScoped`, which takes the same arguments as `validateV3Signature` but with the scoped token in place of the auth token:
+
+```php
+<?php
+use Plivo\Util\v3SignatureValidation;
+
+$valid = v3SignatureValidation::validateV3SignatureScoped(
+    $_SERVER['REQUEST_METHOD'],
+    'https://acme.example.com/sms/status',
+    $_SERVER['HTTP_X_PLIVO_SIGNATURE_V3_NONCE'],
+    '<your scoped token>',
+    $_SERVER['HTTP_X_PLIVO_SIGNATURE_V3'],
+    $_POST
+);
+```
+
+`v3SignatureValidation::deriveSigningKey($scopedToken)` returns the raw 32-byte HMAC-SHA256 key if you use a custom validator.
+
 ### More examples
 More examples are available [here](https://github.com/plivo/plivo-examples-php). Also refer to the [guides for configuring the PHP laravel to run various scenarios](https://www.plivo.com/docs/sms/quickstart/php-laravel/) & use it to test out your integration in under 5 minutes.
 
