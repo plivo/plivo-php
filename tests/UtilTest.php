@@ -30,4 +30,15 @@ class UtilTest extends BaseTestCase
         $acctkn->addVoiceGrants(true, true);
         self::assertEquals('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImN0eSI6InBsaXZvO3Y9MSJ9.eyJqdGkiOiJ1c2VybmFtZS0xMjM0NSIsImlzcyI6Ik1BREFEQURBREFEQURBREFEQURBIiwic3ViIjoidXNlcm5hbWUiLCJuYmYiOjEyMTIxMjEyLCJleHAiOjEyMTIxNTEyLCJncmFudHMiOnsidm9pY2UiOnsiaW5jb21pbmdfYWxsb3ciOnRydWUsIm91dGdvaW5nX2FsbG93Ijp0cnVlfX19.khM99-sYP2AylLo9y6bwNnJbVPjjtOMAimiFvNo7FGA', $acctkn->toJwt());
     }
+
+    function testJWTRejectsScopedToken()
+    {
+        try {
+            new AccessToken('MADADADADADADADADADA', 'PLV' . str_repeat('A', 43), 'username');
+            self::fail('expected PlivoValidationException');
+        } catch (\Plivo\Exceptions\PlivoValidationException $e) {
+            self::assertStringContainsString('scoped API tokens', $e->getMessage());
+        }
+        self::assertNotEmpty((new AccessToken('MADADADADADADADADADA', 'qwerty', 'username'))->toJwt());
+    }
 }

@@ -41,6 +41,10 @@ class AccessToken
     )
     {
         $this->basicAuth = new BasicAuth($authId, $authToken);
+        $key = (string) $this->basicAuth->getAuthToken();
+        if (strlen($key) == 46 && strpos($key, 'PLV') === 0) {
+            throw new PlivoValidationException("AccessToken must be signed with the account auth token; scoped API tokens (PLV...) can't sign JWTs. Use the auth token, or create a token with the JWT API (POST /Account/{auth_id}/JWT/Token/).");
+        }
         if ($username == null) {
             throw new PlivoValidationException("null username not allowed");
         }
