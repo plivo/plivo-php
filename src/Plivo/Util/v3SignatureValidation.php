@@ -181,24 +181,34 @@ class v3SignatureValidation
     }
 
     /**
-     * Validate X-Plivo-Signature-V3 on a webhook caused by a scoped API token
+     * Validate X-Plivo-Signature-V3 against one key or a list of keys; passes if any key matches.
+     * Scoped tokens (46 chars, "PLV" prefix) are HKDF-derived, any other key is used as an auth token.
      *
      * @param string $method
      * @param string $uri
      * @param string $nonce
-     * @param string $scoped_token
+     * @param string|string[] $keys
      * @param string $v3_signature
      * @param array $params
      * @return boolean
      * @throws PlivoValidationException
      */
-    public static function validateV3SignatureScoped($method, $uri, $nonce, $scoped_token, $v3_signature, $params=[])
+    public static function validateV3SignatureScoped($method, $uri, $nonce, $keys, $v3_signature, $params=[])
     {
-        $signature = self::computeV3Signature($method, $uri, $nonce, self::deriveSigningKey($scoped_token), $params);
+        $candidates = array_map('trim', explode(',', $v3_signature));
         $valid = false;
-        foreach (explode(',', $v3_signature) as $candidate)
+        foreach ((array) $keys as $key)
         {
-            $valid = hash_equals($signature, trim($candidate)) || $valid;
+            if ($key === null || $key === '')
+            {
+                continue;
+            }
+            $hmacKey = (strlen($key) == 46 && strpos($key, 'PLV') === 0) ? self::deriveSigningKey($key) : utf8_encode($key);
+            $signature = self::computeV3Signature($method, $uri, $nonce, $hmacKey, $params);
+            foreach ($candidates as $candidate)
+            {
+                $valid = hash_equals($signature, $candidate) || $valid;
+            }
         }
         return $valid;
     }

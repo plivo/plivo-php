@@ -10,6 +10,7 @@ class ScopedSignatureV3Test extends TestCase
     const POST_SIG = 'Kxo1ZuQEWE578HnfEhiJvLjXNzZXYPvkZDKNq9s4kvk=';
     const GET_URL = 'https://acme.example.com/answer?From=14155550100&CallUUID=abc';
     const GET_SIG = 'nr+QWHZTVoEP0rWEEWMeWjgKRzfOOuBhJvJqQQ8ZC2s=';
+    const AUTH_TOKEN = 'test-auth-token';
 
     private static function token1() { return 'PLV' . 'obLD1OX2BxgpOktcbX6PkBEiM0RVZneImaq7zN3u_wA'; }
     private static function token2() { return 'PLV' . str_repeat('A', 43); }
@@ -40,6 +41,36 @@ class ScopedSignatureV3Test extends TestCase
     function testAcceptsAnyOfMultipleSignatures()
     {
         self::assertTrue(v3SignatureValidation::validateV3SignatureScoped('POST', self::POST_URL, self::NONCE, self::token1(), 'bogus,' . self::POST_SIG, self::postParams()));
+    }
+
+    private static function authSig()
+    {
+        $compute = new ReflectionMethod(v3SignatureValidation::class, 'computeV3Signature');
+        $compute->setAccessible(true);
+        return $compute->invoke(null, 'POST', self::POST_URL, self::NONCE, self::AUTH_TOKEN, self::postParams());
+    }
+
+    private static function validateKeys($signature, $keys)
+    {
+        return v3SignatureValidation::validateV3SignatureScoped('POST', self::POST_URL, self::NONCE, $keys, $signature, self::postParams());
+    }
+
+    function testKeyListAcceptsScopedOrAuthTokenSignature()
+    {
+        self::assertTrue(self::validateKeys(self::POST_SIG, array(self::token1(), self::AUTH_TOKEN)));
+        self::assertTrue(self::validateKeys(self::authSig(), array(self::token1(), self::AUTH_TOKEN)));
+        self::assertTrue(self::validateKeys(self::POST_SIG . ',' . self::authSig(), array(self::token2(), self::AUTH_TOKEN)));
+    }
+
+    function testKeyListRejectsWhenNoKeyMatches()
+    {
+        self::assertFalse(self::validateKeys(self::POST_SIG, array(self::token2())));
+        self::assertFalse(self::validateKeys(self::POST_SIG, array()));
+    }
+
+    function testKeyListSkipsNullAndEmptyEntries()
+    {
+        self::assertTrue(self::validateKeys(self::POST_SIG, array(null, '', self::token1())));
     }
 
     function testAuthTokenValidatorRejectsScopedSignature()
