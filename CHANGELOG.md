@@ -5,6 +5,7 @@
 - Added `v3SignatureValidation::validateV3SignatureScoped` to validate `X-Plivo-Signature-V3` on webhooks caused by scoped-token API calls
 - `validateV3SignatureScoped` also accepts an array of keys (scoped tokens and/or auth token) and returns true if any key matches
 - Added `v3SignatureValidation::deriveSigningKey` (HKDF-SHA256) exposing the scoped-token webhook signing key
+- `v3SignatureValidation::validateV3Signature` now also accepts a scoped API token in place of the auth token
 
 ## [4.69.2](https://github.com/plivo/plivo-php/tree/v4.69.2) (2026-05-26)
 **Feature - Profile API DBA field support**

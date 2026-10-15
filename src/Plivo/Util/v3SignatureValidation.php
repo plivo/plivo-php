@@ -129,7 +129,7 @@ class v3SignatureValidation
     }
 
     /**
-     * Return a recording instance
+     * Validate X-Plivo-Signature-V3 with an auth token, or with a scoped API token (PLV..., 46 chars) via deriveSigningKey
      *
      * @param string $method
      * @param string $uri
@@ -142,6 +142,10 @@ class v3SignatureValidation
      */
     public static function validateV3Signature($method, $uri, $nonce, $auth_token, $v3_signature, $params=[])
     {
+        if (is_string($auth_token) && strlen($auth_token) == 46 && strpos($auth_token, 'PLV') === 0)
+        {
+            return self::validateV3SignatureScoped($method, $uri, $nonce, $auth_token, $v3_signature, $params);
+        }
         $auth_token = utf8_encode($auth_token);
         $v3_signature = utf8_encode($v3_signature);
         $signature = self::computeV3Signature($method, $uri, $nonce, $auth_token, $params);

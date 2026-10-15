@@ -73,8 +73,9 @@ class ScopedSignatureV3Test extends TestCase
         self::assertTrue(self::validateKeys(self::POST_SIG, array(null, '', self::token1())));
     }
 
-    function testAuthTokenValidatorRejectsScopedSignature()
+    function testAuthTokenValidatorAcceptsScopedToken()
     {
-        self::assertFalse(v3SignatureValidation::validateV3Signature('POST', self::POST_URL, self::NONCE, self::token1(), self::POST_SIG, self::postParams()));
+        self::assertTrue(v3SignatureValidation::validateV3Signature('POST', self::POST_URL, self::NONCE, self::token1(), self::POST_SIG . ',' . self::authSig(), self::postParams()));
+        self::assertFalse(v3SignatureValidation::validateV3Signature('POST', self::POST_URL, self::NONCE, self::token1(), self::authSig(), self::postParams()));
     }
 }
