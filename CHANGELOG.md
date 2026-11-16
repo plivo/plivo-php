@@ -1,5 +1,14 @@
 # Change Log
 
+## [4.72.0](https://github.com/plivo/plivo-php/tree/v4.72.0) (2026-11-16)
+**Feature - INR amount fields on Message, Call, Number and PhoneNumber resources**
+- Added `totalAmountINR`, `totalRateINR`, `carrier_fees_inr` and `carrier_fees_rate_inr` to the `Message` resource (get and list)
+- Added `totalAmountINR`, `totalRateINR` and `noiseCancellationAmountINR` to the `Call` resource (get and list)
+- Added `monthlyRentalRateINR`, `smsRateINR`, `mmsRateINR` and `voiceRateINR` to the `Number` resource (get and list)
+- Added `setupRateINR`, `monthlyRentalRateINR`, `smsRateINR`, `mmsRateINR` and `voiceRateINR` to the `PhoneNumber` resource (search)
+- The INR fields are returned only for INR-billed accounts; USD values are unchanged. On USD accounts the new `Call`, `Number` and `PhoneNumber` properties are `null`, and the new `Message` properties are not set
+- Verify session `charges` and `attemptDetails` already pass through `total_charge_inr`, `charge_inr` and `amount_inr` unchanged
+
 ## [4.71.0](https://github.com/plivo/plivo-php/tree/v4.71.0) (2026-07-28)
 **Feature - Toll-free verification terms, privacy, opt-in and help fields**
 - Added optional `terms_and_conditions_link`, `privacy_policy_link`, `optin_message` and `help_message` parameters to the toll-free verification create and update methods

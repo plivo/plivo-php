@@ -19,6 +19,10 @@ use Plivo\Resources\Resource;
  * @property string $resourceUri
  * @property string $totalAmount
  * @property string $totalRate
+ * @property ?string $totalAmountINR INR accounts only, else null
+ * @property ?string $totalRateINR INR accounts only, else null
+ * @property ?string $carrier_fees_inr INR accounts only, else null
+ * @property ?string $carrier_fees_rate_inr INR accounts only, else null
  * @property string $units
  * @property string $replacedSender
  * @property ?string $errorCode
@@ -60,6 +64,13 @@ class Message extends Resource
             'destination_country_iso2' => $response['destination_country_iso2'],
             'replacedSender' => $response['replaced_sender']
         ];
+
+        // INR siblings; sent only for INR accounts. Always set (null when absent)
+        // so the properties can be read on any message without throwing.
+        $this->properties['totalAmountINR'] = isset($response['total_amount_inr']) ? $response['total_amount_inr'] : null;
+        $this->properties['totalRateINR'] = isset($response['total_rate_inr']) ? $response['total_rate_inr'] : null;
+        $this->properties['carrier_fees_inr'] = isset($response['carrier_fees_inr']) ? $response['carrier_fees_inr'] : null;
+        $this->properties['carrier_fees_rate_inr'] = isset($response['carrier_fees_rate_inr']) ? $response['carrier_fees_rate_inr'] : null;
 
         // handled empty string and null case
         if (!empty($response['api_id'])) {

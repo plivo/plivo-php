@@ -23,6 +23,12 @@ use Plivo\Resources\Resource;
  * @property string $to The callee
  * @property string $totalAmount The total amount
  * @property string $totalRate The total rate
+ * @property ?string $totalAmountINR The total amount in INR (INR accounts only, else null)
+ * @property ?string $totalRateINR The total rate in INR (INR accounts only, else null)
+ * @property ?string $noiseCancellationAmount The noise cancellation amount (null when not sent;
+ * may be an empty string for calls without noise cancellation)
+ * @property ?string $noiseCancellationAmountINR The noise cancellation amount in INR (null for non-INR accounts;
+ * empty string for INR calls without noise cancellation)
  * @property string $hangupCauseCode Hangup Cause Code
  * @property string $hangupCauseName Hangup Cause Name
  * @property string $hangupSource Hangup Source
@@ -61,6 +67,11 @@ class Call extends Resource
             'to' => $response['to_number'],
             'totalAmount' => $response['total_amount'],
             'totalRate' => $response['total_rate'],
+            'noiseCancellationAmount' => isset($response['noise_cancellation_amount']) ? $response['noise_cancellation_amount'] : null,
+            // INR siblings; sent only for INR accounts, null otherwise
+            'totalAmountINR' => isset($response['total_amount_inr']) ? $response['total_amount_inr'] : null,
+            'totalRateINR' => isset($response['total_rate_inr']) ? $response['total_rate_inr'] : null,
+            'noiseCancellationAmountINR' => isset($response['noise_cancellation_amount_inr']) ? $response['noise_cancellation_amount_inr'] : null,
             'hangupCauseCode' => $response['hangup_cause_code'],
             'hangupCauseName' => $response['hangup_cause_name'],
             'hangupSource' => $response['hangup_source'],

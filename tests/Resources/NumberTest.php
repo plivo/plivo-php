@@ -75,6 +75,73 @@ class NumberTest extends BaseTestCase
         self::assertNotNull($actual);
     }
 
+    function testNumberGetExposesInrRatesForInrAccount()
+    {
+        $number = '17609915566';
+        $request = new PlivoRequest(
+            'GET',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Number/' . $number . '/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/numberGetInrResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->numbers->get($number);
+
+        $this->assertRequest($request);
+
+        self::assertEquals('0.80000', $actual->monthlyRentalRate);
+        self::assertEquals('66.80000', $actual->monthlyRentalRateINR);
+        self::assertEquals('0.00000', $actual->smsRateINR);
+        self::assertEquals('0.62625', $actual->mmsRateINR);
+        self::assertEquals('0.70975', $actual->voiceRateINR);
+    }
+
+    function testNumberGetReturnsNullInrRatesForUsdAccount()
+    {
+        $number = '17609915566';
+        $request = new PlivoRequest(
+            'GET',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Number/' . $number . '/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/numberGetResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->numbers->get($number);
+
+        self::assertEquals('0.80000', $actual->monthlyRentalRate);
+        self::assertNull($actual->monthlyRentalRateINR);
+        self::assertNull($actual->smsRateINR);
+        self::assertNull($actual->mmsRateINR);
+        self::assertNull($actual->voiceRateINR);
+    }
+
+    function testNumberListExposesInrRatesPerNumber()
+    {
+        $request = new PlivoRequest(
+            'GET',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Number/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/numberListInrResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $numbers = $this->client->numbers->getList()->get();
+
+        $this->assertRequest($request);
+
+        self::assertEquals('66.80000', $numbers[0]->monthlyRentalRateINR);
+        self::assertEquals('0.00000', $numbers[0]->smsRateINR);
+        self::assertEquals('0.62625', $numbers[0]->mmsRateINR);
+        self::assertEquals('0.70975', $numbers[0]->voiceRateINR);
+
+        self::assertNull($numbers[1]->monthlyRentalRateINR);
+        self::assertNull($numbers[1]->smsRateINR);
+        self::assertNull($numbers[1]->mmsRateINR);
+        self::assertNull($numbers[1]->voiceRateINR);
+    }
+
     function testNumberUpdate()
     {
         $number = 'sadasdasd';

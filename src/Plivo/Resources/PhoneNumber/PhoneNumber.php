@@ -15,6 +15,7 @@ use Plivo\Resources\Resource;
  * @property string $number
  * @property string $type
  * @property string $monthlyRentalRate
+ * @property ?string $monthlyRentalRateINR INR accounts only, else null
  * @property string $prefix
  * @property string $rateCenter
  * @property string $region
@@ -22,13 +23,17 @@ use Plivo\Resources\Resource;
  * @property string $restriction
  * @property string $restrictionText
  * @property string $setupRate
+ * @property ?string $setupRateINR INR accounts only, else null
  * @property string $smsEnabled
  * @property string $smsRate
+ * @property ?string $smsRateINR INR accounts only, else null
  * @property string $mmsEnabled
  * @property string $mmsRate
+ * @property ?string $mmsRateINR INR accounts only, else null
  * @property string $complianceRequirement
  * @property string $voiceEnabled
  * @property string $voiceRate
+ * @property ?string $voiceRateINR INR accounts only, else null
  */
 class PhoneNumber extends Resource
 {
@@ -49,6 +54,7 @@ class PhoneNumber extends Resource
             'number' => $response['number'],
             'type' => $response['type'],
             'monthlyRentalRate' => $response['monthly_rental_rate'],
+            'monthlyRentalRateINR' => isset($response['monthly_rental_rate_inr']) ? $response['monthly_rental_rate_inr'] : null,
             'prefix' => $response['prefix'],
             'rateCenter' => $response['rate_center'],
             'region' => $response['region'],
@@ -56,12 +62,16 @@ class PhoneNumber extends Resource
             'restriction' => $response['restriction'],
             'restrictionText' => $response['restriction_text'],
             'setupRate' => $response['setup_rate'],
+            'setupRateINR' => isset($response['setup_rate_inr']) ? $response['setup_rate_inr'] : null,
             'smsEnabled' => $response['sms_enabled'],
             'smsRate' => $response['sms_rate'],
+            'smsRateINR' => isset($response['sms_rate_inr']) ? $response['sms_rate_inr'] : null,
             'mmsEnabled' => $response['mms_enabled'],
             'mmsRate' => $response['mms_rate'],
+            'mmsRateINR' => isset($response['mms_rate_inr']) ? $response['mms_rate_inr'] : null,
             'voiceEnabled' => $response['voice_enabled'],
             'voiceRate' => $response['voice_rate'],
+            'voiceRateINR' => isset($response['voice_rate_inr']) ? $response['voice_rate_inr'] : null,
             'complianceRequirement' => $response['compliance_requirement']
         ];
 
