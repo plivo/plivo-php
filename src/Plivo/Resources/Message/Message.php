@@ -19,6 +19,10 @@ use Plivo\Resources\Resource;
  * @property string $resourceUri
  * @property string $totalAmount
  * @property string $totalRate
+ * @property ?string $totalAmountINR Set only for INR accounts
+ * @property ?string $totalRateINR Set only for INR accounts
+ * @property ?string $carrier_fees_inr Set only for INR accounts
+ * @property ?string $carrier_fees_rate_inr Set only for INR accounts
  * @property string $units
  * @property string $replacedSender
  * @property ?string $errorCode
@@ -60,6 +64,14 @@ class Message extends Resource
             'destination_country_iso2' => $response['destination_country_iso2'],
             'replacedSender' => $response['replaced_sender']
         ];
+
+        // INR siblings of totalAmount / totalRate; sent only for INR accounts
+        if (!empty($response['total_amount_inr'])) {
+            $this->properties['totalAmountINR'] = $response['total_amount_inr'];
+        }
+        if (!empty($response['total_rate_inr'])) {
+            $this->properties['totalRateINR'] = $response['total_rate_inr'];
+        }
 
         // handled empty string and null case
         if (!empty($response['api_id'])) {
@@ -118,8 +130,14 @@ class Message extends Resource
         if (!empty($response['carrier_fees_rate'])) {
             $this->properties['carrier_fees_rate'] = $response['carrier_fees_rate'];
         }
+        if (!empty($response['carrier_fees_rate_inr'])) {
+            $this->properties['carrier_fees_rate_inr'] = $response['carrier_fees_rate_inr'];
+        }
         if (!empty($response['carrier_fees'])) {
             $this->properties['carrier_fees'] = $response['carrier_fees'];
+        }
+        if (!empty($response['carrier_fees_inr'])) {
+            $this->properties['carrier_fees_inr'] = $response['carrier_fees_inr'];
         }
         if (!empty($response['log'])) {
             $this->properties['log'] = $response['log'];

@@ -109,6 +109,73 @@ class CallTest extends BaseTestCase
         self::assertEquals($actual->getId(), "4d04c52e-cea3-4458-bbdb-0bfc314ee7cd");
     }
 
+    function testCallDetailsExposesInrFieldsForInrAccount()
+    {
+        $request = new PlivoRequest(
+            'GET',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Call/4d04c52e-cea3-4458-bbdb-0bfc314ee7cd/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/callGetInrResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->calls->get("4d04c52e-cea3-4458-bbdb-0bfc314ee7cd");
+
+        $this->assertRequest($request);
+
+        self::assertEquals("0.02770", $actual->totalAmount);
+        self::assertEquals("0.02770", $actual->totalRate);
+        self::assertEquals("2.31295", $actual->totalAmountINR);
+        self::assertEquals("2.31295", $actual->totalRateINR);
+        self::assertEquals("0.33400", $actual->noiseCancellationAmountINR);
+    }
+
+    function testCallDetailsReturnsNullInrFieldsForUsdAccount()
+    {
+        $request = new PlivoRequest(
+            'GET',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Call/4d04c52e-cea3-4458-bbdb-0bfc314ee7cd/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/callGetResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->calls->get("4d04c52e-cea3-4458-bbdb-0bfc314ee7cd");
+
+        self::assertEquals("0.02770", $actual->totalAmount);
+        self::assertNull($actual->totalAmountINR);
+        self::assertNull($actual->totalRateINR);
+        self::assertNull($actual->noiseCancellationAmountINR);
+    }
+
+    function testCallListExposesInrFieldsPerCall()
+    {
+        $request = new PlivoRequest(
+            'GET',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Call/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/callListInrResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->calls->list();
+
+        $this->assertRequest($request);
+
+        self::assertEquals("2.31295", $actual->resources[0]->totalAmountINR);
+        self::assertEquals("2.31295", $actual->resources[0]->totalRateINR);
+        self::assertEquals("0.33400", $actual->resources[0]->noiseCancellationAmountINR);
+
+        // INR row whose noise-cancellation amount is unknown: backend sends ""
+        self::assertEquals("2.31295", $actual->resources[1]->totalAmountINR);
+        self::assertSame("", $actual->resources[1]->noiseCancellationAmountINR);
+
+        self::assertEquals("0.02770", $actual->resources[2]->totalAmount);
+        self::assertNull($actual->resources[2]->totalAmountINR);
+        self::assertNull($actual->resources[2]->totalRateINR);
+        self::assertNull($actual->resources[2]->noiseCancellationAmountINR);
+    }
+
     function testLiveCallList()
     {
         $request = new PlivoRequest(

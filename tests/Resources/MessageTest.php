@@ -136,6 +136,51 @@ class MessageTest extends BaseTestCase {
         self::assertEquals($actual->conversationExpirationTimestamp, $conversationExpirationTimestamp);
     }
 
+    public function testMessageGetExposesInrFieldsForInrAccount()
+    {
+        $messageUuid = "5b40a428-bfc7-4daf-9d06-726c558bf3b8";
+        $request = new PlivoRequest(
+            'GET',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Message/'.$messageUuid.'/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/messageGetInrResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->messages->get($messageUuid);
+
+        $this->assertRequest($request);
+
+        self::assertEquals("0.00250", $actual->totalAmount);
+        self::assertEquals("0.00250", $actual->totalRate);
+        self::assertEquals("0.001", $actual->carrier_fees);
+        self::assertEquals("0.420", $actual->carrier_fees_rate);
+        self::assertEquals("0.20875", $actual->totalAmountINR);
+        self::assertEquals("0.20875", $actual->totalRateINR);
+        self::assertEquals("0.08350", $actual->carrier_fees_inr);
+        self::assertEquals("35.07000", $actual->carrier_fees_rate_inr);
+    }
+
+    public function testMessageGetOmitsInrFieldsForUsdAccount()
+    {
+        $messageUuid = "5b40a428-bfc7-4daf-9d06-726c558bf3b8";
+        $request = new PlivoRequest(
+            'GET',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Message/'.$messageUuid.'/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/messageGetResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->messages->get($messageUuid);
+
+        self::assertEquals("0.00250", $actual->totalAmount);
+        self::assertArrayNotHasKey('totalAmountINR', $actual->properties);
+        self::assertArrayNotHasKey('totalRateINR', $actual->properties);
+        self::assertArrayNotHasKey('carrier_fees_inr', $actual->properties);
+        self::assertArrayNotHasKey('carrier_fees_rate_inr', $actual->properties);
+    }
+
     public function testMessageGetwithPowerpack()
     {
         $messageUuid = "5b40a428-bfc7-4daf-9d06-726c558bf3b8";
@@ -241,6 +286,34 @@ class MessageTest extends BaseTestCase {
         self::assertObjectNotHasAttribute('conversationOrigin', $actual->resources[19]);
         self::assertObjectNotHasAttribute('conversationExpirationTimestamp', $actual->resources[19]);
         
+    }
+
+    function testMessageListExposesInrFieldsPerMessage()
+    {
+        $request = new PlivoRequest(
+            'Get',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Message/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/messageListInrResponse.json');
+
+        $this->mock(new PlivoResponse($request,202, $body));
+
+        $actual = $this->client->messages->list;
+
+        $this->assertRequest($request);
+
+        $inrMessage = $actual->resources[0];
+        self::assertEquals("0.20875", $inrMessage->totalAmountINR);
+        self::assertEquals("0.20875", $inrMessage->totalRateINR);
+        self::assertEquals("0.08350", $inrMessage->carrier_fees_inr);
+        self::assertEquals("35.07000", $inrMessage->carrier_fees_rate_inr);
+
+        $usdMessage = $actual->resources[1];
+        self::assertEquals("0.00250", $usdMessage->totalAmount);
+        self::assertArrayNotHasKey('totalAmountINR', $usdMessage->properties);
+        self::assertArrayNotHasKey('totalRateINR', $usdMessage->properties);
+        self::assertArrayNotHasKey('carrier_fees_inr', $usdMessage->properties);
+        self::assertArrayNotHasKey('carrier_fees_rate_inr', $usdMessage->properties);
     }
 
 }

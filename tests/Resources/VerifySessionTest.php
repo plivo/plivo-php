@@ -160,4 +160,60 @@ class VerifySessionTest extends BaseTestCase {
         self::assertEquals($actual->resources[3]->requesterIP, $requesterIP2);
     }
 
+    public function testVerifySessionGetPassesThroughNestedInrCharges()
+    {
+        $sessionUuid = "4124e518-a8c9-4feb-8cff-d86636ba9234";
+        $request = new PlivoRequest(
+            'GET',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Verify/Session/'.$sessionUuid.'/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/verifySessionGetInrResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->verifySessions->get($sessionUuid);
+        $this->assertRequest($request);
+
+        self::assertEquals("0.13000", $actual->charges['total_charge']);
+        self::assertEquals("10.85500", $actual->charges['total_charge_inr']);
+        self::assertEquals("6.68000", $actual->charges['attempt_charges'][0]['charge_inr']);
+        self::assertEquals(6.68, $actual->attemptDetails[0]['amount_inr']);
+    }
+
+    public function testVerifySessionListPassesThroughNestedInrCharges()
+    {
+        $request = new PlivoRequest(
+            'Get',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Verify/Session/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/verifySessionListInrResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->verifySessions->list();
+        $this->assertRequest($request);
+
+        $session = $actual->resources[0];
+        self::assertEquals("10.85500", $session->charges['total_charge_inr']);
+        self::assertEquals("6.68000", $session->charges['attempt_charges'][0]['charge_inr']);
+        self::assertEquals(6.68, $session->attemptDetails[0]['amount_inr']);
+    }
+
+    public function testVerifySessionGetUsdChargesHaveNoInrKeys()
+    {
+        $sessionUuid = "4124e518-a8c9-4feb-8cff-d86636ba9234";
+        $request = new PlivoRequest(
+            'GET',
+            'Account/MAXXXXXXXXXXXXXXXXXX/Verify/Session/'.$sessionUuid.'/',
+            []);
+        $body = file_get_contents(__DIR__ . '/../Mocks/verifySessionGetResponse.json');
+
+        $this->mock(new PlivoResponse($request,200, $body));
+
+        $actual = $this->client->verifySessions->get($sessionUuid);
+
+        self::assertEquals("0.00000", $actual->charges['total_charge']);
+        self::assertArrayNotHasKey('total_charge_inr', $actual->charges);
+    }
+
 }

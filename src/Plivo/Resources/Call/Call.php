@@ -23,6 +23,9 @@ use Plivo\Resources\Resource;
  * @property string $to The callee
  * @property string $totalAmount The total amount
  * @property string $totalRate The total rate
+ * @property ?string $totalAmountINR The total amount in INR (INR accounts only, else null)
+ * @property ?string $totalRateINR The total rate in INR (INR accounts only, else null)
+ * @property ?string $noiseCancellationAmountINR The noise cancellation amount in INR (INR accounts only, else null)
  * @property string $hangupCauseCode Hangup Cause Code
  * @property string $hangupCauseName Hangup Cause Name
  * @property string $hangupSource Hangup Source
@@ -61,6 +64,10 @@ class Call extends Resource
             'to' => $response['to_number'],
             'totalAmount' => $response['total_amount'],
             'totalRate' => $response['total_rate'],
+            // INR siblings; sent only for INR accounts, null otherwise
+            'totalAmountINR' => isset($response['total_amount_inr']) ? $response['total_amount_inr'] : null,
+            'totalRateINR' => isset($response['total_rate_inr']) ? $response['total_rate_inr'] : null,
+            'noiseCancellationAmountINR' => isset($response['noise_cancellation_amount_inr']) ? $response['noise_cancellation_amount_inr'] : null,
             'hangupCauseCode' => $response['hangup_cause_code'],
             'hangupCauseName' => $response['hangup_cause_name'],
             'hangupSource' => $response['hangup_source'],
