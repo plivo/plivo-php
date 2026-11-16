@@ -22,9 +22,9 @@
         }
     ],
     "charges": {
-        "total_charge": "0.13000",
-        "total_charge_inr": "10.85500",
-        "validation_charge": "0.0500",
+        "total_charge": "0.08000",
+        "total_charge_inr": "6.68000",
+        "validation_charge": "0.0000",
         "attempt_charges": [
             {
                 "attempt_uuid": "3ada0edc-849a-49f4-aae6-2de209955829",

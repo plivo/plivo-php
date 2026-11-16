@@ -151,17 +151,17 @@ class MessageTest extends BaseTestCase {
 
         $this->assertRequest($request);
 
-        self::assertEquals("0.00250", $actual->totalAmount);
-        self::assertEquals("0.00250", $actual->totalRate);
-        self::assertEquals("0.001", $actual->carrier_fees);
-        self::assertEquals("0.420", $actual->carrier_fees_rate);
-        self::assertEquals("0.20875", $actual->totalAmountINR);
-        self::assertEquals("0.20875", $actual->totalRateINR);
-        self::assertEquals("0.08350", $actual->carrier_fees_inr);
-        self::assertEquals("35.07000", $actual->carrier_fees_rate_inr);
+        self::assertSame("0.00250", $actual->totalAmount);
+        self::assertSame("0.00250", $actual->totalRate);
+        self::assertSame("0.001", $actual->carrier_fees);
+        self::assertSame("0.420", $actual->carrier_fees_rate);
+        self::assertSame("0.20875", $actual->totalAmountINR);
+        self::assertSame("0.20875", $actual->totalRateINR);
+        self::assertSame("0.08350", $actual->carrier_fees_inr);
+        self::assertSame("35.07000", $actual->carrier_fees_rate_inr);
     }
 
-    public function testMessageGetOmitsInrFieldsForUsdAccount()
+    public function testMessageGetReturnsNullInrFieldsForUsdAccount()
     {
         $messageUuid = "5b40a428-bfc7-4daf-9d06-726c558bf3b8";
         $request = new PlivoRequest(
@@ -174,11 +174,13 @@ class MessageTest extends BaseTestCase {
 
         $actual = $this->client->messages->get($messageUuid);
 
-        self::assertEquals("0.00250", $actual->totalAmount);
-        self::assertArrayNotHasKey('totalAmountINR', $actual->properties);
-        self::assertArrayNotHasKey('totalRateINR', $actual->properties);
-        self::assertArrayNotHasKey('carrier_fees_inr', $actual->properties);
-        self::assertArrayNotHasKey('carrier_fees_rate_inr', $actual->properties);
+        self::assertSame("0.00250", $actual->totalAmount);
+        self::assertNull($actual->totalAmountINR);
+        self::assertNull($actual->totalRateINR);
+        self::assertNull($actual->carrier_fees_inr);
+        self::assertNull($actual->carrier_fees_rate_inr);
+        // reading an absent INR field must not throw, so ?? falls back
+        self::assertSame($actual->totalAmount, $actual->totalAmountINR ?? $actual->totalAmount);
     }
 
     public function testMessageGetwithPowerpack()
@@ -303,17 +305,17 @@ class MessageTest extends BaseTestCase {
         $this->assertRequest($request);
 
         $inrMessage = $actual->resources[0];
-        self::assertEquals("0.20875", $inrMessage->totalAmountINR);
-        self::assertEquals("0.20875", $inrMessage->totalRateINR);
-        self::assertEquals("0.08350", $inrMessage->carrier_fees_inr);
-        self::assertEquals("35.07000", $inrMessage->carrier_fees_rate_inr);
+        self::assertSame("0.20875", $inrMessage->totalAmountINR);
+        self::assertSame("0.20875", $inrMessage->totalRateINR);
+        self::assertSame("0.08350", $inrMessage->carrier_fees_inr);
+        self::assertSame("35.07000", $inrMessage->carrier_fees_rate_inr);
 
         $usdMessage = $actual->resources[1];
-        self::assertEquals("0.00250", $usdMessage->totalAmount);
-        self::assertArrayNotHasKey('totalAmountINR', $usdMessage->properties);
-        self::assertArrayNotHasKey('totalRateINR', $usdMessage->properties);
-        self::assertArrayNotHasKey('carrier_fees_inr', $usdMessage->properties);
-        self::assertArrayNotHasKey('carrier_fees_rate_inr', $usdMessage->properties);
+        self::assertSame("0.00250", $usdMessage->totalAmount);
+        self::assertNull($usdMessage->totalAmountINR);
+        self::assertNull($usdMessage->totalRateINR);
+        self::assertNull($usdMessage->carrier_fees_inr);
+        self::assertNull($usdMessage->carrier_fees_rate_inr);
     }
 
 }

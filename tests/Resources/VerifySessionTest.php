@@ -174,10 +174,12 @@ class VerifySessionTest extends BaseTestCase {
         $actual = $this->client->verifySessions->get($sessionUuid);
         $this->assertRequest($request);
 
-        self::assertEquals("0.13000", $actual->charges['total_charge']);
-        self::assertEquals("10.85500", $actual->charges['total_charge_inr']);
-        self::assertEquals("6.68000", $actual->charges['attempt_charges'][0]['charge_inr']);
-        self::assertEquals(6.68, $actual->attemptDetails[0]['amount_inr']);
+        self::assertSame("0.08000", $actual->charges['total_charge']);
+        self::assertSame("6.68000", $actual->charges['total_charge_inr']);
+        self::assertSame("6.68000", $actual->charges['attempt_charges'][0]['charge_inr']);
+        self::assertSame("0.08000", $actual->charges['attempt_charges'][0]['charge']);
+        self::assertSame(0.08, $actual->attemptDetails[0]['amount']);
+        self::assertSame(6.68, $actual->attemptDetails[0]['amount_inr']);
     }
 
     public function testVerifySessionListPassesThroughNestedInrCharges()
@@ -194,9 +196,9 @@ class VerifySessionTest extends BaseTestCase {
         $this->assertRequest($request);
 
         $session = $actual->resources[0];
-        self::assertEquals("10.85500", $session->charges['total_charge_inr']);
-        self::assertEquals("6.68000", $session->charges['attempt_charges'][0]['charge_inr']);
-        self::assertEquals(6.68, $session->attemptDetails[0]['amount_inr']);
+        self::assertSame("6.68000", $session->charges['total_charge_inr']);
+        self::assertSame("6.68000", $session->charges['attempt_charges'][0]['charge_inr']);
+        self::assertSame(6.68, $session->attemptDetails[0]['amount_inr']);
     }
 
     public function testVerifySessionGetUsdChargesHaveNoInrKeys()
@@ -212,7 +214,7 @@ class VerifySessionTest extends BaseTestCase {
 
         $actual = $this->client->verifySessions->get($sessionUuid);
 
-        self::assertEquals("0.00000", $actual->charges['total_charge']);
+        self::assertSame("0.00000", $actual->charges['total_charge']);
         self::assertArrayNotHasKey('total_charge_inr', $actual->charges);
     }
 

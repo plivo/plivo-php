@@ -19,10 +19,10 @@ use Plivo\Resources\Resource;
  * @property string $resourceUri
  * @property string $totalAmount
  * @property string $totalRate
- * @property ?string $totalAmountINR Set only for INR accounts
- * @property ?string $totalRateINR Set only for INR accounts
- * @property ?string $carrier_fees_inr Set only for INR accounts
- * @property ?string $carrier_fees_rate_inr Set only for INR accounts
+ * @property ?string $totalAmountINR INR accounts only, else null
+ * @property ?string $totalRateINR INR accounts only, else null
+ * @property ?string $carrier_fees_inr INR accounts only, else null
+ * @property ?string $carrier_fees_rate_inr INR accounts only, else null
  * @property string $units
  * @property string $replacedSender
  * @property ?string $errorCode
@@ -65,13 +65,12 @@ class Message extends Resource
             'replacedSender' => $response['replaced_sender']
         ];
 
-        // INR siblings of totalAmount / totalRate; sent only for INR accounts
-        if (!empty($response['total_amount_inr'])) {
-            $this->properties['totalAmountINR'] = $response['total_amount_inr'];
-        }
-        if (!empty($response['total_rate_inr'])) {
-            $this->properties['totalRateINR'] = $response['total_rate_inr'];
-        }
+        // INR siblings; sent only for INR accounts. Always set (null when absent)
+        // so the properties can be read on any message without throwing.
+        $this->properties['totalAmountINR'] = isset($response['total_amount_inr']) ? $response['total_amount_inr'] : null;
+        $this->properties['totalRateINR'] = isset($response['total_rate_inr']) ? $response['total_rate_inr'] : null;
+        $this->properties['carrier_fees_inr'] = isset($response['carrier_fees_inr']) ? $response['carrier_fees_inr'] : null;
+        $this->properties['carrier_fees_rate_inr'] = isset($response['carrier_fees_rate_inr']) ? $response['carrier_fees_rate_inr'] : null;
 
         // handled empty string and null case
         if (!empty($response['api_id'])) {
@@ -130,14 +129,8 @@ class Message extends Resource
         if (!empty($response['carrier_fees_rate'])) {
             $this->properties['carrier_fees_rate'] = $response['carrier_fees_rate'];
         }
-        if (!empty($response['carrier_fees_rate_inr'])) {
-            $this->properties['carrier_fees_rate_inr'] = $response['carrier_fees_rate_inr'];
-        }
         if (!empty($response['carrier_fees'])) {
             $this->properties['carrier_fees'] = $response['carrier_fees'];
-        }
-        if (!empty($response['carrier_fees_inr'])) {
-            $this->properties['carrier_fees_inr'] = $response['carrier_fees_inr'];
         }
         if (!empty($response['log'])) {
             $this->properties['log'] = $response['log'];
